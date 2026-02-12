@@ -8,46 +8,54 @@
 </head>
 <body data-page="quiz">
   <header class="topbar">
-    <a class="brand" href="index.html">IB Survival Hub</a>
-    <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="subjects.html">Subjects</a>
-      <a href="planner.html">Planner</a>
-      <a class="active" href="quiz.html">Study Quiz</a>
-      <a href="resources.html">Resources</a>
-    </nav>
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-badge"></span>
+        <span>IB Survival Hub</span>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="subjects.html">Subjects</a>
+        <a href="planner.html">Planner</a>
+        <a class="active" href="quiz.html">Study Quiz</a>
+        <a href="resources.html">Resources</a>
+      </nav>
+    </div>
   </header>
 
   <main class="container">
     <section class="hero">
       <h1>Study Quiz</h1>
-      <p class="muted">Answer honestly — you’ll get a study style + a plan that matches it.</p>
+      <p class="muted">Quick quiz → you get a study style + a plan that matches it.</p>
 
-      <div class="panel">
-        <div id="quizBox">
-          <div class="note" id="quizIntro">
-            Click start. Takes 60 seconds.
+      <div class="grid">
+        <div class="panel span12">
+          <div id="quizBox">
+            <div class="note" id="quizIntro">Click start. Takes about a minute.</div>
+            <button class="btn" id="startQuiz">Start</button>
           </div>
-          <button class="btn" id="startQuiz">Start</button>
-        </div>
 
-        <div id="quizQ" style="display:none;">
-          <h2 id="qText">Question</h2>
-          <div class="grid2" id="qOptions"></div>
-          <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;">
-            <button class="btn" id="prevQ">Back</button>
-            <button class="btn" id="nextQ">Next</button>
+          <div id="quizQ" style="display:none;">
+            <h2 id="qText">Question</h2>
+            <div class="grid" id="qOptions"></div>
+            <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;">
+              <button class="btn" id="prevQ">Back</button>
+              <button class="btn" id="nextQ">Next</button>
+            </div>
           </div>
-        </div>
 
-        <div id="quizResult" style="display:none;">
-          <h2>Your result</h2>
-          <div class="note" id="resultText"></div>
-          <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;">
-            <button class="btn" id="restartQuiz">Retake</button>
+          <div id="quizResult" style="display:none;">
+            <h2>Your result</h2>
+            <div class="note" id="resultText"></div>
+            <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;">
+              <button class="btn" id="restartQuiz">Retake</button>
+            </div>
           </div>
         </div>
       </div>
+
+      <div class="footer">Reminder: your study style should match the exam type (math vs essays vs data).</div>
     </section>
   </main>
 
