@@ -1,0 +1,46 @@
+{
+  "subjects": [
+    {
+      "name": "Chemistry",
+      "subtitle": "Papers + tips + mark traps",
+      "href": "chem.html",
+      "tags": ["MCQ + data skills", "Calculations", "Markscheme wording"]
+    },
+    {
+      "name": "Biology",
+      "subtitle": "Keywords + data interpretation",
+      "href": "bio.html",
+      "tags": ["Active recall", "Graph questions", "Command terms"]
+    },
+    {
+      "name": "Physics",
+      "subtitle": "Method marks + setup clarity",
+      "href": "physics.html",
+      "tags": ["Diagrams", "Units + sig figs", "Patterns"]
+    },
+    {
+      "name": "Math AA",
+      "subtitle": "SL vs HL structure + errors",
+      "href": "math.html",
+      "tags": ["Algebra accuracy", "Restrictions", "Timed practice"]
+    },
+    {
+      "name": "Economics",
+      "subtitle": "SL vs HL (HL has Paper 3)",
+      "href": "econ.html",
+      "tags": ["Diagrams", "DEED", "Evaluation"]
+    },
+    {
+      "name": "Psychology",
+      "subtitle": "Studies + evaluation",
+      "href": "psych.html",
+      "tags": ["SAQ/ERQ structure", "Study bank", "Research methods"]
+    },
+    {
+      "name": "English Lit",
+      "subtitle": "Paper 1 unseen + Paper 2 comparative",
+      "href": "english.html",
+      "tags": ["Thesis", "Close analysis", "Comparative writing"]
+    }
+  ]
+}
