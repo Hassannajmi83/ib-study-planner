@@ -249,3 +249,46 @@ tr:hover {
     padding: 20px;
   }
 }
+
+
+.boundary-meta {
+  margin-top: 15px;
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.06);
+  color: #d4d4d4;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.boundary-disclaimer {
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(255, 200, 0, 0.08);
+  border: 1px solid rgba(255, 200, 0, 0.2);
+  font-size: 13px;
+  color: #ffdd88;
+}
+
+.boundary-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.boundary-table th,
+.boundary-table td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.boundary-table th {
+  background: rgba(255,255,255,0.05);
+  font-weight: 600;
+}
+
+.boundary-table tr:hover {
+  background: rgba(255,255,255,0.03);
+}
