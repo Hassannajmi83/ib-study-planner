@@ -1,64 +1,188 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Study Quiz — IB Survival Hub</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Study Quiz — IB Survival Hub</title>
+<link rel="stylesheet" href="style.css" />
+
+<style>
+.quiz-box{
+  margin-top:20px;
+  padding:30px;
+  border-radius:18px;
+  background:linear-gradient(145deg,#111a2e,#0e1627);
+  border:1px solid rgba(255,255,255,0.05);
+}
+
+.quiz-question{
+  font-size:20px;
+  margin-bottom:20px;
+}
+
+.answers{
+  display:grid;
+  gap:12px;
+}
+
+.answer-btn{
+  padding:14px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:#141f36;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.answer-btn:hover{
+  background:#1a2847;
+  transform:translateY(-2px);
+}
+
+.progress{
+  margin-bottom:15px;
+  font-size:14px;
+  opacity:0.6;
+}
+
+.result-box{
+  margin-top:20px;
+  padding:20px;
+  border-radius:14px;
+  background:#0f1b34;
+  border:1px solid rgba(255,255,255,0.08);
+}
+</style>
 </head>
-<body data-page="quiz">
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brand" href="index.html">
-        <span class="brand-badge"></span>
-        <span>IB Survival Hub</span>
-      </a>
 
-      <nav class="nav">
-        <a href="index.html">Home</a>
-        <a href="subjects.html">Subjects</a>
-        <a href="planner.html">Planner</a>
-        <a class="active" href="quiz.html">Study Quiz</a>
-        <a href="resources.html">Resources</a>
-      </nav>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-badge"></span>
+      <span>IB Survival Hub</span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="subjects.html">Subjects</a>
+      <a href="planner.html">Planner</a>
+      <a class="active" href="quiz.html">Study Quiz</a>
+      <a href="resources.html">Resources</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+<section class="hero">
+  <h1>Study Style Quiz</h1>
+  <p class="muted">Answer a few questions and get a study strategy that fits you.</p>
+
+  <div class="quiz-box" id="quizBox">
+    <div id="startScreen">
+      <p>Click start. Takes about 30 seconds.</p>
+      <button class="btn" onclick="startQuiz()">Start Quiz</button>
     </div>
-  </header>
 
-  <main class="container">
-    <section class="hero">
-      <h1>Study Quiz</h1>
-      <p class="muted">Quick quiz → you get a study style + a plan that matches it.</p>
+    <div id="quizContent" style="display:none;">
+      <div class="progress" id="progress"></div>
+      <div class="quiz-question" id="question"></div>
+      <div class="answers" id="answers"></div>
+    </div>
 
-      <div class="grid">
-        <div class="panel span12">
-          <div id="quizBox">
-            <div class="note" id="quizIntro">Click start. Takes about a minute.</div>
-            <button class="btn" id="startQuiz">Start</button>
-          </div>
+    <div id="result" style="display:none;"></div>
+  </div>
 
-          <div id="quizQ" style="display:none;">
-            <h2 id="qText">Question</h2>
-            <div class="grid" id="qOptions"></div>
-            <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;">
-              <button class="btn" id="prevQ">Back</button>
-              <button class="btn" id="nextQ">Next</button>
-            </div>
-          </div>
+</section>
+</main>
 
-          <div id="quizResult" style="display:none;">
-            <h2>Your result</h2>
-            <div class="note" id="resultText"></div>
-            <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;">
-              <button class="btn" id="restartQuiz">Retake</button>
-            </div>
-          </div>
-        </div>
-      </div>
+<script>
+const questions = [
+  {
+    q: "When studying, what helps you most?",
+    a: [
+      { text:"Practicing lots of questions", type:"practice" },
+      { text:"Explaining concepts in my own words", type:"active" },
+      { text:"Reading notes carefully", type:"passive" }
+    ]
+  },
+  {
+    q: "Before exams you usually...",
+    a: [
+      { text:"Do past papers", type:"practice" },
+      { text:"Rewrite summaries", type:"active" },
+      { text:"Re-read textbook", type:"passive" }
+    ]
+  },
+  {
+    q: "You lose marks mostly because...",
+    a: [
+      { text:"Silly mistakes", type:"practice" },
+      { text:"Weak explanations", type:"active" },
+      { text:"Forgot content", type:"passive" }
+    ]
+  }
+];
 
-      <div class="footer">Reminder: your study style should match the exam type (math vs essays vs data).</div>
-    </section>
-  </main>
+let current = 0;
+let score = {practice:0, active:0, passive:0};
 
-  <script src="app.js"></script>
+function startQuiz(){
+  document.getElementById("startScreen").style.display="none";
+  document.getElementById("quizContent").style.display="block";
+  loadQuestion();
+}
+
+function loadQuestion(){
+  const q = questions[current];
+  document.getElementById("question").innerText = q.q;
+  document.getElementById("progress").innerText = "Question " + (current+1) + " of " + questions.length;
+
+  const answersDiv = document.getElementById("answers");
+  answersDiv.innerHTML = "";
+
+  q.a.forEach(option=>{
+    const btn = document.createElement("div");
+    btn.className="answer-btn";
+    btn.innerText=option.text;
+    btn.onclick=()=>{
+      score[option.type]++;
+      current++;
+      if(current < questions.length){
+        loadQuestion();
+      } else {
+        showResult();
+      }
+    };
+    answersDiv.appendChild(btn);
+  });
+}
+
+function showResult(){
+  document.getElementById("quizContent").style.display="none";
+  const resultBox = document.getElementById("result");
+  resultBox.style.display="block";
+
+  let best = Object.keys(score).reduce((a,b)=>score[a]>score[b]?a:b);
+
+  let message="";
+  if(best==="practice"){
+    message="You're a Practice-Based Learner. Focus on timed past papers + error correction.";
+  }
+  if(best==="active"){
+    message="You're an Active Learner. Use blurting, teaching others, and writing from memory.";
+  }
+  if(best==="passive"){
+    message="You're a Passive Learner (right now). Shift toward active recall + question practice.";
+  }
+
+  resultBox.innerHTML = `
+    <div class="result-box">
+      <h3>Your Study Style</h3>
+      <p>${message}</p>
+      <button class="btn" onclick="location.reload()">Retake Quiz</button>
+    </div>
+  `;
+}
+</script>
 </body>
 </html>
