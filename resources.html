@@ -5,8 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Resources — IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .tag{display:inline-block;padding:6px 10px;border-radius:999px;font-size:12px;opacity:.9;border:1px solid rgba(255,255,255,.08)}
+    .tag.free{background:rgba(46,204,113,.12)}
+    .tag.paid{background:rgba(241,196,15,.12)}
+    .tag.official{background:rgba(52,152,219,.12)}
+    .tag.practice{background:rgba(155,89,182,.12)}
+    .tag.notes{background:rgba(231,76,60,.12)}
+    .controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .controls input,.controls select{width:100%}
+    .resource-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:18px}
+    .res-card{grid-column:span 6;padding:18px;border-radius:16px;background:rgba(15,27,52,.75);border:1px solid rgba(255,255,255,.08)}
+    @media (max-width:900px){.res-card{grid-column:span 12}}
+    .res-card h3{margin:0 0 8px 0}
+    .res-card p{margin:0 0 10px 0;opacity:.8}
+    .res-card a{display:inline-block;margin-top:8px}
+    .res-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .small-note{opacity:.7;font-size:13px;margin-top:10px}
+    .section-title{margin-top:18px}
+  </style>
 </head>
-<body>
+
+<body data-page="resources">
   <header class="topbar">
     <div class="topbar-inner">
       <a class="brand" href="index.html">
@@ -27,62 +47,60 @@
   <main class="container">
     <section class="hero">
       <h1>Resources</h1>
-      <p class="muted">Checklist for what to collect — so studying stays clean and not chaotic.</p>
+      <p class="muted">A clean, legal, curated list of IB resources — sorted by subject + purpose.</p>
 
-      <div class="grid" style="margin-top:18px;">
-        <div class="panel span6">
-          <h2>Core (every subject)</h2>
-          <ul class="muted">
-            <li>Past paper / exam-style questions</li>
-            <li>Markscheme patterns (how marks are awarded)</li>
-            <li>A short mistakes list (repeated errors)</li>
-            <li>Minimal notes (only what you forget)</li>
-          </ul>
+      <div class="panel" style="margin-top:16px;">
+        <h2 style="margin:0 0 8px 0;">How to use this page (so it actually helps)</h2>
+        <ul class="muted">
+          <li>Pick <b>1 notes source</b> + <b>1 questionbank source</b> per subject. Don’t hoard links.</li>
+          <li>For every link you save: turn it into either (1) a recall prompt or (2) a practice set.</li>
+          <li>No pirated past papers/leaks here — only legal resources.</li>
+        </ul>
+      </div>
+
+      <div class="panel controls">
+        <div style="flex:2;min-width:240px;">
+          <label for="resSearch">Search</label>
+          <input id="resSearch" type="text" placeholder="e.g., chemistry, vectors, microeconomics, Paper 1..." />
         </div>
 
-        <div class="panel span6">
-          <h2>Science (Chem/Bio/Physics)</h2>
-          <ul class="muted">
-            <li>Formula/data booklet familiarity</li>
-            <li>Topic checklists (what can be asked)</li>
-            <li>Graph/data interpretation practice</li>
-            <li>Command term habits</li>
-          </ul>
+        <div style="flex:1;min-width:180px;">
+          <label for="resSubject">Subject</label>
+          <select id="resSubject">
+            <option value="all">All</option>
+            <option value="chem">Chemistry</option>
+            <option value="bio">Biology</option>
+            <option value="physics">Physics</option>
+            <option value="math">Math</option>
+            <option value="econ">Economics</option>
+            <option value="psych">Psychology</option>
+            <option value="english">English</option>
+            <option value="history">History</option>
+            <option value="business">Business</option>
+            <option value="geo">Geography</option>
+            <option value="cs">Computer Science</option>
+            <option value="french">French</option>
+          </select>
         </div>
 
-        <div class="panel span6">
-          <h2>Math</h2>
-          <ul class="muted">
-            <li>Skill drills by topic (short sets)</li>
-            <li>Mixed sets (exam simulation)</li>
-            <li>Common error list (sign, domain, trig range)</li>
-            <li>Timed mini-papers weekly</li>
-          </ul>
-        </div>
-
-        <div class="panel span6">
-          <h2>Essay subjects (Econ/English/Psych)</h2>
-          <ul class="muted">
-            <li>Paragraph/essay templates</li>
-            <li>Study bank (case studies / studies / quotes)</li>
-            <li>Evaluation phrases + structure</li>
-            <li>Timed paragraph practice</li>
-          </ul>
-        </div>
-
-        <div class="panel span12">
-          <h2>Rules (so it doesn’t become link hoarding)</h2>
-          <ul class="muted">
-            <li>Max ~10 go-to resources per subject.</li>
-            <li>If you save a link, convert it into a recall prompt or a practice set.</li>
-            <li>Every week: do one timed set and rewrite mistakes.</li>
-            <li>Your mistakes are more valuable than new notes.</li>
-          </ul>
+        <div style="flex:1;min-width:180px;">
+          <label for="resType">Type</label>
+          <select id="resType">
+            <option value="all">All</option>
+            <option value="practice">Practice / QBank</option>
+            <option value="notes">Notes / Explanation</option>
+            <option value="official">Official / Reference</option>
+          </select>
         </div>
       </div>
 
-      <div class="footer">Built for first-year IB students who want a simple system that actually works.</div>
+      <h2 class="section-title">Recommended resources</h2>
+      <div class="resource-grid" id="resourceGrid"></div>
+
+      <div class="footer">If you want, I can add a “My Personal Links” section that you can edit easily.</div>
     </section>
   </main>
+
+  <script src="app.js"></script>
 </body>
 </html>
