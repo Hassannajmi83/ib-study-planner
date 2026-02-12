@@ -3,18 +3,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Subjects — IB Survival Hub</title>
+  <title>IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="topbar">
-    <div class="topbarInner">
+    <div class="topbar-inner">
       <a class="brand" href="index.html">
-        <span class="brandBadge"></span>
+        <span class="brand-badge"></span>
         <span>IB Survival Hub</span>
       </a>
+
       <nav class="nav">
-        <a href="index.html">Home</a>
+        <a class="active" href="index.html">Home</a>
         <a href="subjects.html">Subjects</a>
         <a href="planner.html">Planner</a>
         <a href="quiz.html">Study Quiz</a>
@@ -25,13 +26,47 @@
 
   <main class="container">
     <section class="hero">
-      <h1>Subjects</h1>
-      <p class="muted">Pick a subject. Each one is a separate page with papers + tips + common mark traps.</p>
+      <h1>Survive Year 1 (and actually get good marks)</h1>
+      <p>
+        This is a student-made guide to IB exams: paper structure, study methods that work, and subject-specific tips.
+        Built as a quick, clean site so new IB students can stop guessing and start scoring.
+      </p>
 
-      <div class="grid" id="subjectsGrid"></div>
+      <div class="grid">
+        <div class="panel span8">
+          <h2>How to use this site</h2>
+          <p class="muted">
+            Start with <b>Subjects</b> to understand paper structure + common traps. Use <b>Planner</b> to generate a weekly plan.
+            Use <b>Study Quiz</b> to find your best study style. Keep <b>Resources</b> as your checklist (so you don’t hoard links).
+          </p>
+          <div class="note">
+            Goal: fewer “I studied a lot but did bad” moments — more targeted practice + better exam technique.
+          </div>
+        </div>
+
+        <div class="panel span4">
+          <h2>Quick Start</h2>
+          <a class="card" href="subjects.html" style="margin-top:10px;">
+            <div class="card-title">Open Subjects</div>
+            <p class="card-sub">Pick a subject → see papers + study strategy.</p>
+          </a>
+          <a class="card" href="planner.html" style="margin-top:12px;">
+            <div class="card-title">Build a Plan</div>
+            <p class="card-sub">Put in exam date + hours/week.</p>
+          </a>
+        </div>
+
+        <div class="panel span12">
+          <h2>What makes this “impressive” for CAS</h2>
+          <p class="muted">
+            It’s a real tool (not a slideshow). It has multiple pages, consistent UI, and interactive features (planner + quiz).
+            It’s also service: it’s meant to help first-year IB students study properly.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer">Built on GitHub Pages • Simple, fast, no server needed</div>
     </section>
   </main>
-
-  <script src="app.js"></script>
 </body>
 </html>
