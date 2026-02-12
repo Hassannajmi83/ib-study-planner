@@ -3,58 +3,67 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Subjects — IB Survival Hub</title>
+  <title>IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
- <header class="topbar">
-  <div class="topbar-inner">
+  <header class="topbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-dot"></div>
+        <span>IB Survival Hub</span>
+      </a>
 
-    <a class="brand" href="index.html">
-      <span class="brand-badge"></span>
-      <span>IB Survival Hub</span>
-    </a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="subjects.html">Subjects</a>
+        <a href="planner.html">Planner</a>
+        <a href="quiz.html">Study Quiz</a>
+        <a href="resources.html">Resources</a>
+        <a href="boundaries.html">Boundaries</a>
+        <a href="converter.html">Converter</a>
+      </nav>
+    </div>
+  </header>
 
-    <nav class="nav">
-      <a href="index.html" class="active">Home</a>
-      <a href="subjects.html">Subjects</a>
-      <a href="planner.html">Planner</a>
-      <a href="converter.html">Converter</a>
-      <a href="boundaries.html">Boundaries</a>
-      <a href="quiz.html">Study Quiz</a>
-      <a href="resources.html">Resources</a>
-    </nav>
-
-  </div>
-</header>
   <main class="container">
     <section class="hero">
-      <h1>Subjects</h1>
-      <p class="muted">Pick a subject. Each page has papers + study strategy + common mark traps.</p>
+      <h1>Survive Year 1 (and actually get good marks)</h1>
+      <p class="muted">A student-made guide to IB exams: paper structure, study methods that work, and subject-specific tips — built as a clean multi-page site.</p>
 
       <div class="grid" style="margin-top:18px;">
-        <a class="card span6" href="chem.html"><div class="card-title">Chemistry</div><p class="card-sub">Papers + calculations + markscheme wording</p></a>
-        <a class="card span6" href="bio.html"><div class="card-title">Biology</div><p class="card-sub">Keywords, data response, command terms</p></a>
+        <div class="panel span6">
+          <h2>How to use this site</h2>
+          <ul class="muted">
+            <li>Start with <b>Subjects</b> to learn paper structure + common traps.</li>
+            <li>Use <b>Planner</b> to generate a weekly plan you’ll actually follow.</li>
+            <li>Use <b>Study Quiz</b> to match your method to your subjects.</li>
+            <li>Use <b>Resources</b> as a curated “legal links only” library.</li>
+          </ul>
+        </div>
 
-        <a class="card span6" href="physics.html"><div class="card-title">Physics</div><p class="card-sub">Diagrams, method marks, clean assumptions</p></a>
-        <a class="card span6" href="math.html"><div class="card-title">Math AA</div><p class="card-sub">SL vs HL structure + common error traps</p></a>
+        <div class="panel span6">
+          <h2>Quick Start</h2>
+          <div class="note">
+            <div style="margin-bottom:10px;"><b>1)</b> Open Subjects → pick your hardest course.</div>
+            <div style="margin-bottom:10px;"><b>2)</b> Write 5 mistakes you keep making.</div>
+            <div><b>3)</b> Do 1 timed set this week and fix those mistakes.</div>
+          </div>
+          <div style="margin-top:12px;">
+            <a class="btn" href="subjects.html">Open Subjects</a>
+          </div>
+        </div>
 
-        <a class="card span6" href="econ.html"><div class="card-title">Economics</div><p class="card-sub">SL vs HL + diagrams + evaluation</p></a>
-        <a class="card span6" href="psych.html"><div class="card-title">Psychology</div><p class="card-sub">Studies bank + SAQ/ERQ structure</p></a>
-
-        <a class="card span12" href="English.html"><div class="card-title">English Literature</div><p class="card-sub">Paper 1 unseen analysis + Paper 2 comparison</p></a>
-
-        <a class="card span6" href="history.html"><div class="card-title">History</div><p class="card-sub">Evidence, argument, source analysis</p></a>
-        <a class="card span6" href="business.html"><div class="card-title">Business</div><p class="card-sub">Case application + evaluation + recommendation</p></a>
-
-        <a class="card span6" href="geo.html"><div class="card-title">Geography</div><p class="card-sub">Case studies + models + evaluation</p></a>
-        <a class="card span6" href="cs.html"><div class="card-title">Computer Science</div><p class="card-sub">Tracing + pseudocode + trade-offs</p></a>
-
-        <a class="card span12" href="french.html"><div class="card-title">French</div><p class="card-sub">Consistency + writing structure + vocab growth</p></a>
+        <div class="panel span12">
+          <h2>Built for CAS</h2>
+          <p class="muted">Tech + service: an actual tool (not slides), multiple pages, consistent UI, and interactive features (planner + quiz). It helps first-year IB students stop guessing and study properly.</p>
+        </div>
       </div>
 
-      <div class="footer">If a link 404s, it’s usually a filename case mismatch. Keep names exactly as above.</div>
+      <div class="footer">Built on GitHub Pages — no server needed.</div>
     </section>
   </main>
+
+  <script src="app.js"></script>
 </body>
 </html>
