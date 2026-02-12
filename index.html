@@ -3,67 +3,35 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>IB Survival Hub</title>
+  <title>Subjects — IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="topbar">
-    <div class="brand">IB Survival Hub</div>
-    <nav class="nav">
-      <a class="active" href="index.html">Home</a>
-      <a href="subjects.html">Subjects</a>
-      <a href="planner.html">Planner</a>
-      <a href="quiz.html">Study Quiz</a>
-      <a href="resources.html">Resources</a>
-      <a href="errorlog.html">Error Log</a>
-    </nav>
+    <div class="topbarInner">
+      <a class="brand" href="index.html">
+        <span class="brandBadge"></span>
+        <span>IB Survival Hub</span>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="subjects.html">Subjects</a>
+        <a href="planner.html">Planner</a>
+        <a href="quiz.html">Study Quiz</a>
+        <a href="resources.html">Resources</a>
+      </nav>
+    </div>
   </header>
 
   <main class="container">
     <section class="hero">
-      <h1>IB Year 1 Starter Site</h1>
-      <p class="muted">
-        Pick what you need: subject guides, paper breakdowns (HL vs SL), study tools, and a clean error log.
-      </p>
+      <h1>Subjects</h1>
+      <p class="muted">Pick a subject. Each one is a separate page with papers + tips + common mark traps.</p>
 
-      <div class="cards">
-        <a class="cardLink" href="subjects.html">
-          <div class="card">
-            <h2>Subjects</h2>
-            <p class="muted">Each subject has its own page with paper structure + tips.</p>
-          </div>
-        </a>
-
-        <a class="cardLink" href="planner.html">
-          <div class="card">
-            <h2>Planner</h2>
-            <p class="muted">Generate a weekly plan based on your exam date and time.</p>
-          </div>
-        </a>
-
-        <a class="cardLink" href="quiz.html">
-          <div class="card">
-            <h2>Study Quiz</h2>
-            <p class="muted">5 questions → recommends the best study method for you.</p>
-          </div>
-        </a>
-
-        <a class="cardLink" href="resources.html">
-          <div class="card">
-            <h2>Resources</h2>
-            <p class="muted">A clean checklist of what to collect (without link spam).</p>
-          </div>
-        </a>
-      </div>
-
-      <div class="note">
-        Tip: Put your citations + sources in your Google Doc, not on the site.
-      </div>
+      <div class="grid" id="subjectsGrid"></div>
     </section>
   </main>
 
-  <footer class="footer">
-    <span class="muted">Static website (GitHub Pages) — no server needed.</span>
-  </footer>
+  <script src="app.js"></script>
 </body>
 </html>
