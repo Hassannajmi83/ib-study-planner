@@ -1,89 +1,487 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>IB Study Planner</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IB Year 1 Starter Guide + Tools</title>
   <style>
-    body {
-      font-family: Arial;
-      background: #0f172a;
-      color: white;
-      text-align: center;
-      padding: 40px;
+    :root{
+      --bg:#0b1220;
+      --card:#111a2e;
+      --text:#e9eefc;
+      --muted:#b9c2dd;
+      --accent:#7aa2ff;
+      --accent2:#7dffb2;
+      --border: rgba(255,255,255,0.12);
     }
-    input, select, button {
-      padding: 10px;
-      margin: 10px;
-      border-radius: 8px;
-      border: none;
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(900px 500px at 20% 10%, rgba(122,162,255,0.22), transparent),
+        radial-gradient(900px 500px at 80% 30%, rgba(125,255,178,0.14), transparent),
+        var(--bg);
+      color:var(--text);
+      line-height:1.55;
     }
-    button {
-      background: #4f46e5;
-      color: white;
-      cursor: pointer;
+    a{ color:inherit; }
+    .wrap{ max-width:1100px; margin:0 auto; padding:24px; }
+
+    .nav{
+      display:flex; justify-content:space-between; align-items:center; gap:12px;
+      padding:14px 16px;
+      border:1px solid var(--border);
+      background: rgba(17,26,46,0.75);
+      backdrop-filter: blur(10px);
+      border-radius:16px;
+      position: sticky; top:16px; z-index:10;
     }
-    .box {
-      margin-top: 20px;
-      padding: 20px;
-      background: #1e293b;
-      border-radius: 10px;
+    .brand{ font-weight:800; letter-spacing:0.2px; display:flex; gap:10px; align-items:center; }
+    .pill{
+      font-size:12px; padding:4px 10px; border-radius:999px;
+      border:1px solid var(--border); color:var(--muted);
+    }
+    .navlinks{ display:flex; gap:10px; flex-wrap:wrap; }
+    .navlinks a{
+      color:var(--muted);
+      font-size:14px;
+      padding:8px 10px;
+      border-radius:10px;
+      text-decoration:none;
+    }
+    .navlinks a:hover{ background: rgba(255,255,255,0.06); color:var(--text); }
+
+    .hero{
+      margin-top:18px;
+      border:1px solid var(--border);
+      background: rgba(17,26,46,0.58);
+      border-radius:22px;
+      padding:28px;
+    }
+    h1{ margin:0; font-size:40px; line-height:1.05; }
+    .sub{ margin-top:10px; color:var(--muted); max-width:80ch; }
+
+    .grid{ display:grid; grid-template-columns: repeat(12, 1fr); gap:16px; margin-top:16px; }
+    .card{
+      grid-column: span 6;
+      border:1px solid var(--border);
+      background: rgba(17,26,46,0.68);
+      border-radius:18px;
+      padding:18px;
+    }
+    .card h2{ margin:0 0 8px 0; font-size:18px; }
+    .card p{ margin:0; color:var(--muted); }
+    .card ul{ margin:10px 0 0; padding-left:18px; color:var(--muted); }
+    .card li{ margin:6px 0; }
+
+    .tool{
+      grid-column: span 12;
+      border:1px solid var(--border);
+      background: rgba(17,26,46,0.68);
+      border-radius:18px;
+      padding:18px;
+    }
+    .tool h2{ margin:0 0 8px 0; font-size:18px; }
+    .tool p{ margin:0 0 12px 0; color:var(--muted); }
+
+    .row{ display:grid; grid-template-columns: repeat(12, 1fr); gap:12px; }
+    .field{ grid-column: span 4; }
+    label{ display:block; font-size:12px; color:var(--muted); margin-bottom:6px; }
+    input, select{
+      width:100%;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background: rgba(0,0,0,0.25);
+      color:var(--text);
+    }
+    .btn{
+      display:inline-block;
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      color:var(--text);
+      font-weight:700;
+      cursor:pointer;
+    }
+    .btn:hover{ background: rgba(255,255,255,0.10); }
+    .result{
+      margin-top:12px;
+      border:1px dashed var(--border);
+      border-radius:14px;
+      padding:14px;
+      color:var(--muted);
+    }
+
+    .quizQ{
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:14px;
+      margin-top:12px;
+      background: rgba(0,0,0,0.18);
+    }
+    .quizQ h3{ margin:0 0 8px 0; font-size:15px; }
+    .quizQ .opts{ display:grid; gap:8px; margin-top:10px; }
+    .opt{
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:10px 12px;
+      background: rgba(255,255,255,0.04);
+      cursor:pointer;
+      color:var(--muted);
+    }
+    .opt:hover{ background: rgba(255,255,255,0.08); color:var(--text); }
+    .footer{ margin:22px 0 10px; color:var(--muted); font-size:13px; }
+
+    @media (max-width: 860px){
+      .card{ grid-column: span 12; }
+      .field{ grid-column: span 12; }
+      h1{ font-size:34px; }
     }
   </style>
 </head>
 <body>
+  <div class="wrap">
+    <div class="nav">
+      <div class="brand">IB Starter Guide <span class="pill">Year 1</span></div>
+      <div class="navlinks">
+        <a href="#basics">IB Basics</a>
+        <a href="#papers">Papers</a>
+        <a href="#methods">Study Methods</a>
+        <a href="#planner">Planner</a>
+        <a href="#quiz">Study Quiz</a>
+      </div>
+    </div>
 
-<h1>Study Planner Generator</h1>
+    <section class="hero">
+      <h1>Start IB without crashing out.</h1>
+      <p class="sub">
+        This is a student-made guide for first-year IB students: what the papers are, how to study, and tools
+        that generate a plan + recommend study methods.
+      </p>
 
-<label>Exam Date:</label><br>
-<input type="date" id="examDate"><br>
+      <div class="grid">
+        <div class="card" id="basics">
+          <h2>IB Basics (quick)</h2>
+          <ul>
+            <li><b>HL vs SL:</b> HL usually has more content + sometimes extra papers.</li>
+            <li><b>IAs:</b> Internal assessments = coursework that counts toward your final grade.</li>
+            <li><b>TOK:</b> how we know what we know (essay + exhibition).</li>
+            <li><b>EE:</b> extended essay (big research essay) — start early.</li>
+          </ul>
+        </div>
 
-<label>Hours per Week:</label><br>
-<input type="number" id="hours" placeholder="e.g. 8"><br>
+        <div class="card">
+          <h2>What most students mess up</h2>
+          <ul>
+            <li>Reading notes = thinking you studied (you didn’t).</li>
+            <li>Not doing past paper questions early.</li>
+            <li>Leaving IAs until panic mode.</li>
+            <li>Never tracking mistakes (your errors repeat).</li>
+          </ul>
+        </div>
 
-<label>Number of Subjects:</label><br>
-<select id="subjects">
-  <option>3</option>
-  <option selected>4</option>
-  <option>5</option>
-  <option>6</option>
-</select><br>
+        <div class="card" id="papers">
+          <h2>What are “Papers”?</h2>
+          <p>
+            “Papers” are the exam components. The exact structure depends on the subject, but the idea is:
+            different skills tested in different formats.
+          </p>
+          <ul>
+            <li><b>Paper 1:</b> usually skills + analysis (often more structured).</li>
+            <li><b>Paper 2:</b> deeper responses (often longer / more synthesis).</li>
+            <li><b>Paper 3:</b> (in some subjects) practical/data/option content.</li>
+          </ul>
+        </div>
 
-<button onclick="generatePlan()">Generate Plan</button>
+        <div class="card">
+          <h2>How to use this guide</h2>
+          <ul>
+            <li>Pick 1–2 study methods and actually follow them.</li>
+            <li>Use the planner to get a weekly routine.</li>
+            <li>Take the quiz to see the best “default” method for you.</li>
+            <li>Start collecting resources (videos + questionbanks).</li>
+          </ul>
+        </div>
 
-<div class="box" id="result">Your plan will appear here.</div>
+        <div class="tool" id="methods">
+          <h2>Study methods that actually work</h2>
+          <p>(Keep it simple: pick 2 and do them consistently.)</p>
+          <div class="row">
+            <div class="card" style="grid-column: span 6;">
+              <h2>Active Recall</h2>
+              <p>Turn notes into questions. Test yourself. Fix what you miss.</p>
+              <ul>
+                <li>Best for: definitions, processes, concepts, essay plans</li>
+                <li>Do: flashcards, “cover & recall”, teach it out loud</li>
+              </ul>
+            </div>
+            <div class="card" style="grid-column: span 6;">
+              <h2>Past Paper Questions</h2>
+              <p>Practice the exact style of exam questions (then review mistakes).</p>
+              <ul>
+                <li>Best for: exam marks, timing, real difficulty</li>
+                <li>Do: timed sets + write down mistakes</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="tool" id="planner">
+          <h2>📅 Study Planner Generator</h2>
+          <p>Enter your exam date and hours/week. It generates a simple weekly plan.</p>
+
+          <div class="row">
+            <div class="field">
+              <label for="examDate">Exam date</label>
+              <input id="examDate" type="date"/>
+            </div>
+
+            <div class="field">
+              <label for="hoursPerWeek">Hours per week</label>
+              <input id="hoursPerWeek" type="number" min="1" max="60" placeholder="e.g., 8"/>
+            </div>
+
+            <div class="field">
+              <label for="subjects">How many subjects?</label>
+              <select id="subjects">
+                <option value="3">3</option>
+                <option value="4" selected>4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <button class="btn" id="makePlanBtn">Generate Plan</button>
+          </div>
+
+          <div class="result" id="planResult">Your plan will show here.</div>
+        </div>
+
+        <div class="tool" id="quiz">
+          <h2>🧠 Study Method Quiz (fast)</h2>
+          <p>Answer 5 questions. It recommends a study method + how to use it.</p>
+
+          <div class="quizQ">
+            <h3>1) When you study, what’s your biggest problem?</h3>
+            <div class="opts">
+              <div class="opt" data-q="1" data-a="recall">I forget it after 1–2 days.</div>
+              <div class="opt" data-q="1" data-a="practice">I can’t answer exam-style questions.</div>
+              <div class="opt" data-q="1" data-a="focus">I get distracted / inconsistent.</div>
+            </div>
+          </div>
+
+          <div class="quizQ">
+            <h3>2) What type of subject stresses you most?</h3>
+            <div class="opts">
+              <div class="opt" data-q="2" data-a="practice">Math/Physics (problem solving).</div>
+              <div class="opt" data-q="2" data-a="recall">Bio/Chem (lots of content).</div>
+              <div class="opt" data-q="2" data-a="writing">English/History (writing + structure).</div>
+            </div>
+          </div>
+
+          <div class="quizQ">
+            <h3>3) How do you usually “study” right now?</h3>
+            <div class="opts">
+              <div class="opt" data-q="3" data-a="notes">Re-reading notes / highlighting.</div>
+              <div class="opt" data-q="3" data-a="practice">Doing questions sometimes.</div>
+              <div class="opt" data-q="3" data-a="recall">Testing myself (flashcards/blurting).</div>
+            </div>
+          </div>
+
+          <div class="quizQ">
+            <h3>4) What’s your goal for this month?</h3>
+            <div class="opts">
+              <div class="opt" data-q="4" data-a="practice">Increase marks fast.</div>
+              <div class="opt" data-q="4" data-a="recall">Actually understand + remember.</div>
+              <div class="opt" data-q="4" data-a="focus">Build a consistent routine.</div>
+            </div>
+          </div>
+
+          <div class="quizQ">
+            <h3>5) Which one sounds most realistic to do daily?</h3>
+            <div class="opts">
+              <div class="opt" data-q="5" data-a="recall">10–20 min flashcards / blurting.</div>
+              <div class="opt" data-q="5" data-a="practice">20–30 min question sets.</div>
+              <div class="opt" data-q="5" data-a="focus">25/5 Pomodoro blocks.</div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <button class="btn" id="quizReset">Reset Quiz</button>
+          </div>
+
+          <div class="result" id="quizResult">Pick one answer per question.</div>
+
+          <div class="footer">
+            Tip: Whatever you get, combine it with past paper questions later.
+          </div>
+        </div>
+
+        <div class="tool">
+          <h2>Next upgrade (optional)</h2>
+          <p>If you want it even more impressive, we can add a “Paper Breakdown” section per subject (Bio/Chem/Math/English)
+             and a Resources page in Google Sites that links to videos + questionbanks.</p>
+          <div class="footer">Built for CAS: tech + service + documented iteration.</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      Sources: add links in your Google Doc “Sources & Citations” section (paraphrase, don’t copy/paste).
+    </div>
+  </div>
 
 <script>
-function generatePlan() {
-  let examDate = new Date(document.getElementById("examDate").value);
-  let today = new Date();
-  let hours = parseInt(document.getElementById("hours").value);
-  let subjects = parseInt(document.getElementById("subjects").value);
-
-  if (!examDate || !hours) {
-    document.getElementById("result").innerHTML = "Please fill all fields.";
-    return;
+  // ---------- Planner ----------
+  function daysBetween(a, b){
+    const ms = 24 * 60 * 60 * 1000;
+    return Math.ceil((b - a) / ms);
+  }
+  function safeParseInt(v){
+    const n = parseInt(v, 10);
+    return Number.isFinite(n) ? n : null;
   }
 
-  let diffTime = examDate - today;
-  let daysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  const makePlanBtn = document.getElementById("makePlanBtn");
+  const planResult = document.getElementById("planResult");
 
-  if (daysLeft <= 0) {
-    document.getElementById("result").innerHTML = "Pick a future exam date.";
-    return;
+  makePlanBtn.addEventListener("click", () => {
+    const examDateVal = document.getElementById("examDate").value;
+    const hoursVal = document.getElementById("hoursPerWeek").value;
+    const subjectsVal = document.getElementById("subjects").value;
+
+    if(!examDateVal){
+      planResult.textContent = "Pick an exam date first.";
+      return;
+    }
+
+    const hoursPerWeek = safeParseInt(hoursVal);
+    if(hoursPerWeek === null || hoursPerWeek <= 0){
+      planResult.textContent = "Enter your hours/week (like 6, 8, 10).";
+      return;
+    }
+
+    const subjects = safeParseInt(subjectsVal) || 4;
+
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    const examDate = new Date(examDateVal + "T00:00:00");
+
+    const daysLeft = daysBetween(today, examDate);
+    if(daysLeft < 1){
+      planResult.textContent = "That date is in the past (or today). Pick a future date.";
+      return;
+    }
+
+    const weeksLeft = Math.max(1, Math.ceil(daysLeft / 7));
+    const totalHours = hoursPerWeek * weeksLeft;
+
+    const practice = Math.round(totalHours * 0.60);
+    const recall = Math.round(totalHours * 0.25);
+    const weak = totalHours - practice - recall;
+
+    const perSubject = Math.max(1, Math.floor(hoursPerWeek / subjects));
+
+    planResult.innerHTML = `
+      <div><b>Time left:</b> ${daysLeft} days (${weeksLeft} week${weeksLeft>1?"s":""})</div>
+      <div><b>Total study hours until exam:</b> ${totalHours}h</div>
+      <div style="margin-top:10px;">
+        <b>Recommended split:</b><br/>
+        • Practice / past papers: ${practice}h<br/>
+        • Active recall / review: ${recall}h<br/>
+        • Weak topics: ${weak}h
+      </div>
+      <div style="margin-top:10px;">
+        <b>Weekly plan idea:</b><br/>
+        • ${subjects} subjects × ~${perSubject}h each/week<br/>
+        • 1 day/week: timed practice + error review
+      </div>
+    `;
+  });
+
+  // ---------- Quiz ----------
+  const picks = {1:null,2:null,3:null,4:null,5:null};
+  const scores = { recall:0, practice:0, focus:0, writing:0, notes:0 };
+  const quizResult = document.getElementById("quizResult");
+
+  function resetScores(){
+    for(const k in scores) scores[k]=0;
   }
 
-  let weeksLeft = Math.ceil(daysLeft / 7);
-  let totalHours = weeksLeft * hours;
-  let perSubject = Math.floor(hours / subjects);
+  function compute(){
+    resetScores();
+    Object.values(picks).forEach(v=>{
+      if(v) scores[v] = (scores[v] || 0) + 1;
+    });
 
-  document.getElementById("result").innerHTML =
-    "<b>Days Left:</b> " + daysLeft + "<br>" +
-    "<b>Total Study Hours:</b> " + totalHours + "<br><br>" +
-    "Study " + perSubject + " hours per subject per week.<br>" +
-    "Spend 60% on practice questions.<br>" +
-    "Spend 25% on review.<br>" +
-    "Spend 15% fixing weak areas.";
-}
+    const unanswered = Object.values(picks).filter(v=>!v).length;
+    if(unanswered){
+      quizResult.textContent = `Pick one answer per question. (${unanswered} left)`;
+      return;
+    }
+
+    // Determine best method
+    let best = "recall";
+    let bestVal = -1;
+    for(const k in scores){
+      if(scores[k] > bestVal){
+        bestVal = scores[k];
+        best = k;
+      }
+    }
+
+    let msg = "";
+    if(best === "recall"){
+      msg = `<b>Recommendation: Active Recall + Spaced Repetition</b><br/>
+      Do 10–20 min/day of flashcards or blurting. End each session by writing what you missed and re-testing it tomorrow.`;
+    } else if(best === "practice"){
+      msg = `<b>Recommendation: Past Paper Questions (with mistake review)</b><br/>
+      Do small question sets 3–5x/week. After each set, write the 2–3 mistakes you made and redo them 48 hours later.`;
+    } else if(best === "focus"){
+      msg = `<b>Recommendation: Pomodoro + Routine System</b><br/>
+      Use 25/5 (or 40/10). Start with 2 blocks/day. Keep your phone away and track streaks.`;
+    } else if(best === "writing"){
+      msg = `<b>Recommendation: Structure-first Writing Practice</b><br/>
+      Build essay plans quickly, then write timed paragraphs. Use exemplars to learn what “full marks” looks like.`;
+    } else {
+      msg = `<b>Recommendation: Stop re-reading notes as your main method</b><br/>
+      Convert notes into questions and test yourself. Notes should support recall, not replace it.`;
+    }
+
+    quizResult.innerHTML = msg;
+  }
+
+  document.querySelectorAll(".opt").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const q = btn.getAttribute("data-q");
+      const a = btn.getAttribute("data-a");
+      picks[q] = a;
+
+      // subtle selected state
+      document.querySelectorAll(`.opt[data-q="${q}"]`).forEach(x=>{
+        x.style.outline = "none";
+        x.style.color = "var(--muted)";
+      });
+      btn.style.outline = "2px solid rgba(122,162,255,0.65)";
+      btn.style.color = "var(--text)";
+
+      compute();
+    });
+  });
+
+  document.getElementById("quizReset").addEventListener("click", ()=>{
+    for(const k in picks) picks[k]=null;
+    document.querySelectorAll(".opt").forEach(x=>{
+      x.style.outline = "none";
+      x.style.color = "var(--muted)";
+    });
+    quizResult.textContent = "Pick one answer per question.";
+  });
 </script>
 
 </body>
