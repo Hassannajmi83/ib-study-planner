@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Study Quiz — IB Survival Hub</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .q{margin-top:12px}
+    .opt{margin-top:8px; border:1px solid var(--border); border-radius:12px; padding:10px 12px; background:rgba(0,0,0,0.18); cursor:pointer; color:var(--muted)}
+    .opt:hover{background:rgba(255,255,255,0.06); color:var(--text)}
+    .opt.selected{outline:2px solid rgba(122,162,255,0.65); color:var(--text)}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">IB Survival Hub</div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="subjects.html">Subjects</a>
+      <a href="planner.html">Planner</a>
+      <a class="active" href="quiz.html">Study Quiz</a>
+      <a href="resources.html">Resources</a>
+      <a href="errorlog.html">Error Log</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Study Method Quiz</h1>
+      <p class="muted">Answer all 5. You’ll get a recommendation.</p>
+
+      <div class="panel q" data-q="1">
+        <h2>1) Biggest issue?</h2>
+        <div class="opt" data-a="recall">I forget content fast</div>
+        <div class="opt" data-a="practice">I can’t do exam questions</div>
+        <div class="opt" data-a="focus">I’m inconsistent / distracted</div>
+      </div>
+
+      <div class="panel q" data-q="2">
+        <h2>2) Hardest type?</h2>
+        <div class="opt" data-a="practice">Problem solving (Math/Physics)</div>
+        <div class="opt" data-a="recall">Heavy content (Bio/Chem)</div>
+        <div class="opt" data-a="writing">Writing (English/Humans)</div>
+      </div>
+
+      <div class="panel q" data-q="3">
+        <h2>3) What do you do now?</h2>
+        <div class="opt" data-a="notes">Reread notes</div>
+        <div class="opt" data-a="practice">Some questions sometimes</div>
+        <div class="opt" data-a="recall">Flashcards / self-testing</div>
+      </div>
+
+      <div class="panel q" data-q="4">
+        <h2>4) Goal this month?</h2>
+        <div class="opt" data-a="practice">Raise marks fast</div>
+        <div class="opt" data-a="recall">Remember + understand</div>
+        <div class="opt" data-a="focus">Build a consistent routine</div>
+      </div>
+
+      <div class="panel q" data-q="5">
+        <h2>5) Most realistic daily?</h2>
+        <div class="opt" data-a="recall">10–20 min recall</div>
+        <div class="opt" data-a="practice">20–30 min questions</div>
+        <div class="opt" data-a="focus">2 Pomodoro blocks</div>
+      </div>
+
+      <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+        <button class="btn" id="showResult">Show Result</button>
+        <button class="btn" id="reset">Reset</button>
+      </div>
+
+      <div class="note" id="out">Pick one answer per question.</div>
+    </section>
+  </main>
+
+<script>
+  const picks = {1:null,2:null,3:null,4:null,5:null};
+
+  document.querySelectorAll(".panel.q").forEach(panel=>{
+    const q = panel.getAttribute("data-q");
+    panel.querySelectorAll(".opt").forEach(opt=>{
+      opt.addEventListener("click", ()=>{
+        panel.querySelectorAll(".opt").forEach(o=>o.classList.remove("selected"));
+        opt.classList.add("selected");
+        picks[q] = opt.getAttribute("data-a");
+      });
+    });
+  });
+
+  function bestMethod(){
+    const counts = {recall:0, practice:0, focus:0, writing:0, notes:0};
+    Object.values(picks).forEach(v=>{ if(v) counts[v]++; });
+    let best="recall", bestV=-1;
+    for(const k in counts){ if(counts[k] > bestV){ bestV=counts[k]; best=k; } }
+    return best;
+  }
+
+  document.getElementById("showResult").addEventListener("click", ()=>{
+    const missing = Object.values(picks).filter(v=>!v).length;
+    const out = document.getElementById("out");
+    if(missing){
+      out.textContent = `Answer all questions (${missing} left).`;
+      return;
+    }
+    const best = bestMethod();
+    if(best==="recall"){
+      out.innerHTML = `<b>Best for you:</b> Active Recall + Spacing<br><span class="muted">Make prompts/flashcards. Re-test misses tomorrow. 10–20 min daily.</span>`;
+    } else if(best==="practice"){
+      out.innerHTML = `<b>Best for you:</b> Past Paper Practice<br><span class="muted">Small question sets 3–5x/week. Review markscheme. Redo errors 48h later.</span>`;
+    } else if(best==="focus"){
+      out.innerHTML = `<b>Best for you:</b> Routine + Pomodoro<br><span class="muted">2 blocks/day (25/5 or 40/10). Phone away. Track streak.</span>`;
+    } else {
+      out.innerHTML = `<b>Best for you:</b> Structure-first Writing<br><span class="muted">Plan fast, write timed paragraphs, then upgrade one paragraph.</span>`;
+    }
+  });
+
+  document.getElementById("reset").addEventListener("click", ()=>{
+    for(const k in picks) picks[k]=null;
+    document.querySelectorAll(".opt").forEach(o=>o.classList.remove("selected"));
+    document.getElementById("out").textContent = "Pick one answer per question.";
+  });
+</script>
+</body>
+</html>
