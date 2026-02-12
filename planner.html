@@ -6,23 +6,22 @@
   <title>Planner — IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body data-page="planner">
   <header class="topbar">
-    <div class="brand">IB Survival Hub</div>
+    <a class="brand" href="index.html">IB Survival Hub</a>
     <nav class="nav">
       <a href="index.html">Home</a>
       <a href="subjects.html">Subjects</a>
       <a class="active" href="planner.html">Planner</a>
       <a href="quiz.html">Study Quiz</a>
       <a href="resources.html">Resources</a>
-      <a href="errorlog.html">Error Log</a>
     </nav>
   </header>
 
   <main class="container">
     <section class="hero">
       <h1>Study Planner</h1>
-      <p class="muted">Generates a realistic weekly schedule + what to do each week.</p>
+      <p class="muted">Generates a realistic weekly plan based on your timeline + hours.</p>
 
       <div class="grid2">
         <div class="panel span6">
@@ -36,7 +35,7 @@
         </div>
 
         <div class="panel span6">
-          <label for="subjectsCount">Subjects count</label>
+          <label for="subjectsCount">How many subjects?</label>
           <select id="subjectsCount">
             <option value="3">3</option>
             <option value="4" selected>4</option>
@@ -46,115 +45,23 @@
         </div>
 
         <div class="panel span6">
-          <label for="priority">Main priority right now</label>
+          <label for="priority">Main goal right now</label>
           <select id="priority">
             <option value="balanced" selected>Balanced</option>
             <option value="marks">Raise marks fast</option>
-            <option value="content">Learn/retain content</option>
+            <option value="content">Learn / retain content</option>
             <option value="skills">Exam technique + timing</option>
           </select>
         </div>
 
         <div class="panel span12">
-          <button class="btn" id="gen">Generate Plan</button>
-          <div class="note" id="out">Fill the inputs, then generate.</div>
-        </div>
-      </div>
-
-      <div class="grid2" style="margin-top:12px;">
-        <div class="panel span6">
-          <h2>How to use this</h2>
-          <ul class="muted" style="margin:0; padding-left:18px;">
-            <li>Follow the weekly focus (content → practice → timed).</li>
-            <li>Do 1 timed set per week minimum.</li>
-            <li>Update your Error Log after each practice session.</li>
-            <li>Keep sessions short and repeat often.</li>
-          </ul>
-        </div>
-
-        <div class="panel span6">
-          <h2>Rules that keep it realistic</h2>
-          <ul class="muted" style="margin:0; padding-left:18px;">
-            <li>Never plan more than you can actually do.</li>
-            <li>Plan weekly, not daily perfection.</li>
-            <li>More marks comes from review + redo, not just doing new questions.</li>
-            <li>One weak topic fixed > ten topics “touched”.</li>
-          </ul>
+          <button class="btn" id="genPlan">Generate Plan</button>
+          <div class="note" id="planOut">Fill the inputs, then generate.</div>
         </div>
       </div>
     </section>
   </main>
 
-<script>
-  function daysBetween(a,b){
-    const ms = 24*60*60*1000;
-    return Math.ceil((b-a)/ms);
-  }
-  function clamp(n,min,max){ return Math.max(min, Math.min(max, n)); }
-
-  document.getElementById("gen").addEventListener("click", ()=>{
-    const dateVal = document.getElementById("examDate").value;
-    const hoursVal = parseInt(document.getElementById("hoursPerWeek").value, 10);
-    const subjects = parseInt(document.getElementById("subjectsCount").value, 10);
-    const priority = document.getElementById("priority").value;
-    const out = document.getElementById("out");
-
-    if(!dateVal){ out.textContent = "Pick an exam date."; return; }
-    if(!Number.isFinite(hoursVal) || hoursVal <= 0){ out.textContent = "Enter hours per week (e.g., 8, 10, 12)."; return; }
-
-    const today = new Date(); today.setHours(0,0,0,0);
-    const exam = new Date(dateVal + "T00:00:00");
-    const daysLeft = daysBetween(today, exam);
-    if(daysLeft < 1){ out.textContent = "Pick a future date."; return; }
-
-    const weeks = Math.max(1, Math.ceil(daysLeft/7));
-    const totalHours = hoursVal * weeks;
-
-    let practicePct = 0.60, recallPct = 0.25, fixPct = 0.15;
-    if(priority === "marks"){ practicePct = 0.70; recallPct = 0.15; fixPct = 0.15; }
-    if(priority === "content"){ practicePct = 0.45; recallPct = 0.40; fixPct = 0.15; }
-    if(priority === "skills"){ practicePct = 0.65; recallPct = 0.15; fixPct = 0.20; }
-
-    const practice = Math.round(totalHours * practicePct);
-    const recall = Math.round(totalHours * recallPct);
-    const fix = totalHours - practice - recall;
-
-    const perSubject = clamp(Math.floor(hoursVal/subjects), 1, 20);
-
-    // Weekly focus phases
-    let phases = [];
-    if(weeks === 1){
-      phases.push(`Week 1: Mixed practice + timed set + heavy error review`);
-    } else if(weeks === 2){
-      phases.push(`Week 1: Content cleanup (weak topics) + short practice sets`);
-      phases.push(`Week 2: Mixed practice + timed set + redo errors`);
-    } else {
-      phases.push(`Week 1–${Math.max(1, Math.ceil(weeks*0.35))}: Build content base + topic practice`);
-      phases.push(`Week ${Math.ceil(weeks*0.35)+1}–${Math.max(2, Math.ceil(weeks*0.75))}: Mixed sets + exam technique`);
-      phases.push(`Final weeks: Timed papers + error redo + memorization cleanup`);
-    }
-
-    out.innerHTML = `
-      <div><b>Time left:</b> ${daysLeft} days (${weeks} week${weeks>1?"s":""})</div>
-      <div><b>Total planned study time:</b> ${totalHours}h</div>
-      <div style="margin-top:10px;">
-        <b>Time split:</b><br>
-        • Practice questions/timed work: ${practice}h<br>
-        • Active recall/content review: ${recall}h<br>
-        • Fix weak topics + redo errors: ${fix}h
-      </div>
-      <div style="margin-top:10px;">
-        <b>Weekly structure:</b><br>
-        • ${subjects} subjects × ~${perSubject}h each/week<br>
-        • 1 timed set/week (minimum)<br>
-        • After every set: add 1–3 errors to the Error Log
-      </div>
-      <div style="margin-top:10px;">
-        <b>Weekly focus:</b><br>
-        ${phases.map(x=>`• ${x}`).join("<br>")}
-      </div>
-    `;
-  });
-</script>
+  <script src="app.js"></script>
 </body>
 </html>
