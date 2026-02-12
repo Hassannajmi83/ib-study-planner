@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Error Log — IB Survival Hub</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">IB Survival Hub</div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="subjects.html">Subjects</a>
+      <a href="planner.html">Planner</a>
+      <a href="quiz.html">Study Quiz</a>
+      <a href="resources.html">Resources</a>
+      <a class="active" href="errorlog.html">Error Log</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Error Log</h1>
+      <p class="muted">Every time you lose marks: record what happened + the rule that fixes it. This is how you stop repeating mistakes.</p>
+
+      <div class="grid2">
+        <div class="panel span6">
+          <label for="subj">Subject</label>
+          <select id="subj">
+            <option>Chemistry</option>
+            <option>Biology</option>
+            <option>Physics</option>
+            <option>Math AA</option>
+            <option>Economics</option>
+            <option>Psychology</option>
+            <option>English Lit</option>
+          </select>
+        </div>
+
+        <div class="panel span6">
+          <label for="topic">Topic / Paper</label>
+          <input id="topic" placeholder="e.g., Equilibrium / Kinematics / Paper 1 SAQ" />
+        </div>
+
+        <div class="panel span6">
+          <label for="type">Error type</label>
+          <select id="type">
+            <option>Concept gap</option>
+            <option>Calculation/algebra</option>
+            <option>Misread question</option>
+            <option>Forgot keyword/definition</option>
+            <option>Weak explanation/evaluation</option>
+            <option>Time management</option>
+          </select>
+        </div>
+
+        <div class="panel span6">
+          <label for="points">Marks lost (optional)</label>
+          <input id="points" type="number" min="0" max="30" placeholder="e.g., 2" />
+        </div>
+
+        <div class="panel span12">
+          <label for="details">What happened + fix rule (write it like a checklist)</label>
+          <textarea id="details" placeholder="Example: I assumed constant acceleration without checking. Fix: Always write knowns, pick equation after confirming conditions."></textarea>
+        </div>
+
+        <div class="panel span12" style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="btn" id="add">Add</button>
+          <button class="btn" id="clear">Clear All</button>
+          <button class="btn" id="download">Download .txt</button>
+        </div>
+
+        <div class="panel span12">
+          <h2>Saved entries</h2>
+          <div class="note" id="list">No entries yet.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<script>
+  const KEY = "ib_error_log_v1";
+  const listEl = document.getElementById("list");
+
+  function load(){
+    try { return JSON.parse(localStorage.getItem(KEY) || "[]"); }
+    catch(e){ return []; }
+  }
+  function save(items){ localStorage.setItem(KEY, JSON.stringify(items)); }
+
+  function render(){
+    const items = load();
+    if(!items.length){ listEl.textContent = "No entries yet."; return; }
+    listEl.innerHTML = items.map((e,i)=>`
+      <div style="padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.08);">
+        <div><b>#${i+1}</b> — <b>${e.subject}</b> · <span class="muted">${e.type}</span> ${e.points ? `· <span class="muted">${e.points} marks</span>` : ""}</div>
+        <div class="muted"><b>Topic:</b> ${e.topic || "-"}</div>
+        <div class="muted">${e.details}</div>
+      </div>
+    `).join("");
+  }
+
+  document.getElementById("add").addEventListener("click", ()=>{
+    const subject = document.getElementById("subj").value;
+    const topic = document.getElementById("topic").value.trim();
+    const type = document.getElementById("type").value;
+    const points = document.getElementById("points").value.trim();
+    const details = document.getElementById("details").value.trim();
+
+    if(!details){ alert("Write what happened + the fix rule."); return; }
+
+    const items = load();
+    items.unshift({
+      subject, topic, type,
+      points: points ? parseInt(points,10) : null,
+      details,
+      ts: new Date().toISOString()
+    });
+    save(items);
+
+    document.getElementById("topic").value = "";
+    document.getElementById("points").value = "";
+    document.getElementById("details").value = "";
+    render();
+  });
+
+  document.getElementById("clear").addEventListener("click", ()=>{
+    if(confirm("Clear all entries?")){
+      save([]);
+      render();
+    }
+  });
+
+  document.getElementById("download").addEventListener("click", ()=>{
+    const items = load();
+    if(!items.length){ alert("Nothing to download yet."); return; }
+    const lines = ["IB Error Log Export","=================="];
+    items.slice().reverse().forEach((e,i)=>{
+      lines.push(`\n#${i+1}`);
+      lines.push(`Subject: ${e.subject}`);
+      lines.push(`Type: ${e.type}`);
+      lines.push(`Topic: ${e.topic || "-"}`);
+      lines.push(`Marks lost: ${e.points ?? "-"}`);
+      lines.push(`Fix rule: ${e.details}`);
+      lines.push(`Date: ${e.ts}`);
+    });
+    const blob = new Blob([lines.join("\n")], {type:"text/plain"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "ib-error-log.txt";
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  render();
+</script>
+</body>
+</html>
