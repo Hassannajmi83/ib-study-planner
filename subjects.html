@@ -8,34 +8,30 @@
 </head>
 <body>
   <header class="topbar">
-    <div class="brand">IB Survival Hub</div>
-    <nav class="nav">
-      <a href="index.html">Home</a>
-      <a class="active" href="subjects.html">Subjects</a>
-      <a href="planner.html">Planner</a>
-      <a href="quiz.html">Study Quiz</a>
-      <a href="resources.html">Resources</a>
-      <a href="errorlog.html">Error Log</a>
-    </nav>
+    <div class="topbarInner">
+      <a class="brand" href="index.html">
+        <span class="brandBadge"></span>
+        <span>IB Survival Hub</span>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="subjects.html">Subjects</a>
+        <a href="planner.html">Planner</a>
+        <a href="quiz.html">Study Quiz</a>
+        <a href="resources.html">Resources</a>
+      </nav>
+    </div>
   </header>
 
   <main class="container">
     <section class="hero">
       <h1>Subjects</h1>
-      <p class="muted">Pick a subject. Each one is a separate page.</p>
+      <p class="muted">Pick a subject. Each one is a separate page with papers + tips + common mark traps.</p>
 
-      <div class="cards">
-        <a class="cardLink" href="chem.html"><div class="card"><h2>Chemistry</h2><p class="muted">Papers + tips</p></div></a>
-        <a class="cardLink" href="bio.html"><div class="card"><h2>Biology</h2><p class="muted">Papers + tips</p></div></a>
-        <a class="cardLink" href="physics.html"><div class="card"><h2>Physics</h2><p class="muted">Papers + tips</p></div></a>
-        <a class="cardLink" href="math.html"><div class="card"><h2>Math AA</h2><p class="muted">SL vs HL structure</p></div></a>
-        <a class="cardLink" href="econ.html"><div class="card"><h2>Economics</h2><p class="muted">SL vs HL (HL has Paper 3)</p></div></a>
-        <a class="cardLink" href="psych.html"><div class="card"><h2>Psychology</h2><p class="muted">SL vs HL (HL has Paper 3)</p></div></a>
-        <a class="cardLink" href="english.html"><div class="card"><h2>English Lit</h2><p class="muted">Paper 1 + Paper 2</p></div></a>
-      </div>
+      <div class="grid" id="subjectsGrid"></div>
     </section>
   </main>
 
-  <footer class="footer"><span class="muted">Add more subject pages anytime.</span></footer>
+  <script src="app.js"></script>
 </body>
 </html>
