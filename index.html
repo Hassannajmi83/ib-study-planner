@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IB Study Planner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial;
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 40px;
+    }
+    input, select, button {
+      padding: 10px;
+      margin: 10px;
+      border-radius: 8px;
+      border: none;
+    }
+    button {
+      background: #4f46e5;
+      color: white;
+      cursor: pointer;
+    }
+    .box {
+      margin-top: 20px;
+      padding: 20px;
+      background: #1e293b;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Study Planner Generator</h1>
+
+<label>Exam Date:</label><br>
+<input type="date" id="examDate"><br>
+
+<label>Hours per Week:</label><br>
+<input type="number" id="hours" placeholder="e.g. 8"><br>
+
+<label>Number of Subjects:</label><br>
+<select id="subjects">
+  <option>3</option>
+  <option selected>4</option>
+  <option>5</option>
+  <option>6</option>
+</select><br>
+
+<button onclick="generatePlan()">Generate Plan</button>
+
+<div class="box" id="result">Your plan will appear here.</div>
+
+<script>
+function generatePlan() {
+  let examDate = new Date(document.getElementById("examDate").value);
+  let today = new Date();
+  let hours = parseInt(document.getElementById("hours").value);
+  let subjects = parseInt(document.getElementById("subjects").value);
+
+  if (!examDate || !hours) {
+    document.getElementById("result").innerHTML = "Please fill all fields.";
+    return;
+  }
+
+  let diffTime = examDate - today;
+  let daysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+  if (daysLeft <= 0) {
+    document.getElementById("result").innerHTML = "Pick a future exam date.";
+    return;
+  }
+
+  let weeksLeft = Math.ceil(daysLeft / 7);
+  let totalHours = weeksLeft * hours;
+  let perSubject = Math.floor(hours / subjects);
+
+  document.getElementById("result").innerHTML =
+    "<b>Days Left:</b> " + daysLeft + "<br>" +
+    "<b>Total Study Hours:</b> " + totalHours + "<br><br>" +
+    "Study " + perSubject + " hours per subject per week.<br>" +
+    "Spend 60% on practice questions.<br>" +
+    "Spend 25% on review.<br>" +
+    "Spend 15% fixing weak areas.";
+}
+</script>
+
+</body>
+</html>
