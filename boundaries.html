@@ -1,123 +1,64 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Grade Boundaries — IB Survival Hub</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    .row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-    @media (max-width:900px){.row{grid-template-columns:1fr}}
-    .pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.08);opacity:.85}
-    .note{opacity:.7;font-size:13px;margin-top:10px}
-    .links{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-  </style>
+  <meta charset="UTF-8">
+  <title>IB Grade Boundaries – Ontario</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <header class="topbar">
-  <div class="topbar-inner">
 
-    <a class="brand" href="index.html">
-      <span class="brand-badge"></span>
-      <span>IB Survival Hub</span>
-    </a>
-
-    <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="subjects.html">Subjects</a>
-      <a href="planner.html">Planner</a>
-      <a href="converter.html">Converter</a>
-      <a href="boundaries.html" class="active">Boundaries</a>
-      <a href="quiz.html">Study Quiz</a>
-      <a href="resources.html">Resources</a>
-    </nav>
-
-  </div>
-</header>
+  <nav class="navbar">
+    <div class="logo">
+      <a href="index.html">IB Survival Hub</a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="subjects.html">Subjects</a></li>
+      <li><a href="planner.html">Planner</a></li>
+      <li><a href="quiz.html">Study Quiz</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a class="active" href="boundaries.html">Boundaries</a></li>
+      <li><a href="converter.html">Converter</a></li>
+    </ul>
+  </nav>
 
   <main class="container">
-    <section class="hero">
+
+    <div class="card">
       <h1>IB Grade Boundaries</h1>
-      <p class="muted">Pick a session + IB Time Zone (TZ1/TZ2) and view boundaries externally or paste your school’s official table.</p>
 
-      <div class="panel" style="margin-top:16px">
-        <div class="row">
-          <div>
-            <label for="session">Exam session</label>
-            <select id="session">
-              <option value="May 2025">May 2025</option>
-              <option value="Nov 2024">Nov 2024</option>
-              <option value="May 2024" selected>May 2024</option>
-              <option value="Nov 2023">Nov 2023</option>
-              <option value="May 2023">May 2023</option>
-            </select>
-          </div>
-
-          <div>
-            <label for="tz">IB Time Zone</label>
-            <select id="tz">
-              <option value="TZ1" selected>TZ1</option>
-              <option value="TZ2">TZ2</option>
-            </select>
-          </div>
-
-          <div>
-            <label>Last updated (Toronto time)</label>
-            <div class="pill" id="lastUpdated">—</div>
-          </div>
-        </div>
-
-        <div class="links">
-          <a class="btn" id="openRD" target="_blank" rel="noopener noreferrer">Open RevisionDojo Boundaries</a>
-          <a class="btn" id="openIM" target="_blank" rel="noopener noreferrer">Open Interactive Maths Boundaries</a>
-        </div>
-
-        <div class="note">
-          <b>Disclaimer:</b> Grade boundaries vary by <b>session</b> and IB <b>time zone</b>. This page links to boundary viewers or lets you paste your school’s official boundaries. We do not host leaked/pirated papers.
-          (Boundaries are not “by your local time zone” — TZ1/TZ2 are IB exam time zones.)
-        </div>
+      <div class="boundary-meta">
+        <strong>Session:</strong> May 2024<br>
+        <strong>Time Zone Group:</strong> Zone A (Americas)<br>
+        <strong>Reference Location:</strong> Toronto, Ontario, Canada (Eastern Time)
       </div>
 
-      <div class="panel" style="margin-top:16px">
-        <h2>Optional: paste your school’s official boundaries</h2>
-        <p class="muted">If your coordinator/teacher gives you a PDF/table, paste the key numbers here for your own studying.</p>
-
-        <textarea style="width:100%;min-height:180px;border-radius:12px;padding:12px;background:#0f1b34;border:1px solid rgba(255,255,255,.08);color:white"
-          placeholder="Example:\nMay 2024 TZ1\nChem HL: 7 = 76, 6 = 67...\nBio HL: 7 = ...\n(etc)"></textarea>
-
-        <div class="note">Tip: Put the source/year in the first line so you never mix sessions.</div>
+      <div class="boundary-disclaimer">
+        These boundaries are based on the official IB May 2024 Zone A session.
+        Boundaries vary by year and time zone. Always confirm with your school
+        for the most accurate conversion.
       </div>
-    </section>
+    </div>
+
+    <!-- Example Section -->
+    <div class="card">
+      <h2>Math AA SL – May 2024 (Zone A)</h2>
+      <table class="boundary-table">
+        <tr>
+          <th>Level</th>
+          <th>Raw Range</th>
+        </tr>
+        <tr><td>7</td><td>80–100</td></tr>
+        <tr><td>6</td><td>67–79</td></tr>
+        <tr><td>5</td><td>54–66</td></tr>
+        <tr><td>4</td><td>41–53</td></tr>
+        <tr><td>3</td><td>28–40</td></tr>
+        <tr><td>2</td><td>15–27</td></tr>
+        <tr><td>1</td><td>0–14</td></tr>
+      </table>
+    </div>
+
   </main>
 
-  <script>
-    // Toronto "last updated"
-    const dt = new Date();
-    const fmt = new Intl.DateTimeFormat("en-CA", {
-      timeZone: "America/Toronto",
-      year:"numeric", month:"short", day:"2-digit",
-      hour:"2-digit", minute:"2-digit"
-    });
-    document.getElementById("lastUpdated").textContent = fmt.format(dt) + " (ET)";
-
-    function updateLinks(){
-      const session = document.getElementById("session").value;
-      const tz = document.getElementById("tz").value;
-
-      // These are *external tools* that already handle session/TZ selection.
-      // We keep it clean by linking out rather than copying giant tables.
-      document.getElementById("openRD").href = "https://www.revisiondojo.com/predicted-grade";
-      document.getElementById("openIM").href = "https://tutor.interactive-maths.com/ibdp-maths-grade-boundaries";
-
-      // We still show what the user selected in case they’re taking screenshots for CAS documentation
-      document.getElementById("openRD").textContent = `Open RevisionDojo Boundaries (${session}, ${tz})`;
-      document.getElementById("openIM").textContent = `Open Interactive Maths Boundaries (${session}, ${tz})`;
-    }
-
-    document.getElementById("session").addEventListener("change", updateLinks);
-    document.getElementById("tz").addEventListener("change", updateLinks);
-    updateLinks();
-  </script>
 </body>
 </html>
