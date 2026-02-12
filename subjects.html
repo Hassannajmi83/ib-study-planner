@@ -8,14 +8,15 @@
 </head>
 <body>
   <header class="topbar">
-    <div class="topbarInner">
+    <div class="topbar-inner">
       <a class="brand" href="index.html">
-        <span class="brandBadge"></span>
+        <span class="brand-badge"></span>
         <span>IB Survival Hub</span>
       </a>
+
       <nav class="nav">
         <a href="index.html">Home</a>
-        <a href="subjects.html">Subjects</a>
+        <a class="active" href="subjects.html">Subjects</a>
         <a href="planner.html">Planner</a>
         <a href="quiz.html">Study Quiz</a>
         <a href="resources.html">Resources</a>
@@ -26,12 +27,47 @@
   <main class="container">
     <section class="hero">
       <h1>Subjects</h1>
-      <p class="muted">Pick a subject. Each one is a separate page with papers + tips + common mark traps.</p>
+      <p class="muted">Pick a subject. Each page has paper structure + study strategy + common mark traps.</p>
 
-      <div class="grid" id="subjectsGrid"></div>
+      <div class="grid" style="margin-top:18px;">
+        <a class="card span6" href="chem.html">
+          <div class="card-title">Chemistry</div>
+          <p class="card-sub">Papers + calculations + markscheme wording</p>
+        </a>
+
+        <a class="card span6" href="bio.html">
+          <div class="card-title">Biology</div>
+          <p class="card-sub">Keywords, data response, command terms</p>
+        </a>
+
+        <a class="card span6" href="physics.html">
+          <div class="card-title">Physics</div>
+          <p class="card-sub">Diagrams, method marks, clean assumptions</p>
+        </a>
+
+        <a class="card span6" href="math.html">
+          <div class="card-title">Math AA</div>
+          <p class="card-sub">SL vs HL structure + common error traps</p>
+        </a>
+
+        <a class="card span6" href="econ.html">
+          <div class="card-title">Economics</div>
+          <p class="card-sub">SL vs HL + diagrams + evaluation</p>
+        </a>
+
+        <a class="card span6" href="psych.html">
+          <div class="card-title">Psychology</div>
+          <p class="card-sub">Studies bank + SAQ/ERQ structure</p>
+        </a>
+
+        <a class="card span12" href="English.html">
+          <div class="card-title">English Literature</div>
+          <p class="card-sub">Paper 1 unseen analysis + Paper 2 comparison</p>
+        </a>
+      </div>
+
+      <div class="footer">More subjects can be added as new pages later (History, Business, Geo, CS, French, etc.)</div>
     </section>
   </main>
-
-  <script src="app.js"></script>
 </body>
 </html>
