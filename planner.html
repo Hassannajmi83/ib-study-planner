@@ -6,34 +6,32 @@
   <title>Planner — IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body data-page="planner">
+<body>
   <header class="topbar">
-  <div class="topbar-inner">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-dot"></div>
+        <span>IB Survival Hub</span>
+      </a>
 
-    <a class="brand" href="index.html">
-      <span class="brand-badge"></span>
-      <span>IB Survival Hub</span>
-    </a>
-
-    <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="subjects.html">Subjects</a>
-      <a href="planner.html" class="active">Planner</a>
-      <a href="converter.html">Converter</a>
-      <a href="boundaries.html">Boundaries</a>
-      <a href="quiz.html">Study Quiz</a>
-      <a href="resources.html">Resources</a>
-    </nav>
-
-  </div>
-</header>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="subjects.html">Subjects</a>
+        <a href="planner.html">Planner</a>
+        <a href="quiz.html">Study Quiz</a>
+        <a href="resources.html">Resources</a>
+        <a href="boundaries.html">Boundaries</a>
+        <a href="converter.html">Converter</a>
+      </nav>
+    </div>
+  </header>
 
   <main class="container">
     <section class="hero">
       <h1>Study Planner</h1>
       <p class="muted">Generates a realistic weekly plan based on your timeline + hours.</p>
 
-      <div class="grid">
+      <div class="grid" style="margin-top:18px;">
         <div class="panel span12">
           <label for="examDate">Exam date</label>
           <input id="examDate" type="date" />
@@ -70,7 +68,7 @@
         </div>
       </div>
 
-      <div class="footer">Tip: the fastest improvement comes from doing timed sets + rewriting mistakes.</div>
+      <div class="footer">Fastest improvement = timed sets + rewriting mistakes.</div>
     </section>
   </main>
 
