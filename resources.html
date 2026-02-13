@@ -5,103 +5,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Resources — IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    .tag{display:inline-block;padding:6px 10px;border-radius:999px;font-size:12px;opacity:.9;border:1px solid rgba(255,255,255,.08)}
-    .tag.free{background:rgba(46,204,113,.12)}
-    .tag.paid{background:rgba(241,196,15,.12)}
-    .tag.official{background:rgba(52,152,219,.12)}
-    .tag.practice{background:rgba(155,89,182,.12)}
-    .tag.notes{background:rgba(231,76,60,.12)}
-    .controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-    .controls input,.controls select{width:100%}
-    .resource-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:18px}
-    .res-card{grid-column:span 6;padding:18px;border-radius:16px;background:rgba(15,27,52,.75);border:1px solid rgba(255,255,255,.08)}
-    @media (max-width:900px){.res-card{grid-column:span 12}}
-    .res-card h3{margin:0 0 8px 0}
-    .res-card p{margin:0 0 10px 0;opacity:.8}
-    .res-card a{display:inline-block;margin-top:8px}
-    .res-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-    .small-note{opacity:.7;font-size:13px;margin-top:10px}
-    .section-title{margin-top:18px}
-  </style>
 </head>
-
 <body data-page="resources">
-  <header class="topbar">
-  <div class="topbar-inner">
-
-    <a class="brand" href="index.html">
-      <span class="brand-badge"></span>
+<header class="topbar">
+  <div class="nav-container">
+    <a href="index.html" class="logo" aria-label="IB Survival Hub Home">
+      <div class="logo-dot" aria-hidden="true"></div>
       <span>IB Survival Hub</span>
     </a>
 
-    <nav class="nav">
+    <nav class="nav-links" aria-label="Primary">
       <a href="index.html">Home</a>
       <a href="subjects.html">Subjects</a>
       <a href="planner.html">Planner</a>
-      <a href="converter.html">Converter</a>
-      <a href="boundaries.html">Boundaries</a>
       <a href="quiz.html">Study Quiz</a>
       <a href="resources.html" class="active">Resources</a>
+      <a href="boundaries.html">Boundaries</a>
+      <a href="converter.html">Converter</a>
     </nav>
-
   </div>
 </header>
 
-  <main class="container">
-    <section class="hero">
+  <main class="main-container">
+    <section class="card">
       <h1>Resources</h1>
-      <p class="muted">A clean, legal, curated list of IB resources — sorted by subject + purpose.</p>
+      <p class="muted">A “what to collect” checklist + a clean list of safe links (no piracy).</p>
 
-      <div class="panel" style="margin-top:16px;">
-        <h2 style="margin:0 0 8px 0;">How to use this page (so it actually helps)</h2>
-        <ul class="muted">
-          <li>Pick <b>1 notes source</b> + <b>1 questionbank source</b> per subject. Don’t hoard links.</li>
-          <li>For every link you save: turn it into either (1) a recall prompt or (2) a practice set.</li>
-          <li>No pirated past papers/leaks here — only legal resources.</li>
-        </ul>
-      </div>
+      <div class="grid">
+        <div class="panel span4">
+          <h2>Filters</h2>
 
-      <div class="panel controls">
-        <div style="flex:2;min-width:240px;">
-          <label for="resSearch">Search</label>
-          <input id="resSearch" type="text" placeholder="e.g., chemistry, vectors, microeconomics, Paper 1..." />
-        </div>
-
-        <div style="flex:1;min-width:180px;">
-          <label for="resSubject">Subject</label>
-          <select id="resSubject">
-            <option value="all">All</option>
-            <option value="chem">Chemistry</option>
-            <option value="bio">Biology</option>
+          <label for="filterSubject">Subject</label>
+          <select id="filterSubject">
+            <option value="all" selected>All</option>
+            <option value="chem">Chem</option>
+            <option value="bio">Bio</option>
             <option value="physics">Physics</option>
             <option value="math">Math</option>
-            <option value="econ">Economics</option>
-            <option value="psych">Psychology</option>
+            <option value="econ">Econ</option>
             <option value="english">English</option>
-            <option value="history">History</option>
-            <option value="business">Business</option>
-            <option value="geo">Geography</option>
-            <option value="cs">Computer Science</option>
-            <option value="french">French</option>
+            <option value="psych">Psych</option>
           </select>
+
+          <label for="filterType">Type</label>
+          <select id="filterType">
+            <option value="all" selected>All</option>
+            <option value="notes">Notes</option>
+            <option value="practice">Practice</option>
+          </select>
+
+          <label for="filterAccess">Access</label>
+          <select id="filterAccess">
+            <option value="all" selected>All</option>
+            <option value="free">Free</option>
+            <option value="paid">Paid</option>
+          </select>
+
+          <div class="hr"></div>
+          <div class="small" id="resourcesCount">0 resource(s)</div>
         </div>
 
-        <div style="flex:1;min-width:180px;">
-          <label for="resType">Type</label>
-          <select id="resType">
-            <option value="all">All</option>
-            <option value="practice">Practice / QBank</option>
-            <option value="notes">Notes / Explanation</option>
-            <option value="official">Official / Reference</option>
-          </select>
+        <div class="panel span8">
+          <h2>Link list</h2>
+          <div class="small">Rule: don’t hoard links — keep ~10 “go-to” resources per subject max.</div>
+          <div id="resourcesList"></div>
+
+          <div class="hr"></div>
+          <div class="callout">
+            If you add a new link, convert it into either (1) a recall prompt, or (2) a practice set.
+            Otherwise it becomes “link collecting” instead of studying.
+          </div>
         </div>
       </div>
-
-      <h2 class="section-title">Recommended resources</h2>
-      <div class="resource-grid" id="resourceGrid"></div>
-
-      <div class="footer">If you want, I can add a “My Personal Links” section that you can edit easily.</div>
     </section>
   </main>
 
