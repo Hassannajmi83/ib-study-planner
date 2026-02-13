@@ -6,69 +6,63 @@
   <title>Planner — IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <header class="topbar">
-    <div class="nav-container">
-      <a href="index.html" class="logo">
-        <div class="logo-dot"></div>
-        <span>IB Survival Hub</span>
-      </a>
+<body data-page="planner">
+<header class="topbar">
+  <div class="nav-container">
+    <a href="index.html" class="logo" aria-label="IB Survival Hub Home">
+      <div class="logo-dot" aria-hidden="true"></div>
+      <span>IB Survival Hub</span>
+    </a>
 
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="subjects.html">Subjects</a>
-        <a href="planner.html">Planner</a>
-        <a href="quiz.html">Study Quiz</a>
-        <a href="resources.html">Resources</a>
-        <a href="boundaries.html">Boundaries</a>
-        <a href="converter.html">Converter</a>
-      </nav>
-    </div>
-  </header>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="subjects.html">Subjects</a>
+      <a href="planner.html" class="active">Planner</a>
+      <a href="quiz.html">Study Quiz</a>
+      <a href="resources.html">Resources</a>
+      <a href="boundaries.html">Boundaries</a>
+      <a href="converter.html">Converter</a>
+    </nav>
+  </div>
+</header>
 
-  <main class="container">
-    <section class="hero">
+  <main class="main-container">
+    <section class="card">
       <h1>Study Planner</h1>
       <p class="muted">Generates a realistic weekly plan based on your timeline + hours.</p>
 
-      <div class="grid" style="margin-top:18px;">
-        <div class="panel span12">
+      <div class="grid">
+        <div class="panel span6">
           <label for="examDate">Exam date</label>
           <input id="examDate" type="date" />
-        </div>
 
-        <div class="panel span12">
           <label for="hoursPerWeek">Hours per week</label>
-          <input id="hoursPerWeek" type="number" min="1" max="60" placeholder="e.g., 10" />
-        </div>
+          <input id="hoursPerWeek" type="number" min="1" placeholder="e.g., 10" />
 
-        <div class="panel span12">
           <label for="subjectsCount">How many subjects?</label>
           <select id="subjectsCount">
-            <option value="3">3</option>
-            <option value="4" selected>4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
+            <option>3</option><option selected>4</option><option>5</option><option>6</option><option>7</option>
           </select>
-        </div>
 
-        <div class="panel span12">
           <label for="priority">Main goal right now</label>
           <select id="priority">
             <option value="balanced" selected>Balanced</option>
-            <option value="marks">Raise marks fast</option>
-            <option value="content">Learn / retain content</option>
-            <option value="skills">Exam technique + timing</option>
+            <option value="marks">Push marks fast</option>
+            <option value="content">Catch up content</option>
+            <option value="skills">Fix exam technique</option>
           </select>
+
+          <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
+            <button class="btn" id="plannerGenerate">Generate Plan</button>
+          </div>
+
+          <div class="footer">Tip: after every set, write the “rule” you should’ve followed (that’s how you stop repeating errors).</div>
         </div>
 
-        <div class="panel span12">
-          <button class="btn" id="genPlan">Generate Plan</button>
-          <div class="note" id="planOut">Fill the inputs, then generate.</div>
+        <div class="panel span6">
+          <div id="plannerOut" class="callout">Fill the inputs, then generate.</div>
         </div>
       </div>
-
-      <div class="footer">Fastest improvement = timed sets + rewriting mistakes.</div>
     </section>
   </main>
 
