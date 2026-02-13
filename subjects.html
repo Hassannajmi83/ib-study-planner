@@ -6,53 +6,36 @@
   <title>Subjects — IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <header class="topbar">
-    <div class="nav-container">
-      <a href="index.html" class="logo">
-        <div class="logo-dot"></div>
-        <span>IB Survival Hub</span>
-      </a>
+<body data-page="subjects">
+<header class="topbar">
+  <div class="nav-container">
+    <a href="index.html" class="logo" aria-label="IB Survival Hub Home">
+      <div class="logo-dot" aria-hidden="true"></div>
+      <span>IB Survival Hub</span>
+    </a>
 
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="subjects.html">Subjects</a>
-        <a href="planner.html">Planner</a>
-        <a href="quiz.html">Study Quiz</a>
-        <a href="resources.html">Resources</a>
-        <a href="boundaries.html">Boundaries</a>
-        <a href="converter.html">Converter</a>
-      </nav>
-    </div>
-  </header>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="subjects.html" class="active">Subjects</a>
+      <a href="planner.html">Planner</a>
+      <a href="quiz.html">Study Quiz</a>
+      <a href="resources.html">Resources</a>
+      <a href="boundaries.html">Boundaries</a>
+      <a href="converter.html">Converter</a>
+    </nav>
+  </div>
+</header>
 
-  <main class="container">
-    <section class="hero">
+  <main class="main-container">
+    <section class="card">
       <h1>Subjects</h1>
-      <p class="muted">Pick a subject. Each page has paper structure + study strategy + common mark traps.</p>
+      <p class="muted">Pick a subject. Each page has papers + study strategy + common mark traps.</p>
 
-      <div class="grid" style="margin-top:18px;">
-        <a class="card span6" href="chem.html"><div class="card-title">Chemistry</div><p class="card-sub">Papers + calculations + markscheme wording</p></a>
-        <a class="card span6" href="bio.html"><div class="card-title">Biology</div><p class="card-sub">Keywords, data response, command terms</p></a>
-
-        <a class="card span6" href="physics.html"><div class="card-title">Physics</div><p class="card-sub">Diagrams, method marks, clean assumptions</p></a>
-        <a class="card span6" href="math.html"><div class="card-title">Math AA</div><p class="card-sub">SL vs HL structure + common error traps</p></a>
-
-        <a class="card span6" href="econ.html"><div class="card-title">Economics</div><p class="card-sub">SL vs HL + diagrams + evaluation</p></a>
-        <a class="card span6" href="psych.html"><div class="card-title">Psychology</div><p class="card-sub">Studies bank + SAQ/ERQ structure</p></a>
-
-        <a class="card span12" href="English.html"><div class="card-title">English Literature</div><p class="card-sub">Paper 1 unseen analysis + Paper 2 comparison</p></a>
-
-        <a class="card span6" href="history.html"><div class="card-title">History</div><p class="card-sub">Evidence, argument, source analysis</p></a>
-        <a class="card span6" href="business.html"><div class="card-title">Business</div><p class="card-sub">Case application + evaluation + recommendation</p></a>
-
-        <a class="card span6" href="geo.html"><div class="card-title">Geography</div><p class="card-sub">Case studies + models + evaluation</p></a>
-        <a class="card span6" href="cs.html"><div class="card-title">Computer Science</div><p class="card-sub">Tracing + pseudocode + trade-offs</p></a>
-
-        <a class="card span12" href="french.html"><div class="card-title">French</div><p class="card-sub">Consistency + writing structure + vocab growth</p></a>
+      <div class="subject-grid" id="subjectsGrid">
+        <!-- Loaded from subjects.json by app.js -->
       </div>
 
-      <div class="footer">If a link 404s, it’s usually a filename case mismatch. Keep names exactly as shown.</div>
+      <div class="footer">Tip: if a subject link 404s, it’s usually a filename/case mismatch.</div>
     </section>
   </main>
 
