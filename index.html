@@ -3,18 +3,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>IB Survival Hub</title>
+  <title>Home — IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
+  <script defer src="app.js"></script>
 </head>
 <body>
   <header class="topbar">
-    <div class="nav-container">
-      <a href="index.html" class="logo">
-        <div class="logo-dot"></div>
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-badge"></span>
         <span>IB Survival Hub</span>
       </a>
 
-      <nav class="nav-links">
+      <nav class="nav">
         <a href="index.html">Home</a>
         <a href="subjects.html">Subjects</a>
         <a href="planner.html">Planner</a>
@@ -28,42 +29,44 @@
 
   <main class="container">
     <section class="hero">
-      <h1>Survive Year 1 (and actually get good marks)</h1>
-      <p class="muted">A student-made guide to IB exams: paper structure, study methods that work, and subject-specific tips — built as a clean multi-page site.</p>
+      <h1 class="h1">Survive Year 1 (and actually get good marks)</h1>
+      <p class="lead">
+        A student-made guide for IB exam structure, study methods that work, and subject-specific paper tips.
+        Built as a clean multi-page site (no server) for CAS: <b>tech + service + documented iteration</b>.
+      </p>
 
-      <div class="grid" style="margin-top:18px;">
-        <div class="panel span6">
-          <h2>How to use this site</h2>
-          <ul class="muted">
-            <li>Start with <b>Subjects</b> to learn paper structure + common traps.</li>
-            <li>Use <b>Planner</b> to generate a weekly plan you’ll actually follow.</li>
-            <li>Use <b>Study Quiz</b> to match your method to your subjects.</li>
-            <li>Use <b>Resources</b> as a curated “legal links only” library.</li>
-          </ul>
+      <div class="grid">
+        <div class="panel span8">
+          <h2 class="h2">How to use this site</h2>
+          <p class="muted" style="margin-top:0">
+            Start with <b>Subjects</b> to learn each paper structure + common traps.
+            Use <b>Planner</b> to generate a weekly plan. Use <b>Study Quiz</b> to match a study style to paper type.
+          </p>
+          <div class="callout">
+            Goal: fewer “I studied a lot but did bad” moments → more targeted practice + better exam technique.
+          </div>
         </div>
 
-        <div class="panel span6">
-          <h2>Quick Start</h2>
-          <div class="note">
-            <div style="margin-bottom:10px;"><b>1)</b> Open Subjects → pick your hardest course.</div>
-            <div style="margin-bottom:10px;"><b>2)</b> Write 5 mistakes you keep making.</div>
-            <div><b>3)</b> Do 1 timed set this week and fix those mistakes.</div>
-          </div>
-          <div style="margin-top:12px;">
-            <a class="btn" href="subjects.html">Open Subjects</a>
+        <div class="panel span4">
+          <h2 class="h2">Quick Start</h2>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <a class="btn primary" href="subjects.html">Open Subjects</a>
+            <a class="btn" href="planner.html">Build a Plan</a>
+            <a class="btn" href="quiz.html">Take Study Quiz</a>
           </div>
         </div>
 
         <div class="panel span12">
-          <h2>Built for CAS</h2>
-          <p class="muted">Tech + service: an actual tool (not slides), multiple pages, consistent UI, and interactive features (planner + quiz). It helps first-year IB students stop guessing and study properly.</p>
+          <h2 class="h2">What makes this “impressive” for CAS</h2>
+          <p class="muted" style="margin-top:0">
+            It’s a real tool: multiple pages, consistent UI, and interactive features (planner + quiz + boundaries + converter).
+            It’s also service: it helps first-year IB students stop guessing and start scoring.
+          </p>
         </div>
       </div>
 
-      <div class="footer">Built on GitHub Pages — no server needed.</div>
+      <div class="footerNote">Built on GitHub Pages • Simple, fast • No server needed</div>
     </section>
   </main>
-
-  <script src="app.js"></script>
 </body>
 </html>
