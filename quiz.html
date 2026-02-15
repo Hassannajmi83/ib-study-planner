@@ -5,168 +5,77 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Study Quiz — IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
+  <script defer src="app.js"></script>
 </head>
-<body data-page="quiz">
-<header class="topbar">
-  <div class="nav-container">
-    <a href="index.html" class="logo" aria-label="IB Survival Hub Home">
-      <div class="logo-dot" aria-hidden="true"></div>
-      <span>IB Survival Hub</span>
-    </a>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-badge"></span>
+        <span>IB Survival Hub</span>
+      </a>
 
-    <nav class="nav-links" aria-label="Primary">
-      <a href="index.html">Home</a>
-      <a href="subjects.html">Subjects</a>
-      <a href="planner.html">Planner</a>
-      <a href="quiz.html" class="active">Study Quiz</a>
-      <a href="resources.html">Resources</a>
-      <a href="boundaries.html">Boundaries</a>
-      <a href="converter.html">Converter</a>
-    </nav>
-  </div>
-</header>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="subjects.html">Subjects</a>
+        <a href="planner.html">Planner</a>
+        <a href="quiz.html">Study Quiz</a>
+        <a href="resources.html">Resources</a>
+        <a href="boundaries.html">Boundaries</a>
+        <a href="converter.html">Converter</a>
+      </nav>
+    </div>
+  </header>
 
-  <main class="main-container">
-    <section class="card">
-      <h1>Study Quiz</h1>
-      <p class="muted">Quick quiz → you get a study style + a plan that matches it.</p>
+  <main class="container">
+    <section class="hero">
+      <h1 class="h1">Study Quiz</h1>
+      <p class="lead">Quick quiz → you get a study style + a plan that matches it.</p>
 
-      <div class="panel">
-        <div class="small" id="quizHint">Click start. Takes about a minute.</div>
-        <div style="margin-top:12px;">
-          <button class="btn" id="quizStart">Start</button>
+      <div class="grid">
+        <div class="panel span12">
+          <div class="callout" style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+            <div>
+              <b>Click start.</b> Takes about a minute.
+              <div class="small">Reminder: your study style should match the exam type (math vs essays vs data).</div>
+            </div>
+            <button class="btn primary" id="quizStart" type="button">Start</button>
+          </div>
+
+          <form id="quizForm" style="display:none; margin-top:16px;">
+            <div class="grid" style="margin-top:0">
+              <div class="panel span6">
+                <h3 class="h2">1) What helps you most?</h3>
+                <label><input type="radio" name="q1" value="practice"> Doing questions immediately</label><br/>
+                <label><input type="radio" name="q1" value="plan"> Planning/structure first</label>
+              </div>
+
+              <div class="panel span6">
+                <h3 class="h2">2) Your best memory method?</h3>
+                <label><input type="radio" name="q2" value="active"> Active recall (test yourself)</label><br/>
+                <label><input type="radio" name="q2" value="notes"> Notes then review</label>
+              </div>
+
+              <div class="panel span6">
+                <h3 class="h2">3) Under stress you usually…</h3>
+                <label><input type="radio" name="q3" value="stress"> Rush and make small mistakes</label><br/>
+                <label><input type="radio" name="q3" value="steady"> Stay steady but need structure</label>
+              </div>
+
+              <div class="panel span6">
+                <h3 class="h2">4) Your ideal session length?</h3>
+                <label><input type="radio" name="q4" value="short"> 25–35 minutes</label><br/>
+                <label><input type="radio" name="q4" value="long"> 60–90 minutes</label>
+              </div>
+            </div>
+
+            <button class="btn primary" type="submit" style="margin-top:12px;">Get my result</button>
+          </form>
+
+          <div id="quizOut" style="margin-top:16px;"></div>
         </div>
-
-        <div class="hr"></div>
-
-        <div id="quizBox" class="fadeIn" style="display:none;">
-          <h2 id="quizQ" style="margin-top:0;"></h2>
-          <div id="quizAnswers" class="grid" style="grid-template-columns:1fr;gap:10px;"></div>
-          <div class="footer" id="quizProgress"></div>
-        </div>
-
-        <div id="quizResult" style="display:none;"></div>
       </div>
     </section>
   </main>
-
-  <script src="app.js"></script>
-  <script>
-    const questions = [
-      { q: "When you study, what helps you most?",
-        a: [
-          { t: "Doing exam-style questions fast", s: "practice" },
-          { t: "Explaining concepts in my own words", s: "recall" },
-          { t: "Watching/reading then taking notes", s: "notes" },
-          { t: "Making neat summaries and highlighting", s: "summaries" }
-        ]
-      },
-      { q: "Your biggest problem right now is…",
-        a: [
-          { t: "I blank in tests even if I studied", s: "recall" },
-          { t: "I don’t know what the markscheme wants", s: "practice" },
-          { t: "I’m behind on content", s: "notes" },
-          { t: "I study a lot but nothing sticks", s: "recall" }
-        ]
-      },
-      { q: "Pick the best weekly plan:",
-        a: [
-          { t: "Mostly timed sets + error review", s: "practice" },
-          { t: "Active recall blocks + short practice", s: "recall" },
-          { t: "Content catch-up then practice later", s: "notes" },
-          { t: "Rewrite notes + flashcards (sometimes)", s: "summaries" }
-        ]
-      }
-    ];
-
-    const startBtn = document.getElementById("quizStart");
-    const box = document.getElementById("quizBox");
-    const qEl = document.getElementById("quizQ");
-    const ansEl = document.getElementById("quizAnswers");
-    const progEl = document.getElementById("quizProgress");
-    const resEl = document.getElementById("quizResult");
-
-    let i = 0;
-    const score = { practice: 0, recall: 0, notes: 0, summaries: 0 };
-
-    function showQ() {
-      box.style.display = "block";
-      resEl.style.display = "none";
-      qEl.textContent = questions[i].q;
-      progEl.textContent = `Question ${i + 1} of ${questions.length}`;
-      ansEl.innerHTML = "";
-
-      questions[i].a.forEach(opt => {
-        const btn = document.createElement("button");
-        btn.className = "btn";
-        btn.style.justifyContent = "flex-start";
-        btn.textContent = opt.t;
-        btn.onclick = () => {
-          score[opt.s] += 1;
-          i += 1;
-          if (i >= questions.length) showResult();
-          else showQ();
-        };
-        ansEl.appendChild(btn);
-      });
-    }
-
-    function showResult() {
-      box.style.display = "none";
-      resEl.style.display = "block";
-
-      const best = Object.entries(score).sort((a, b) => b[1] - a[1])[0][0];
-
-      let title = "";
-      let bullets = [];
-
-      if (best === "practice") {
-        title = "You’re a Practice-First student";
-        bullets = [
-          "Do topic sets → then mixed sets → then timed papers.",
-          "After each set: write 3 ‘fix rules’ (units, setup, diagram labels, command terms).",
-          "Use markschemes to learn wording and what earns marks."
-        ];
-      } else if (best === "recall") {
-        title = "You’re an Active-Recall student";
-        bullets = [
-          "Study by questions/prompts (not rereading).",
-          "Use blurting / flashcards / teach-it-back, then do a short practice set.",
-          "Keep a tiny ‘things I forget’ list and hit it daily."
-        ];
-      } else if (best === "notes") {
-        title = "You’re a Content-Catchup student";
-        bullets = [
-          "Time-box content: 30–45 min max, then do questions immediately.",
-          "Only write ‘minimum notes’ (definitions, formulas, steps).",
-          "If you can’t answer questions, you didn’t learn it yet."
-        ];
-      } else {
-        title = "You’re a Structure & Summaries student";
-        bullets = [
-          "Make 1-page checklists (topic → common traps → mark triggers).",
-          "Convert summaries into prompts (so they test you).",
-          "End each week with one timed set + error review."
-        ];
-      }
-
-      resEl.innerHTML = `
-        <div class="panel fadeIn">
-          <h2 style="margin-top:0;">${title}</h2>
-          <ul class="list">
-            ${bullets.map(b => `<li>${b}</li>`).join("")}
-          </ul>
-          <div class="hr"></div>
-          <div class="small">Reminder: match the method to the exam type (math vs essays vs data response).</div>
-        </div>
-      `;
-    }
-
-    startBtn.addEventListener("click", () => {
-      i = 0;
-      Object.keys(score).forEach(k => score[k] = 0);
-      showQ();
-    });
-  </script>
 </body>
 </html>
