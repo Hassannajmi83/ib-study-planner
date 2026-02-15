@@ -1,46 +1,17 @@
 {
   "subjects": [
-    {
-      "name": "Chemistry",
-      "subtitle": "Papers + tips + mark traps",
-      "href": "chem.html",
-      "tags": ["MCQ + data skills", "Calculations", "Markscheme wording"]
-    },
-    {
-      "name": "Biology",
-      "subtitle": "Keywords + data interpretation",
-      "href": "bio.html",
-      "tags": ["Active recall", "Graph questions", "Command terms"]
-    },
-    {
-      "name": "Physics",
-      "subtitle": "Method marks + setup clarity",
-      "href": "physics.html",
-      "tags": ["Diagrams", "Units + sig figs", "Patterns"]
-    },
-    {
-      "name": "Math AA",
-      "subtitle": "SL vs HL structure + errors",
-      "href": "math.html",
-      "tags": ["Algebra accuracy", "Restrictions", "Timed practice"]
-    },
-    {
-      "name": "Economics",
-      "subtitle": "SL vs HL (HL has Paper 3)",
-      "href": "econ.html",
-      "tags": ["Diagrams", "DEED", "Evaluation"]
-    },
-    {
-      "name": "Psychology",
-      "subtitle": "Studies + evaluation",
-      "href": "psych.html",
-      "tags": ["SAQ/ERQ structure", "Study bank", "Research methods"]
-    },
-    {
-      "name": "English Lit",
-      "subtitle": "Paper 1 unseen + Paper 2 comparative",
-      "href": "english.html",
-      "tags": ["Thesis", "Close analysis", "Comparative writing"]
-    }
+    { "name": "Chemistry", "href": "chem.html", "subtitle": "Papers + calculation technique + markscheme wording", "tags": ["Topic drills", "Data booklet", "Mechanisms"] },
+    { "name": "Biology", "href": "bio.html", "subtitle": "Keywords, data response, command terms", "tags": ["Diagrams", "Definitions", "Application"] },
+    { "name": "Physics", "href": "physics.html", "subtitle": "Method marks, assumptions, diagrams", "tags": ["Free-body", "Units", "Reasoning"] },
+    { "name": "Math AA", "href": "math.html", "subtitle": "SL vs HL structure + common error traps", "tags": ["Domain", "Trig", "Algebra"] },
+    { "name": "Economics", "href": "econ.html", "subtitle": "Diagrams + evaluation + HL Paper 3 style", "tags": ["DEED", "Policies", "Trade"] },
+    { "name": "Psychology", "href": "psych.html", "subtitle": "SAQ/ERQ structure + studies bank strategy", "tags": ["Studies", "Critical thinking", "Command terms"] },
+    { "name": "English Literature", "href": "English.html", "subtitle": "Paper 1 unseen + Paper 2 comparison", "tags": ["Thesis", "Quotes", "Structure"] },
+
+    { "name": "History", "href": "history.html", "subtitle": "Source analysis, argument, evidence", "tags": ["OPVL", "Context", "Judgement"] },
+    { "name": "Business", "href": "business.html", "subtitle": "Case application + evaluation + recommendation", "tags": ["Tools", "Balance", "Realism"] },
+    { "name": "Geography", "href": "geo.html", "subtitle": "Case studies, models, evaluation", "tags": ["Examples", "Linking", "Command terms"] },
+    { "name": "Computer Science", "href": "cs.html", "subtitle": "Tracing, pseudocode, trade-offs", "tags": ["Logic", "Complexity", "Testing"] },
+    { "name": "French", "href": "french.html", "subtitle": "Consistency + writing structure + vocab growth", "tags": ["Phrases", "Tenses", "Listening"] }
   ]
 }
