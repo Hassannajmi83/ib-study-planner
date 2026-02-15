@@ -5,40 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Subjects — IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
+  <script defer src="app.js"></script>
 </head>
-<body data-page="subjects">
-<header class="topbar">
-  <div class="nav-container">
-    <a href="index.html" class="logo" aria-label="IB Survival Hub Home">
-      <div class="logo-dot" aria-hidden="true"></div>
-      <span>IB Survival Hub</span>
-    </a>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-badge"></span>
+        <span>IB Survival Hub</span>
+      </a>
 
-    <nav class="nav-links" aria-label="Primary">
-      <a href="index.html">Home</a>
-      <a href="subjects.html" class="active">Subjects</a>
-      <a href="planner.html">Planner</a>
-      <a href="quiz.html">Study Quiz</a>
-      <a href="resources.html">Resources</a>
-      <a href="boundaries.html">Boundaries</a>
-      <a href="converter.html">Converter</a>
-    </nav>
-  </div>
-</header>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="subjects.html">Subjects</a>
+        <a href="planner.html">Planner</a>
+        <a href="quiz.html">Study Quiz</a>
+        <a href="resources.html">Resources</a>
+        <a href="boundaries.html">Boundaries</a>
+        <a href="converter.html">Converter</a>
+      </nav>
+    </div>
+  </header>
 
-  <main class="main-container">
-    <section class="card">
-      <h1>Subjects</h1>
-      <p class="muted">Pick a subject. Each page has papers + study strategy + common mark traps.</p>
+  <main class="container">
+    <section class="hero">
+      <h1 class="h1" style="margin-bottom:8px">Subjects</h1>
+      <p class="lead">Pick a subject. Each page has papers + study strategy + common mark traps.</p>
 
-      <div class="subject-grid" id="subjectsGrid">
-        <!-- Loaded from subjects.json by app.js -->
+      <div class="grid" id="subjectsGrid" style="margin-top:18px">
+        <!-- auto-filled from subjects.json -->
       </div>
 
-      <div class="footer">Tip: if a subject link 404s, it’s usually a filename/case mismatch.</div>
+      <div class="footerNote">If a subject link 404s, it’s usually a filename/case mismatch.</div>
     </section>
   </main>
-
-  <script src="app.js"></script>
 </body>
 </html>
