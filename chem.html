@@ -8,67 +8,85 @@
 </head>
 <body>
   <header class="topbar">
-  <div class="nav-container">
-    
-    <!-- Logo / Home Button -->
-    <a href="index.html" class="logo">
-      <div class="logo-dot"></div>
-      <span>IB Survival Hub</span>
-    </a>
+    <div class="wrap topbarInner">
+      <a class="brand" href="index.html" aria-label="IB Survival Hub home">
+        <span class="dot"></span><span>IB Survival Hub</span>
+      </a>
 
-    <!-- Navigation Links -->
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="subjects.html" class="active">Subjects</a>
-      <a href="planner.html">Planner</a>
-      <a href="quiz.html">Study Quiz</a>
-      <a href="resources.html">Resources</a>
-      <a href="boundaries.html">Boundaries</a>
-      <a href="converter.html">Converter</a>
-    </nav>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a class="active" href="subjects.html">Subjects</a>
+        <a href="planner.html">Planner</a>
+        <a href="quiz.html">Study Quiz</a>
+        <a href="resources.html">Resources</a>
+        <a href="boundaries.html">Boundaries</a>
+        <a href="converter.html">Converter</a>
+      </nav>
+    </div>
+  </header>
 
-  </div>
-</header>
-
-  <main class="container">
-    <section class="hero">
+  <main class="wrap page">
+    <section class="heroCard">
       <h1>Chemistry</h1>
-      <p class="muted">Paper structure + study strategy + common mark traps.</p>
-
-      <div class="grid" style="margin-top:18px;">
-        <div class="panel span6">
-          <h2>Papers</h2>
-          <ul class="muted">
-            <li>Paper 1A: MCQ</li>
-            <li>Paper 1B: data-based / skills</li>
-            <li>Paper 2: written responses + calculations</li>
-            <li>Paper 3: depends on syllabus/version</li>
-          </ul>
-        </div>
-
-        <div class="panel span6">
-          <h2>High-impact tips</h2>
-          <ul class="muted">
-            <li>Do topic sets → then mixed sets</li>
-            <li>Build a one-page organic mechanisms sheet</li>
-            <li>Always show units + sig figs</li>
-            <li>Markscheme wording matters</li>
-          </ul>
-        </div>
-
-        <div class="panel span12">
-          <h2>Common mark traps</h2>
-          <ul class="muted">
-            <li>Rounding too early</li>
-            <li>Forgetting conversions (cm³↔dm³, kPa↔Pa)</li>
-            <li>Skipping steps and losing method marks</li>
-            <li>Explaining without naming the key concept (IMFs, equilibrium shift, etc.)</li>
-          </ul>
-        </div>
+      <p class="sub">Paper structure + study strategy + common mark traps.</p>
+      <div class="heroBtns">
+        <a class="btn" href="subjects.html">← Back to Subjects</a>
       </div>
+    </section>
 
-      <div class="footer"><a href="subjects.html">← Back to Subjects</a></div>
+    <section class="grid2">
+      <article class="card">
+        <h2>Papers</h2>
+        <ul class="list">
+          <li><b>Paper 1A:</b> MCQ</li>
+          <li><b>Paper 1B:</b> data-based / skills</li>
+          <li><b>Paper 2:</b> written responses + calculations + explanations</li>
+          <li><b>Paper 3:</b> depends on syllabus/version (sometimes option-style)</li>
+        </ul>
+        <div class="note">
+          Key idea: marks come from <b>method + units + wording</b>, not just final answers.
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>High-impact study plan</h2>
+        <ul class="list">
+          <li><b>Phase 1:</b> topic sets (easy → medium) with markscheme open</li>
+          <li><b>Phase 2:</b> mixed sets (timed) to train switching topics</li>
+          <li><b>Daily:</b> 10–15 min “weakest skill” drill (stoich, equilibrium, org, etc.)</li>
+          <li><b>Weekly:</b> one timed mini-paper + fix errors</li>
+        </ul>
+        <div class="note">
+          Build a <b>one-page “mechanisms + conditions” sheet</b> for organic (reactions, reagents, observations).
+        </div>
+      </article>
+    </section>
+
+    <section class="grid2">
+      <article class="card">
+        <h2>Common mark traps</h2>
+        <ul class="list">
+          <li>Rounding too early → wrong final value</li>
+          <li>Unit conversion mistakes (cm³↔dm³, kPa↔Pa, g↔mol)</li>
+          <li>Skipping steps → losing method marks</li>
+          <li>Not stating assumptions/conditions (e.g., equilibrium shift logic)</li>
+          <li>Vague explanations (“it increases”) without naming the principle (IMFs, Le Châtelier, collision theory)</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Quick checklist (before submitting)</h2>
+        <ul class="list">
+          <li>Units shown and correct (and converted if needed)</li>
+          <li>Sig figs consistent with data</li>
+          <li>Working shown clearly (method marks)</li>
+          <li>Explanation uses correct keywords (IMF, oxidation state, limiting reagent, etc.)</li>
+          <li>Final answer boxed/obvious</li>
+        </ul>
+      </article>
     </section>
   </main>
+
+  <script src="app.js"></script>
 </body>
 </html>
