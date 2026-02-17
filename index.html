@@ -1,72 +1,98 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Home — IB Survival Hub</title>
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="app.js"></script>
+  <meta charset="UTF-8">
+  <title>IB Survival Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brand" href="index.html">
-        <span class="brand-badge"></span>
-        <span>IB Survival Hub</span>
+
+<!-- =========================
+     NAVBAR
+     ========================= -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-dot"></div>
+      IB Survival Hub
+    </a>
+
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="subjects.html">Subjects</a>
+      <a href="planner.html">Planner</a>
+      <a href="quiz.html">Study Quiz</a>
+      <a href="resources.html">Resources</a>
+      <a href="boundaries.html">Boundaries</a>
+      <a href="converter.html">Converter</a>
+    </div>
+  </div>
+</nav>
+
+<!-- =========================
+     PAGE
+     ========================= -->
+<main class="page">
+
+  <div class="card pad-lg">
+    <h1>IB Survival Hub</h1>
+    <p>
+      A clean, focused workspace for IB students.
+      Study smarter. Track smarter. Convert smarter.
+    </p>
+
+    <hr>
+
+    <div class="grid grid-3" style="margin-top:20px;">
+
+      <a href="subjects.html" class="card subject-link">
+        <div class="title">Subjects</div>
+        <div class="desc">
+          Paper structure, study strategies, and common mark traps.
+        </div>
       </a>
 
-      <nav class="nav">
-        <a href="index.html">Home</a>
-        <a href="subjects.html">Subjects</a>
-        <a href="planner.html">Planner</a>
-        <a href="quiz.html">Study Quiz</a>
-        <a href="resources.html">Resources</a>
-        <a href="boundaries.html">Boundaries</a>
-        <a href="converter.html">Converter</a>
-      </nav>
+      <a href="planner.html" class="card subject-link">
+        <div class="title">Study Planner</div>
+        <div class="desc">
+          Generate a realistic weekly plan based on timeline + hours.
+        </div>
+      </a>
+
+      <a href="quiz.html" class="card subject-link">
+        <div class="title">Study Quiz</div>
+        <div class="desc">
+          Active recall prompts to test your understanding.
+        </div>
+      </a>
+
+      <a href="resources.html" class="card subject-link">
+        <div class="title">Resources</div>
+        <div class="desc">
+          Clean list of safe links and what to collect.
+        </div>
+      </a>
+
+      <a href="boundaries.html" class="card subject-link">
+        <div class="title">Grade Boundaries</div>
+        <div class="desc">
+          May 2024 Zone A (Ontario reference).
+        </div>
+      </a>
+
+      <a href="converter.html" class="card subject-link">
+        <div class="title">Ontario Converter</div>
+        <div class="desc">
+          Convert raw IB marks to Ontario percentages.
+        </div>
+      </a>
+
     </div>
-  </header>
+  </div>
 
-  <main class="container">
-    <section class="hero">
-      <h1 class="h1">Survive Year 1 (and actually get good marks)</h1>
-      <p class="lead">
-        A student-made guide for IB exam structure, study methods that work, and subject-specific paper tips.
-        Built as a clean multi-page site (no server) for CAS: <b>tech + service + documented iteration</b>.
-      </p>
+</main>
 
-      <div class="grid">
-        <div class="panel span8">
-          <h2 class="h2">How to use this site</h2>
-          <p class="muted" style="margin-top:0">
-            Start with <b>Subjects</b> to learn each paper structure + common traps.
-            Use <b>Planner</b> to generate a weekly plan. Use <b>Study Quiz</b> to match a study style to paper type.
-          </p>
-          <div class="callout">
-            Goal: fewer “I studied a lot but did bad” moments → more targeted practice + better exam technique.
-          </div>
-        </div>
-
-        <div class="panel span4">
-          <h2 class="h2">Quick Start</h2>
-          <div style="display:flex; flex-direction:column; gap:10px;">
-            <a class="btn primary" href="subjects.html">Open Subjects</a>
-            <a class="btn" href="planner.html">Build a Plan</a>
-            <a class="btn" href="quiz.html">Take Study Quiz</a>
-          </div>
-        </div>
-
-        <div class="panel span12">
-          <h2 class="h2">What makes this “impressive” for CAS</h2>
-          <p class="muted" style="margin-top:0">
-            It’s a real tool: multiple pages, consistent UI, and interactive features (planner + quiz + boundaries + converter).
-            It’s also service: it helps first-year IB students stop guessing and start scoring.
-          </p>
-        </div>
-      </div>
-
-      <div class="footerNote">Built on GitHub Pages • Simple, fast • No server needed</div>
-    </section>
-  </main>
 </body>
 </html>
