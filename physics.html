@@ -8,67 +8,81 @@
 </head>
 <body>
   <header class="topbar">
-  <div class="nav-container">
-    
-    <!-- Logo / Home Button -->
-    <a href="index.html" class="logo">
-      <div class="logo-dot"></div>
-      <span>IB Survival Hub</span>
-    </a>
+    <div class="wrap topbarInner">
+      <a class="brand" href="index.html" aria-label="IB Survival Hub home">
+        <span class="dot"></span><span>IB Survival Hub</span>
+      </a>
 
-    <!-- Navigation Links -->
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="subjects.html" class="active">Subjects</a>
-      <a href="planner.html">Planner</a>
-      <a href="quiz.html">Study Quiz</a>
-      <a href="resources.html">Resources</a>
-      <a href="boundaries.html">Boundaries</a>
-      <a href="converter.html">Converter</a>
-    </nav>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a class="active" href="subjects.html">Subjects</a>
+        <a href="planner.html">Planner</a>
+        <a href="quiz.html">Study Quiz</a>
+        <a href="resources.html">Resources</a>
+        <a href="boundaries.html">Boundaries</a>
+        <a href="converter.html">Converter</a>
+      </nav>
+    </div>
+  </header>
 
-  </div>
-</header>
-
-  <main class="container">
-    <section class="hero">
+  <main class="wrap page">
+    <section class="heroCard">
       <h1>Physics</h1>
-      <p class="muted">Method marks = clear diagrams, defined directions, and clean steps.</p>
-
-      <div class="grid" style="margin-top:18px;">
-        <div class="panel span6">
-          <h2>Papers</h2>
-          <ul class="muted">
-            <li>Paper 1A: MCQ</li>
-            <li>Paper 1B: data-based / skills</li>
-            <li>Paper 2: structured problems</li>
-            <li>HL: more depth + longer linked questions</li>
-          </ul>
-        </div>
-
-        <div class="panel span6">
-          <h2>High-impact tips</h2>
-          <ul class="muted">
-            <li>Draw the diagram FIRST (forces, axes, directions)</li>
-            <li>Write equation → substitute → evaluate</li>
-            <li>Units + sig figs every time</li>
-            <li>Redo mistakes 48 hours later</li>
-          </ul>
-        </div>
-
-        <div class="panel span12">
-          <h2>Common mark traps</h2>
-          <ul class="muted">
-            <li>Sign errors (not defining + direction)</li>
-            <li>Wrong principle (energy vs momentum vs forces)</li>
-            <li>Skipping steps and losing method marks</li>
-            <li>Graph slope/intercept misreads</li>
-          </ul>
-        </div>
+      <p class="sub">Diagrams + method marks + clean assumptions.</p>
+      <div class="heroBtns">
+        <a class="btn" href="subjects.html">← Back to Subjects</a>
       </div>
+    </section>
 
-      <div class="footer"><a href="subjects.html">← Back to Subjects</a></div>
+    <section class="grid2">
+      <article class="card">
+        <h2>Papers</h2>
+        <ul class="list">
+          <li><b>Paper 1:</b> MCQ (concept traps + data booklet familiarity)</li>
+          <li><b>Paper 2:</b> structured problems (method marks)</li>
+          <li><b>Paper 3:</b> data/skills + option-style (depends on syllabus)</li>
+        </ul>
+        <div class="note">
+          Physics marks are “visible”: show forces, show components, show steps.
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>High-impact study plan</h2>
+        <ul class="list">
+          <li><b>Booklet mastery:</b> know where the common equations live</li>
+          <li><b>Pattern practice:</b> do 10–15 questions of the same type, then mix</li>
+          <li><b>Timed sets:</b> train “fast setup” (diagram → equation → substitution)</li>
+          <li><b>Error log:</b> write the rule you should’ve used (units, sign, direction, trig)</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="grid2">
+      <article class="card">
+        <h2>Common mark traps</h2>
+        <ul class="list">
+          <li>Wrong direction/sign (vectors, acceleration, fields)</li>
+          <li>Using degrees vs radians incorrectly</li>
+          <li>Forgetting to resolve components</li>
+          <li>Not stating assumptions (no air resistance, point mass, etc.)</li>
+          <li>Final answer missing units / wrong sig figs</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>“Method mark” checklist</h2>
+        <ul class="list">
+          <li>Diagram drawn (FBD / rays / circuits)</li>
+          <li>Knowns/unknowns stated</li>
+          <li>Equation chosen + rearranged symbolically</li>
+          <li>Substitution shown clearly</li>
+          <li>Final answer: unit + sensible magnitude</li>
+        </ul>
+      </article>
     </section>
   </main>
+
+  <script src="app.js"></script>
 </body>
 </html>
