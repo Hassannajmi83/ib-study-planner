@@ -1,98 +1,92 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>IB Survival Hub</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="A clean, focused workspace for IB students: subjects, planner, quiz, resources, and grade boundaries." />
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="app.js"></script>
 </head>
 
-<body>
+<body data-page="home">
+  <!-- Header gets injected by app.js -->
+  <header id="siteHeader"></header>
 
-<!-- =========================
-     NAVBAR
-     ========================= -->
-<nav class="navbar">
-  <div class="nav-inner">
-    <a href="index.html" class="logo">
-      <div class="logo-dot"></div>
-      IB Survival Hub
-    </a>
+  <main class="container">
+    <section class="hero">
+      <div class="panel heroPanel">
+        <div class="heroTop">
+          <div class="heroTitle">
+            <h1>IB Survival Hub</h1>
+            <p class="muted">
+              A clean, focused workspace for IB students. Paper structure, study strategy, and tools that actually help.
+            </p>
+          </div>
 
-    <div class="nav-links">
-      <a href="index.html" class="active">Home</a>
-      <a href="subjects.html">Subjects</a>
-      <a href="planner.html">Planner</a>
-      <a href="quiz.html">Study Quiz</a>
-      <a href="resources.html">Resources</a>
-      <a href="boundaries.html">Boundaries</a>
-      <a href="converter.html">Converter</a>
+          <div class="heroBadges">
+            <span class="pill">Built for Year 1 + Year 2</span>
+            <span class="pill">No piracy links</span>
+            <span class="pill">Ontario-friendly</span>
+          </div>
+        </div>
+
+        <div class="hr"></div>
+
+        <div class="grid homeGrid">
+          <a class="card linkCard span6" href="subjects.html">
+            <h2>Subjects</h2>
+            <p class="muted">Papers + high-impact tips + common mark traps.</p>
+            <div class="tagRow">
+              <span class="tag">Bio</span><span class="tag">Chem</span><span class="tag">Physics</span><span class="tag">Math</span>
+              <span class="tag">Econ</span><span class="tag">Psych</span><span class="tag">English</span>
+            </div>
+          </a>
+
+          <a class="card linkCard span6" href="planner.html">
+            <h2>Planner</h2>
+            <p class="muted">Generate a realistic weekly plan based on hours + exam date.</p>
+            <div class="small">Best used weekly (not once).</div>
+          </a>
+
+          <a class="card linkCard span6" href="quiz.html">
+            <h2>Study Quiz</h2>
+            <p class="muted">Find your study style → get a plan that matches it.</p>
+            <div class="small">Active recall vs practice-first vs structure-first.</div>
+          </a>
+
+          <a class="card linkCard span6" href="resources.html">
+            <h2>Resources</h2>
+            <p class="muted">Safe links + what to collect (without hoarding).</p>
+            <div class="small">Filter by subject and type.</div>
+          </a>
+
+          <a class="card linkCard span12" href="boundaries.html">
+            <h2>Grade Boundaries</h2>
+            <p class="muted">
+              View grade boundaries by subject/session/time zone group with a clear disclaimer.
+            </p>
+            <div class="small">We’ll improve this page next (dropdown + all subjects).</div>
+          </a>
+        </div>
+
+        <div class="hr"></div>
+
+        <div class="callout">
+          <b>How to use this hub:</b> open <b>Subjects</b> first → then use <b>Planner</b> to schedule → use <b>Quiz</b> to match study method →
+          keep <b>Resources</b> lean and practice-heavy.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footerInner">
+        <span class="muted">IB Survival Hub — student-made study tool.</span>
+        <span class="muted">Not affiliated with the IB Organization.</span>
+      </div>
     </div>
-  </div>
-</nav>
-
-<!-- =========================
-     PAGE
-     ========================= -->
-<main class="page">
-
-  <div class="card pad-lg">
-    <h1>IB Survival Hub</h1>
-    <p>
-      A clean, focused workspace for IB students.
-      Study smarter. Track smarter. Convert smarter.
-    </p>
-
-    <hr>
-
-    <div class="grid grid-3" style="margin-top:20px;">
-
-      <a href="subjects.html" class="card subject-link">
-        <div class="title">Subjects</div>
-        <div class="desc">
-          Paper structure, study strategies, and common mark traps.
-        </div>
-      </a>
-
-      <a href="planner.html" class="card subject-link">
-        <div class="title">Study Planner</div>
-        <div class="desc">
-          Generate a realistic weekly plan based on timeline + hours.
-        </div>
-      </a>
-
-      <a href="quiz.html" class="card subject-link">
-        <div class="title">Study Quiz</div>
-        <div class="desc">
-          Active recall prompts to test your understanding.
-        </div>
-      </a>
-
-      <a href="resources.html" class="card subject-link">
-        <div class="title">Resources</div>
-        <div class="desc">
-          Clean list of safe links and what to collect.
-        </div>
-      </a>
-
-      <a href="boundaries.html" class="card subject-link">
-        <div class="title">Grade Boundaries</div>
-        <div class="desc">
-          May 2024 Zone A (Ontario reference).
-        </div>
-      </a>
-
-      <a href="converter.html" class="card subject-link">
-        <div class="title">Ontario Converter</div>
-        <div class="desc">
-          Convert raw IB marks to Ontario percentages.
-        </div>
-      </a>
-
-    </div>
-  </div>
-
-</main>
-
+  </footer>
 </body>
 </html>
