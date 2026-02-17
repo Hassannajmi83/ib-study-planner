@@ -2,63 +2,199 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>IB Grade Boundaries – Ontario</title>
+  <title>Boundaries — IB Survival Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <nav class="navbar">
-    <div class="logo">
-      <a href="index.html">IB Survival Hub</a>
+<!-- =========================
+     NAVBAR
+     ========================= -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-dot"></div>
+      IB Survival Hub
+    </a>
+
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="subjects.html">Subjects</a>
+      <a href="planner.html">Planner</a>
+      <a href="quiz.html">Study Quiz</a>
+      <a href="resources.html">Resources</a>
+      <a href="boundaries.html" class="active">Boundaries</a>
+      <a href="converter.html">Converter</a>
     </div>
-    <ul class="nav-links">
-      <li><a href="subjects.html">Subjects</a></li>
-      <li><a href="planner.html">Planner</a></li>
-      <li><a href="quiz.html">Study Quiz</a></li>
-      <li><a href="resources.html">Resources</a></li>
-      <li><a class="active" href="boundaries.html">Boundaries</a></li>
-      <li><a href="converter.html">Converter</a></li>
-    </ul>
-  </nav>
+  </div>
+</nav>
 
-  <main class="container">
+<!-- =========================
+     PAGE
+     ========================= -->
+<main class="page">
 
-    <div class="card">
-      <h1>IB Grade Boundaries</h1>
+  <div class="card pad-lg">
+    <h1>IB Grade Boundaries</h1>
+    <p>
+      Choose a course to view grade boundaries. These vary by session and time zone group.
+    </p>
 
-      <div class="boundary-meta">
-        <strong>Session:</strong> May 2024<br>
-        <strong>Time Zone Group:</strong> Zone A (Americas)<br>
-        <strong>Reference Location:</strong> Toronto, Ontario, Canada (Eastern Time)
+    <hr>
+
+    <div class="card soft pad-sm">
+      <h2 style="margin-bottom:10px;">Disclaimer</h2>
+      <p class="small">
+        <b>Session:</b> May 2024 (Example Template)<br>
+        <b>Time Zone Group:</b> Zone A (Americas)<br>
+        <b>Reference Location:</b> Toronto, Ontario (Eastern Time)<br><br>
+        These are NOT guaranteed to match your school’s internal conversions.
+        Always confirm boundaries with your teacher/school.
+      </p>
+    </div>
+
+    <hr>
+
+    <div class="grid grid-2">
+
+      <!-- LEFT: Selector -->
+      <div class="card soft pad-sm">
+        <h2 style="margin-bottom:12px;">Select a Course</h2>
+        <label for="courseSelect">Course</label>
+        <select id="courseSelect"></select>
+
+        <p class="small" style="margin-top:12px;">
+          If a course shows “Not added yet”, just paste the official boundaries into the data block below.
+        </p>
       </div>
 
-      <div class="boundary-disclaimer">
-        These boundaries are based on the official IB May 2024 Zone A session.
-        Boundaries vary by year and time zone. Always confirm with your school
-        for the most accurate conversion.
+      <!-- RIGHT: Output -->
+      <div class="card soft pad-sm">
+        <h2 style="margin-bottom:12px;">Boundaries</h2>
+        <div id="output" class="small">Select a course to view boundaries.</div>
+
+        <table class="table" id="boundTable" style="margin-top:14px; display:none;">
+          <thead>
+            <tr>
+              <th>IB Level</th>
+              <th>Raw Min</th>
+              <th>Raw Max</th>
+            </tr>
+          </thead>
+          <tbody id="boundBody"></tbody>
+        </table>
       </div>
+
     </div>
 
-    <!-- Example Section -->
-    <div class="card">
-      <h2>Math AA SL – May 2024 (Zone A)</h2>
-      <table class="boundary-table">
-        <tr>
-          <th>Level</th>
-          <th>Raw Range</th>
-        </tr>
-        <tr><td>7</td><td>80–100</td></tr>
-        <tr><td>6</td><td>67–79</td></tr>
-        <tr><td>5</td><td>54–66</td></tr>
-        <tr><td>4</td><td>41–53</td></tr>
-        <tr><td>3</td><td>28–40</td></tr>
-        <tr><td>2</td><td>15–27</td></tr>
-        <tr><td>1</td><td>0–14</td></tr>
-      </table>
+    <hr>
+
+    <div class="card soft pad-sm">
+      <h2 style="margin-bottom:10px;">How to add your real boundaries</h2>
+      <p class="small">
+        Scroll down in the code to the <b>BOUNDARY_DATA</b> object and paste the ranges for each course.
+        Format is:
+      </p>
+      <p class="small" style="margin-top:8px;">
+        <span style="font-family:monospace;">
+          "Chemistry HL": [ {level:7,min:80,max:100}, ... ]
+        </span>
+      </p>
     </div>
 
-  </main>
+  </div>
+
+</main>
+
+<script>
+/* =========================
+   EDIT THIS DATA ONLY
+   =========================
+   Put YOUR real boundaries here once you have them.
+
+   Right now it’s a template. One example is filled (Math AA SL).
+   Everything else is blank so the UI works without fake numbers.
+*/
+const BOUNDARY_DATA = {
+  "Math AA SL": [
+    { level: 7, min: 80, max: 100 },
+    { level: 6, min: 67, max: 79 },
+    { level: 5, min: 54, max: 66 },
+    { level: 4, min: 41, max: 53 },
+    { level: 3, min: 28, max: 40 },
+    { level: 2, min: 15, max: 27 },
+    { level: 1, min: 0,  max: 14 }
+  ],
+
+  "Math AA HL": [],
+  "Chemistry SL": [],
+  "Chemistry HL": [],
+  "Biology SL": [],
+  "Biology HL": [],
+  "Physics SL": [],
+  "Physics HL": [],
+  "Economics SL": [],
+  "Economics HL": [],
+  "Psychology SL": [],
+  "Psychology HL": [],
+  "English Literature SL": [],
+  "English Literature HL": [],
+  "History SL": [],
+  "History HL": [],
+  "Business Management SL": [],
+  "Business Management HL": [],
+  "Geography SL": [],
+  "Geography HL": [],
+  "Computer Science SL": [],
+  "Computer Science HL": [],
+  "French SL": [],
+  "French HL": []
+};
+
+const courseSelect = document.getElementById("courseSelect");
+const output = document.getElementById("output");
+const table = document.getElementById("boundTable");
+const tbody = document.getElementById("boundBody");
+
+function populateCourses(){
+  const keys = Object.keys(BOUNDARY_DATA);
+  keys.forEach(k => {
+    const opt = document.createElement("option");
+    opt.value = k;
+    opt.textContent = k;
+    courseSelect.appendChild(opt);
+  });
+}
+
+function renderCourse(course){
+  const rows = BOUNDARY_DATA[course];
+
+  if(!rows || rows.length === 0){
+    table.style.display = "none";
+    output.innerHTML = `<div class="card soft pad-sm">No boundaries added yet for <b>${course}</b>.</div>`;
+    return;
+  }
+
+  output.innerHTML = "";
+  table.style.display = "table";
+  tbody.innerHTML = rows.map(r => `
+    <tr>
+      <td>${r.level}</td>
+      <td>${r.min}</td>
+      <td>${r.max}</td>
+    </tr>
+  `).join("");
+}
+
+populateCourses();
+renderCourse(courseSelect.value);
+
+courseSelect.addEventListener("change", () => {
+  renderCourse(courseSelect.value);
+});
+</script>
 
 </body>
 </html>
