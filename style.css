@@ -1,56 +1,48 @@
-/* =========================================
-   IB Survival Hub — Global Styles (v2)
-   Goal: make EVERY page look consistent.
-   ========================================= */
+/* =========================
+   IB Survival Hub — style.css
+   Global layout + header fix
+   ========================= */
 
-/* --- Reset / base --- */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html, body {
-  height: 100%;
-}
-
+/* Reset / base */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
 body {
   margin: 0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
   color: rgba(255,255,255,0.92);
-  background: radial-gradient(1200px 600px at 20% 20%, rgba(120, 90, 255, 0.35), transparent 60%),
-              radial-gradient(900px 500px at 80% 30%, rgba(0, 210, 255, 0.18), transparent 55%),
-              radial-gradient(800px 600px at 40% 90%, rgba(0, 255, 160, 0.12), transparent 55%),
-              linear-gradient(180deg, #070b1a 0%, #060814 100%);
-  overflow-x: hidden;
+
+  /* background */
+  background:
+    radial-gradient(1200px 800px at 20% 10%, rgba(120,90,255,0.28), transparent 55%),
+    radial-gradient(1000px 700px at 80% 15%, rgba(40,200,255,0.18), transparent 55%),
+    radial-gradient(900px 600px at 50% 85%, rgba(255,70,180,0.12), transparent 55%),
+    linear-gradient(180deg, #061026 0%, #040a18 40%, #030714 100%);
+  background-attachment: fixed;
 }
 
-/* --- Layout helpers --- */
-.container {
+/* Links */
+a { color: rgba(255,255,255,0.92); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Page width + padding */
+.wrap {
   width: min(1100px, calc(100% - 48px));
   margin: 0 auto;
 }
 
-.main {
-  padding: 28px 0 60px;
-}
-
-.section {
-  margin-top: 18px;
-}
-
-/* --- Topbar (fixed consistent header) --- */
+/* Top header (works on EVERY page) */
 .topbar {
   position: sticky;
   top: 0;
   z-index: 50;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  background: rgba(10, 14, 32, 0.55);
+
+  background: rgba(4, 10, 24, 0.62);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-.topbar-inner {
+.topbar__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -58,217 +50,166 @@ body {
   padding: 14px 0;
 }
 
+/* Logo */
 .brand {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 10px;
-  text-decoration: none;
-  color: rgba(255,255,255,0.95);
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.2px;
 }
-
-.brand-dot {
+.brand__dot {
   width: 12px;
   height: 12px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, rgba(120,90,255,1), rgba(0,210,255,0.9));
-  box-shadow: 0 0 0 4px rgba(120,90,255,0.15);
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(130,190,255,1), rgba(160,120,255,1));
+  box-shadow: 0 0 0 6px rgba(140,160,255,0.12);
 }
+.brand:hover { text-decoration: none; }
 
+/* Nav */
 .nav {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   flex-wrap: wrap;
   justify-content: flex-end;
 }
 
+/* If any page accidentally uses <ul> for nav, this prevents bullet lists */
+.nav ul, .nav li { list-style: none; margin: 0; padding: 0; }
+
 .nav a {
-  text-decoration: none;
-  color: rgba(255,255,255,0.82);
-  padding: 9px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 14px;
   border-radius: 999px;
-  border: 1px solid transparent;
-  transition: 120ms ease;
-  font-weight: 600;
+  font-weight: 650;
   font-size: 14px;
+
+  border: 1px solid transparent;
+  color: rgba(255,255,255,0.80);
+  background: transparent;
+  text-decoration: none;
 }
 
 .nav a:hover {
-  color: rgba(255,255,255,0.95);
-  border-color: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.10);
   background: rgba(255,255,255,0.06);
+  text-decoration: none;
 }
 
-.nav a.active {
-  color: rgba(255,255,255,0.98);
-  border-color: rgba(140, 120, 255, 0.35);
-  background: rgba(120, 90, 255, 0.14);
+/* Active link (JS will add .is-active) */
+.nav a.is-active {
+  color: rgba(255,255,255,0.96);
+  background: rgba(120,90,255,0.16);
+  border-color: rgba(150,120,255,0.28);
+  box-shadow: 0 10px 24px rgba(80,120,255,0.08);
 }
 
-/* If any page accidentally has a plain <ul> nav at top, make it not ugly */
-nav ul, nav li {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+/* Main spacing so content never touches header */
+main {
+  padding: 28px 0 56px;
 }
 
-/* --- Cards / Panels --- */
-.panel {
-  border-radius: 22px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: radial-gradient(900px 400px at 20% 10%, rgba(120,90,255,0.18), transparent 60%),
-              radial-gradient(700px 400px at 80% 20%, rgba(0,210,255,0.12), transparent 60%),
-              rgba(255,255,255,0.06);
-  box-shadow: 0 18px 45px rgba(0,0,0,0.35);
-}
-
-.panel.pad {
-  padding: 22px;
-}
-
-.hero h1 {
-  margin: 0 0 10px;
-  font-size: clamp(34px, 5vw, 56px);
+/* Headings */
+h1 {
+  margin: 0 0 8px;
+  font-size: clamp(34px, 4vw, 52px);
   line-height: 1.05;
   letter-spacing: -0.6px;
 }
+h2 {
+  margin: 0 0 10px;
+  font-size: 26px;
+  letter-spacing: -0.2px;
+}
+p { margin: 0 0 12px; color: rgba(255,255,255,0.78); }
 
-.hero p {
-  margin: 0;
-  color: rgba(255,255,255,0.78);
-  max-width: 70ch;
+/* Card UI */
+.card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.25);
 }
 
-.muted {
-  color: rgba(255,255,255,0.70);
+.card + .card { margin-top: 16px; }
+
+.card__muted {
+  color: rgba(255,255,255,0.72);
+  font-size: 14px;
 }
 
-.small {
-  font-size: 13px;
-  color: rgba(255,255,255,0.65);
-}
-
-/* --- Grid --- */
+/* Grid helpers */
 .grid {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 14px;
+  gap: 16px;
+}
+.grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+@media (max-width: 860px) {
+  .grid.two, .grid.three { grid-template-columns: 1fr; }
+  .topbar__inner { align-items: flex-start; }
+  .nav { justify-content: flex-start; }
 }
 
-.span12 { grid-column: span 12; }
-.span8  { grid-column: span 8; }
-.span6  { grid-column: span 6; }
-.span4  { grid-column: span 4; }
-
-@media (max-width: 900px) {
-  .span8, .span6, .span4 { grid-column: span 12; }
-  .topbar-inner { align-items: flex-start; }
-}
-
-/* --- Buttons --- */
+/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+
   padding: 10px 14px;
   border-radius: 12px;
+  font-weight: 700;
   border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.08);
   color: rgba(255,255,255,0.92);
-  text-decoration: none;
-  font-weight: 700;
-  transition: 120ms ease;
   cursor: pointer;
+  text-decoration: none;
 }
-
-.btn:hover {
-  border-color: rgba(140, 120, 255, 0.35);
-  background: rgba(120, 90, 255, 0.12);
-}
-
+.btn:hover { background: rgba(255,255,255,0.12); text-decoration: none; }
 .btn.primary {
-  border-color: rgba(140, 120, 255, 0.38);
-  background: rgba(120, 90, 255, 0.18);
+  background: rgba(120,90,255,0.18);
+  border-color: rgba(150,120,255,0.30);
 }
+.btn.primary:hover { background: rgba(120,90,255,0.24); }
 
-/* --- Forms (planner/quiz/etc) --- */
-label {
-  display: block;
-  font-weight: 700;
-  margin-bottom: 6px;
-  color: rgba(255,255,255,0.85);
-}
-
+/* Inputs */
+label { display: block; margin: 10px 0 6px; font-weight: 700; color: rgba(255,255,255,0.86); }
 input, select, textarea {
   width: 100%;
   padding: 10px 12px;
   border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(0,0,0,0.22);
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.18);
   color: rgba(255,255,255,0.92);
   outline: none;
 }
-
+input::placeholder { color: rgba(255,255,255,0.45); }
 input:focus, select:focus, textarea:focus {
-  border-color: rgba(140, 120, 255, 0.45);
-  box-shadow: 0 0 0 4px rgba(120, 90, 255, 0.16);
+  border-color: rgba(140,160,255,0.34);
+  box-shadow: 0 0 0 4px rgba(140,160,255,0.10);
 }
 
-/* --- Resource cards (if used) --- */
-.res-grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 14px;
-}
+/* Lists */
+ul { margin: 10px 0 0; padding-left: 18px; }
+li { margin: 6px 0; color: rgba(255,255,255,0.86); }
 
-.res-card {
-  grid-column: span 4;
-  padding: 16px;
-  border-radius: 18px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.06);
-}
-
-.res-card h3 {
-  margin: 0 0 8px;
-  font-size: 16px;
-}
-
-.res-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 10px 0 12px;
-}
-
-.tag {
-  font-size: 12px;
-  padding: 4px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(255,255,255,0.06);
-}
-
-.tag.paid { border-color: rgba(255, 120, 120, 0.35); background: rgba(255,120,120,0.10); }
-.tag.free { border-color: rgba(120, 255, 180, 0.28); background: rgba(120,255,180,0.10); }
-.tag.practice { border-color: rgba(0,210,255,0.30); background: rgba(0,210,255,0.10); }
-.tag.notes { border-color: rgba(140,120,255,0.30); background: rgba(140,120,255,0.10); }
-.tag.official { border-color: rgba(255, 210, 120, 0.35); background: rgba(255,210,120,0.10); }
-
-@media (max-width: 1000px) {
-  .res-card { grid-column: span 6; }
-}
-@media (max-width: 650px) {
-  .res-card { grid-column: span 12; }
-}
-
-/* --- Footer note --- */
-.footer {
-  margin-top: 26px;
-  text-align: center;
+/* Small footer text */
+.footer-note {
+  margin-top: 22px;
+  font-size: 13px;
   color: rgba(255,255,255,0.55);
-  font-size: 12px;
+  text-align: center;
 }
+
+/* Safety: if any page still has a raw <nav> without classes */
+nav a { text-decoration: none; }
+nav a:hover { text-decoration: underline; }
