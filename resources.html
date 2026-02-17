@@ -1,136 +1,379 @@
-<!DOCTYPE html>
+<!-- resources.html (FULL FILE) -->
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Resources — IB Survival Hub</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="A clean, non-piracy resource list with filters by subject, type, and access." />
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+  <!-- Header gets injected by app.js -->
+  <div id="siteHeader"></div>
 
-<!-- =========================
-     NAVBAR
-     ========================= -->
-<nav class="navbar">
-  <div class="nav-inner">
-    <a href="index.html" class="logo">
-      <div class="logo-dot"></div>
-      IB Survival Hub
-    </a>
+  <main class="page">
+    <section class="heroCard">
+      <h1 class="heroTitle">Resources</h1>
+      <p class="heroSub">A “what to collect” checklist + a clean list of safe links (no piracy).</p>
+      <p class="heroHint">
+        Rule: don’t hoard links — keep ~10 “go-to” resources per subject max. If you save a link, convert it into
+        (1) a recall prompt, or (2) a practice set.
+      </p>
+    </section>
 
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="subjects.html">Subjects</a>
-      <a href="planner.html">Planner</a>
-      <a href="quiz.html">Study Quiz</a>
-      <a href="resources.html" class="active">Resources</a>
-      <a href="boundaries.html">Boundaries</a>
-      <a href="converter.html">Converter</a>
-    </div>
-  </div>
-</nav>
+    <section class="section">
+      <div class="gridTwo">
+        <!-- Filters -->
+        <div class="card">
+          <h2 class="cardH2">Filters</h2>
 
-<!-- =========================
-     PAGE
-     ========================= -->
-<main class="page">
+          <div class="formRow">
+            <label class="label" for="fSubject">Subject</label>
+            <select class="select" id="fSubject"></select>
+          </div>
 
-  <div class="card pad-lg">
-    <h1>Resources</h1>
-    <p>
-      A clean “approved links” area. No piracy. No sketchy repositories.
-      Save only what you’ll actually use.
-    </p>
+          <div class="formRow">
+            <label class="label" for="fType">Type</label>
+            <select class="select" id="fType"></select>
+          </div>
 
-    <hr>
+          <div class="formRow">
+            <label class="label" for="fAccess">Access</label>
+            <select class="select" id="fAccess"></select>
+          </div>
 
-    <div class="grid grid-2">
+          <div class="formRow">
+            <label class="label" for="q">Search</label>
+            <input class="input" id="q" type="text" placeholder="e.g., markscheme, past papers, IA, vocab…" />
+            <div class="helper">Search checks title + notes.</div>
+          </div>
 
-      <!-- LEFT: Rules / How to use -->
-      <div class="card soft pad-sm">
-        <h2 style="margin-bottom:12px;">How to use this page</h2>
+          <div class="noticeSmall" id="countOut">0 resource(s)</div>
 
-        <p class="small">
-          If you collect 50 links you’ll use 2. The goal is a clean toolkit:
-        </p>
+          <div class="btnRow">
+            <button class="btnGhost" id="clearBtn" type="button">Clear filters</button>
+          </div>
+        </div>
 
-        <ul style="margin-left:18px; margin-top:12px; line-height:1.8; color: rgba(230,237,243,0.85);">
-          <li><b>Max 10 links per subject</b> (or it becomes procrastination)</li>
-          <li><b>If you save a link</b>, write what it’s for (topic practice / notes / diagrams)</li>
-          <li><b>Weekly rule:</b> 1 timed set + markscheme review + fix rules</li>
-          <li><b>Don’t copy notes.</b> Turn content into practice questions</li>
+        <!-- Results -->
+        <div class="card">
+          <h2 class="cardH2">Link list</h2>
+
+          <div class="noticeSmall">
+            <b>Safe-only policy:</b> no “IB repository / leaked papers / pirate PDFs.” Use official or licensed sources,
+            teacher-provided material, and legit practice sites.
+          </div>
+
+          <div id="list" class="stack"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card">
+        <h2 class="cardH2">How to use resources (so it’s not just “link collecting”)</h2>
+        <ul class="bullets">
+          <li><b>Every link must produce output:</b> a set of questions, a one-page summary, or flashcards.</li>
+          <li><b>Past paper rule:</b> attempt → mark → fix mistakes → redo without notes.</li>
+          <li><b>Markscheme vocabulary:</b> copy the accepted phrasing once, then practice using it.</li>
+          <li><b>Weekly review:</b> add your top 3 recurring mistakes to a “rules” list.</li>
         </ul>
-
-        <hr>
-
-        <div class="card soft pad-sm">
-          <h3 style="margin-bottom:8px;">Safe + helpful (general)</h3>
-          <p class="small">
-            These are normal websites and tools. You’re good to link them.
-          </p>
-        </div>
       </div>
+    </section>
+  </main>
 
-      <!-- RIGHT: Link list -->
-      <div class="card soft pad-sm">
-        <h2 style="margin-bottom:12px;">Link Toolkit</h2>
+  <script src="app.js" defer></script>
+  <script>
+    (function () {
+      // Keep names consistent with your site pages
+      const SUBJECTS = [
+        "All",
+        "Biology",
+        "Chemistry",
+        "Physics",
+        "Math AA",
+        "Economics",
+        "Psychology",
+        "English Literature",
+        "History",
+        "Business",
+        "Geography",
+        "Computer Science",
+        "French",
+        "Core / IB"
+      ];
 
-        <div class="grid grid-3">
+      const TYPES = [
+        "All",
+        "Past papers",
+        "Questionbank",
+        "Notes / Study guide",
+        "Markscheme / Examiner tips",
+        "IA / EE support",
+        "Vocab / Writing",
+        "Tools / Converters"
+      ];
 
-          <div class="card soft pad-sm">
-            <div class="title" style="font-weight:800;">IB Converter</div>
-            <p class="small">Grade conversion tool reference</p>
-            <a class="btn" href="https://ibconverter.com/" target="_blank" rel="noopener noreferrer" style="margin-top:10px;">Open</a>
+      const ACCESS = [
+        "All",
+        "Free",
+        "Paid",
+        "Mixed"
+      ];
+
+      // Safe links only (no piracy / leaked papers)
+      // You can add or remove freely.
+      const RESOURCES = [
+        // Core / IB
+        {
+          subject: "Core / IB",
+          type: "Tools / Converters",
+          access: "Free",
+          title: "IB Grade Converter (external reference)",
+          url: "https://ibconverter.com/",
+          note: "Use as a reference tool. Always verify with your school’s own conversion sheet."
+        },
+        {
+          subject: "Core / IB",
+          type: "Markscheme / Examiner tips",
+          access: "Free",
+          title: "IB command terms (official style reference)",
+          url: "https://www.ibo.org/",
+          note: "Search on IBO site for command terms / subject guides. Use teacher-provided PDFs if your school has access."
+        },
+
+        // Biology
+        {
+          subject: "Biology",
+          type: "Notes / Study guide",
+          access: "Free",
+          title: "BioNinja",
+          url: "https://ib.bioninja.com.au/",
+          note: "Clean topic summaries + diagrams. Turn each subtopic into active recall questions."
+        },
+        {
+          subject: "Biology",
+          type: "Vocab / Writing",
+          access: "Free",
+          title: "Command term practice set (make your own)",
+          url: "https://www.ibo.org/",
+          note: "Create a personal cheat sheet: describe vs explain vs evaluate, with 1 example each."
+        },
+
+        // Chemistry
+        {
+          subject: "Chemistry",
+          type: "Notes / Study guide",
+          access: "Free",
+          title: "MSJ Chem (YouTube) — IB Chemistry explanations",
+          url: "https://www.youtube.com/@MSJChem",
+          note: "Watch, then do 10 exam questions immediately. Don’t binge videos without questions."
+        },
+
+        // Physics
+        {
+          subject: "Physics",
+          type: "Notes / Study guide",
+          access: "Free",
+          title: "Chris Doner (YouTube) — Physics problem walkthroughs",
+          url: "https://www.youtube.com/@chrisdoner",
+          note: "Good for worked examples. Pause and solve before watching the next step."
+        },
+
+        // Math AA
+        {
+          subject: "Math AA",
+          type: "Questionbank",
+          access: "Free",
+          title: "Revision Village (main site)",
+          url: "https://www.revisionvillage.com/",
+          note: "Some content is paid. Use it for targeted drills + timed mixed sets."
+        },
+
+        // Economics
+        {
+          subject: "Economics",
+          type: "Notes / Study guide",
+          access: "Free",
+          title: "EconplusDal (YouTube) — IB Economics",
+          url: "https://www.youtube.com/@EconplusDal",
+          note: "Use for diagrams + evaluation structure. Practice DEED and 15-mark evaluation."
+        },
+
+        // Psychology
+        {
+          subject: "Psychology",
+          type: "Notes / Study guide",
+          access: "Free",
+          title: "InThinking Psychology (home)",
+          url: "https://www.thinkib.net/psychology",
+          note: "Usually subscription via school. If you don’t have access, use class notes + study design summaries."
+        },
+
+        // English Literature
+        {
+          subject: "English Literature",
+          type: "Vocab / Writing",
+          access: "Free",
+          title: "IB English Guys (YouTube)",
+          url: "https://www.youtube.com/@IBEnglishGuys",
+          note: "Paper 1/2 structures and examples. Write 1 paragraph after each video."
+        },
+
+        // History
+        {
+          subject: "History",
+          type: "Markscheme / Examiner tips",
+          access: "Free",
+          title: "Essay structure: thesis → evidence → analysis → judgement",
+          url: "https://www.ibo.org/",
+          note: "Build a “proof bank” per topic: 8–12 facts + 4 historians/interpretations if your course uses them."
+        },
+
+        // Business
+        {
+          subject: "Business",
+          type: "Notes / Study guide",
+          access: "Free",
+          title: "BusinessMadeEasy / IB Business explanations (YouTube search)",
+          url: "https://www.youtube.com/",
+          note: "Use to review tools quickly (SWOT, Ansoff, Decision Tree). Then do case-style questions."
+        },
+
+        // Geography
+        {
+          subject: "Geography",
+          type: "Notes / Study guide",
+          access: "Free",
+          title: "Geography case study bank (make your own Google Doc)",
+          url: "https://www.ibo.org/",
+          note: "Your best resource is a clean case-study doc: location, dates, stats, causes, impacts, responses."
+        },
+
+        // Computer Science
+        {
+          subject: "Computer Science",
+          type: "Notes / Study guide",
+          access: "Free",
+          title: "IB CS concepts + pseudocode practice (self-made set)",
+          url: "https://www.ibo.org/",
+          note: "Keep a pseudocode sheet and do tracing weekly. Build mini practice problems yourself."
+        },
+
+        // French
+        {
+          subject: "French",
+          type: "Vocab / Writing",
+          access: "Free",
+          title: "Lawless French (grammar reference)",
+          url: "https://www.lawlessfrench.com/",
+          note: "Use for targeted grammar fixes. Then write 80–120 words using the grammar point."
+        },
+
+        // General paid-but-legit options (optional)
+        {
+          subject: "Core / IB",
+          type: "Questionbank",
+          access: "Paid",
+          title: "Save My Exams (IB section)",
+          url: "https://www.savemyexams.com/",
+          note: "Paid platform. Use for exam-style questions and tracking weak topics."
+        }
+      ];
+
+      const fSubject = document.getElementById("fSubject");
+      const fType = document.getElementById("fType");
+      const fAccess = document.getElementById("fAccess");
+      const q = document.getElementById("q");
+      const list = document.getElementById("list");
+      const countOut = document.getElementById("countOut");
+      const clearBtn = document.getElementById("clearBtn");
+
+      function fillSelect(sel, items) {
+        sel.innerHTML = items.map(x => `<option value="${x}">${x}</option>`).join("");
+      }
+
+      function norm(s) {
+        return String(s || "").toLowerCase().trim();
+      }
+
+      function matchesText(item, query) {
+        if (!query) return true;
+        const blob = `${item.title} ${item.note}`.toLowerCase();
+        return blob.includes(query.toLowerCase());
+      }
+
+      function render() {
+        const s = fSubject.value;
+        const t = fType.value;
+        const a = fAccess.value;
+        const query = q.value.trim();
+
+        const out = RESOURCES.filter(r => {
+          const okS = (s === "All") || (r.subject === s);
+          const okT = (t === "All") || (r.type === t);
+          const okA = (a === "All") || (r.access === a);
+          const okQ = matchesText(r, query);
+          return okS && okT && okA && okQ;
+        });
+
+        countOut.textContent = `${out.length} resource(s)`;
+
+        if (out.length === 0) {
+          list.innerHTML = `
+            <div class="emptyState">
+              No matches. Try changing filters or search.
+            </div>
+          `;
+          return;
+        }
+
+        list.innerHTML = out.map(r => `
+          <div class="resourceCard">
+            <div class="resourceTop">
+              <div class="resourceTitle">${r.title}</div>
+              <div class="resourceMeta">
+                <span class="tag">${r.subject}</span>
+                <span class="tag">${r.type}</span>
+                <span class="tag">${r.access}</span>
+              </div>
+            </div>
+
+            <div class="resourceNote">${r.note || ""}</div>
+
+            <div class="resourceLinkRow">
+              <a class="btnPrimary btnSmall" href="${r.url}" target="_blank" rel="noopener noreferrer">
+                Open
+              </a>
+              <div class="mutedSmall">${r.url}</div>
+            </div>
           </div>
+        `).join("");
+      }
 
-          <div class="card soft pad-sm">
-            <div class="title" style="font-weight:800;">BioNinja</div>
-            <p class="small">IB Biology notes + diagrams</p>
-            <a class="btn" href="https://ib.bioninja.com.au/" target="_blank" rel="noopener noreferrer" style="margin-top:10px;">Open</a>
-          </div>
+      function clearFilters() {
+        fSubject.value = "All";
+        fType.value = "All";
+        fAccess.value = "All";
+        q.value = "";
+        render();
+      }
 
-          <div class="card soft pad-sm">
-            <div class="title" style="font-weight:800;">EconplusDal</div>
-            <p class="small">IB Econ diagrams + explanations</p>
-            <a class="btn" href="https://www.econplusdal.com/" target="_blank" rel="noopener noreferrer" style="margin-top:10px;">Open</a>
-          </div>
+      fillSelect(fSubject, SUBJECTS);
+      fillSelect(fType, TYPES);
+      fillSelect(fAccess, ACCESS);
 
-          <div class="card soft pad-sm">
-            <div class="title" style="font-weight:800;">Khan Academy</div>
-            <p class="small">Math fundamentals practice</p>
-            <a class="btn" href="https://www.khanacademy.org/" target="_blank" rel="noopener noreferrer" style="margin-top:10px;">Open</a>
-          </div>
+      fSubject.addEventListener("change", render);
+      fType.addEventListener("change", render);
+      fAccess.addEventListener("change", render);
+      q.addEventListener("input", render);
+      clearBtn.addEventListener("click", clearFilters);
 
-          <div class="card soft pad-sm">
-            <div class="title" style="font-weight:800;">RevisionDojo</div>
-            <p class="small">Topic practice (varies by subject)</p>
-            <a class="btn" href="https://revisiondojo.com/" target="_blank" rel="noopener noreferrer" style="margin-top:10px;">Open</a>
-          </div>
-
-          <div class="card soft pad-sm">
-            <div class="title" style="font-weight:800;">IBO Official</div>
-            <p class="small">Official programme site</p>
-            <a class="btn" href="https://www.ibo.org/programmes/diploma-programme/" target="_blank" rel="noopener noreferrer" style="margin-top:10px;">Open</a>
-          </div>
-
-        </div>
-
-        <hr>
-
-        <div class="card soft pad-sm">
-          <h3 style="margin-bottom:8px;">Next upgrade (optional)</h3>
-          <p class="small">
-            If you want, we can make this a filterable database later (subject dropdown + tags).
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-
-</main>
-
+      // Initial render
+      clearFilters();
+    })();
+  </script>
 </body>
 </html>
