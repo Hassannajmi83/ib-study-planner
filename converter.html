@@ -1,237 +1,260 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Grade Converter — IB Survival Hub</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    .converter-wrap{margin-top:18px}
-    .converter-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    @media (max-width:900px){.converter-grid{grid-template-columns:1fr}}
-    .big-out{font-size:38px;font-weight:800;letter-spacing:-.02em;margin:0}
-    .pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.08);opacity:.85}
-    table{width:100%;border-collapse:collapse;margin-top:12px}
-    th,td{padding:10px;border-bottom:1px solid rgba(255,255,255,.08);text-align:left}
-    th{opacity:.7;font-weight:600}
-    .muted2{opacity:.65}
-    .warn{padding:12px;border-radius:12px;background:rgba(241,196,15,.12);border:1px solid rgba(255,255,255,.08);margin-top:12px}
-  </style>
+  <meta charset="UTF-8">
+  <title>Converter — IB Survival Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <header class="topbar">
-  <div class="topbar-inner">
 
-    <a class="brand" href="index.html">
-      <span class="brand-badge"></span>
-      <span>IB Survival Hub</span>
+<body>
+
+<!-- =========================
+     NAVBAR
+     ========================= -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-dot"></div>
+      IB Survival Hub
     </a>
 
-    <nav class="nav">
+    <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="subjects.html">Subjects</a>
       <a href="planner.html">Planner</a>
-      <a href="converter.html" class="active">Converter</a>
-      <a href="boundaries.html">Boundaries</a>
       <a href="quiz.html">Study Quiz</a>
       <a href="resources.html">Resources</a>
-    </nav>
-
+      <a href="boundaries.html">Boundaries</a>
+      <a href="converter.html" class="active">Converter</a>
+    </div>
   </div>
-</header>
+</nav>
 
-  <main class="container">
-    <section class="hero">
-      <h1>Ontario IB Grade Converter</h1>
-      <p class="muted">Convert raw mark → Ontario percentage using your school’s conversion ranges.</p>
+<!-- =========================
+     PAGE
+     ========================= -->
+<main class="page">
 
-      <div class="warn">
-        <b>Important:</b> Different schools/boards use different conversion tables. This tool uses a starter template.
-        You can replace the ranges with your school’s official sheet.
+  <div class="card pad-lg">
+    <h1>Ontario IB Converter</h1>
+    <p>
+      Convert a raw mark → Ontario % range. Auto-detects IB level if boundaries exist.
+    </p>
+
+    <hr>
+
+    <div class="card soft pad-sm">
+      <p class="small">
+        <b>Disclaimer:</b> Conversions vary by board/school. This is a starter template.  
+        If your teacher gives your school’s conversion table, replace the Ontario table below.
+      </p>
+    </div>
+
+    <hr>
+
+    <div class="grid grid-2">
+
+      <!-- LEFT: Inputs -->
+      <div class="card soft pad-sm">
+        <h2 style="margin-bottom:12px;">Inputs</h2>
+
+        <label for="courseSelect">Course</label>
+        <select id="courseSelect"></select>
+
+        <label for="rawMark">Raw Mark (0–100)</label>
+        <input id="rawMark" type="number" min="0" max="100" placeholder="e.g. 74">
+
+        <label for="manualLevel">IB Level (optional)</label>
+        <select id="manualLevel">
+          <option value="auto" selected>Auto (use boundaries if available)</option>
+          <option value="7">7</option>
+          <option value="6">6</option>
+          <option value="5">5</option>
+          <option value="4">4</option>
+          <option value="3">3</option>
+          <option value="2">2</option>
+          <option value="1">1</option>
+        </select>
+
+        <button class="btn" id="convertBtn" style="margin-top:10px;">Convert</button>
+
+        <p class="small" style="margin-top:14px;">
+          If Auto says “no boundaries”, paste your real boundaries into the data object inside this file.
+        </p>
       </div>
 
-      <div class="converter-wrap">
-        <div class="converter-grid">
-          <div class="panel">
-            <h2>Inputs</h2>
+      <!-- RIGHT: Output -->
+      <div class="card soft pad-sm">
+        <h2 style="margin-bottom:12px;">Result</h2>
+        <div id="result" class="small">Enter a raw mark and click Convert.</div>
 
-            <label for="subject">Subject</label>
-            <select id="subject">
-              <option value="hl_english">HL English</option>
-              <option value="sl_math">SL Math</option>
-              <option value="hl_econ">HL Economics</option>
-              <option value="custom">Custom (edit ranges)</option>
-            </select>
+        <hr>
 
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px">
-              <div>
-                <label for="raw">Raw mark (0–100)</label>
-                <input id="raw" type="number" min="0" max="100" placeholder="e.g., 74" />
-              </div>
-              <div>
-                <label for="level">IB Level (1–7)</label>
-                <select id="level">
-                  <option value="auto">Auto (from raw)</option>
-                  <option value="1">1</option><option value="2">2</option><option value="3">3</option>
-                  <option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
-                </select>
-              </div>
-            </div>
-
-            <button class="btn" style="margin-top:14px" onclick="convert()">Convert</button>
-
-            <div class="small-note" style="margin-top:10px">
-              Tip: If your teacher gave a table, use <b>Custom</b> and paste the ranges once.
-            </div>
-          </div>
-
-          <div class="panel">
-            <h2>Converted Mark</h2>
-            <p class="muted2" id="modeTag"><span class="pill">Template mode</span></p>
-            <p class="big-out" id="out">—</p>
-            <p class="muted" id="out2">Enter a raw mark, then convert.</p>
-          </div>
-        </div>
-
-        <div class="panel" style="margin-top:16px">
-          <h2>Conversion Ranges</h2>
-          <p class="muted2" id="tableTitle">Showing template ranges for selected subject.</p>
-          <div id="tableWrap"></div>
-
-          <div id="customEditor" style="display:none;margin-top:14px">
-            <h3 style="margin:10px 0">Custom ranges editor</h3>
-            <p class="muted2">Format: Level, rawMin, rawMax, percentMin, percentMax</p>
-            <textarea id="customText" style="width:100%;min-height:180px;border-radius:12px;padding:12px;background:#0f1b34;border:1px solid rgba(255,255,255,.08);color:white"></textarea>
-            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
-              <button class="btn" onclick="saveCustom()">Save custom ranges</button>
-              <button class="btn" onclick="loadCustom()">Load saved custom</button>
-              <button class="btn" onclick="resetCustom()">Reset to template</button>
-            </div>
-          </div>
-
-          <div class="small-note" style="margin-top:12px">
-            External reference: you can link tools like ibconverter.com in Resources, but don’t copy their tables unless licensed.
-          </div>
-        </div>
+        <h3 style="margin-bottom:10px;">Ontario conversion table (editable)</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>IB Level</th>
+              <th>Ontario % Range</th>
+            </tr>
+          </thead>
+          <tbody id="ontBody"></tbody>
+        </table>
       </div>
 
-      <div class="footer">Built for CAS: tech + service + user-focused tool.</div>
-    </section>
-  </main>
+    </div>
+  </div>
+
+</main>
 
 <script>
-/*
-  Starter templates (PLACEHOLDERS).
-  Replace with your school’s official table using Custom editor.
-*/
-const templates = {
-  hl_english: [
-    {lvl:1, raw:[0,19], pct:[0,49]},
-    {lvl:2, raw:[20,35], pct:[50,60]},
-    {lvl:3, raw:[36,45], pct:[61,71]},
-    {lvl:4, raw:[46,59], pct:[72,83]},
-    {lvl:5, raw:[60,72], pct:[84,92]},
-    {lvl:6, raw:[73,85], pct:[93,96]},
-    {lvl:7, raw:[86,100], pct:[97,100]},
+/* =========================
+   1) BOUNDARIES DATA
+   Paste your real boundaries here later.
+   Must match the same format used in boundaries.html
+   ========================= */
+const BOUNDARY_DATA = {
+  "Math AA SL": [
+    { level: 7, min: 80, max: 100 },
+    { level: 6, min: 67, max: 79 },
+    { level: 5, min: 54, max: 66 },
+    { level: 4, min: 41, max: 53 },
+    { level: 3, min: 28, max: 40 },
+    { level: 2, min: 15, max: 27 },
+    { level: 1, min: 0,  max: 14 }
   ],
-  sl_math: [
-    {lvl:1, raw:[0,15], pct:[0,49]},
-    {lvl:2, raw:[16,28], pct:[50,60]},
-    {lvl:3, raw:[29,40], pct:[61,71]},
-    {lvl:4, raw:[41,55], pct:[72,83]},
-    {lvl:5, raw:[56,70], pct:[84,92]},
-    {lvl:6, raw:[71,85], pct:[93,96]},
-    {lvl:7, raw:[86,100], pct:[97,100]},
-  ],
-  hl_econ: [
-    {lvl:1, raw:[0,18], pct:[0,49]},
-    {lvl:2, raw:[19,32], pct:[50,60]},
-    {lvl:3, raw:[33,45], pct:[61,71]},
-    {lvl:4, raw:[46,58], pct:[72,83]},
-    {lvl:5, raw:[59,72], pct:[84,92]},
-    {lvl:6, raw:[73,85], pct:[93,96]},
-    {lvl:7, raw:[86,100], pct:[97,100]},
-  ],
+
+  "Math AA HL": [],
+  "Chemistry SL": [],
+  "Chemistry HL": [],
+  "Biology SL": [],
+  "Biology HL": [],
+  "Physics SL": [],
+  "Physics HL": [],
+  "Economics SL": [],
+  "Economics HL": [],
+  "Psychology SL": [],
+  "Psychology HL": [],
+  "English Literature SL": [],
+  "English Literature HL": [],
+  "History SL": [],
+  "History HL": [],
+  "Business Management SL": [],
+  "Business Management HL": [],
+  "Geography SL": [],
+  "Geography HL": [],
+  "Computer Science SL": [],
+  "Computer Science HL": [],
+  "French SL": [],
+  "French HL": []
 };
 
-function getRanges(){
-  const subj = document.getElementById("subject").value;
-  if(subj === "custom"){
-    const saved = localStorage.getItem("ib_custom_ranges");
-    if(saved){
-      try { return JSON.parse(saved); } catch(e){ return templates.hl_english; }
-    }
-    return templates.hl_english;
-  }
-  return templates[subj] || templates.hl_english;
+/* =========================
+   2) ONTARIO CONVERSION TABLE
+   Edit to match your school's conversion if needed.
+   ========================= */
+let ONTARIO_TABLE = [
+  { level: 7, min: 97, max: 100 },
+  { level: 6, min: 93, max: 96 },
+  { level: 5, min: 84, max: 92 },
+  { level: 4, min: 72, max: 83 },
+  { level: 3, min: 61, max: 71 },
+  { level: 2, min: 50, max: 60 },
+  { level: 1, min: 0,  max: 49 }
+];
+
+const courseSelect = document.getElementById("courseSelect");
+const rawMark = document.getElementById("rawMark");
+const manualLevel = document.getElementById("manualLevel");
+const convertBtn = document.getElementById("convertBtn");
+const result = document.getElementById("result");
+const ontBody = document.getElementById("ontBody");
+
+function populateCourses(){
+  Object.keys(BOUNDARY_DATA).forEach(c => {
+    const opt = document.createElement("option");
+    opt.value = c;
+    opt.textContent = c;
+    courseSelect.appendChild(opt);
+  });
 }
 
-function renderTable(){
-  const subj = document.getElementById("subject").value;
-  const ranges = getRanges();
-
-  document.getElementById("customEditor").style.display = (subj==="custom") ? "block" : "none";
-  document.getElementById("modeTag").innerHTML = (subj==="custom")
-    ? `<span class="pill">Custom mode</span>`
-    : `<span class="pill">Template mode</span>`;
-
-  const rows = ranges.map(r => `
+function renderOntarioTable(){
+  ontBody.innerHTML = ONTARIO_TABLE.map(r => `
     <tr>
-      <td><b>Level ${r.lvl}</b></td>
-      <td>${r.raw[0]}–${r.raw[1]}</td>
-      <td>${r.pct[0]}–${r.pct[1]}</td>
+      <td>${r.level}</td>
+      <td>${r.min}–${r.max}%</td>
     </tr>
   `).join("");
+}
 
-  document.getElementById("tableWrap").innerHTML = `
-    <table>
-      <thead>
-        <tr><th>Level</th><th>Raw</th><th>Converted</th></tr>
-      </thead>
-      <tbody>${rows}</tbody>
-    </table>
+function detectLevel(course, raw){
+  const rows = BOUNDARY_DATA[course];
+  if(!rows || rows.length === 0) return null;
+
+  for(const r of rows){
+    if(raw >= r.min && raw <= r.max) return r.level;
+  }
+  return null;
+}
+
+function convert(){
+  const course = courseSelect.value;
+  const raw = Number(rawMark.value);
+
+  if(!Number.isFinite(raw) || raw < 0 || raw > 100){
+    result.innerHTML = `<div class="card soft pad-sm">Enter a raw mark between 0 and 100.</div>`;
+    return;
+  }
+
+  let level = null;
+
+  if(manualLevel.value !== "auto"){
+    level = Number(manualLevel.value);
+  } else {
+    level = detectLevel(course, raw);
+  }
+
+  if(!level){
+    result.innerHTML = `
+      <div class="card soft pad-sm">
+        <b>No boundaries found for auto-level.</b><br>
+        Either paste boundaries for <b>${course}</b> into this file, or choose an IB level manually.
+      </div>
+    `;
+    return;
+  }
+
+  const map = ONTARIO_TABLE.find(r => r.level === level);
+  if(!map){
+    result.innerHTML = `<div class="card soft pad-sm">Ontario table missing level ${level}.</div>`;
+    return;
+  }
+
+  result.innerHTML = `
+    <div class="card soft pad-sm">
+      <h3 style="margin-bottom:8px;">Converted Result</h3>
+      <p class="small">
+        Course: <b>${course}</b><br>
+        Raw mark: <b>${raw}</b><br>
+        IB Level: <b>${level}</b><br>
+      </p>
+      <hr>
+      <p style="font-size:22px; font-weight:800;">
+        ${map.min}–${map.max}%
+      </p>
+      <p class="small" style="margin-top:10px;">
+        Reminder: conversions depend on your school/board.
+      </p>
+    </div>
   `;
 }
 
-function clamp(n,min,max){ return Math.max(min, Math.min(max, n)); }
+populateCourses();
+renderOntarioTable();
+convertBtn.addEventListener("click", convert);
+</script>
 
-function convert(){
-  const rawVal = Number(document.getElementById("raw").value);
-  if(Number.isNaN(rawVal)){
-    document.getElementById("out").innerText = "—";
-    document.getElementById("out2").innerText = "Enter a raw mark first.";
-    return;
-  }
-  const raw = clamp(rawVal, 0, 100);
-
-  const ranges = getRanges();
-  const manualLevel = document.getElementById("level").value;
-
-  let match = null;
-
-  if(manualLevel !== "auto"){
-    const lvl = Number(manualLevel);
-    match = ranges.find(r => r.lvl === lvl);
-    if(!match){
-      document.getElementById("out").innerText = "—";
-      document.getElementById("out2").innerText = "No range found for that level.";
-      return;
-    }
-  } else {
-    match = ranges.find(r => raw >= r.raw[0] && raw <= r.raw[1]);
-  }
-
-  if(!match){
-    document.getElementById("out").innerText = "—";
-    document.getElementById("out2").innerText = "Raw mark didn’t match any range (check your table).";
-    return;
-  }
-
-  // Map raw within the band to a converted percent within the band (linear interpolation)
-  const [r0,r1] = match.raw;
-  const [p0,p1] = match.pct;
-  const t = (r1 === r0) ? 0 : (raw - r0) / (r1 - r0);
-  const pct = Math.round(p0 + t * (p1 - p0));
-
-  document.getElementById("out").innerText = pct + "%";
-  document.getElementById("out2").innerText = `IB Level ${match.lvl} band (raw ${r0}–${r1} → ${p0}–${p1
+</body>
+</html>
