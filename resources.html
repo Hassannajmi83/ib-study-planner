@@ -1,20 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
   <title>Resources — IB Survival Hub</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body data-page="resources">
-<header class="topbar">
-  <div class="nav-container">
-    <a href="index.html" class="logo" aria-label="IB Survival Hub Home">
-      <div class="logo-dot" aria-hidden="true"></div>
-      <span>IB Survival Hub</span>
+
+<body>
+
+<!-- =========================
+     NAVBAR
+     ========================= -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-dot"></div>
+      IB Survival Hub
     </a>
 
-    <nav class="nav-links" aria-label="Primary">
+    <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="subjects.html">Subjects</a>
       <a href="planner.html">Planner</a>
@@ -22,64 +27,110 @@
       <a href="resources.html" class="active">Resources</a>
       <a href="boundaries.html">Boundaries</a>
       <a href="converter.html">Converter</a>
-    </nav>
+    </div>
   </div>
-</header>
+</nav>
 
-  <main class="main-container">
-    <section class="card">
-      <h1>Resources</h1>
-      <p class="muted">A “what to collect” checklist + a clean list of safe links (no piracy).</p>
+<!-- =========================
+     PAGE
+     ========================= -->
+<main class="page">
 
-      <div class="grid">
-        <div class="panel span4">
-          <h2>Filters</h2>
+  <div class="card pad-lg">
+    <h1>Resources</h1>
+    <p>
+      A clean “approved links” area. No piracy. No sketchy repositories.
+      Save only what you’ll actually use.
+    </p>
 
-          <label for="filterSubject">Subject</label>
-          <select id="filterSubject">
-            <option value="all" selected>All</option>
-            <option value="chem">Chem</option>
-            <option value="bio">Bio</option>
-            <option value="physics">Physics</option>
-            <option value="math">Math</option>
-            <option value="econ">Econ</option>
-            <option value="english">English</option>
-            <option value="psych">Psych</option>
-          </select>
+    <hr>
 
-          <label for="filterType">Type</label>
-          <select id="filterType">
-            <option value="all" selected>All</option>
-            <option value="notes">Notes</option>
-            <option value="practice">Practice</option>
-          </select>
+    <div class="grid grid-2">
 
-          <label for="filterAccess">Access</label>
-          <select id="filterAccess">
-            <option value="all" selected>All</option>
-            <option value="free">Free</option>
-            <option value="paid">Paid</option>
-          </select>
+      <!-- LEFT: Rules / How to use -->
+      <div class="card soft pad-sm">
+        <h2 style="margin-bottom:12px;">How to use this page</h2>
 
-          <div class="hr"></div>
-          <div class="small" id="resourcesCount">0 resource(s)</div>
-        </div>
+        <p class="small">
+          If you collect 50 links you’ll use 2. The goal is a clean toolkit:
+        </p>
 
-        <div class="panel span8">
-          <h2>Link list</h2>
-          <div class="small">Rule: don’t hoard links — keep ~10 “go-to” resources per subject max.</div>
-          <div id="resourcesList"></div>
+        <ul style="margin-left:18px; margin-top:12px; line-height:1.8; color: rgba(230,237,243,0.85);">
+          <li><b>Max 10 links per subject</b> (or it becomes procrastination)</li>
+          <li><b>If you save a link</b>, write what it’s for (topic practice / notes / diagrams)</li>
+          <li><b>Weekly rule:</b> 1 timed set + markscheme review + fix rules</li>
+          <li><b>Don’t copy notes.</b> Turn content into practice questions</li>
+        </ul>
 
-          <div class="hr"></div>
-          <div class="callout">
-            If you add a new link, convert it into either (1) a recall prompt, or (2) a practice set.
-            Otherwise it becomes “link collecting” instead of studying.
-          </div>
+        <hr>
+
+        <div class="card soft pad-sm">
+          <h3 style="margin-bottom:8px;">Safe + helpful (general)</h3>
+          <p class="small">
+            These are normal websites and tools. You’re good to link them.
+          </p>
         </div>
       </div>
-    </section>
-  </main>
 
-  <script src="app.js"></script>
+      <!-- RIGHT: Link list -->
+      <div class="card soft pad-sm">
+        <h2 style="margin-bottom:12px;">Link Toolkit</h2>
+
+        <div class="grid grid-3">
+
+          <div class="card soft pad-sm">
+            <div class="title" style="font-weight:800;">IB Converter</div>
+            <p class="small">Grade conversion tool reference</p>
+            <a class="btn" href="https://ibconverter.com/" target="_blank" rel="noopener noreferrer" style="margin-top:10px;">Open</a>
+          </div>
+
+          <div class="card soft pad-sm">
+            <div class="title" style="font-weight:800;">BioNinja</div>
+            <p class="small">IB Biology notes + diagrams</p>
+            <a class="btn" href="https://ib.bioninja.com.au/" target="_blank" rel="noopener noreferrer" style="margin-top:10px;">Open</a>
+          </div>
+
+          <div class="card soft pad-sm">
+            <div class="title" style="font-weight:800;">EconplusDal</div>
+            <p class="small">IB Econ diagrams + explanations</p>
+            <a class="btn" href="https://www.econplusdal.com/" target="_blank" rel="noopener noreferrer" style="margin-top:10px;">Open</a>
+          </div>
+
+          <div class="card soft pad-sm">
+            <div class="title" style="font-weight:800;">Khan Academy</div>
+            <p class="small">Math fundamentals practice</p>
+            <a class="btn" href="https://www.khanacademy.org/" target="_blank" rel="noopener noreferrer" style="margin-top:10px;">Open</a>
+          </div>
+
+          <div class="card soft pad-sm">
+            <div class="title" style="font-weight:800;">RevisionDojo</div>
+            <p class="small">Topic practice (varies by subject)</p>
+            <a class="btn" href="https://revisiondojo.com/" target="_blank" rel="noopener noreferrer" style="margin-top:10px;">Open</a>
+          </div>
+
+          <div class="card soft pad-sm">
+            <div class="title" style="font-weight:800;">IBO Official</div>
+            <p class="small">Official programme site</p>
+            <a class="btn" href="https://www.ibo.org/programmes/diploma-programme/" target="_blank" rel="noopener noreferrer" style="margin-top:10px;">Open</a>
+          </div>
+
+        </div>
+
+        <hr>
+
+        <div class="card soft pad-sm">
+          <h3 style="margin-bottom:8px;">Next upgrade (optional)</h3>
+          <p class="small">
+            If you want, we can make this a filterable database later (subject dropdown + tags).
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
 </body>
 </html>
