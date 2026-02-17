@@ -8,67 +8,83 @@
 </head>
 <body>
   <header class="topbar">
-  <div class="nav-container">
-    
-    <!-- Logo / Home Button -->
-    <a href="index.html" class="logo">
-      <div class="logo-dot"></div>
-      <span>IB Survival Hub</span>
-    </a>
+    <div class="wrap topbarInner">
+      <a class="brand" href="index.html" aria-label="IB Survival Hub home">
+        <span class="dot"></span><span>IB Survival Hub</span>
+      </a>
 
-    <!-- Navigation Links -->
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="subjects.html" class="active">Subjects</a>
-      <a href="planner.html">Planner</a>
-      <a href="quiz.html">Study Quiz</a>
-      <a href="resources.html">Resources</a>
-      <a href="boundaries.html">Boundaries</a>
-      <a href="converter.html">Converter</a>
-    </nav>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a class="active" href="subjects.html">Subjects</a>
+        <a href="planner.html">Planner</a>
+        <a href="quiz.html">Study Quiz</a>
+        <a href="resources.html">Resources</a>
+        <a href="boundaries.html">Boundaries</a>
+        <a href="converter.html">Converter</a>
+      </nav>
+    </div>
+  </header>
 
-  </div>
-</header>
-
-  <main class="container">
-    <section class="hero">
+  <main class="wrap page">
+    <section class="heroCard">
       <h1>Biology</h1>
-      <p class="muted">Keywords + cause→effect explanations + data handling.</p>
-
-      <div class="grid" style="margin-top:18px;">
-        <div class="panel span6">
-          <h2>Papers</h2>
-          <ul class="muted">
-            <li>Paper 1A: MCQ</li>
-            <li>Paper 1B: data-based / skills</li>
-            <li>Paper 2: structured + extended response</li>
-            <li>Paper 3: practical/design/data (if applicable)</li>
-          </ul>
-        </div>
-
-        <div class="panel span6">
-          <h2>High-impact tips</h2>
-          <ul class="muted">
-            <li>Active recall daily (short + consistent)</li>
-            <li>For graphs: describe trend with numbers, then explain</li>
-            <li>Learn command terms (describe vs explain)</li>
-            <li>Rewrite using markscheme keywords</li>
-          </ul>
-        </div>
-
-        <div class="panel span12">
-          <h2>Common mark traps</h2>
-          <ul class="muted">
-            <li>Vague wording instead of biological terms</li>
-            <li>Graphs described without numbers</li>
-            <li>Claiming causation from correlation</li>
-            <li>Forgetting location details (where processes happen)</li>
-          </ul>
-        </div>
+      <p class="sub">Paper structure + command terms + data skills + common traps.</p>
+      <div class="heroBtns">
+        <a class="btn" href="subjects.html">← Back to Subjects</a>
       </div>
+    </section>
 
-      <div class="footer"><a href="subjects.html">← Back to Subjects</a></div>
+    <section class="grid2">
+      <article class="card">
+        <h2>Papers</h2>
+        <ul class="list">
+          <li><b>Paper 1:</b> MCQ (concept + careful reading)</li>
+          <li><b>Paper 2:</b> short + extended responses (keywords matter)</li>
+          <li><b>Paper 3:</b> data response + practical/skills focus (varies by syllabus)</li>
+        </ul>
+        <div class="note">
+          Bio is a “keyword sport”: the markscheme is picky — learn the exact phrasing.
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>High-impact study plan</h2>
+        <ul class="list">
+          <li><b>Active recall:</b> questions first, notes second (don’t rewrite textbooks)</li>
+          <li><b>Data drills:</b> graphs, error bars, trends, controls, variables</li>
+          <li><b>Markscheme training:</b> after each set, copy the <i>exact</i> accepted wording once</li>
+          <li><b>Weekly:</b> timed Paper 2 section + review wrong answers</li>
+        </ul>
+        <div class="note">
+          Make a “<b>command term</b>” cheat sheet (describe vs explain vs evaluate).
+        </div>
+      </article>
+    </section>
+
+    <section class="grid2">
+      <article class="card">
+        <h2>Common mark traps</h2>
+        <ul class="list">
+          <li>Answer is correct but missing a required keyword</li>
+          <li>Confusing correlation vs causation in data questions</li>
+          <li>Not naming the variable / not stating direction of change</li>
+          <li>Forgetting units / axes labels / gradient meaning</li>
+          <li>Not linking back to the question wording (“therefore…”)</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Paper 2 “easy marks” checklist</h2>
+        <ul class="list">
+          <li>Use key terms (enzyme active site, diffusion gradient, allele frequency, etc.)</li>
+          <li>Answer in the <b>same unit</b> the question uses</li>
+          <li>For processes: steps in order + name the structure</li>
+          <li>For evaluations: 1 pro + 1 con + conclusion</li>
+        </ul>
+      </article>
     </section>
   </main>
+
+  <script src="app.js"></script>
 </body>
 </html>
