@@ -1,43 +1,114 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
   <title>Subjects — IB Survival Hub</title>
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="app.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brand" href="index.html">
-        <span class="brand-badge"></span>
-        <span>IB Survival Hub</span>
+
+<!-- =========================
+     NAVBAR
+     ========================= -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-dot"></div>
+      IB Survival Hub
+    </a>
+
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="subjects.html" class="active">Subjects</a>
+      <a href="planner.html">Planner</a>
+      <a href="quiz.html">Study Quiz</a>
+      <a href="resources.html">Resources</a>
+      <a href="boundaries.html">Boundaries</a>
+      <a href="converter.html">Converter</a>
+    </div>
+  </div>
+</nav>
+
+<!-- =========================
+     PAGE
+     ========================= -->
+<main class="page">
+
+  <div class="card pad-lg">
+    <h1>Subjects</h1>
+    <p>Pick a subject. Each page has: papers + study strategy + common mark traps.</p>
+
+    <div class="grid grid-3" style="margin-top:20px;">
+
+      <!-- Core IB subjects -->
+      <a href="chem.html" class="card subject-link">
+        <div class="title">Chemistry</div>
+        <div class="desc">Calculations, data skills, markscheme wording.</div>
       </a>
 
-      <nav class="nav">
-        <a href="index.html">Home</a>
-        <a href="subjects.html">Subjects</a>
-        <a href="planner.html">Planner</a>
-        <a href="quiz.html">Study Quiz</a>
-        <a href="resources.html">Resources</a>
-        <a href="boundaries.html">Boundaries</a>
-        <a href="converter.html">Converter</a>
-      </nav>
+      <a href="bio.html" class="card subject-link">
+        <div class="title">Biology</div>
+        <div class="desc">Keywords, command terms, data response technique.</div>
+      </a>
+
+      <a href="physics.html" class="card subject-link">
+        <div class="title">Physics</div>
+        <div class="desc">Method marks, diagrams, clean assumptions.</div>
+      </a>
+
+      <a href="math.html" class="card subject-link">
+        <div class="title">Math AA</div>
+        <div class="desc">SL vs HL structure, timing, common traps.</div>
+      </a>
+
+      <a href="econ.html" class="card subject-link">
+        <div class="title">Economics</div>
+        <div class="desc">Diagrams, evaluation, Paper 1/2/3 strategy.</div>
+      </a>
+
+      <a href="psych.html" class="card subject-link">
+        <div class="title">Psychology</div>
+        <div class="desc">SAQ/ERQ structure, studies bank, evaluation.</div>
+      </a>
+
+      <!-- Languages / humanities / electives -->
+      <!-- IMPORTANT: Your file is named English.html (capital E) in your repo -->
+      <a href="English.html" class="card subject-link">
+        <div class="title">English Literature</div>
+        <div class="desc">Paper 1 analysis + Paper 2 comparison structure.</div>
+      </a>
+
+      <a href="history.html" class="card subject-link">
+        <div class="title">History</div>
+        <div class="desc">Source skills, argument, evidence + evaluation.</div>
+      </a>
+
+      <a href="business.html" class="card subject-link">
+        <div class="title">Business Management</div>
+        <div class="desc">Case application + evaluation + recommendation.</div>
+      </a>
+
+      <a href="geo.html" class="card subject-link">
+        <div class="title">Geography</div>
+        <div class="desc">Case studies, models, structured evaluation.</div>
+      </a>
+
+      <a href="cs.html" class="card subject-link">
+        <div class="title">Computer Science</div>
+        <div class="desc">Pseudocode, tracing, trade-offs + clarity.</div>
+      </a>
+
+      <a href="french.html" class="card subject-link">
+        <div class="title">French</div>
+        <div class="desc">Consistency, vocab growth, writing structure.</div>
+      </a>
+
     </div>
-  </header>
+  </div>
 
-  <main class="container">
-    <section class="hero">
-      <h1 class="h1" style="margin-bottom:8px">Subjects</h1>
-      <p class="lead">Pick a subject. Each page has papers + study strategy + common mark traps.</p>
+</main>
 
-      <div class="grid" id="subjectsGrid" style="margin-top:18px">
-        <!-- auto-filled from subjects.json -->
-      </div>
-
-      <div class="footerNote">If a subject link 404s, it’s usually a filename/case mismatch.</div>
-    </section>
-  </main>
 </body>
 </html>
