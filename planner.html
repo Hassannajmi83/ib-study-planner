@@ -1,20 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
   <title>Planner — IB Survival Hub</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body data-page="planner">
-<header class="topbar">
-  <div class="nav-container">
-    <a href="index.html" class="logo" aria-label="IB Survival Hub Home">
-      <div class="logo-dot" aria-hidden="true"></div>
-      <span>IB Survival Hub</span>
+
+<body>
+
+<!-- =========================
+     NAVBAR
+     ========================= -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-dot"></div>
+      IB Survival Hub
     </a>
 
-    <nav class="nav-links" aria-label="Primary">
+    <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="subjects.html">Subjects</a>
       <a href="planner.html" class="active">Planner</a>
@@ -22,50 +27,144 @@
       <a href="resources.html">Resources</a>
       <a href="boundaries.html">Boundaries</a>
       <a href="converter.html">Converter</a>
-    </nav>
+    </div>
   </div>
-</header>
+</nav>
 
-  <main class="main-container">
-    <section class="card">
-      <h1>Study Planner</h1>
-      <p class="muted">Generates a realistic weekly plan based on your timeline + hours.</p>
+<!-- =========================
+     PAGE
+     ========================= -->
+<main class="page">
 
-      <div class="grid">
-        <div class="panel span6">
-          <label for="examDate">Exam date</label>
-          <input id="examDate" type="date" />
+  <div class="card pad-lg">
+    <h1>Study Planner</h1>
+    <p>Generate a realistic weekly study plan based on your timeline and hours/week.</p>
 
-          <label for="hoursPerWeek">Hours per week</label>
-          <input id="hoursPerWeek" type="number" min="1" placeholder="e.g., 10" />
+    <hr>
 
-          <label for="subjectsCount">How many subjects?</label>
-          <select id="subjectsCount">
-            <option>3</option><option selected>4</option><option>5</option><option>6</option><option>7</option>
-          </select>
+    <div class="grid grid-2">
 
-          <label for="priority">Main goal right now</label>
-          <select id="priority">
-            <option value="balanced" selected>Balanced</option>
-            <option value="marks">Push marks fast</option>
-            <option value="content">Catch up content</option>
-            <option value="skills">Fix exam technique</option>
-          </select>
+      <!-- Inputs -->
+      <div class="card soft pad-sm">
+        <h2 style="margin-bottom:12px;">Inputs</h2>
 
-          <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
-            <button class="btn" id="plannerGenerate">Generate Plan</button>
-          </div>
+        <label for="examDate">Exam date</label>
+        <input id="examDate" type="date">
 
-          <div class="footer">Tip: after every set, write the “rule” you should’ve followed (that’s how you stop repeating errors).</div>
-        </div>
+        <label for="hoursWeek">Hours per week</label>
+        <input id="hoursWeek" type="number" min="1" placeholder="e.g. 10">
 
-        <div class="panel span6">
-          <div id="plannerOut" class="callout">Fill the inputs, then generate.</div>
+        <label for="numSubjects">Number of subjects</label>
+        <select id="numSubjects">
+          <option value="3">3</option>
+          <option value="4" selected>4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+
+        <label for="goal">Main priority</label>
+        <select id="goal">
+          <option value="Balanced" selected>Balanced</option>
+          <option value="Catch-up">Catch-up (behind on content)</option>
+          <option value="Exam-mode">Exam-mode (past paper heavy)</option>
+        </select>
+
+        <button class="btn" id="generateBtn" style="margin-top:10px;">Generate</button>
+
+        <p class="small" style="margin-top:14px;">
+          Tip: Every timed set should end with 3 “fix rules” (what you did wrong + how to never do it again).
+        </p>
+      </div>
+
+      <!-- Output -->
+      <div class="card soft pad-sm">
+        <h2 style="margin-bottom:12px;">Your plan</h2>
+        <div id="planOutput" class="small">
+          Fill the inputs and click <b>Generate</b>.
         </div>
       </div>
-    </section>
-  </main>
 
-  <script src="app.js"></script>
+    </div>
+  </div>
+
+</main>
+
+<!-- =========================
+     SCRIPT (planner logic)
+     ========================= -->
+<script>
+  const generateBtn = document.getElementById("generateBtn");
+  const out = document.getElementById("planOutput");
+
+  function daysBetween(a, b){
+    return Math.ceil((b - a) / (1000*60*60*24));
+  }
+
+  generateBtn.addEventListener("click", () => {
+    const examDate = document.getElementById("examDate").value;
+    const hoursWeek = Number(document.getElementById("hoursWeek").value);
+    const numSubjects = Number(document.getElementById("numSubjects").value);
+    const goal = document.getElementById("goal").value;
+
+    if(!examDate || !hoursWeek || hoursWeek <= 0){
+      out.innerHTML = `<div class="card soft pad-sm">Add an exam date + hours/week first.</div>`;
+      return;
+    }
+
+    const now = new Date();
+    const exam = new Date(examDate + "T00:00:00");
+    const days = daysBetween(now, exam);
+    const weeks = Math.max(1, Math.ceil(days / 7));
+    const perSubject = (hoursWeek / numSubjects).toFixed(1);
+
+    // Simple splits
+    let topicPct = 0.5, timedPct = 0.25, reviewPct = 0.25;
+    if(goal === "Catch-up"){ topicPct = 0.6; timedPct = 0.2; reviewPct = 0.2; }
+    if(goal === "Exam-mode"){ topicPct = 0.3; timedPct = 0.4; reviewPct = 0.3; }
+
+    const topicH = Math.round(hoursWeek * topicPct);
+    const timedH = Math.round(hoursWeek * timedPct);
+    const reviewH = Math.max(0, hoursWeek - topicH - timedH);
+
+    out.innerHTML = `
+      <div class="card soft pad-sm">
+        <h3 style="margin-bottom:8px;">Summary</h3>
+        <p class="small">
+          Time left: <b>${days}</b> days (~${weeks} week(s))<br>
+          Hours/week: <b>${hoursWeek}</b><br>
+          Subjects: <b>${numSubjects}</b> (~${perSubject}h per subject/week)
+        </p>
+
+        <hr>
+
+        <h3 style="margin-bottom:8px;">Weekly split</h3>
+        <ul style="margin-left:18px; line-height:1.7; color: rgba(230,237,243,0.85);">
+          <li><b>${topicH}h</b> topic practice (by unit)</li>
+          <li><b>${timedH}h</b> timed sets / past paper sections</li>
+          <li><b>${reviewH}h</b> review + redo mistakes</li>
+        </ul>
+
+        <hr>
+
+        <h3 style="margin-bottom:8px;">Weekly template</h3>
+        <ul style="margin-left:18px; line-height:1.7; color: rgba(230,237,243,0.85);">
+          <li><b>Mon:</b> Topic set (weakest subject)</li>
+          <li><b>Tue:</b> Topic set (2nd weakest)</li>
+          <li><b>Wed:</b> Timed mixed set</li>
+          <li><b>Thu:</b> Review mistakes + redo 5–10 questions</li>
+          <li><b>Fri:</b> Past paper section (or full mini paper)</li>
+          <li><b>Weekend:</b> Catch-up + summary sheet</li>
+        </ul>
+
+        <hr>
+
+        <p class="small">
+          Non-negotiable: After every timed set, write 3 fix rules.
+        </p>
+      </div>
+    `;
+  });
+</script>
+
 </body>
 </html>
