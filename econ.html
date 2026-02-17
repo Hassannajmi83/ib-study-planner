@@ -8,68 +8,81 @@
 </head>
 <body>
   <header class="topbar">
-  <div class="nav-container">
-    
-    <!-- Logo / Home Button -->
-    <a href="index.html" class="logo">
-      <div class="logo-dot"></div>
-      <span>IB Survival Hub</span>
-    </a>
+    <div class="wrap topbarInner">
+      <a class="brand" href="index.html" aria-label="IB Survival Hub home">
+        <span class="dot"></span><span>IB Survival Hub</span>
+      </a>
 
-    <!-- Navigation Links -->
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="subjects.html" class="active">Subjects</a>
-      <a href="planner.html">Planner</a>
-      <a href="quiz.html">Study Quiz</a>
-      <a href="resources.html">Resources</a>
-      <a href="boundaries.html">Boundaries</a>
-      <a href="converter.html">Converter</a>
-    </nav>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a class="active" href="subjects.html">Subjects</a>
+        <a href="planner.html">Planner</a>
+        <a href="quiz.html">Study Quiz</a>
+        <a href="resources.html">Resources</a>
+        <a href="boundaries.html">Boundaries</a>
+        <a href="converter.html">Converter</a>
+      </nav>
+    </div>
+  </header>
 
-  </div>
-</header>
-
-  <main class="container">
-    <section class="hero">
+  <main class="wrap page">
+    <section class="heroCard">
       <h1>Economics</h1>
-      <p class="muted">Diagrams + chains of reasoning + evaluation with judgement.</p>
-
-      <div class="grid" style="margin-top:18px;">
-        <div class="panel span6">
-          <h2>SL vs HL Papers</h2>
-          <ul class="muted">
-            <li><b>SL:</b> Paper 1 + Paper 2</li>
-            <li><b>HL:</b> Paper 1 + Paper 2 + Paper 3</li>
-            <li>Paper 1: essay</li>
-            <li>Paper 2: data response</li>
-            <li>Paper 3: HL quantitative/application</li>
-          </ul>
-        </div>
-
-        <div class="panel span6">
-          <h2>High-impact tips</h2>
-          <ul class="muted">
-            <li>Memorize diagram checklist (labels + shifts + new equilibrium)</li>
-            <li>Use DEED structure for 10-mark answers</li>
-            <li>Evaluation: short vs long run + stakeholder impacts</li>
-            <li>Quote numbers from the data in Paper 2</li>
-          </ul>
-        </div>
-
-        <div class="panel span12">
-          <h2>Common mark traps</h2>
-          <ul class="muted">
-            <li>Wrong diagram labels / missing equilibrium labels</li>
-            <li>Explaining without “because → therefore” chain</li>
-            <li>Evaluation with no conclusion/judgement</li>
-            <li>Ignoring elasticity when it matters</li>
-          </ul>
-        </div>
+      <p class="sub">SL vs HL + diagrams + evaluation structure.</p>
+      <div class="heroBtns">
+        <a class="btn" href="subjects.html">← Back to Subjects</a>
       </div>
+    </section>
 
-      <div class="footer"><a href="subjects.html">← Back to Subjects</a></div>
+    <section class="grid2">
+      <article class="card">
+        <h2>Papers</h2>
+        <ul class="list">
+          <li><b>Paper 1:</b> extended response (essays + evaluation)</li>
+          <li><b>Paper 2:</b> data response (short + structured)</li>
+          <li><b>HL only Paper 3:</b> policy + calculations / deeper analysis</li>
+        </ul>
+        <div class="note">
+          Econ = <b>DEED</b>: Define → Explain → Example → Diagram (then evaluate).
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>High-impact study plan</h2>
+        <ul class="list">
+          <li><b>Diagram bank:</b> master a small set of core diagrams perfectly</li>
+          <li><b>Evaluation templates:</b> short-run vs long-run, stakeholders, assumptions</li>
+          <li><b>Data practice:</b> read quickly, quote numbers, link to theory</li>
+          <li><b>Weekly:</b> 1 timed paragraph plan + 1 timed full response</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="grid2">
+      <article class="card">
+        <h2>Common mark traps</h2>
+        <ul class="list">
+          <li>Diagram not labelled (axes, curves, shifts, equilibrium)</li>
+          <li>No chain of reasoning (just “it increases”)</li>
+          <li>Evaluation is generic (not linked to your scenario)</li>
+          <li>Forgetting welfare impacts / deadweight loss</li>
+          <li>Not using key terms (PED, inflationary gap, terms of trade)</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Evaluation quick checklist</h2>
+        <ul class="list">
+          <li>State assumptions</li>
+          <li>Short-run vs long-run</li>
+          <li>Stakeholders (consumers, firms, government)</li>
+          <li>Unintended consequences</li>
+          <li>Clear judgement (best option + why)</li>
+        </ul>
+      </article>
     </section>
   </main>
+
+  <script src="app.js"></script>
 </body>
 </html>
