@@ -8,66 +8,78 @@
 </head>
 <body>
   <header class="topbar">
-  <div class="nav-container">
-    
-    <!-- Logo / Home Button -->
-    <a href="index.html" class="logo">
-      <div class="logo-dot"></div>
-      <span>IB Survival Hub</span>
-    </a>
+    <div class="wrap topbarInner">
+      <a class="brand" href="index.html" aria-label="IB Survival Hub home">
+        <span class="dot"></span><span>IB Survival Hub</span>
+      </a>
 
-    <!-- Navigation Links -->
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="subjects.html" class="active">Subjects</a>
-      <a href="planner.html">Planner</a>
-      <a href="quiz.html">Study Quiz</a>
-      <a href="resources.html">Resources</a>
-      <a href="boundaries.html">Boundaries</a>
-      <a href="converter.html">Converter</a>
-    </nav>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a class="active" href="subjects.html">Subjects</a>
+        <a href="planner.html">Planner</a>
+        <a href="quiz.html">Study Quiz</a>
+        <a href="resources.html">Resources</a>
+        <a href="boundaries.html">Boundaries</a>
+        <a href="converter.html">Converter</a>
+      </nav>
+    </div>
+  </header>
 
-  </div>
-</header>
-
-  <main class="container">
-    <section class="hero">
+  <main class="wrap page">
+    <section class="heroCard">
       <h1>Psychology</h1>
-      <p class="muted">Marks come from: correct study choice + clean structure + method-matched evaluation.</p>
-
-      <div class="grid" style="margin-top:18px;">
-        <div class="panel span6">
-          <h2>SL vs HL Papers</h2>
-          <ul class="muted">
-            <li><b>SL:</b> Paper 1 + Paper 2</li>
-            <li><b>HL:</b> Paper 1 + Paper 2 + Paper 3</li>
-            <li>Paper 3: HL research methods / stimulus-based</li>
-          </ul>
-        </div>
-
-        <div class="panel span6">
-          <h2>High-impact tips</h2>
-          <ul class="muted">
-            <li>Build a study bank: aim, procedure, results, link, evaluation</li>
-            <li>SAQ: define + one study + link</li>
-            <li>ERQ: 2 studies + evaluation + conclusion</li>
-            <li>Evaluation must match the method (not generic)</li>
-          </ul>
-        </div>
-
-        <div class="panel span12">
-          <h2>Common mark traps</h2>
-          <ul class="muted">
-            <li>Wrong study details</li>
-            <li>Study doesn’t match the question</li>
-            <li>Generic evaluation every time</li>
-            <li>No explicit link back to the prompt</li>
-          </ul>
-        </div>
+      <p class="sub">Studies bank + SAQ/ERQ structure + evaluation.</p>
+      <div class="heroBtns">
+        <a class="btn" href="subjects.html">← Back to Subjects</a>
       </div>
+    </section>
 
-      <div class="footer"><a href="subjects.html">← Back to Subjects</a></div>
+    <section class="grid2">
+      <article class="card">
+        <h2>Papers</h2>
+        <ul class="list">
+          <li><b>Paper 1:</b> SAQ/ERQ using core approaches + studies</li>
+          <li><b>Paper 2:</b> option topic essays (depends on syllabus)</li>
+          <li><b>HL only Paper 3:</b> research methods + stimulus-style</li>
+        </ul>
+        <div class="note">
+          High scores come from: <b>accurate study detail</b> + <b>linked evaluation</b>.
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>High-impact study plan</h2>
+        <ul class="list">
+          <li><b>Build a study bank:</b> 2–3 studies per key concept</li>
+          <li><b>SAQ drills:</b> short, tight answers with one strong study</li>
+          <li><b>ERQ practice:</b> argument + counter + conclusion</li>
+          <li><b>Methods:</b> sampling, bias, ethics, reliability/validity</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="grid2">
+      <article class="card">
+        <h2>Common mark traps</h2>
+        <ul class="list">
+          <li>Describing the study but not answering the question</li>
+          <li>No link sentence (“this demonstrates… because…”)</li>
+          <li>Evaluation is generic (not tied to study design)</li>
+          <li>Forgetting ethics / bias in methods discussion</li>
+          <li>Vague conclusions (no judgement)</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>SAQ/ERQ mini templates</h2>
+        <ul class="list">
+          <li><b>SAQ:</b> Define → Explain → Study → Link back</li>
+          <li><b>ERQ:</b> Thesis → Study 1 + eval → Study 2 + eval → Counter → Conclusion</li>
+        </ul>
+      </article>
     </section>
   </main>
+
+  <script src="app.js"></script>
 </body>
 </html>
