@@ -1,114 +1,123 @@
-<!DOCTYPE html>
+<!-- subjects.html (FULL FILE) -->
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Subjects — IB Survival Hub</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Pick a subject. Each page has paper structure, study strategy, and common mark traps." />
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+  <!-- Header gets injected by app.js -->
+  <div id="siteHeader"></div>
 
-<!-- =========================
-     NAVBAR
-     ========================= -->
-<nav class="navbar">
-  <div class="nav-inner">
-    <a href="index.html" class="logo">
-      <div class="logo-dot"></div>
-      IB Survival Hub
-    </a>
+  <main class="page">
+    <section class="heroCard">
+      <h1 class="heroTitle">Subjects</h1>
+      <p class="heroSub">
+        Pick a subject. Each page has papers + study strategy + common mark traps.
+      </p>
+      <p class="heroHint">
+        Tip: if a link 404s, it’s usually a filename/case mismatch (e.g., English.html vs english.html).
+      </p>
+    </section>
 
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="subjects.html" class="active">Subjects</a>
-      <a href="planner.html">Planner</a>
-      <a href="quiz.html">Study Quiz</a>
-      <a href="resources.html">Resources</a>
-      <a href="boundaries.html">Boundaries</a>
-      <a href="converter.html">Converter</a>
-    </div>
-  </div>
-</nav>
+    <section class="section">
+      <div class="gridCards" id="subjectsGrid">
+        <!-- Filled by JS (fallback below if JS blocked) -->
+        <noscript>
+          <div class="notice">
+            JavaScript is off — here are direct links:
+            <ul>
+              <li><a href="chem.html">Chemistry</a></li>
+              <li><a href="bio.html">Biology</a></li>
+              <li><a href="physics.html">Physics</a></li>
+              <li><a href="math.html">Math AA</a></li>
+              <li><a href="econ.html">Economics</a></li>
+              <li><a href="psych.html">Psychology</a></li>
+              <li><a href="English.html">English Literature</a></li>
+              <li><a href="history.html">History</a></li>
+              <li><a href="business.html">Business</a></li>
+              <li><a href="geo.html">Geography</a></li>
+              <li><a href="cs.html">Computer Science</a></li>
+              <li><a href="french.html">French</a></li>
+            </ul>
+          </div>
+        </noscript>
+      </div>
+    </section>
+  </main>
 
-<!-- =========================
-     PAGE
-     ========================= -->
-<main class="page">
+  <script src="app.js" defer></script>
+  <script>
+    // Build subject cards from subjects.json (preferred).
+    // If subjects.json fails, fallback to a hardcoded list.
+    (async function () {
+      const grid = document.getElementById("subjectsGrid");
 
-  <div class="card pad-lg">
-    <h1>Subjects</h1>
-    <p>Pick a subject. Each page has: papers + study strategy + common mark traps.</p>
+      const fallback = [
+        { id: "chem",   name: "Chemistry",          href: "chem.html",    tagline: "Papers + calculations + marksheme wording" },
+        { id: "bio",    name: "Biology",            href: "bio.html",     tagline: "Keywords, data response, command terms" },
+        { id: "physics",name: "Physics",            href: "physics.html", tagline: "Diagrams, method marks, clean assumptions" },
+        { id: "math",   name: "Math AA",            href: "math.html",    tagline: "SL vs HL structure + common error traps" },
+        { id: "econ",   name: "Economics",          href: "econ.html",    tagline: "SL vs HL + diagrams + evaluation" },
+        { id: "psych",  name: "Psychology",         href: "psych.html",   tagline: "Studies bank + SAQ/ERQ structure" },
+        { id: "eng",    name: "English Literature", href: "English.html", tagline: "Paper 1 unseen analysis + Paper 2 comparison" },
 
-    <div class="grid grid-3" style="margin-top:20px;">
+        { id: "history", name: "History",           href: "history.html", tagline: "Evidence, argument, source analysis" },
+        { id: "business",name: "Business",          href: "business.html",tagline: "Case application + evaluation + recommendation" },
+        { id: "geo",     name: "Geography",         href: "geo.html",     tagline: "Case studies + models + evaluation" },
+        { id: "cs",      name: "Computer Science",  href: "cs.html",      tagline: "Tracing + pseudocode + trade-offs" },
+        { id: "french",  name: "French",            href: "french.html",  tagline: "Consistency + writing structure + vocab growth" },
+      ];
 
-      <!-- Core IB subjects -->
-      <a href="chem.html" class="card subject-link">
-        <div class="title">Chemistry</div>
-        <div class="desc">Calculations, data skills, markscheme wording.</div>
-      </a>
+      function render(list) {
+        grid.innerHTML = "";
+        list.forEach(s => {
+          const a = document.createElement("a");
+          a.className = "cardLink";
+          a.href = s.href;
 
-      <a href="bio.html" class="card subject-link">
-        <div class="title">Biology</div>
-        <div class="desc">Keywords, command terms, data response technique.</div>
-      </a>
+          a.innerHTML = `
+            <div class="card">
+              <div class="cardTitle">${escapeHtml(s.name)}</div>
+              <div class="cardMeta">${escapeHtml(s.tagline || "")}</div>
+              <div class="cardCta">Open →</div>
+            </div>
+          `;
+          grid.appendChild(a);
+        });
+      }
 
-      <a href="physics.html" class="card subject-link">
-        <div class="title">Physics</div>
-        <div class="desc">Method marks, diagrams, clean assumptions.</div>
-      </a>
+      function escapeHtml(str) {
+        return String(str).replace(/[&<>"']/g, m => ({
+          "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+        }[m]));
+      }
 
-      <a href="math.html" class="card subject-link">
-        <div class="title">Math AA</div>
-        <div class="desc">SL vs HL structure, timing, common traps.</div>
-      </a>
+      try {
+        const res = await fetch("subjects.json", { cache: "no-store" });
+        if (!res.ok) throw new Error("subjects.json not found");
+        const data = await res.json();
 
-      <a href="econ.html" class="card subject-link">
-        <div class="title">Economics</div>
-        <div class="desc">Diagrams, evaluation, Paper 1/2/3 strategy.</div>
-      </a>
+        // Accept either {subjects:[...]} or just [...]
+        const list = Array.isArray(data) ? data : (data.subjects || []);
+        if (!list.length) throw new Error("subjects.json empty");
 
-      <a href="psych.html" class="card subject-link">
-        <div class="title">Psychology</div>
-        <div class="desc">SAQ/ERQ structure, studies bank, evaluation.</div>
-      </a>
+        // Normalize: expect {name, href, tagline}
+        const normalized = list.map(x => ({
+          name: x.name || x.title || "Subject",
+          href: x.href || x.link || "#",
+          tagline: x.tagline || x.subtitle || ""
+        }));
 
-      <!-- Languages / humanities / electives -->
-      <!-- IMPORTANT: Your file is named English.html (capital E) in your repo -->
-      <a href="English.html" class="card subject-link">
-        <div class="title">English Literature</div>
-        <div class="desc">Paper 1 analysis + Paper 2 comparison structure.</div>
-      </a>
-
-      <a href="history.html" class="card subject-link">
-        <div class="title">History</div>
-        <div class="desc">Source skills, argument, evidence + evaluation.</div>
-      </a>
-
-      <a href="business.html" class="card subject-link">
-        <div class="title">Business Management</div>
-        <div class="desc">Case application + evaluation + recommendation.</div>
-      </a>
-
-      <a href="geo.html" class="card subject-link">
-        <div class="title">Geography</div>
-        <div class="desc">Case studies, models, structured evaluation.</div>
-      </a>
-
-      <a href="cs.html" class="card subject-link">
-        <div class="title">Computer Science</div>
-        <div class="desc">Pseudocode, tracing, trade-offs + clarity.</div>
-      </a>
-
-      <a href="french.html" class="card subject-link">
-        <div class="title">French</div>
-        <div class="desc">Consistency, vocab growth, writing structure.</div>
-      </a>
-
-    </div>
-  </div>
-
-</main>
-
+        render(normalized);
+      } catch (e) {
+        render(fallback);
+      }
+    })();
+  </script>
 </body>
 </html>
