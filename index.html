@@ -1,82 +1,72 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>IB Survival Hub</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="main.js"></script>
 </head>
-
 <body>
-  <!-- Top Nav -->
-  <header class="site-header">
-    <div class="nav-inner">
-      <a class="brand" href="index.html">
-        <span class="dot"></span>
-        IB Survival Hub
-      </a>
-
-      <nav class="nav-links">
-        <a class="active" href="index.html">Home</a>
+  <header class="siteHeader">
+    <div class="navInner">
+      <a class="brand" href="index.html"><span class="brandDot"></span>IB Survival Hub</a>
+      <nav class="navLinks">
+        <a href="index.html">Home</a>
         <a href="subjects.html">Subjects</a>
         <a href="planner.html">Planner</a>
-        <a href="quiz.html">Study Quiz</a>
+        <a href="study-quiz.html">Study Quiz</a>
         <a href="resources.html">Resources</a>
         <a href="boundaries.html">Boundaries</a>
       </nav>
     </div>
   </header>
 
-  <!-- Page -->
-  <main class="page-wrap">
-    <section class="card">
-      <h1 class="page-title">IB Survival Hub</h1>
-      <p class="page-subtitle">
-        A clean, focused workspace for IB students. Study smarter. Track smarter.
-      </p>
+  <main class="container">
+    <h1 class="pageTitle">IB Survival Hub</h1>
+    <p class="pageSub">A clean, focused workspace for IB students. Study smarter. Track smarter.</p>
 
-      <div class="home-grid">
+    <div class="card cardPad">
+      <div class="grid three">
         <a class="tile" href="subjects.html">
-          <span class="pill">Subjects</span>
+          <span class="kicker">Subjects</span>
           <h3>Paper structure + traps</h3>
           <p>Each subject page has papers + study strategy + common mark traps.</p>
         </a>
 
         <a class="tile" href="planner.html">
-          <span class="pill">Planner</span>
+          <span class="kicker">Planner</span>
           <h3>Weekly plan generator</h3>
-          <p>Build a realistic weekly plan based on hours + exam date.</p>
+          <p>Time management only: hours/day + days left + number of courses → plan.</p>
         </a>
 
-        <a class="tile" href="quiz.html">
-          <span class="pill">Study Quiz</span>
+        <a class="tile" href="study-quiz.html">
+          <span class="kicker">Study Quiz</span>
           <h3>Find your study style</h3>
-          <p>Quick quiz → a study plan that matches your style.</p>
+          <p>Quick check → recommends study methods + routine for your situation.</p>
         </a>
 
         <a class="tile" href="resources.html">
-          <span class="pill">Resources</span>
+          <span class="kicker">Resources</span>
           <h3>Safe links only</h3>
           <p>Clean list of legit websites (no piracy / repo links).</p>
         </a>
 
         <a class="tile" href="boundaries.html">
-          <span class="pill">Grade Boundaries</span>
+          <span class="kicker">Grade Boundaries</span>
           <h3>Session + timezone</h3>
           <p>Pick a subject and see the grade boundaries you pasted in.</p>
         </a>
 
-        <div class="tile tile-static">
-          <span class="pill">Note</span>
+        <div class="tile" style="cursor:default;">
+          <span class="kicker">Note</span>
           <h3>Keep it simple</h3>
           <p>This site is meant to reduce chaos — not become another project.</p>
         </div>
       </div>
 
-      <div class="footer-note">
-        Built for CAS: tech + service + user-focused tool.
-      </div>
-    </section>
+      <div class="footerNote">Built for CAS: tech + service + user-focused tool.</div>
+    </div>
   </main>
 </body>
 </html>
