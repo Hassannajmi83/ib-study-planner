@@ -23,97 +23,91 @@
   </header>
 
   <main class="page-wrap">
-    <section class="panel quiz-shell">
-      <div class="quiz-top">
-        <div>
-          <h1 class="h1" style="margin-bottom:8px;">Study Quiz</h1>
-          <p class="sub">Quick multiple-choice checks for core IB topics. Pick a subject, start the quiz, get a score.</p>
-        </div>
-        <div class="badge">Fast • Simple • Score-based</div>
-      </div>
+    <section class="panel" style="max-width:980px; margin:18px auto; padding:18px;">
+      <h1 class="h1" style="font-size:38px; margin:0 0 8px;">Study Quiz</h1>
+      <p class="sub" style="margin:0 0 14px;">Pick a subject, pick a question count, start the quiz.</p>
 
       <div class="hr"></div>
 
       <div class="grid grid-2">
         <div class="card">
-          <p class="card-title">Quiz setup</p>
-          <p class="card-sub">Choose a subject and number of questions.</p>
+          <p class="card-title">Setup</p>
+
+          <label for="quizSubject">Subject</label>
+          <select id="quizSubject">
+            <option>Chemistry</option>
+            <option>Biology</option>
+            <option>Physics</option>
+            <option>Mathematics AA</option>
+            <option>Computer Science</option>
+            <option>Economics</option>
+            <option>Business Management</option>
+            <option>Psychology</option>
+            <option>English A Literature</option>
+            <option>English B</option>
+            <option>Geography</option>
+            <option>History</option>
+          </select>
+
+          <div style="height:10px;"></div>
+
+          <label for="quizCount">Questions</label>
+          <select id="quizCount">
+            <option value="5">5</option>
+            <option value="8" selected>8</option>
+            <option value="10">10</option>
+          </select>
 
           <div style="height:12px;"></div>
 
-          <div class="quiz-controls">
-            <div>
-              <label for="quizSubject">Subject</label>
-              <select id="quizSubject">
-                <option value="Chemistry">Chemistry</option>
-                <option value="Biology">Biology</option>
-                <option value="Physics">Physics</option>
-                <option value="Mathematics AA">Mathematics AA</option>
-                <option value="Computer Science">Computer Science</option>
-                <option value="Economics">Economics</option>
-                <option value="Business Management">Business Management</option>
-                <option value="Psychology">Psychology</option>
-                <option value="English A Literature">English A Literature</option>
-                <option value="English B">English B</option>
-                <option value="Geography">Geography</option>
-                <option value="History">History</option>
-              </select>
-            </div>
-
-            <div>
-              <label for="quizCount">Questions</label>
-              <select id="quizCount">
-                <option value="5">5</option>
-                <option value="8" selected>8</option>
-                <option value="10">10</option>
-              </select>
-            </div>
-
-            <div style="display:flex; gap:10px; align-items:end;">
-              <button id="startQuizBtn" class="btn" type="button">Start Quiz</button>
-              <button id="resetQuizBtn" class="btn" type="button" style="display:none;">Reset</button>
-            </div>
-          </div>
+          <button id="startQuizBtn" class="btn" type="button">Start Quiz</button>
+          <button id="resetQuizBtn" class="btn" type="button" style="display:none; margin-left:8px;">Reset</button>
         </div>
 
         <div class="card">
-          <p class="card-title">How to use</p>
-          <ul class="card-sub" style="margin:0; padding-left:18px; line-height:1.6;">
-            <li>Answer 1 question at a time.</li>
-            <li>After you pick an option, you’ll see the correct answer.</li>
-            <li>Score updates live.</li>
-            <li>Reset anytime.</li>
-          </ul>
+          <p class="card-title">Tip</p>
+          <p class="card-sub" style="margin:0; line-height:1.6;">
+            Use this for quick recall. If you miss a question, write the correct wording once.
+          </p>
         </div>
       </div>
-    </section>
 
-    <!-- QUIZ AREA -->
-    <section id="quizArea" class="panel quiz-shell" style="display:none;">
-      <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:center;">
-        <div id="quizMeta" class="badge">Question 1 / 8</div>
-        <div id="quizScore" class="badge">Score: 0</div>
-      </div>
+      <div style="height:14px;"></div>
 
-      <div class="hr"></div>
+      <!-- QUIZ AREA -->
+      <section id="quizArea" class="panel-soft" style="display:none; padding:18px; border-radius:22px;">
+        <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+          <div id="quizMeta" class="sub">Question</div>
+          <div id="quizScore" class="sub">Score: 0</div>
+        </div>
 
-      <h2 id="quizQuestion" style="margin:0 0 12px; font-size:18px; line-height:1.35;">Question text…</h2>
+        <div style="height:10px;"></div>
 
-      <div id="quizChoices" class="grid" style="gap:10px;"></div>
+        <div id="quizQuestion" style="font-size:18px; font-weight:700;">Question text</div>
 
-      <div style="display:flex; gap:10px; margin-top:14px; flex-wrap:wrap; align-items:center;">
+        <div style="height:12px;"></div>
+
+        <div id="quizChoices" class="grid" style="gap:10px;"></div>
+
+        <div style="height:10px;"></div>
+
+        <div id="quizFeedback" class="sub"></div>
+
+        <div style="height:12px;"></div>
+
         <button id="nextQuizBtn" class="btn" type="button" disabled>Next</button>
-        <div id="quizFeedback" style="color:rgba(255,255,255,.78); font-size:13px;"></div>
-      </div>
-    </section>
+      </section>
 
-    <!-- RESULT -->
-    <section id="quizResult" class="panel quiz-shell" style="display:none;">
-      <h2 style="margin:0 0 8px;">Result</h2>
-      <p id="quizResultText" class="sub" style="margin:0;"></p>
+      <!-- RESULT -->
+      <section id="quizResult" class="panel-soft" style="display:none; padding:18px; border-radius:22px;">
+        <h2 style="margin:0 0 8px;">Result</h2>
+        <p id="quizResultText" class="sub" style="margin:0;"></p>
+      </section>
+
     </section>
   </main>
 
+  <!-- IMPORTANT -->
   <script src="app.js" defer></script>
 </body>
 </html>
