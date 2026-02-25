@@ -2,15 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+  <!-- Top Nav -->
   <header class="site-header">
     <div class="nav-inner">
-      <a class="brand" href="index.html">IB Survival Hub</a>
+      <a class="brand" href="index.html">
+        <span class="dot"></span>
+        IB Survival Hub
+      </a>
+
       <nav class="nav-links">
         <a class="active" href="index.html">Home</a>
         <a href="subjects.html">Subjects</a>
@@ -22,53 +27,56 @@
     </div>
   </header>
 
+  <!-- Page -->
   <main class="page-wrap">
     <section class="card">
-      <h1>IB Survival Hub</h1>
-      <p class="muted">A clean, focused workspace for IB students. Study smarter. Track smarter.</p>
+      <h1 class="page-title">IB Survival Hub</h1>
+      <p class="page-subtitle">
+        A clean, focused workspace for IB students. Study smarter. Track smarter.
+      </p>
 
       <div class="home-grid">
-        <a class="home-tile" href="subjects.html">
-          <div class="pill">Subjects</div>
-          <div class="home-title">Paper structure + traps</div>
-          <div class="home-desc">Each subject page has papers + study strategy + common mark traps.</div>
+        <a class="tile" href="subjects.html">
+          <span class="pill">Subjects</span>
+          <h3>Paper structure + traps</h3>
+          <p>Each subject page has papers + study strategy + common mark traps.</p>
         </a>
 
-        <a class="home-tile" href="planner.html">
-          <div class="pill">Planner</div>
-          <div class="home-title">Weekly plan generator</div>
-          <div class="home-desc">Build a realistic weekly plan based on hours + exam date.</div>
+        <a class="tile" href="planner.html">
+          <span class="pill">Planner</span>
+          <h3>Weekly plan generator</h3>
+          <p>Build a realistic weekly plan based on hours + exam date.</p>
         </a>
 
-        <a class="home-tile" href="quiz.html">
-          <div class="pill">Study Quiz</div>
-          <div class="home-title">Find your study style</div>
-          <div class="home-desc">Quick quiz → a study plan that matches your style.</div>
+        <a class="tile" href="quiz.html">
+          <span class="pill">Study Quiz</span>
+          <h3>Find your study style</h3>
+          <p>Quick quiz → a study plan that matches your style.</p>
         </a>
 
-        <a class="home-tile" href="resources.html">
-          <div class="pill">Resources</div>
-          <div class="home-title">Safe links only</div>
-          <div class="home-desc">Clean list of legit websites (no piracy / repo links).</div>
+        <a class="tile" href="resources.html">
+          <span class="pill">Resources</span>
+          <h3>Safe links only</h3>
+          <p>Clean list of legit websites (no piracy / repo links).</p>
         </a>
 
-        <a class="home-tile" href="boundaries.html">
-          <div class="pill">Grade Boundaries</div>
-          <div class="home-title">Session + timezone</div>
-          <div class="home-desc">Pick a subject and see the grade boundaries you pasted in.</div>
+        <a class="tile" href="boundaries.html">
+          <span class="pill">Grade Boundaries</span>
+          <h3>Session + timezone</h3>
+          <p>Pick a subject and see the grade boundaries you pasted in.</p>
         </a>
 
-        <div class="home-tile no-link">
-          <div class="pill">Note</div>
-          <div class="home-title">Keep it simple</div>
-          <div class="home-desc">This site is meant to reduce chaos — not become another project.</div>
+        <div class="tile tile-static">
+          <span class="pill">Note</span>
+          <h3>Keep it simple</h3>
+          <p>This site is meant to reduce chaos — not become another project.</p>
         </div>
       </div>
 
-      <p class="muted small mt">Built for CAS: tech + service + user-focused tool.</p>
+      <div class="footer-note">
+        Built for CAS: tech + service + user-focused tool.
+      </div>
     </section>
   </main>
-
-  <script src="app.js" defer></script>
 </body>
 </html>
