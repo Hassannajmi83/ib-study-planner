@@ -1,92 +1,229 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chemistry — IB Survival Hub</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chemistry – IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <header class="topbar">
-    <div class="wrap topbarInner">
-      <a class="brand" href="index.html" aria-label="IB Survival Hub home">
-        <span class="dot"></span><span>IB Survival Hub</span>
-      </a>
 
-      <nav class="nav">
-        <a href="index.html">Home</a>
-        <a class="active" href="subjects.html">Subjects</a>
-        <a href="planner.html">Planner</a>
-        <a href="quiz.html">Study Quiz</a>
-        <a href="resources.html">Resources</a>
-        <a href="boundaries.html">Boundaries</a>
-        <a href="converter.html">Converter</a>
-      </nav>
+<body>
+
+  <!-- Shared Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-row">
+        <a class="brand" href="index.html">
+          <span class="brand-dot"></span>
+          <span class="brand-title">IB Survival Hub</span>
+        </a>
+
+        <nav class="nav">
+          <a href="index.html">Home</a>
+          <a href="subjects.html">Subjects</a>
+          <a href="planner.html">Planner</a>
+          <a href="quiz.html">Study Quiz</a>
+          <a href="resources.html">Resources</a>
+          <a href="boundaries.html">Boundaries</a>
+        </nav>
+      </div>
     </div>
   </header>
 
-  <main class="wrap page">
-    <section class="heroCard">
-      <h1>Chemistry</h1>
-      <p class="sub">Paper structure + study strategy + common mark traps.</p>
-      <div class="heroBtns">
-        <a class="btn" href="subjects.html">← Back to Subjects</a>
-      </div>
-    </section>
+  <main class="page">
+    <div class="container">
 
-    <section class="grid2">
-      <article class="card">
-        <h2>Papers</h2>
-        <ul class="list">
-          <li><b>Paper 1A:</b> MCQ</li>
-          <li><b>Paper 1B:</b> data-based / skills</li>
-          <li><b>Paper 2:</b> written responses + calculations + explanations</li>
-          <li><b>Paper 3:</b> depends on syllabus/version (sometimes option-style)</li>
-        </ul>
-        <div class="note">
-          Key idea: marks come from <b>method + units + wording</b>, not just final answers.
+      <!-- HERO -->
+      <section class="hero card">
+        <div class="card-inner">
+          <div class="badge">Subject Guide</div>
+          <h1 style="margin-top:10px;">Chemistry</h1>
+          <p class="kicker">
+            Chemistry is <b>accuracy + method</b>. High marks come from clean steps, correct units/sig figs, and correct explanations.
+          </p>
+          <div class="hr"></div>
+          <div class="note">
+            <b>High score rule:</b> You don’t “know chem” unless you can do questions without notes and explain why each step works.
+          </div>
         </div>
-      </article>
+      </section>
 
-      <article class="card">
-        <h2>High-impact study plan</h2>
-        <ul class="list">
-          <li><b>Phase 1:</b> topic sets (easy → medium) with markscheme open</li>
-          <li><b>Phase 2:</b> mixed sets (timed) to train switching topics</li>
-          <li><b>Daily:</b> 10–15 min “weakest skill” drill (stoich, equilibrium, org, etc.)</li>
-          <li><b>Weekly:</b> one timed mini-paper + fix errors</li>
-        </ul>
-        <div class="note">
-          Build a <b>one-page “mechanisms + conditions” sheet</b> for organic (reactions, reagents, observations).
+      <!-- PAPERS -->
+      <section class="section">
+        <div class="card">
+          <div class="card-inner">
+            <h2>Assessment (Papers)</h2>
+            <p class="small">Exact paper details can vary by syllabus year. Train these skills consistently.</p>
+
+            <div class="hr"></div>
+
+            <div class="grid grid-3">
+              <div class="card">
+                <div class="card-inner">
+                  <h3>Paper 1</h3>
+                  <p class="kicker"><b>Fast MCQ.</b> Definitions + calculations + tiny traps.</p>
+                  <ul class="ul">
+                    <li>Eliminate wrong options using units/dimensions.</li>
+                    <li>Know common definitions precisely.</li>
+                    <li>Speed drills weekly.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-inner">
+                  <h3>Paper 2</h3>
+                  <p class="kicker"><b>Short + extended response.</b> Calculations + explanations.</p>
+                  <ul class="ul">
+                    <li>Show steps clearly for method marks.</li>
+                    <li>Units every line; correct sig figs at the end.</li>
+                    <li>Use correct chemistry language (oxidation, equilibrium, etc.).</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-inner">
+                  <h3>Paper 3</h3>
+                  <p class="kicker"><b>Data + practical/option.</b></p>
+                  <ul class="ul">
+                    <li>Describe trends first, then explain using chem terms.</li>
+                    <li>Know lab errors + improvements.</li>
+                    <li>Practice interpreting unfamiliar scenarios.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
-      </article>
-    </section>
+      </section>
 
-    <section class="grid2">
-      <article class="card">
-        <h2>Common mark traps</h2>
-        <ul class="list">
-          <li>Rounding too early → wrong final value</li>
-          <li>Unit conversion mistakes (cm³↔dm³, kPa↔Pa, g↔mol)</li>
-          <li>Skipping steps → losing method marks</li>
-          <li>Not stating assumptions/conditions (e.g., equilibrium shift logic)</li>
-          <li>Vague explanations (“it increases”) without naming the principle (IMFs, Le Châtelier, collision theory)</li>
-        </ul>
-      </article>
+      <!-- STUDY STRATEGY -->
+      <section class="section">
+        <div class="grid grid-2">
 
-      <article class="card">
-        <h2>Quick checklist (before submitting)</h2>
-        <ul class="list">
-          <li>Units shown and correct (and converted if needed)</li>
-          <li>Sig figs consistent with data</li>
-          <li>Working shown clearly (method marks)</li>
-          <li>Explanation uses correct keywords (IMF, oxidation state, limiting reagent, etc.)</li>
-          <li>Final answer boxed/obvious</li>
-        </ul>
-      </article>
-    </section>
+          <div class="card">
+            <div class="card-inner">
+              <h2>Best Study Method (Chem)</h2>
+              <div class="hr"></div>
+              <ul class="ul">
+                <li><b>3–5x/week:</b> exam questions (topic sets → mixed sets).</li>
+                <li><b>Daily (short):</b> key definitions + equations recall.</li>
+                <li><b>Weekly:</b> 1 timed mixed set.</li>
+                <li><b>After marking:</b> write the rule you broke (units, sig figs, concept).</li>
+              </ul>
+
+              <div class="hr"></div>
+              <div class="note">
+                <b>Chem mistake pattern:</b> students lose marks from “presentation” errors (sig figs, missing units, wrong rounding).
+                Fix with a checklist at the end of every question.
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <h2>Calculation Discipline (Method Marks)</h2>
+              <div class="hr"></div>
+              <ul class="ul">
+                <li><b>Write the formula</b> before numbers.</li>
+                <li><b>Substitute with brackets</b> (prevents sign mistakes).</li>
+                <li><b>Units every line</b> (and cancel units).</li>
+                <li><b>Sig figs only at the end</b> (don’t round mid-way).</li>
+              </ul>
+
+              <div class="hr"></div>
+              <div class="note">
+                <b>End-of-question checklist:</b> units? sig figs? reasonable magnitude? sign? correct variable?
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- COMMON TRAPS -->
+      <section class="section">
+        <div class="card">
+          <div class="card-inner">
+            <h2>Common Mark Traps (Chem)</h2>
+            <div class="hr"></div>
+
+            <div class="grid grid-3">
+              <div class="card">
+                <div class="card-inner">
+                  <h3>Trap 1: Sig figs</h3>
+                  <p class="kicker">Rounding too early or wrong sig figs.</p>
+                  <div class="note">Fix: keep full calculator value → round at the end only.</div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-inner">
+                  <h3>Trap 2: Units</h3>
+                  <p class="kicker">Forgetting units loses easy marks.</p>
+                  <div class="note">Fix: write units every line. Cancel units like algebra.</div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-inner">
+                  <h3>Trap 3: Definitions</h3>
+                  <p class="kicker">Almost-right wording isn’t accepted.</p>
+                  <div class="note">Fix: memorize precise markscheme phrasing for key definitions.</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPLANATION SKILLS -->
+      <section class="section">
+        <div class="card">
+          <div class="card-inner">
+            <h2>Explanation Skills (for Paper 2/3)</h2>
+            <div class="hr"></div>
+            <ul class="ul">
+              <li><b>State the principle:</b> collision theory, Le Châtelier’s principle, electronegativity, etc.</li>
+              <li><b>Apply it:</b> explain how it changes the system.</li>
+              <li><b>Conclude:</b> what happens to rate/equilibrium/energy/pH.</li>
+            </ul>
+
+            <div class="hr"></div>
+            <div class="note">
+              <b>Markscheme language tip:</b> use “increases/decreases” with the correct variable:
+              concentration, rate, yield, enthalpy, entropy, lattice energy, etc.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUICK PRACTICE -->
+      <section class="section">
+        <div class="card">
+          <div class="card-inner">
+            <h2>Quick Practice Checklist</h2>
+            <div class="hr"></div>
+            <ul class="ul">
+              <li>Can I do 10 mixed calculation questions in one sitting?</li>
+              <li>Can I state + use definitions (acid/base, rate, enthalpy, equilibrium)?</li>
+              <li>Do I have an error list (sig figs, units, sign errors, concept errors)?</li>
+              <li>Can I explain changes using principles (Le Châtelier, collision theory)?</li>
+            </ul>
+            <div class="hr"></div>
+            <a class="btn primary" href="subjects.html">Back to Subjects</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer">Chemistry page — IB Survival Hub</div>
+
+    </div>
   </main>
 
-  <script src="app.js"></script>
+  <script src="app.jss"></script>
 </body>
 </html>
