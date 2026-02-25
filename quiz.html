@@ -1,190 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Study Quiz — IB Survival Hub</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study Quiz – IB Survival Hub</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-<!-- =========================
-     NAVBAR
-     ========================= -->
-<nav class="navbar">
-  <div class="nav-inner">
-    <a href="index.html" class="logo">
-      <div class="logo-dot"></div>
-      IB Survival Hub
-    </a>
+  <!-- Shared Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-row">
+        <a class="brand" href="index.html">
+          <span class="brand-dot"></span>
+          <span class="brand-title">IB Survival Hub</span>
+        </a>
 
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="subjects.html">Subjects</a>
-      <a href="planner.html">Planner</a>
-      <a href="quiz.html" class="active">Study Quiz</a>
-      <a href="resources.html">Resources</a>
-      <a href="boundaries.html">Boundaries</a>
-      <a href="converter.html">Converter</a>
+        <nav class="nav">
+          <a href="index.html">Home</a>
+          <a href="subjects.html">Subjects</a>
+          <a href="planner.html">Planner</a>
+          <a href="quiz.html">Study Quiz</a>
+          <a href="resources.html">Resources</a>
+          <a href="boundaries.html">Boundaries</a>
+        </nav>
+      </div>
     </div>
-  </div>
-</nav>
+  </header>
 
-<!-- =========================
-     PAGE
-     ========================= -->
-<main class="page">
+  <main class="page">
+    <div class="container">
 
-  <div class="card pad-lg">
-    <h1>Study Quiz</h1>
-    <p>
-      Quick diagnostic → tells you how to study based on your habits + exam timeline.
-    </p>
-
-    <hr>
-
-    <div class="grid grid-2">
-
-      <!-- LEFT: Quiz -->
-      <div class="card soft pad-sm">
-        <h2 style="margin-bottom:12px;">Quiz</h2>
-
-        <button class="btn" id="startBtn">Start Quiz</button>
-
-        <div id="quizBox" style="margin-top:16px;"></div>
-      </div>
-
-      <!-- RIGHT: Results -->
-      <div class="card soft pad-sm">
-        <h2 style="margin-bottom:12px;">Result</h2>
-        <div id="resultBox" class="small">
-          Click <b>Start Quiz</b> to begin.
+      <section class="hero card">
+        <div class="card-inner">
+          <h1>Study Quiz</h1>
+          <p class="kicker">Answer a few questions → get a study style + weekly routine that fits you.</p>
         </div>
-      </div>
+      </section>
+
+      <section class="section">
+        <div class="grid grid-2">
+
+          <!-- Left: Quiz -->
+          <div class="card">
+            <div class="card-inner">
+              <h2>Quiz</h2>
+              <p class="small">Press start, answer each question, get your result instantly.</p>
+
+              <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+                <button class="btn primary" id="quizStart" type="button">Start quiz</button>
+              </div>
+
+              <div class="hr"></div>
+              <div id="quizOut" class="note">Click <b>Start quiz</b> to begin.</div>
+            </div>
+          </div>
+
+          <!-- Right: Explanation -->
+          <div class="card">
+            <div class="card-inner">
+              <h2>What this does</h2>
+              <ul class="ul">
+                <li><b>Practice-first</b>: you need more questions + timed sets + markscheme discipline.</li>
+                <li><b>Understand-first</b>: you need clean foundations before heavy exam practice.</li>
+                <li><b>Explain-first</b>: you need structure templates + wording + command terms.</li>
+                <li><b>Recall-first</b>: you need fast memory retrieval + spaced repetition.</li>
+              </ul>
+
+              <div class="hr"></div>
+              <div class="note">
+                <b>Important:</b> your style can change by subject.
+                Math/Physics often = practice-first. Bio often = recall-first.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
 
     </div>
-  </div>
+  </main>
 
-</main>
-
-<script>
-  const startBtn = document.getElementById("startBtn");
-  const quizBox = document.getElementById("quizBox");
-  const resultBox = document.getElementById("resultBox");
-
-  const QUESTIONS = [
-    {
-      q: "When you study, what helps you most?",
-      a: ["Practice questions", "Summarizing notes", "Explaining out loud", "Flashcards / recall"]
-    },
-    {
-      q: "Biggest issue right now?",
-      a: ["Timing", "Understanding content", "Diagrams/structure", "Forgetting details"]
-    },
-    {
-      q: "How close are exams?",
-      a: ["> 3 months", "1–3 months", "2–4 weeks", "< 2 weeks"]
-    },
-    {
-      q: "What do you avoid most?",
-      a: ["Markschemes", "Timed work", "Writing essays", "Showing steps"]
-    },
-    {
-      q: "Hardest subject style?",
-      a: ["Math/Physics", "Bio/Chem", "Essays (Eng/Hist)", "Language (French)"]
-    }
-  ];
-
-  let idx = 0;
-  let answers = [];
-
-  function renderQuestion() {
-    const item = QUESTIONS[idx];
-
-    quizBox.innerHTML = `
-      <div class="card soft pad-sm">
-        <h3 style="margin-bottom:10px;">Q${idx+1}. ${item.q}</h3>
-        <div class="grid" style="gap:10px;">
-          ${item.a.map((opt,i)=>`<button class="btn secondary" data-i="${i}">${opt}</button>`).join("")}
-        </div>
-        <p class="small" style="margin-top:12px;">
-          Question ${idx+1} of ${QUESTIONS.length}
-        </p>
-      </div>
-    `;
-
-    quizBox.querySelectorAll("button[data-i]").forEach(btn=>{
-      btn.addEventListener("click", ()=>{
-        answers.push(Number(btn.getAttribute("data-i")));
-        idx++;
-        if(idx >= QUESTIONS.length) finishQuiz();
-        else renderQuestion();
-      });
-    });
-  }
-
-  function finishQuiz() {
-    // scoring buckets (simple but legit)
-    const practiceScore = (answers[0] === 0 ? 2 : 0) + (answers[1] === 0 ? 1 : 0);
-    const recallScore   = (answers[0] === 3 ? 2 : 0) + (answers[1] === 3 ? 1 : 0);
-    const explainScore  = (answers[0] === 2 ? 2 : 0) + (answers[1] === 1 ? 1 : 0);
-    const examClose     = (answers[2] >= 2); // last two options
-
-    let style = "Balanced";
-    if(practiceScore >= 2) style = "Practice-heavy";
-    if(recallScore >= 2) style = "Recall-heavy";
-    if(explainScore >= 2) style = "Explain-first";
-
-    const timeline = examClose
-      ? "Exams are close → prioritize timed sets + markscheme language."
-      : "You have time → rebuild weak content while practicing consistently.";
-
-    const method = {
-      "Practice-heavy": [
-        "Do topic sets → mixed sets → timed sets.",
-        "After every set: write 3 fix rules (what you missed + the rule).",
-        "Use markschemes to learn phrasing (especially sciences + econ)."
-      ],
-      "Recall-heavy": [
-        "Daily recall: flashcards + blurting + mini quizzes.",
-        "Weekly timed set to pressure-test knowledge.",
-        "Convert notes into questions (don’t reread passively)."
-      ],
-      "Explain-first": [
-        "Teach the topic out loud in 5 minutes (no notes).",
-        "Then do 10–20 practice questions right away.",
-        "If you can’t explain it simply, you don’t know it yet."
-      ],
-      "Balanced": [
-        "Short content review → immediate practice.",
-        "Weekly timed work + weekly review day.",
-        "Track repeated mistakes and fix them."
-      ]
-    }[style];
-
-    quizBox.innerHTML = `<div class="card soft pad-sm">Quiz complete ✅</div>`;
-
-    resultBox.innerHTML = `
-      <div class="card soft pad-sm">
-        <h3 style="margin-bottom:10px;">Your study style: ${style}</h3>
-        <p class="small">${timeline}</p>
-        <hr>
-        <h3 style="margin-bottom:10px;">What to do</h3>
-        <ul style="margin-left:18px; line-height:1.8; color: rgba(230,237,243,0.85);">
-          ${method.map(x=>`<li>${x}</li>`).join("")}
-        </ul>
-      </div>
-    `;
-  }
-
-  startBtn.addEventListener("click", ()=>{
-    idx = 0;
-    answers = [];
-    resultBox.innerHTML = `<div class="card soft pad-sm">Answer the questions to get your plan.</div>`;
-    renderQuestion();
-  });
-</script>
-
+  <script src="app.jss"></script>
 </body>
 </html>
