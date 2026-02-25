@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const startBtn = document.getElementById("startQuizBtn");
-  if (!startBtn) return;
+  console.log("[quiz.js] loaded ✅");
 
+  const startBtn = document.getElementById("startQuizBtn");
   const resetBtn = document.getElementById("resetQuizBtn");
   const nextBtn = document.getElementById("nextQuizBtn");
 
-  const subjectSelect = document.getElementById("quizSubject");
-  const countSelect = document.getElementById("quizCount");
+  const subjectSel = document.getElementById("quizSubject");
+  const countSel = document.getElementById("quizCount");
 
   const quizArea = document.getElementById("quizArea");
   const quizResult = document.getElementById("quizResult");
@@ -18,36 +18,51 @@ document.addEventListener("DOMContentLoaded", () => {
   const quizChoices = document.getElementById("quizChoices");
   const quizFeedback = document.getElementById("quizFeedback");
 
+  if (!startBtn || !resetBtn || !nextBtn || !subjectSel || !countSel) {
+    console.error("[quiz.js] Missing required elements (IDs not found).");
+    return;
+  }
+
   const BANK = {
     "Chemistry": [
-      q("What happens at the boiling point?", ["Vapor pressure = external pressure", "Particles stop moving", "All bonds break", "Temperature decreases"], 0),
-      q("pH of neutral water at 25°C is:", ["0", "7", "14", "Depends on the acid"], 1),
-      q("Which IMF exists in all molecules?", ["Hydrogen bonding", "London dispersion", "Ionic bonding", "Metallic bonding"], 1),
+      item("What happens at the boiling point?", ["Vapor pressure = external pressure", "Particles stop moving", "All bonds break", "Temperature decreases"], 0),
+      item("pH of neutral water at 25°C is:", ["0", "7", "14", "Depends on acid"], 1),
+      item("Which IMF exists in all molecules?", ["Hydrogen bonding", "London dispersion", "Ionic bonding", "Metallic bonding"], 1),
+      item("Rate increases when temperature increases because:", ["More collisions have E ≥ Ea", "Activation energy decreases", "Volume disappears", "Moles change"], 0),
+      item("Oxidation is:", ["Gain of electrons", "Loss of electrons", "Gain of neutrons", "Loss of protons"], 1),
     ],
     "Physics": [
-      q("Unit of force is:", ["J", "N", "W", "Pa"], 1),
-      q("Acceleration is:", ["Change in velocity / time", "Distance / time", "Mass × velocity", "Energy / time"], 0),
+      item("Unit of force is:", ["J", "N", "W", "Pa"], 1),
+      item("Acceleration is:", ["Change in velocity / time", "Distance / time", "Mass × velocity", "Energy / time"], 0),
+      item("Work done = ", ["F/d", "F×d (parallel)", "m×a", "v×t"], 1),
+      item("Momentum = ", ["mv", "ma", "Fd", "½mv²"], 0),
+      item("Power = ", ["Energy/time", "Force×time", "Mass×acceleration", "Distance/time"], 0),
     ],
     "Mathematics AA": [
-      q("Derivative represents:", ["Rate of change", "Area under curve", "Total distance", "Always a constant"], 0),
-      q("sin(π/2) =", ["0", "1", "-1", "π/2"], 1),
+      item("Derivative represents:", ["Rate of change", "Area under curve", "Total distance", "Always a constant"], 0),
+      item("sin(π/2) =", ["0", "1", "-1", "π/2"], 1),
+      item("If f(x)=x² then f'(x) =", ["x", "2x", "x²", "2"], 1),
+      item("log(a·b) equals:", ["log a + log b", "log a − log b", "log a / log b", "a+b"], 0),
+      item("A function is increasing where:", ["f'(x) > 0", "f'(x) < 0", "f(x)=0", "x=0"], 0),
     ]
   };
 
-  let questions = [];
-  let i = 0;
+  let quiz = [];
+  let idx = 0;
   let score = 0;
   let locked = false;
 
   startBtn.addEventListener("click", () => {
-    const subject = subjectSelect.value;
-    const count = parseInt(countSelect.value, 10);
+    console.log("[quiz.js] Start clicked ✅");
+
+    const subject = subjectSel.value;
+    const n = parseInt(countSel.value, 10);
 
     const bank = BANK[subject] || [];
     if (bank.length === 0) return alert("No questions for this subject yet.");
 
-    questions = pickRandom(bank, count);
-    i = 0;
+    quiz = shuffle([...bank]).slice(0, Math.min(n, bank.length));
+    idx = 0;
     score = 0;
     locked = false;
 
@@ -67,8 +82,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   nextBtn.addEventListener("click", () => {
-    if (i < questions.length - 1) {
-      i++;
+    if (idx < quiz.length - 1) {
+      idx++;
       locked = false;
       render();
     } else {
@@ -77,39 +92,40 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function render() {
-    const item = questions[i];
-    quizMeta.textContent = `Question ${i + 1} / ${questions.length}`;
+    const q = quiz[idx];
+
+    quizMeta.textContent = `Question ${idx + 1} / ${quiz.length}`;
     quizScore.textContent = `Score: ${score}`;
-    quizQuestion.textContent = item.prompt;
+    quizQuestion.textContent = q.prompt;
 
     quizChoices.innerHTML = "";
     quizFeedback.textContent = "";
     nextBtn.disabled = true;
 
-    item.choices.forEach((text, idx) => {
-      const b = document.createElement("button");
-      b.type = "button";
-      b.className = "btn";
-      b.textContent = text;
+    q.choices.forEach((text, i) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "btn";
+      btn.textContent = text;
 
-      b.addEventListener("click", () => {
+      btn.addEventListener("click", () => {
         if (locked) return;
         locked = true;
 
-        const correct = idx === item.answerIndex;
+        const correct = i === q.correct;
         if (correct) {
           score++;
           quizFeedback.textContent = "✅ Correct";
         } else {
-          quizFeedback.textContent = `❌ Correct answer: ${item.choices[item.answerIndex]}`;
+          quizFeedback.textContent = `❌ Correct: ${q.choices[q.correct]}`;
         }
-        quizScore.textContent = `Score: ${score}`;
 
-        [...quizChoices.querySelectorAll("button")].forEach(btn => (btn.disabled = true));
+        quizScore.textContent = `Score: ${score}`;
+        [...quizChoices.querySelectorAll("button")].forEach(b => (b.disabled = true));
         nextBtn.disabled = false;
       });
 
-      quizChoices.appendChild(b);
+      quizChoices.appendChild(btn);
     });
   }
 
@@ -117,19 +133,18 @@ document.addEventListener("DOMContentLoaded", () => {
     quizArea.style.display = "none";
     quizResult.style.display = "block";
     startBtn.disabled = false;
-    quizResultText.textContent = `You scored ${score} / ${questions.length}.`;
+    quizResultText.textContent = `You scored ${score} / ${quiz.length}.`;
   }
 
-  function q(prompt, choices, answerIndex) {
-    return { prompt, choices, answerIndex };
+  function item(prompt, choices, correct) {
+    return { prompt, choices, correct };
   }
 
-  function pickRandom(arr, n) {
-    const copy = [...arr];
-    for (let k = copy.length - 1; k > 0; k--) {
-      const j = Math.floor(Math.random() * (k + 1));
-      [copy[k], copy[j]] = [copy[j], copy[k]];
+  function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
     }
-    return copy.slice(0, Math.min(n, copy.length));
+    return a;
   }
 });
