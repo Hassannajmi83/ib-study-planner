@@ -1,96 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Study Quiz – IB Survival Hub</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Study Quiz — IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
+  <script defer src="app.js"></script>
+  <script defer src="quiz.js"></script>
 </head>
 
 <body>
-  <header class="site-header">
-    <div class="nav-inner">
-      <a class="brand" href="index.html">IB Survival Hub</a>
-      <nav class="nav-links">
+  <header class="siteHeader">
+    <div class="navWrap">
+      <a class="brand" href="index.html"><span class="brandDot"></span>IB Survival Hub</a>
+      <nav class="nav">
         <a href="index.html">Home</a>
         <a href="subjects.html">Subjects</a>
         <a href="planner.html">Planner</a>
-        <a class="active" href="quiz.html">Study Quiz</a>
+        <a href="quiz.html">Study Quiz</a>
         <a href="resources.html">Resources</a>
         <a href="boundaries.html">Boundaries</a>
       </nav>
     </div>
   </header>
 
-  <main class="page-wrap">
-    <section class="card">
+  <main class="page">
+    <section class="panel">
       <h1>Study Quiz</h1>
-      <p class="muted">A quick check to generate the best study method + weekly routine for you.</p>
+      <p class="muted">Quick check → recommends study method + weekly routine based on your answers.</p>
 
-      <div class="panel">
-        <label class="label">How many hours do you realistically have per day?</label>
-        <select id="hoursDaily" class="input">
-          <option value="1">~1 hour</option>
-          <option value="2">~2 hours</option>
-          <option value="3">~3 hours</option>
-          <option value="4">4+ hours</option>
-        </select>
+      <div class="hr"></div>
 
-        <label class="label">How many chapters / units are you behind (roughly)?</label>
-        <select id="chaptersBehind" class="input">
-          <option value="0">0–2</option>
-          <option value="1">3–5</option>
-          <option value="2">6–10</option>
-          <option value="3">10+</option>
-        </select>
+      <div class="row">
+        <div>
+          <label>How many hours do you realistically have per day?</label>
+          <select id="qHours">
+            <option value="">Select…</option>
+            <option>0–1</option>
+            <option>1–2</option>
+            <option>2–3</option>
+            <option>3–4</option>
+            <option>4+</option>
+          </select>
 
-        <label class="label">How do you usually study right now? (Select all that you use)</label>
-        <div class="check-grid">
-          <label class="check"><input type="checkbox" value="notes" /> Re-reading notes</label>
-          <label class="check"><input type="checkbox" value="highlight" /> Highlighting</label>
-          <label class="check"><input type="checkbox" value="activeRecall" /> Active recall (testing yourself)</label>
-          <label class="check"><input type="checkbox" value="spaced" /> Spaced repetition</label>
-          <label class="check"><input type="checkbox" value="pastPapers" /> Past paper questions</label>
-          <label class="check"><input type="checkbox" value="blurting" /> Blurting / brain dump</label>
-          <label class="check"><input type="checkbox" value="pomodoro" /> Pomodoro sessions</label>
+          <label>How many chapters / units are you behind?</label>
+          <select id="qBehind">
+            <option value="">Select…</option>
+            <option>0–1</option>
+            <option>2–3</option>
+            <option>4–6</option>
+            <option>7+</option>
+          </select>
+
+          <label>Which techniques do you currently use? (Select all that apply)</label>
+          <div class="out" style="margin-top:8px">
+            <label style="display:flex;gap:10px;align-items:center;margin:6px 0"><input type="checkbox" value="reread" class="tech"> Re-reading notes / highlighting</label>
+            <label style="display:flex;gap:10px;align-items:center;margin:6px 0"><input type="checkbox" value="active" class="tech"> Active recall (testing yourself)</label>
+            <label style="display:flex;gap:10px;align-items:center;margin:6px 0"><input type="checkbox" value="spaced" class="tech"> Spaced repetition</label>
+            <label style="display:flex;gap:10px;align-items:center;margin:6px 0"><input type="checkbox" value="past" class="tech"> Past paper questions</label>
+            <label style="display:flex;gap:10px;align-items:center;margin:6px 0"><input type="checkbox" value="pomodoro" class="tech"> Pomodoro sessions</label>
+          </div>
+
+          <label>When you do practice questions, what happens most?</label>
+          <select id="qPractice">
+            <option value="">Select…</option>
+            <option value="avoid">I avoid them / do too little</option>
+            <option value="stuck">I get stuck and waste time</option>
+            <option value="random">I do them randomly</option>
+            <option value="review">I do them + review mistakes</option>
+          </select>
+
+          <label>Biggest issue right now?</label>
+          <select id="qIssue">
+            <option value="">Select…</option>
+            <option value="time">Time management</option>
+            <option value="focus">Focus / procrastination</option>
+            <option value="understand">Not understanding content</option>
+            <option value="memory">Forgetting quickly</option>
+          </select>
+
+          <button id="btnQuiz">Generate my study method</button>
         </div>
 
-        <label class="label">When you do practice questions, what happens most?</label>
-        <select id="practiceIssue" class="input">
-          <option value="avoid">I avoid practice / do too little</option>
-          <option value="stuck">I try but get stuck quickly</option>
-          <option value="careless">Careless mistakes</option>
-          <option value="timing">Timing is my problem</option>
-          <option value="ok">Practice is mostly fine</option>
-        </select>
-
-        <label class="label">What’s your biggest issue?</label>
-        <select id="biggestIssue" class="input">
-          <option value="consistency">Consistency / motivation</option>
-          <option value="understand">Understanding content</option>
-          <option value="memory">Remembering long-term</option>
-          <option value="exam">Exam performance</option>
-        </select>
-
-        <div class="row mt">
-          <button id="buildPlanBtn" class="btn primary" type="button">Generate my study method</button>
-          <button id="resetMethodBtn" class="btn" type="button">Reset</button>
+        <div>
+          <div id="quizOut" class="out">
+            <div class="muted">Answer the questions and press the button.</div>
+          </div>
         </div>
-      </div>
-
-      <div id="methodOutput" class="panel mt" style="display:none;">
-        <h2>Your recommended method</h2>
-        <div id="methodSummary" class="muted"></div>
-
-        <h2 class="mt">Your routine (plug-and-play)</h2>
-        <div id="methodRoutine" class="muted"></div>
-
-        <h2 class="mt">What to stop doing</h2>
-        <div id="methodStop" class="muted"></div>
       </div>
     </section>
   </main>
-
-  <script src="quiz.js" defer></script>
 </body>
 </html>
