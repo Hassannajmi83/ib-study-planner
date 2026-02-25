@@ -1,123 +1,138 @@
-<!-- subjects.html (FULL FILE) -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Subjects — IB Survival Hub</title>
-  <meta name="description" content="Pick a subject. Each page has paper structure, study strategy, and common mark traps." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subjects – IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <!-- Header gets injected by app.js -->
-  <div id="siteHeader"></div>
+
+  <!-- Shared Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-row">
+        <a class="brand" href="index.html">
+          <span class="brand-dot"></span>
+          <span class="brand-title">IB Survival Hub</span>
+        </a>
+
+        <nav class="nav">
+          <a href="index.html">Home</a>
+          <a href="subjects.html">Subjects</a>
+          <a href="planner.html">Planner</a>
+          <a href="quiz.html">Study Quiz</a>
+          <a href="resources.html">Resources</a>
+          <a href="boundaries.html">Boundaries</a>
+        </nav>
+      </div>
+    </div>
+  </header>
 
   <main class="page">
-    <section class="heroCard">
-      <h1 class="heroTitle">Subjects</h1>
-      <p class="heroSub">
-        Pick a subject. Each page has papers + study strategy + common mark traps.
-      </p>
-      <p class="heroHint">
-        Tip: if a link 404s, it’s usually a filename/case mismatch (e.g., English.html vs english.html).
-      </p>
-    </section>
+    <div class="container">
 
-    <section class="section">
-      <div class="gridCards" id="subjectsGrid">
-        <!-- Filled by JS (fallback below if JS blocked) -->
-        <noscript>
-          <div class="notice">
-            JavaScript is off — here are direct links:
-            <ul>
-              <li><a href="chem.html">Chemistry</a></li>
-              <li><a href="bio.html">Biology</a></li>
-              <li><a href="physics.html">Physics</a></li>
-              <li><a href="math.html">Math AA</a></li>
-              <li><a href="econ.html">Economics</a></li>
-              <li><a href="psych.html">Psychology</a></li>
-              <li><a href="English.html">English Literature</a></li>
-              <li><a href="history.html">History</a></li>
-              <li><a href="business.html">Business</a></li>
-              <li><a href="geo.html">Geography</a></li>
-              <li><a href="cs.html">Computer Science</a></li>
-              <li><a href="french.html">French</a></li>
-            </ul>
-          </div>
-        </noscript>
-      </div>
-    </section>
+      <section class="hero card">
+        <div class="card-inner">
+          <h1>Subjects</h1>
+          <p class="kicker">Pick a subject. Each page has paper structure + strategy + common mark traps.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="grid grid-3">
+
+          <a class="card" href="bio.html">
+            <div class="card-inner">
+              <h3>Biology</h3>
+              <p class="kicker">Data skills + command terms + keyword precision.</p>
+            </div>
+          </a>
+
+          <a class="card" href="chem.html">
+            <div class="card-inner">
+              <h3>Chemistry</h3>
+              <p class="kicker">Units + mechanisms + calculation discipline.</p>
+            </div>
+          </a>
+
+          <a class="card" href="physics.html">
+            <div class="card-inner">
+              <h3>Physics</h3>
+              <p class="kicker">Method marks + algebra control + diagrams.</p>
+            </div>
+          </a>
+
+          <a class="card" href="math.html">
+            <div class="card-inner">
+              <h3>Math AA</h3>
+              <p class="kicker">Steps shown + domain checks + calculator control.</p>
+            </div>
+          </a>
+
+          <a class="card" href="econ.html">
+            <div class="card-inner">
+              <h3>Economics</h3>
+              <p class="kicker">DEED structure + diagrams + evaluation balance.</p>
+            </div>
+          </a>
+
+          <a class="card" href="psych.html">
+            <div class="card-inner">
+              <h3>Psychology</h3>
+              <p class="kicker">Study structure + evaluation + research methods.</p>
+            </div>
+          </a>
+
+          <a class="card" href="business.html">
+            <div class="card-inner">
+              <h3>Business</h3>
+              <p class="kicker">Definitions + structure + real examples.</p>
+            </div>
+          </a>
+
+          <a class="card" href="english.html">
+            <div class="card-inner">
+              <h3>English</h3>
+              <p class="kicker">Thesis clarity + structure + literary analysis.</p>
+            </div>
+          </a>
+
+          <a class="card" href="history.html">
+            <div class="card-inner">
+              <h3>History</h3>
+              <p class="kicker">Source analysis + argument + historiography.</p>
+            </div>
+          </a>
+
+          <a class="card" href="geo.html">
+            <div class="card-inner">
+              <h3>Geography</h3>
+              <p class="kicker">Case studies + diagrams + structured evaluation.</p>
+            </div>
+          </a>
+
+          <a class="card" href="cs.html">
+            <div class="card-inner">
+              <h3>Computer Science</h3>
+              <p class="kicker">Logic flow + trace tables + definitions.</p>
+            </div>
+          </a>
+
+          <a class="card" href="french.html">
+            <div class="card-inner">
+              <h3>French</h3>
+              <p class="kicker">Structure + tenses + exam format mastery.</p>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+    </div>
   </main>
 
-  <script src="app.js" defer></script>
-  <script>
-    // Build subject cards from subjects.json (preferred).
-    // If subjects.json fails, fallback to a hardcoded list.
-    (async function () {
-      const grid = document.getElementById("subjectsGrid");
-
-      const fallback = [
-        { id: "chem",   name: "Chemistry",          href: "chem.html",    tagline: "Papers + calculations + marksheme wording" },
-        { id: "bio",    name: "Biology",            href: "bio.html",     tagline: "Keywords, data response, command terms" },
-        { id: "physics",name: "Physics",            href: "physics.html", tagline: "Diagrams, method marks, clean assumptions" },
-        { id: "math",   name: "Math AA",            href: "math.html",    tagline: "SL vs HL structure + common error traps" },
-        { id: "econ",   name: "Economics",          href: "econ.html",    tagline: "SL vs HL + diagrams + evaluation" },
-        { id: "psych",  name: "Psychology",         href: "psych.html",   tagline: "Studies bank + SAQ/ERQ structure" },
-        { id: "eng",    name: "English Literature", href: "English.html", tagline: "Paper 1 unseen analysis + Paper 2 comparison" },
-
-        { id: "history", name: "History",           href: "history.html", tagline: "Evidence, argument, source analysis" },
-        { id: "business",name: "Business",          href: "business.html",tagline: "Case application + evaluation + recommendation" },
-        { id: "geo",     name: "Geography",         href: "geo.html",     tagline: "Case studies + models + evaluation" },
-        { id: "cs",      name: "Computer Science",  href: "cs.html",      tagline: "Tracing + pseudocode + trade-offs" },
-        { id: "french",  name: "French",            href: "french.html",  tagline: "Consistency + writing structure + vocab growth" },
-      ];
-
-      function render(list) {
-        grid.innerHTML = "";
-        list.forEach(s => {
-          const a = document.createElement("a");
-          a.className = "cardLink";
-          a.href = s.href;
-
-          a.innerHTML = `
-            <div class="card">
-              <div class="cardTitle">${escapeHtml(s.name)}</div>
-              <div class="cardMeta">${escapeHtml(s.tagline || "")}</div>
-              <div class="cardCta">Open →</div>
-            </div>
-          `;
-          grid.appendChild(a);
-        });
-      }
-
-      function escapeHtml(str) {
-        return String(str).replace(/[&<>"']/g, m => ({
-          "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-        }[m]));
-      }
-
-      try {
-        const res = await fetch("subjects.json", { cache: "no-store" });
-        if (!res.ok) throw new Error("subjects.json not found");
-        const data = await res.json();
-
-        // Accept either {subjects:[...]} or just [...]
-        const list = Array.isArray(data) ? data : (data.subjects || []);
-        if (!list.length) throw new Error("subjects.json empty");
-
-        // Normalize: expect {name, href, tagline}
-        const normalized = list.map(x => ({
-          name: x.name || x.title || "Subject",
-          href: x.href || x.link || "#",
-          tagline: x.tagline || x.subtitle || ""
-        }));
-
-        render(normalized);
-      } catch (e) {
-        render(fallback);
-      }
-    })();
-  </script>
+  <script src="app.jss"></script>
 </body>
 </html>
