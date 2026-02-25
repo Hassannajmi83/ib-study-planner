@@ -1,87 +1,207 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Math AA — IB Survival Hub</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Math AA – IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <header class="topbar">
-    <div class="wrap topbarInner">
-      <a class="brand" href="index.html" aria-label="IB Survival Hub home">
-        <span class="dot"></span><span>IB Survival Hub</span>
-      </a>
 
-      <nav class="nav">
-        <a href="index.html">Home</a>
-        <a class="active" href="subjects.html">Subjects</a>
-        <a href="planner.html">Planner</a>
-        <a href="quiz.html">Study Quiz</a>
-        <a href="resources.html">Resources</a>
-        <a href="boundaries.html">Boundaries</a>
-        <a href="converter.html">Converter</a>
-      </nav>
+<body>
+
+  <!-- Shared Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-row">
+        <a class="brand" href="index.html">
+          <span class="brand-dot"></span>
+          <span class="brand-title">IB Survival Hub</span>
+        </a>
+
+        <nav class="nav">
+          <a href="index.html">Home</a>
+          <a href="subjects.html">Subjects</a>
+          <a href="planner.html">Planner</a>
+          <a href="quiz.html">Study Quiz</a>
+          <a href="resources.html">Resources</a>
+          <a href="boundaries.html">Boundaries</a>
+        </nav>
+      </div>
     </div>
   </header>
 
-  <main class="wrap page">
-    <section class="heroCard">
-      <h1>Math AA</h1>
-      <p class="sub">SL vs HL structure + accuracy + “show work” for method marks.</p>
-      <div class="heroBtns">
-        <a class="btn" href="subjects.html">← Back to Subjects</a>
-      </div>
-    </section>
+  <main class="page">
+    <div class="container">
 
-    <section class="grid2">
-      <article class="card">
-        <h2>Papers (typical)</h2>
-        <ul class="list">
-          <li><b>Paper 1:</b> non-calculator (algebra + exact values)</li>
-          <li><b>Paper 2:</b> calculator (models, graphs, stats, numerics)</li>
-          <li><b>HL only:</b> extra content depth + harder mixed reasoning</li>
-        </ul>
-        <div class="note">
-          Biggest grade jump: do fewer questions, but review them <b>perfectly</b>.
+      <!-- HERO -->
+      <section class="hero card">
+        <div class="card-inner">
+          <div class="badge">Subject Guide</div>
+          <h1 style="margin-top:10px;">Mathematics AA</h1>
+          <p class="kicker">
+            Math AA is a <b>structure + precision</b> subject. Marks come from showing working, respecting domain restrictions, and clean algebra.
+          </p>
+          <div class="hr"></div>
+          <div class="note">
+            <b>High score rule:</b> Every question must show logical flow. Even if calculator gives answer instantly, method earns marks.
+          </div>
         </div>
-      </article>
+      </section>
 
-      <article class="card">
-        <h2>High-impact study plan</h2>
-        <ul class="list">
-          <li><b>Skill drills:</b> short sets by topic (10–20 mins)</li>
-          <li><b>Mixed sets:</b> timed “exam simulation” twice a week</li>
-          <li><b>Fix list:</b> keep a running list of “I always mess up…”</li>
-          <li><b>Write clean solutions:</b> teacher/IB wants readable logic</li>
-        </ul>
-      </article>
-    </section>
+      <!-- PAPERS -->
+      <section class="section">
+        <div class="card">
+          <div class="card-inner">
+            <h2>Assessment (Typical Structure)</h2>
+            <p class="small">Exact details vary by SL/HL and syllabus year.</p>
 
-    <section class="grid2">
-      <article class="card">
-        <h2>Common mark traps</h2>
-        <ul class="list">
-          <li>Domain/range restrictions ignored</li>
-          <li>Trig answers not checked (sin/cos must be −1 to 1)</li>
-          <li>Dropping ± solutions</li>
-          <li>Rounding too early / calculator rounding</li>
-          <li>Missing reasoning lines → lost method marks</li>
-        </ul>
-      </article>
+            <div class="hr"></div>
 
-      <article class="card">
-        <h2>“Paper 1” checklist</h2>
-        <ul class="list">
-          <li>Exact values (no decimals unless asked)</li>
-          <li>State restrictions (denominators, tan/cot, logs)</li>
-          <li>Show factoring steps (method marks)</li>
-          <li>Verify solutions back in original equation</li>
-        </ul>
-      </article>
-    </section>
+            <div class="grid grid-3">
+              <div class="card">
+                <div class="card-inner">
+                  <h3>Paper 1</h3>
+                  <p class="kicker"><b>No calculator (usually).</b></p>
+                  <ul class="ul">
+                    <li>Algebra discipline.</li>
+                    <li>Exact values (π, surds).</li>
+                    <li>Clear logical steps.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-inner">
+                  <h3>Paper 2</h3>
+                  <p class="kicker"><b>Calculator allowed.</b></p>
+                  <ul class="ul">
+                    <li>Technology use (solve, integrate, matrices).</li>
+                    <li>Interpretation of output.</li>
+                    <li>Still show reasoning.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-inner">
+                  <h3>Paper 3 (HL)</h3>
+                  <p class="kicker"><b>Problem-solving.</b></p>
+                  <ul class="ul">
+                    <li>Multi-step reasoning.</li>
+                    <li>Model building.</li>
+                    <li>Explain logic clearly.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- STUDY STRATEGY -->
+      <section class="section">
+        <div class="grid grid-2">
+
+          <div class="card">
+            <div class="card-inner">
+              <h2>Best Study Method (Math)</h2>
+              <div class="hr"></div>
+              <ul class="ul">
+                <li><b>Daily:</b> 6–10 mixed questions.</li>
+                <li><b>Weekly:</b> 1 timed mini-paper.</li>
+                <li><b>Error log:</b> track recurring algebra mistakes.</li>
+                <li><b>Redo wrong questions after 48 hours.</b></li>
+              </ul>
+
+              <div class="hr"></div>
+              <div class="note">
+                <b>Math mistake pattern:</b> skipping algebra steps causes sign/domain errors.
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <h2>Answer Structure Template</h2>
+              <div class="hr"></div>
+              <ul class="ul">
+                <li><b>1) Write equation clearly.</b></li>
+                <li><b>2) Show manipulation step-by-step.</b></li>
+                <li><b>3) State restrictions (domain/denominator).</b></li>
+                <li><b>4) Final answer boxed and labeled.</b></li>
+              </ul>
+
+              <div class="hr"></div>
+              <div class="note">
+                Always check: Is the trig value within [-1,1]? Did you state domain restrictions?
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- COMMON TRAPS -->
+      <section class="section">
+        <div class="card">
+          <div class="card-inner">
+            <h2>Common Mark Traps (Math)</h2>
+            <div class="hr"></div>
+
+            <div class="grid grid-3">
+              <div class="card">
+                <div class="card-inner">
+                  <h3>Trap 1: Domain</h3>
+                  <p class="kicker">Forgetting restrictions (log, denominator, trig).</p>
+                  <div class="note">Fix: always state domain explicitly.</div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-inner">
+                  <h3>Trap 2: Rounding</h3>
+                  <p class="kicker">Rounding mid-solution.</p>
+                  <div class="note">Fix: round only at final answer.</div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-inner">
+                  <h3>Trap 3: Notation</h3>
+                  <p class="kicker">Messy algebra loses clarity.</p>
+                  <div class="note">Fix: clean line spacing + logical structure.</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- QUICK PRACTICE -->
+      <section class="section">
+        <div class="card">
+          <div class="card-inner">
+            <h2>Quick Practice Checklist</h2>
+            <div class="hr"></div>
+            <ul class="ul">
+              <li>Can I solve without looking at worked solutions?</li>
+              <li>Did I show every algebra step?</li>
+              <li>Did I check domain restrictions?</li>
+              <li>Did I box final answers clearly?</li>
+            </ul>
+            <div class="hr"></div>
+            <a class="btn primary" href="subjects.html">Back to Subjects</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer">Mathematics page — IB Survival Hub</div>
+
+    </div>
   </main>
 
-  <script src="app.js"></script>
+  <script src="app.jss"></script>
 </body>
 </html>
