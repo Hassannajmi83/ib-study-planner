@@ -1,97 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>IB Grade Boundaries</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IB Grade Boundaries - IB Survival Hub</title>
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="style.css" />
+
   <style>
-    /* Page Layout */
-    .boundaries-container {
-      max-width: 1100px;
-      margin: 80px auto;
-      padding: 40px;
+    /* Page-only styling (kept light; your main look still comes from style.css) */
+    .page-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 18px 80px;
     }
 
-    .boundaries-container h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
-    }
-
-    .subtitle {
-      opacity: 0.7;
-      margin-bottom: 40px;
-    }
-
-    /* Dropdown */
-    #subjectSelect {
-      padding: 14px 18px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.15);
-      color: white;
-      font-size: 16px;
-      width: 100%;
-      max-width: 400px;
-      backdrop-filter: blur(10px);
-      margin-bottom: 50px;
-    }
-
-    /* Card */
-    .boundary-card {
-      background: rgba(255,255,255,0.05);
-      border-radius: 24px;
-      padding: 40px;
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-      animation: fadeIn 0.3s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .boundary-card h2 {
+    .boundaries-hero {
       text-align: center;
-      margin-bottom: 40px;
-      font-size: 28px;
+      margin: 10px 0 18px;
     }
 
-    .level-grid {
+    .boundaries-hero h1 {
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: -0.02em;
+      margin: 0;
+    }
+
+    .boundaries-hero p {
+      margin: 8px 0 0;
+      opacity: 0.85;
+      font-size: 14px;
+    }
+
+    .panel {
+      border-radius: 16px;
+      padding: 16px;
+      margin: 14px 0;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: stretch;
+    }
+
+    .row > .panel {
+      flex: 1 1 320px;
+    }
+
+    .select-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    label {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    select {
+      min-width: 280px;
+      max-width: 520px;
+      width: 60vw;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(0, 0, 0, 0.18);
+      color: #fff;
+      outline: none;
+    }
+
+    .subject-card {
+      max-width: 520px;
+      margin: 18px auto 0;
+      padding: 18px 18px 16px;
+      border-radius: 18px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .subject-title {
+      font-size: 22px;
+      margin: 0 0 10px;
+      text-align: center;
+      letter-spacing: -0.01em;
+    }
+
+    .levels {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      gap: 14px;
     }
 
     .level h3 {
-      margin-bottom: 15px;
-      font-size: 18px;
-      opacity: 0.8;
+      margin: 6px 0 10px;
+      font-size: 13px;
+      opacity: 0.9;
+      font-weight: 700;
     }
 
-    .level ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .level li {
-      padding: 10px 14px;
-      margin-bottom: 8px;
+    .range-pill {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      padding: 8px 10px;
       border-radius: 10px;
-      background: rgba(255,255,255,0.05);
-      transition: 0.2s ease;
+      background: rgba(0, 0, 0, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 8px;
+      font-size: 13px;
     }
 
-    .level li:hover {
-      background: rgba(255,255,255,0.12);
-      transform: translateX(4px);
+    .range-pill span {
+      opacity: 0.95;
     }
 
-    @media (max-width: 800px) {
-      .level-grid {
+    .muted {
+      opacity: 0.78;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      opacity: 0.92;
+      margin-top: 8px;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 16px 10px;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 720px) {
+      .levels {
         grid-template-columns: 1fr;
-        gap: 40px;
+      }
+      select {
+        width: 92vw;
       }
     }
   </style>
@@ -99,98 +166,198 @@
 
 <body>
 
-  <header class="site-header">
-    <div class="container">
-      <div class="header-row">
-        <a class="brand" href="index.html">
-          <span class="brand-dot"></span>
-          <span class="brand-title">IB Survival Hub</span>
-        </a>
-
-        <nav class="nav" aria-label="Primary navigation">
-          <a href="index.html">Home</a>
-          <a href="subjects.html">Subjects</a>
-          <a href="planner.html">Planner</a>
-          <a href="quiz.html">Study Quiz</a>
-          <a href="resources.html">Resources</a>
-          <a href="boundaries.html">Boundaries</a>
-        </nav>
-      </div>
+  <!-- ✅ NAVBAR (matches the style.css expectations) -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a class="brand" href="index.html">IB Survival Hub</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="subjects.html">Subjects</a>
+        <a href="planner.html">Planner</a>
+        <a href="quiz.html">Study Quiz</a>
+        <a href="resources.html">Resources</a>
+        <a class="active" href="boundaries.html">Boundaries</a>
+      </nav>
     </div>
   </header>
 
-<div class="boundaries-container">
+  <main class="page-wrap">
+    <section class="boundaries-hero">
+      <h1>IB Grade Boundaries</h1>
+      <p>Based on IB May 2025 (Zone A – Ontario reference). Use as a quick estimate — always verify with your school.</p>
 
-  <h1>IB Grade Boundaries</h1>
-  <div class="subtitle">Based on IB May 2025 (Zone A – Ontario reference)</div>
-
-  <select id="subjectSelect">
-    <option value="chem">Chemistry</option>
-    <option value="physics">Physics</option>
-    <option value="math">Math AA</option>
-    <option value="bio">Biology</option>
-    <option value="cs">Computer Science</option>
-    <option value="econ">Economics</option>
-    <option value="business">Business</option>
-    <option value="history">History</option>
-    <option value="geo">Geography</option>
-    <option value="englishA">English A</option>
-    <option value="englishB">English B</option>
-    <option value="psych">Psychology</option>
-  </select>
-
-  <div id="output"></div>
-
-</div>
-
-<script>
-const boundaries = {
-
-chem: {
-  title: "Chemistry",
-  SL: ["7: 71–100","6: 60–70","5: 49–59","4: 38–48","3: 28–37","2: 16–27","1: 0–15"],
-  HL: ["7: 74–100","6: 63–73","5: 51–62","4: 40–50","3: 26–39","2: 15–25","1: 0–14"]
-},
-
-physics: {
-  title: "Physics",
-  SL: ["7: 63–100","6: 53–62","5: 42–52","4: 32–41","3: 20–31","2: 12–19","1: 0–11"],
-  HL: ["7: 67–100","6: 56–66","5: 45–55","4: 35–44","3: 24–34","2: 13–23","1: 0–12"]
-},
-
-math: {
-  title: "Math AA",
-  SL: ["7: 65–100","6: 52–64","5: 38–51","4: 25–37","3: 15–24","2: 7–14","1: 0–6"],
-  HL: ["7: 73–100","6: 60–72","5: 48–59","4: 34–47","3: 24–33","2: 12–23","1: 0–11"]
-}
-
-};
-
-function render(subject) {
-  const data = boundaries[subject];
-
-  document.getElementById("output").innerHTML = `
-    <div class="boundary-card">
-      <h2>${data.title}</h2>
-      <div class="level-grid">
-        <div class="level">
-          <h3>Standard Level</h3>
-          <ul>${data.SL.map(g => `<li>${g}</li>`).join("")}</ul>
-        </div>
-        <div class="level">
-          <h3>Higher Level</h3>
-          <ul>${data.HL.map(g => `<li>${g}</li>`).join("")}</ul>
-        </div>
+      <div class="select-row">
+        <label for="subjectSelect">Select subject</label>
+        <select id="subjectSelect"></select>
       </div>
-    </div>
-  `;
-}
+    </section>
 
-render("chem");
+    <section class="row">
+      <div class="panel">
+        <strong>How to read this</strong>
+        <p class="muted" style="margin-top:8px;">
+          Each line is the <b>overall % range</b> (final grade) that usually corresponds to each IB grade (1–7).
+          These boundaries can shift by session and timezone, but this gives you a solid estimate.
+        </p>
+        <div class="badge">Tip: Grade 6→7 jumps can be big — don’t rely on one test only.</div>
+      </div>
 
-document.getElementById("subjectSelect")
-  .addEventListener("change", e => render(e.target.value));
-</script>
+      <div class="panel">
+        <strong>What I can add next (if you want)</strong>
+        <p class="muted" style="margin-top:8px;">
+          • separate boundaries by component (Paper 1/2/IA) <br>
+          • your personal “target tracker” (enter current marks → predicted grade) <br>
+          • session toggle (May vs Nov) when you give the tables
+        </p>
+        <div class="badge">For now: clean + fast + accurate display.</div>
+      </div>
+    </section>
 
+    <section id="subjectCard" class="subject-card" aria-live="polite"></section>
+  </main>
+
+  <script>
+    // ✅ All subjects you provided (Final grade % ranges)
+    // Format: grade: "low–high"
+    const boundariesData = {
+      "Chemistry": {
+        sl: { 7:"71–100", 6:"60–70", 5:"49–59", 4:"38–48", 3:"28–37", 2:"16–27", 1:"0–15" },
+        hl: { 7:"74–100", 6:"63–73", 5:"51–62", 4:"40–50", 3:"26–39", 2:"15–25", 1:"0–14" }
+      },
+      "Physics": {
+        sl: { 7:"63–100", 6:"53–62", 5:"42–52", 4:"32–41", 3:"20–31", 2:"12–19", 1:"0–11" },
+        hl: { 7:"67–100", 6:"56–66", 5:"45–55", 4:"35–44", 3:"24–34", 2:"13–23", 1:"0–12" }
+      },
+      "Biology": {
+        sl: { 7:"77–100", 6:"64–76", 5:"52–63", 4:"39–51", 3:"26–38", 2:"13–25", 1:"0–12" },
+        hl: { 7:"76–100", 6:"62–75", 5:"49–61", 4:"36–48", 3:"25–35", 2:"13–24", 1:"0–12" }
+      },
+      "Mathematics AA": {
+        sl: { 7:"65–100", 6:"52–64", 5:"38–51", 4:"25–37", 3:"15–24", 2:"7–14", 1:"0–6" },
+        hl: { 7:"73–100", 6:"60–72", 5:"48–59", 4:"34–47", 3:"24–33", 2:"12–23", 1:"0–11" }
+      },
+      "Computer Science": {
+        sl: { 7:"74–100", 6:"64–73", 5:"54–63", 4:"44–53", 3:"29–43", 2:"14–28", 1:"0–13" },
+        hl: { 7:"74–100", 6:"64–73", 5:"53–63", 4:"43–52", 3:"31–42", 2:"15–30", 1:"0–14" }
+      },
+      "Geography": {
+        sl: { 7:"78–100", 6:"66–77", 5:"53–65", 4:"42–52", 3:"28–41", 2:"13–27", 1:"0–12" },
+        hl: { 7:"75–100", 6:"64–74", 5:"53–63", 4:"43–52", 3:"30–42", 2:"14–29", 1:"0–13" }
+      },
+      "History": {
+        sl: { 7:"77–100", 6:"63–76", 5:"49–62", 4:"35–48", 3:"25–34", 2:"11–24", 1:"0–10" },
+        hl: { 7:"74–100", 6:"61–73", 5:"49–60", 4:"36–48", 3:"25–35", 2:"11–24", 1:"0–10" }
+      },
+      "Economics": {
+        sl: { 7:"75–100", 6:"64–74", 5:"54–63", 4:"43–53", 3:"30–42", 2:"15–29", 1:"0–14" },
+        hl: { 7:"77–100", 6:"65–76", 5:"54–64", 4:"42–53", 3:"29–41", 2:"14–28", 1:"0–13" }
+      },
+      "Business Management": {
+        sl: { 7:"75–100", 6:"63–74", 5:"48–62", 4:"36–47", 3:"26–35", 2:"12–25", 1:"0–12" },
+        hl: { 7:"73–100", 6:"61–72", 5:"48–60", 4:"35–47", 3:"24–34", 2:"12–23", 1:"0–11" }
+      },
+      "English A Literature": {
+        sl: { 7:"73–100", 6:"60–72", 5:"49–59", 4:"35–48", 3:"25–34", 2:"13–24", 1:"0–12" },
+        hl: { 7:"76–100", 6:"62–75", 5:"50–61", 4:"37–49", 3:"27–36", 2:"14–26", 1:"0–13" }
+      },
+      "Psychology": {
+        sl: { 7:"71–100", 6:"58–70", 5:"49–57", 4:"36–48", 3:"26–35", 2:"12–25", 1:"0–11" },
+        hl: { 7:"68–100", 6:"57–67", 5:"45–56", 4:"33–44", 3:"21–32", 2:"10–20", 1:"0–9" }
+      },
+      "English B": {
+        sl: { 7:"86–100", 6:"71–85", 5:"54–70", 4:"39–53", 3:"25–38", 2:"12–24", 1:"0–11" },
+        hl: { 7:"91–100", 6:"76–90", 5:"60–75", 4:"46–59", 3:"28–45", 2:"13–27", 1:"0–12" }
+      }
+    };
+
+    // Keep a stable ordering in the dropdown
+    const subjectOrder = [
+      "Chemistry",
+      "Physics",
+      "Biology",
+      "Mathematics AA",
+      "Computer Science",
+      "Geography",
+      "History",
+      "Economics",
+      "Business Management",
+      "English A Literature",
+      "Psychology",
+      "English B"
+    ];
+
+    const subjectSelect = document.getElementById("subjectSelect");
+    const subjectCard = document.getElementById("subjectCard");
+
+    function makeOption(label) {
+      const opt = document.createElement("option");
+      opt.value = label;
+      opt.textContent = label;
+      return opt;
+    }
+
+    function renderSubject(subjectName) {
+      const data = boundariesData[subjectName];
+
+      // ✅ If missing data, CLEAR the UI properly (no more "last selected sticks")
+      if (!data) {
+        subjectCard.innerHTML = `
+          <div class="empty-state">
+            <h2 class="subject-title">${subjectName}</h2>
+            <p class="muted">No boundaries added for this subject yet.</p>
+            <p class="muted">If you send the screenshot/table, I’ll add it instantly.</p>
+          </div>
+        `;
+        return;
+      }
+
+      const grades = [7,6,5,4,3,2,1];
+
+      const slHtml = grades.map(g => `
+        <div class="range-pill">
+          <span><b>${g}</b></span>
+          <span>${data.sl[g] ?? "—"}</span>
+        </div>
+      `).join("");
+
+      const hlHtml = grades.map(g => `
+        <div class="range-pill">
+          <span><b>${g}</b></span>
+          <span>${data.hl[g] ?? "—"}</span>
+        </div>
+      `).join("");
+
+      subjectCard.innerHTML = `
+        <h2 class="subject-title">${subjectName}</h2>
+
+        <div class="levels">
+          <div class="level">
+            <h3>Standard Level</h3>
+            ${slHtml}
+          </div>
+          <div class="level">
+            <h3>Higher Level</h3>
+            ${hlHtml}
+          </div>
+        </div>
+
+        <p class="muted" style="margin:12px 0 0; text-align:center;">
+          Ranges shown are <b>final grade (%)</b> estimates for IB May 2025.
+        </p>
+      `;
+    }
+
+    // Populate dropdown
+    subjectSelect.innerHTML = "";
+    subjectOrder.forEach(s => subjectSelect.appendChild(makeOption(s)));
+
+    // Default selection
+    subjectSelect.value = "Chemistry";
+    renderSubject(subjectSelect.value);
+
+    subjectSelect.addEventListener("change", (e) => {
+      renderSubject(e.target.value);
+    });
+  </script>
 </body>
 </html>
