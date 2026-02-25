@@ -1,84 +1,113 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Subjects — IB Survival Hub</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script defer src="main.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subjects – IB Survival Hub</title>
+
+  <!-- IMPORTANT: must be exactly this filename in your repo root -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- nav active highlighting -->
+  <script src="app.js" defer></script>
 </head>
+
 <body>
-  <header class="siteHeader">
-    <div class="navInner">
-      <a class="brand" href="index.html"><span class="brandDot"></span>IB Survival Hub</a>
-      <nav class="navLinks">
+  <!-- Header / Nav -->
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html">IB Survival Hub</a>
+
+      <nav class="nav">
         <a href="index.html">Home</a>
         <a href="subjects.html">Subjects</a>
         <a href="planner.html">Planner</a>
-        <a href="study-quiz.html">Study Quiz</a>
+        <a href="quiz.html">Study Quiz</a>
         <a href="resources.html">Resources</a>
         <a href="boundaries.html">Boundaries</a>
       </nav>
     </div>
   </header>
 
-  <main class="container">
-    <h1 class="pageTitle">Subjects</h1>
-    <p class="pageSub">Pick a subject. Each page should have paper structure + strategy + common mark traps.</p>
+  <main class="page">
+    <section class="hero">
+      <h1>Subjects</h1>
+      <p>Pick a subject. Each page has paper structure + study strategy + common mark traps.</p>
+    </section>
 
-    <div class="card cardPad">
-      <div class="grid two">
-        <a class="tile" href="#">
-          <span class="kicker">Biology</span>
-          <h3>Data skills + command terms</h3>
-          <p>Use diagrams + precise wording. Avoid vague “it increases” answers.</p>
-        </a>
+    <section class="grid">
+      <a class="card" href="bio.html">
+        <div class="tag">Biology</div>
+        <h3>Data skills + command terms</h3>
+        <p>Use diagrams + precise wording. Avoid vague “it increases” answers.</p>
+      </a>
 
-        <a class="tile" href="#">
-          <span class="kicker">Chemistry</span>
-          <h3>Units + mechanisms + discipline</h3>
-          <p>Show method marks. Track units. Use correct sig figs.</p>
-        </a>
+      <a class="card" href="chem.html">
+        <div class="tag">Chemistry</div>
+        <h3>Units + mechanisms + discipline</h3>
+        <p>Show method marks. Track units. Use correct sig figs.</p>
+      </a>
 
-        <a class="tile" href="#">
-          <span class="kicker">Physics</span>
-          <h3>Method marks + diagrams</h3>
-          <p>Always state assumptions. Use consistent symbols and directions.</p>
-        </a>
+      <a class="card" href="physics.html">
+        <div class="tag">Physics</div>
+        <h3>Method marks + diagrams</h3>
+        <p>Always state assumptions. Use consistent symbols and directions.</p>
+      </a>
 
-        <a class="tile" href="#">
-          <span class="kicker">Math AA</span>
-          <h3>Steps shown + domain checks</h3>
-          <p>Don’t skip algebra. State restrictions. Check trig ranges.</p>
-        </a>
+      <a class="card" href="math.html">
+        <div class="tag">Math AA</div>
+        <h3>Steps shown + domain checks</h3>
+        <p>Don’t skip algebra. State restrictions. Check trig ranges.</p>
+      </a>
 
-        <a class="tile" href="#">
-          <span class="kicker">Economics</span>
-          <h3>DEED structure + evaluation</h3>
-          <p>Define → Explain → Example → Diagram, then evaluate clearly.</p>
-        </a>
+      <a class="card" href="econ.html">
+        <div class="tag">Economics</div>
+        <h3>DEED structure + evaluation</h3>
+        <p>Define → Explain → Example → Diagram, then evaluate clearly.</p>
+      </a>
 
-        <a class="tile" href="#">
-          <span class="kicker">Psychology</span>
-          <h3>Study structure + research methods</h3>
-          <p>Link to theory. Use studies correctly. Evaluate limitations.</p>
-        </a>
+      <a class="card" href="psych.html">
+        <div class="tag">Psychology</div>
+        <h3>Study structure + research methods</h3>
+        <p>Link to theory. Use studies correctly. Evaluate limitations.</p>
+      </a>
 
-        <a class="tile" href="#">
-          <span class="kicker">Business</span>
-          <h3>Definitions + structure + real examples</h3>
-          <p>Don’t waffle. Apply tools (SWOT, Ansoff, BCG) properly.</p>
-        </a>
+      <a class="card" href="business.html">
+        <div class="tag">Business</div>
+        <h3>Definitions + structure + real examples</h3>
+        <p>Don’t waffle. Apply tools (SWOT, Ansoff, BCG) properly.</p>
+      </a>
 
-        <a class="tile" href="#">
-          <span class="kicker">English</span>
-          <h3>Thesis clarity + literary analysis</h3>
-          <p>Point → evidence → effect → author purpose. Stay tight.</p>
-        </a>
-      </div>
+      <a class="card" href="english.html">
+        <div class="tag">English</div>
+        <h3>Thesis clarity + literary analysis</h3>
+        <p>Point → evidence → effect → author purpose. Stay tight.</p>
+      </a>
 
-      <div class="footerNote">If you want, tell me your actual subject pages/filenames and I’ll wire these links to them.</div>
-    </div>
+      <a class="card" href="history.html">
+        <div class="tag">History</div>
+        <h3>Source analysis + argument</h3>
+        <p>OPVL, competing interpretations, and clear judgement.</p>
+      </a>
+
+      <a class="card" href="geo.html">
+        <div class="tag">Geography</div>
+        <h3>Case studies + diagrams</h3>
+        <p>Use named examples, data, and structured evaluation.</p>
+      </a>
+
+      <a class="card" href="cs.html">
+        <div class="tag">Computer Science</div>
+        <h3>Logic flow + trace tables</h3>
+        <p>Write clean steps, test cases, and explain decisions.</p>
+      </a>
+
+      <a class="card" href="french.html">
+        <div class="tag">French</div>
+        <h3>Structure + tenses + exam format</h3>
+        <p>Short, accurate sentences. Reuse best phrases.</p>
+      </a>
+    </section>
   </main>
 </body>
 </html>
