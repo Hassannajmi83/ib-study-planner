@@ -1,88 +1,229 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Physics — IB Survival Hub</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Physics – IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <header class="topbar">
-    <div class="wrap topbarInner">
-      <a class="brand" href="index.html" aria-label="IB Survival Hub home">
-        <span class="dot"></span><span>IB Survival Hub</span>
-      </a>
 
-      <nav class="nav">
-        <a href="index.html">Home</a>
-        <a class="active" href="subjects.html">Subjects</a>
-        <a href="planner.html">Planner</a>
-        <a href="quiz.html">Study Quiz</a>
-        <a href="resources.html">Resources</a>
-        <a href="boundaries.html">Boundaries</a>
-        <a href="converter.html">Converter</a>
-      </nav>
+<body>
+
+  <!-- Shared Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-row">
+        <a class="brand" href="index.html">
+          <span class="brand-dot"></span>
+          <span class="brand-title">IB Survival Hub</span>
+        </a>
+
+        <nav class="nav">
+          <a href="index.html">Home</a>
+          <a href="subjects.html">Subjects</a>
+          <a href="planner.html">Planner</a>
+          <a href="quiz.html">Study Quiz</a>
+          <a href="resources.html">Resources</a>
+          <a href="boundaries.html">Boundaries</a>
+        </nav>
+      </div>
     </div>
   </header>
 
-  <main class="wrap page">
-    <section class="heroCard">
-      <h1>Physics</h1>
-      <p class="sub">Diagrams + method marks + clean assumptions.</p>
-      <div class="heroBtns">
-        <a class="btn" href="subjects.html">← Back to Subjects</a>
-      </div>
-    </section>
+  <main class="page">
+    <div class="container">
 
-    <section class="grid2">
-      <article class="card">
-        <h2>Papers</h2>
-        <ul class="list">
-          <li><b>Paper 1:</b> MCQ (concept traps + data booklet familiarity)</li>
-          <li><b>Paper 2:</b> structured problems (method marks)</li>
-          <li><b>Paper 3:</b> data/skills + option-style (depends on syllabus)</li>
-        </ul>
-        <div class="note">
-          Physics marks are “visible”: show forces, show components, show steps.
+      <!-- HERO -->
+      <section class="hero card">
+        <div class="card-inner">
+          <div class="badge">Subject Guide</div>
+          <h1 style="margin-top:10px;">Physics</h1>
+          <p class="kicker">
+            Physics is a <b>method-mark</b> subject. You win marks by showing steps, writing symbols cleanly, and keeping units consistent.
+          </p>
+          <div class="hr"></div>
+          <div class="note">
+            <b>High score rule:</b> Every problem should have: diagram → knowns/unknowns → formula → substitution → answer with units + sig figs.
+          </div>
         </div>
-      </article>
+      </section>
 
-      <article class="card">
-        <h2>High-impact study plan</h2>
-        <ul class="list">
-          <li><b>Booklet mastery:</b> know where the common equations live</li>
-          <li><b>Pattern practice:</b> do 10–15 questions of the same type, then mix</li>
-          <li><b>Timed sets:</b> train “fast setup” (diagram → equation → substitution)</li>
-          <li><b>Error log:</b> write the rule you should’ve used (units, sign, direction, trig)</li>
-        </ul>
-      </article>
-    </section>
+      <!-- PAPERS -->
+      <section class="section">
+        <div class="card">
+          <div class="card-inner">
+            <h2>Assessment (Papers)</h2>
+            <p class="small">Exact paper details can vary by syllabus year. Train the core skills below.</p>
 
-    <section class="grid2">
-      <article class="card">
-        <h2>Common mark traps</h2>
-        <ul class="list">
-          <li>Wrong direction/sign (vectors, acceleration, fields)</li>
-          <li>Using degrees vs radians incorrectly</li>
-          <li>Forgetting to resolve components</li>
-          <li>Not stating assumptions (no air resistance, point mass, etc.)</li>
-          <li>Final answer missing units / wrong sig figs</li>
-        </ul>
-      </article>
+            <div class="hr"></div>
 
-      <article class="card">
-        <h2>“Method mark” checklist</h2>
-        <ul class="list">
-          <li>Diagram drawn (FBD / rays / circuits)</li>
-          <li>Knowns/unknowns stated</li>
-          <li>Equation chosen + rearranged symbolically</li>
-          <li>Substitution shown clearly</li>
-          <li>Final answer: unit + sensible magnitude</li>
-        </ul>
-      </article>
-    </section>
+            <div class="grid grid-3">
+              <div class="card">
+                <div class="card-inner">
+                  <h3>Paper 1</h3>
+                  <p class="kicker"><b>MCQ + quick thinking.</b> Traps are units, sign, and graph reading.</p>
+                  <ul class="ul">
+                    <li>Always check units/dimensions.</li>
+                    <li>Approximate magnitude (sanity check).</li>
+                    <li>Practice timed sets weekly.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-inner">
+                  <h3>Paper 2</h3>
+                  <p class="kicker"><b>Structured problems.</b> Method marks reward clean steps.</p>
+                  <ul class="ul">
+                    <li>Write formula before numbers.</li>
+                    <li>Show intermediate steps.</li>
+                    <li>Draw diagrams for mechanics/circuits.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-inner">
+                  <h3>Paper 3</h3>
+                  <p class="kicker"><b>Data/experiment/option skills.</b></p>
+                  <ul class="ul">
+                    <li>State trend → explain using physics.</li>
+                    <li>Evaluate uncertainty + errors.</li>
+                    <li>Be comfortable with unfamiliar contexts.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- STUDY STRATEGY -->
+      <section class="section">
+        <div class="grid grid-2">
+
+          <div class="card">
+            <div class="card-inner">
+              <h2>Best Study Method (Physics)</h2>
+              <div class="hr"></div>
+              <ul class="ul">
+                <li><b>4x/week:</b> problem sets (topic → mixed).</li>
+                <li><b>Weekly:</b> 1 timed mini-paper to build speed.</li>
+                <li><b>After marking:</b> redo wrong questions after 24 hours.</li>
+                <li><b>Build a formula sheet</b> you can derive/explain (not memorize blindly).</li>
+              </ul>
+
+              <div class="hr"></div>
+              <div class="note">
+                <b>Physics mistake pattern:</b> you often lose marks from missing steps, not from not knowing the concept.
+                Fix by always showing your method even if you can “do it in your head”.
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <h2>Method-Mark Template</h2>
+              <div class="hr"></div>
+              <ul class="ul">
+                <li><b>1) Diagram:</b> label forces/velocities/directions.</li>
+                <li><b>2) Known/Unknown:</b> write symbol values.</li>
+                <li><b>3) Formula:</b> correct equation (with reasoning if needed).</li>
+                <li><b>4) Substitute:</b> numbers with units.</li>
+                <li><b>5) Answer:</b> final value, units, sig figs, direction.</li>
+              </ul>
+
+              <div class="hr"></div>
+              <div class="note">
+                <b>Sanity check:</b> does the value make sense? Is it too big/small? Is the sign/direction correct?
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- COMMON TRAPS -->
+      <section class="section">
+        <div class="card">
+          <div class="card-inner">
+            <h2>Common Mark Traps (Physics)</h2>
+            <div class="hr"></div>
+
+            <div class="grid grid-3">
+              <div class="card">
+                <div class="card-inner">
+                  <h3>Trap 1: Units</h3>
+                  <p class="kicker">Forgetting unit conversions (mm → m, kJ → J).</p>
+                  <div class="note">Fix: convert to SI early and write units every line.</div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-inner">
+                  <h3>Trap 2: Signs/directions</h3>
+                  <p class="kicker">Negative sign or vector direction mistakes.</p>
+                  <div class="note">Fix: define positive direction on your diagram first.</div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-inner">
+                  <h3>Trap 3: Missing steps</h3>
+                  <p class="kicker">Skipping method loses easy marks.</p>
+                  <div class="note">Fix: show formula + substitution even if it’s obvious.</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- DATA QUESTIONS -->
+      <section class="section">
+        <div class="card">
+          <div class="card-inner">
+            <h2>Data / Graph Questions</h2>
+            <div class="hr"></div>
+            <ul class="ul">
+              <li><b>Describe:</b> overall trend + anomalies + compare segments.</li>
+              <li><b>Calculate:</b> gradient/area carefully with units.</li>
+              <li><b>Explain:</b> connect to physics principle (Newton’s laws, energy, fields, etc.).</li>
+              <li><b>Uncertainty:</b> mention random vs systematic and improvement ideas.</li>
+            </ul>
+            <div class="hr"></div>
+            <div class="note">
+              Always write: <b>slope units</b> and what the slope physically represents.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUICK PRACTICE -->
+      <section class="section">
+        <div class="card">
+          <div class="card-inner">
+            <h2>Quick Practice Checklist</h2>
+            <div class="hr"></div>
+            <ul class="ul">
+              <li>Can I solve 8–12 problems without notes and show all steps?</li>
+              <li>Do I convert to SI units automatically?</li>
+              <li>Can I interpret graphs and compute gradients with units?</li>
+              <li>Do I redo wrong questions after 24 hours?</li>
+            </ul>
+            <div class="hr"></div>
+            <a class="btn primary" href="subjects.html">Back to Subjects</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer">Physics page — IB Survival Hub</div>
+
+    </div>
   </main>
 
-  <script src="app.js"></script>
+  <script src="app.jss"></script>
 </body>
 </html>
