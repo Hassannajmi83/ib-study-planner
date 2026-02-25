@@ -2,100 +2,73 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <!-- Shared Header (same on every page) -->
   <header class="site-header">
-    <div class="container">
-      <div class="header-row">
-        <a class="brand" href="index.html">
-          <span class="brand-dot"></span>
-          <span class="brand-title">IB Survival Hub</span>
-        </a>
-
-        <nav class="nav" aria-label="Primary navigation">
-          <a href="index.html">Home</a>
-          <a href="subjects.html">Subjects</a>
-          <a href="planner.html">Planner</a>
-          <a href="quiz.html">Study Quiz</a>
-          <a href="resources.html">Resources</a>
-          <a href="boundaries.html">Boundaries</a>
-        </nav>
-      </div>
+    <div class="nav-inner">
+      <a class="brand" href="index.html">IB Survival Hub</a>
+      <nav class="nav-links">
+        <a class="active" href="index.html">Home</a>
+        <a href="subjects.html">Subjects</a>
+        <a href="planner.html">Planner</a>
+        <a href="quiz.html">Study Quiz</a>
+        <a href="resources.html">Resources</a>
+        <a href="boundaries.html">Boundaries</a>
+      </nav>
     </div>
   </header>
 
-  <main class="page">
-    <div class="container">
-      <section class="hero card">
-        <div class="card-inner">
-          <h1>IB Survival Hub</h1>
-          <p class="kicker">A clean, focused workspace for IB students. Study smarter. Track smarter.</p>
+  <main class="page-wrap">
+    <section class="card">
+      <h1>IB Survival Hub</h1>
+      <p class="muted">A clean, focused workspace for IB students. Study smarter. Track smarter.</p>
 
-          <div class="hr"></div>
+      <div class="home-grid">
+        <a class="home-tile" href="subjects.html">
+          <div class="pill">Subjects</div>
+          <div class="home-title">Paper structure + traps</div>
+          <div class="home-desc">Each subject page has papers + study strategy + common mark traps.</div>
+        </a>
 
-          <div class="grid grid-3">
-            <a class="card" href="subjects.html">
-              <div class="card-inner">
-                <div class="badge">Subjects</div>
-                <h3 style="margin-top:10px;">Paper structure + traps</h3>
-                <p class="kicker">Each subject page has papers + study strategy + common mark traps.</p>
-              </div>
-            </a>
+        <a class="home-tile" href="planner.html">
+          <div class="pill">Planner</div>
+          <div class="home-title">Weekly plan generator</div>
+          <div class="home-desc">Build a realistic weekly plan based on hours + exam date.</div>
+        </a>
 
-            <a class="card" href="planner.html">
-              <div class="card-inner">
-                <div class="badge">Planner</div>
-                <h3 style="margin-top:10px;">Weekly plan generator</h3>
-                <p class="kicker">Build a realistic weekly plan based on hours + exam date.</p>
-              </div>
-            </a>
+        <a class="home-tile" href="quiz.html">
+          <div class="pill">Study Quiz</div>
+          <div class="home-title">Find your study style</div>
+          <div class="home-desc">Quick quiz → a study plan that matches your style.</div>
+        </a>
 
-            <a class="card" href="quiz.html">
-              <div class="card-inner">
-                <div class="badge">Study Quiz</div>
-                <h3 style="margin-top:10px;">Find your study style</h3>
-                <p class="kicker">Quick quiz → a study plan that matches your style.</p>
-              </div>
-            </a>
+        <a class="home-tile" href="resources.html">
+          <div class="pill">Resources</div>
+          <div class="home-title">Safe links only</div>
+          <div class="home-desc">Clean list of legit websites (no piracy / repo links).</div>
+        </a>
 
-            <a class="card" href="resources.html">
-              <div class="card-inner">
-                <div class="badge">Resources</div>
-                <h3 style="margin-top:10px;">Safe links only</h3>
-                <p class="kicker">Clean list of legit websites (no piracy / repo links).</p>
-              </div>
-            </a>
+        <a class="home-tile" href="boundaries.html">
+          <div class="pill">Grade Boundaries</div>
+          <div class="home-title">Session + timezone</div>
+          <div class="home-desc">Pick a subject and see the grade boundaries you pasted in.</div>
+        </a>
 
-            <a class="card" href="boundaries.html">
-              <div class="card-inner">
-                <div class="badge">Grade Boundaries</div>
-                <h3 style="margin-top:10px;">Session + timezone</h3>
-                <p class="kicker">Pick a subject and see the grade boundaries you pasted in.</p>
-              </div>
-            </a>
-
-            <div class="card">
-              <div class="card-inner">
-                <div class="badge">Note</div>
-                <h3 style="margin-top:10px;">Keep it simple</h3>
-                <p class="kicker">This site is meant to reduce chaos — not become another project.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="footer">
-            Built for CAS: tech + service + user-focused tool.
-          </div>
+        <div class="home-tile no-link">
+          <div class="pill">Note</div>
+          <div class="home-title">Keep it simple</div>
+          <div class="home-desc">This site is meant to reduce chaos — not become another project.</div>
         </div>
-      </section>
-    </div>
+      </div>
+
+      <p class="muted small mt">Built for CAS: tech + service + user-focused tool.</p>
+    </section>
   </main>
 
-  <script src="app.jss"></script>
+  <script src="app.js" defer></script>
 </body>
 </html>
