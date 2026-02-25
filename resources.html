@@ -1,61 +1,68 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Resources - IB Survival Hub</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resources — IB Survival Hub</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="main.js"></script>
 </head>
 <body>
-
-  <header class="navbar">
-    <div class="nav-container">
-      <a class="brand" href="index.html">IB Survival Hub</a>
-      <nav class="nav-links">
+  <header class="siteHeader">
+    <div class="navInner">
+      <a class="brand" href="index.html"><span class="brandDot"></span>IB Survival Hub</a>
+      <nav class="navLinks">
         <a href="index.html">Home</a>
         <a href="subjects.html">Subjects</a>
         <a href="planner.html">Planner</a>
-        <a href="quiz.html">Study Quiz</a>
-        <a class="active" href="resources.html">Resources</a>
+        <a href="study-quiz.html">Study Quiz</a>
+        <a href="resources.html">Resources</a>
         <a href="boundaries.html">Boundaries</a>
       </nav>
     </div>
   </header>
 
-  <main class="page-wrap">
-    <section class="panel" style="max-width:980px; margin:18px auto; padding:18px;">
-      <h1 class="h1" style="font-size:38px; margin-bottom:8px;">Resources</h1>
-      <p class="sub">Clean list of safe links + what to use them for. (No sketchy repost sites.)</p>
+  <main class="container">
+    <h1 class="pageTitle">Resources</h1>
+    <p class="pageSub">Clean list of safe links + what to use them for. (No sketchy repost sites.)</p>
 
-      <div class="hr"></div>
-
-      <div class="grid grid-2">
-        <div class="card">
-          <p class="card-title">Official IB (general)</p>
-          <p class="card-sub">Use for policies, assessment info, subject outlines.</p>
+    <div class="card cardPad">
+      <div class="grid two">
+        <div class="outCard">
+          <h4>Official IB (general)</h4>
+          <ul>
+            <li>Use for policies, assessment info, subject outlines.</li>
+            <li>Always prefer your teacher/school’s official docs.</li>
+          </ul>
         </div>
 
-        <div class="card">
-          <p class="card-title">Past paper practice</p>
-          <p class="card-sub">Only use what your school provides officially.</p>
+        <div class="outCard">
+          <h4>Markscheme mindset</h4>
+          <ul>
+            <li>Practice with “command terms” and write in IB wording.</li>
+            <li>Build an error log (mistake → correction → rule).</li>
+          </ul>
         </div>
 
-        <div class="card">
-          <p class="card-title">Markscheme mindset</p>
-          <p class="card-sub">Practice with “command terms” and write in IB wording.</p>
+        <div class="outCard">
+          <h4>IA / EE / TOK examples</h4>
+          <ul>
+            <li>Use teacher-approved samples + official guidance.</li>
+            <li>Copy structure, not content.</li>
+          </ul>
         </div>
 
-        <div class="card">
-          <p class="card-title">IA / EE / TOK examples</p>
-          <p class="card-sub">Use your teacher’s approved samples + official guidance.</p>
+        <div class="outCard">
+          <h4>Past paper practice</h4>
+          <ul>
+            <li>Only use what your school provides officially.</li>
+            <li>Redo wrong questions after corrections.</li>
+          </ul>
         </div>
       </div>
 
-      <p class="sub" style="margin-top:14px;">
-        If you want, tell me which links your teacher allows and I’ll format them into clean clickable cards here.
-      </p>
-    </section>
+      <div class="footerNote">If you tell me which links your teacher allows, I’ll format them into clean clickable cards here.</div>
+    </div>
   </main>
-
 </body>
 </html>
