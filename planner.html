@@ -1,65 +1,70 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Study Planner – IB Survival Hub</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Study Planner — IB Survival Hub</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="main.js"></script>
 </head>
-
 <body>
-  <header class="site-header">
-    <div class="nav-inner">
-      <a class="brand" href="index.html">IB Survival Hub</a>
-      <nav class="nav-links">
+  <header class="siteHeader">
+    <div class="navInner">
+      <a class="brand" href="index.html"><span class="brandDot"></span>IB Survival Hub</a>
+      <nav class="navLinks">
         <a href="index.html">Home</a>
         <a href="subjects.html">Subjects</a>
-        <a class="active" href="planner.html">Planner</a>
-        <a href="quiz.html">Study Quiz</a>
+        <a href="planner.html">Planner</a>
+        <a href="study-quiz.html">Study Quiz</a>
         <a href="resources.html">Resources</a>
         <a href="boundaries.html">Boundaries</a>
       </nav>
     </div>
   </header>
 
-  <main class="page-wrap">
-    <section class="card">
-      <h1>Study Planner</h1>
-      <p class="muted">Time management only. No subject typing. Rotates Course 1…N evenly.</p>
+  <main class="container">
+    <h1 class="pageTitle">Study Planner</h1>
+    <p class="pageSub">Time management only. Enter hours/day + days until exam + number of courses. It rotates Course 1…N evenly.</p>
 
-      <div class="grid-2">
-        <div class="panel">
-          <h2>Inputs</h2>
+    <div class="grid two">
+      <div class="card cardPad">
+        <h3 style="margin:0 0 6px;">Inputs</h3>
+        <p class="small" style="margin:0 0 10px;">Keep it realistic. Consistency beats hero sessions.</p>
+        <form id="plannerForm">
+          <div class="row">
+            <div>
+              <label for="hoursPerDay">Hours per day</label>
+              <input id="hoursPerDay" type="number" min="0.5" step="0.5" placeholder="Example: 2" />
+            </div>
+            <div>
+              <label for="daysUntil">Days until exam</label>
+              <input id="daysUntil" type="number" min="1" step="1" placeholder="Example: 14" />
+            </div>
+          </div>
 
-          <label class="label">Hours per day</label>
-          <input id="pHours" class="input" type="number" min="0.5" step="0.5" placeholder="Example: 2" />
+          <label for="courseCount">Number of courses</label>
+          <input id="courseCount" type="number" min="1" step="1" placeholder="Example: 6" />
 
-          <label class="label">Days until exam</label>
-          <input id="pDays" class="input" type="number" min="1" step="1" placeholder="Example: 14" />
+          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn" type="submit">Generate</button>
+            <button class="btn secondary" type="button" onclick="document.getElementById('plannerOut').innerHTML='';">Clear</button>
+          </div>
+        </form>
 
-          <label class="label">Number of courses</label>
-          <input id="pCourses" class="input" type="number" min="1" max="12" step="1" placeholder="Example: 6" />
-
-          <button id="pGenerate" class="btn primary" type="button">Generate</button>
-        </div>
-
-        <div class="panel">
-          <h2>Rules</h2>
-          <ul class="muted">
-            <li>Each day is split into: content → practice → review</li>
-            <li>Courses rotate evenly across days</li>
-            <li>Short, consistent sessions win</li>
-          </ul>
-        </div>
+        <hr class="hr" />
+        <h3 style="margin:0 0 6px;">Rules</h3>
+        <ul class="small" style="margin:0; padding-left:18px; color:var(--muted); line-height:1.45;">
+          <li>Each day splits into: content → practice → review</li>
+          <li>Courses rotate evenly across days</li>
+          <li>Short + consistent beats perfect</li>
+        </ul>
       </div>
 
-      <div class="panel mt">
-        <h2>Your plan</h2>
-        <div id="pOut" class="muted">Press Generate to see a plan.</div>
+      <div class="card cardPad">
+        <h3 style="margin:0 0 10px;">Your plan</h3>
+        <div id="plannerOut" class="small muted">Press Generate to see a plan.</div>
       </div>
-    </section>
+    </div>
   </main>
-
-  <script src="planner.js" defer></script>
 </body>
 </html>
