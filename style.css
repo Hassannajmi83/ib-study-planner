@@ -278,3 +278,22 @@ label{
 
 /* Hide legacy ugly fallback nav if it exists */
 .legacy-nav{ display:none !important; }
+
+
+.boundary-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.boundary-table th,
+.boundary-table td {
+  border: 1px solid #e5e7eb;
+  padding: 10px;
+  text-align: center;
+}
+
+.boundary-table th {
+  background: #f3f4f6;
+  font-weight: 600;
+}
