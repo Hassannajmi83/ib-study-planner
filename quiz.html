@@ -3,86 +3,91 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Study Quiz – IB Survival Hub</title>
+  <title>Study Quiz - IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-
-  <!-- Shared Header -->
-  <header class="site-header">
-    <div class="container">
-      <div class="header-row">
-        <a class="brand" href="index.html">
-          <span class="brand-dot"></span>
-          <span class="brand-title">IB Survival Hub</span>
-        </a>
-
-        <nav class="nav">
-          <a href="index.html">Home</a>
-          <a href="subjects.html">Subjects</a>
-          <a href="planner.html">Planner</a>
-          <a href="quiz.html">Study Quiz</a>
-          <a href="resources.html">Resources</a>
-          <a href="boundaries.html">Boundaries</a>
-        </nav>
-      </div>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a class="brand" href="index.html">IB Survival Hub</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="subjects.html">Subjects</a>
+        <a href="planner.html">Planner</a>
+        <a class="active" href="quiz.html">Study Quiz</a>
+        <a href="resources.html">Resources</a>
+        <a href="boundaries.html">Boundaries</a>
+      </nav>
     </div>
   </header>
 
-  <main class="page">
-    <div class="container">
+  <main class="page-wrap">
+    <section class="panel" style="max-width: 980px; margin: 18px auto; padding: 18px;">
+      <h1 style="margin:0 0 8px;">Study Quiz</h1>
+      <p style="margin:0; opacity:.85;">
+        Quick multiple-choice checks for core IB topics. Pick a subject, start the quiz, get a score.
+      </p>
+    </section>
 
-      <section class="hero card">
-        <div class="card-inner">
-          <h1>Study Quiz</h1>
-          <p class="kicker">Answer a few questions → get a study style + weekly routine that fits you.</p>
-        </div>
-      </section>
+    <section class="panel" style="max-width: 980px; margin: 14px auto; padding: 16px;">
+      <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+        <label for="quizSubject" style="opacity:.9; font-size:13px;">Subject</label>
+        <select id="quizSubject" style="min-width:260px;">
+          <option value="Chemistry">Chemistry</option>
+          <option value="Biology">Biology</option>
+          <option value="Physics">Physics</option>
+          <option value="Mathematics AA">Mathematics AA</option>
+          <option value="Computer Science">Computer Science</option>
+          <option value="Economics">Economics</option>
+          <option value="Business Management">Business Management</option>
+          <option value="Psychology">Psychology</option>
+          <option value="English A Literature">English A Literature</option>
+          <option value="English B">English B</option>
+          <option value="Geography">Geography</option>
+          <option value="History">History</option>
+        </select>
 
-      <section class="section">
-        <div class="grid grid-2">
+        <label for="quizCount" style="opacity:.9; font-size:13px;">Questions</label>
+        <select id="quizCount">
+          <option value="5">5</option>
+          <option value="8" selected>8</option>
+          <option value="10">10</option>
+        </select>
 
-          <!-- Left: Quiz -->
-          <div class="card">
-            <div class="card-inner">
-              <h2>Quiz</h2>
-              <p class="small">Press start, answer each question, get your result instantly.</p>
+        <button id="startQuizBtn" class="btn" type="button">Start Quiz</button>
+        <button id="resetQuizBtn" class="btn" type="button" style="display:none;">Reset</button>
+      </div>
+    </section>
 
-              <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
-                <button class="btn primary" id="quizStart" type="button">Start quiz</button>
-              </div>
+    <!-- QUIZ AREA -->
+    <section id="quizArea" class="panel" style="max-width: 980px; margin: 14px auto; padding: 16px; display:none;">
+      <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:center;">
+        <div id="quizMeta" style="opacity:.9; font-size:13px;">Question 1 / 8</div>
+        <div id="quizScore" style="opacity:.9; font-size:13px;">Score: 0</div>
+      </div>
 
-              <div class="hr"></div>
-              <div id="quizOut" class="note">Click <b>Start quiz</b> to begin.</div>
-            </div>
-          </div>
+      <hr style="border:none; border-top:1px solid rgba(255,255,255,.12); margin:12px 0;" />
 
-          <!-- Right: Explanation -->
-          <div class="card">
-            <div class="card-inner">
-              <h2>What this does</h2>
-              <ul class="ul">
-                <li><b>Practice-first</b>: you need more questions + timed sets + markscheme discipline.</li>
-                <li><b>Understand-first</b>: you need clean foundations before heavy exam practice.</li>
-                <li><b>Explain-first</b>: you need structure templates + wording + command terms.</li>
-                <li><b>Recall-first</b>: you need fast memory retrieval + spaced repetition.</li>
-              </ul>
+      <h2 id="quizQuestion" style="margin:0 0 10px; font-size:18px; line-height:1.35;">Question text…</h2>
 
-              <div class="hr"></div>
-              <div class="note">
-                <b>Important:</b> your style can change by subject.
-                Math/Physics often = practice-first. Bio often = recall-first.
-              </div>
-            </div>
-          </div>
+      <div id="quizChoices" style="display:grid; gap:10px;"></div>
 
-        </div>
-      </section>
+      <div style="display:flex; gap:10px; margin-top:14px; flex-wrap:wrap;">
+        <button id="nextQuizBtn" class="btn" type="button" disabled>Next</button>
+        <div id="quizFeedback" style="opacity:.85; font-size:13px; align-self:center;"></div>
+      </div>
+    </section>
 
-    </div>
+    <!-- RESULT AREA -->
+    <section id="quizResult" class="panel" style="max-width: 980px; margin: 14px auto; padding: 16px; display:none;">
+      <h2 style="margin:0 0 8px;">Result</h2>
+      <p id="quizResultText" style="margin:0; opacity:.9;"></p>
+    </section>
   </main>
 
-  <script src="app.jss"></script>
+  <!-- IMPORTANT: defer so the button works reliably -->
+  <script src="app.js" defer></script>
 </body>
 </html>
