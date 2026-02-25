@@ -2,71 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>IB Survival Hub</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script defer src="main.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="app.js"></script>
 </head>
+
 <body>
   <header class="siteHeader">
-    <div class="navInner">
+    <div class="navWrap">
       <a class="brand" href="index.html"><span class="brandDot"></span>IB Survival Hub</a>
-      <nav class="navLinks">
+      <nav class="nav">
         <a href="index.html">Home</a>
         <a href="subjects.html">Subjects</a>
         <a href="planner.html">Planner</a>
-        <a href="study-quiz.html">Study Quiz</a>
+        <a href="quiz.html">Study Quiz</a>
         <a href="resources.html">Resources</a>
         <a href="boundaries.html">Boundaries</a>
       </nav>
     </div>
   </header>
 
-  <main class="container">
-    <h1 class="pageTitle">IB Survival Hub</h1>
-    <p class="pageSub">A clean, focused workspace for IB students. Study smarter. Track smarter.</p>
+  <main class="page">
+    <section class="panel">
+      <h1>IB Survival Hub</h1>
+      <p class="muted">A clean, focused workspace for IB students. Study smarter. Track smarter.</p>
 
-    <div class="card cardPad">
-      <div class="grid three">
-        <a class="tile" href="subjects.html">
-          <span class="kicker">Subjects</span>
+      <div class="hr"></div>
+
+      <div class="grid">
+        <a class="card" href="subjects.html" style="text-decoration:none;color:inherit">
+          <div class="pill">Subjects</div>
           <h3>Paper structure + traps</h3>
-          <p>Each subject page has papers + study strategy + common mark traps.</p>
+          <p class="muted">Each subject page has papers + study strategy + common mark traps.</p>
         </a>
 
-        <a class="tile" href="planner.html">
-          <span class="kicker">Planner</span>
+        <a class="card" href="planner.html" style="text-decoration:none;color:inherit">
+          <div class="pill">Planner</div>
           <h3>Weekly plan generator</h3>
-          <p>Time management only: hours/day + days left + number of courses → plan.</p>
+          <p class="muted">Build a realistic weekly plan based on hours + exam date.</p>
         </a>
 
-        <a class="tile" href="study-quiz.html">
-          <span class="kicker">Study Quiz</span>
+        <a class="card" href="quiz.html" style="text-decoration:none;color:inherit">
+          <div class="pill">Study Quiz</div>
           <h3>Find your study style</h3>
-          <p>Quick check → recommends study methods + routine for your situation.</p>
+          <p class="muted">Quick check → recommends study method + routine for your situation.</p>
         </a>
 
-        <a class="tile" href="resources.html">
-          <span class="kicker">Resources</span>
+        <a class="card" href="resources.html" style="text-decoration:none;color:inherit">
+          <div class="pill">Resources</div>
           <h3>Safe links only</h3>
-          <p>Clean list of legit websites (no piracy / repo links).</p>
+          <p class="muted">Clean list of legit websites (no piracy / repost links).</p>
         </a>
 
-        <a class="tile" href="boundaries.html">
-          <span class="kicker">Grade Boundaries</span>
+        <a class="card" href="boundaries.html" style="text-decoration:none;color:inherit">
+          <div class="pill">Grade Boundaries</div>
           <h3>Session + timezone</h3>
-          <p>Pick a subject and see the grade boundaries you pasted in.</p>
+          <p class="muted">Pick a subject and see the grade boundaries you pasted in.</p>
         </a>
 
-        <div class="tile" style="cursor:default;">
-          <span class="kicker">Note</span>
+        <div class="card">
+          <div class="pill">Note</div>
           <h3>Keep it simple</h3>
-          <p>This site is meant to reduce chaos — not become another project.</p>
+          <p class="muted">This site is meant to reduce chaos — not become another project.</p>
         </div>
       </div>
 
-      <div class="footerNote">Built for CAS: tech + service + user-focused tool.</div>
-    </div>
+      <p class="small" style="margin-top:14px;">Built for CAS: tech + service + user-focused tool.</p>
+    </section>
   </main>
 </body>
 </html>
