@@ -3,211 +3,59 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Resources – IB Survival Hub</title>
+  <title>Resources - IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-  <!-- Shared Header -->
-  <header class="site-header">
-    <div class="container">
-      <div class="header-row">
-        <a class="brand" href="index.html">
-          <span class="brand-dot"></span>
-          <span class="brand-title">IB Survival Hub</span>
-        </a>
-
-        <nav class="nav">
-          <a href="index.html">Home</a>
-          <a href="subjects.html">Subjects</a>
-          <a href="planner.html">Planner</a>
-          <a href="quiz.html">Study Quiz</a>
-          <a href="resources.html">Resources</a>
-          <a href="boundaries.html">Boundaries</a>
-        </nav>
-      </div>
+  <header class="navbar">
+    <div class="nav-container">
+      <a class="brand" href="index.html">IB Survival Hub</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="subjects.html">Subjects</a>
+        <a href="planner.html">Planner</a>
+        <a href="quiz.html">Study Quiz</a>
+        <a class="active" href="resources.html">Resources</a>
+        <a href="boundaries.html">Boundaries</a>
+      </nav>
     </div>
   </header>
 
-  <main class="page">
-    <div class="container">
+  <main class="page-wrap">
+    <section class="panel" style="max-width:980px; margin:18px auto; padding:18px;">
+      <h1 class="h1" style="font-size:38px; margin-bottom:8px;">Resources</h1>
+      <p class="sub">Clean list of safe links + what to use them for. (No sketchy repost sites.)</p>
 
-      <section class="hero card">
-        <div class="card-inner">
-          <h1>Resources</h1>
-          <p class="kicker">
-            Safe, legit links only (no piracy / leaked papers). Filter by subject/type/access.
-          </p>
-          <div class="hr"></div>
-          <div class="note">
-            <b>Rule:</b> Don’t hoard links. Each resource should turn into: (1) practice questions, or (2) recall prompts.
-          </div>
-        </div>
-      </section>
+      <div class="hr"></div>
 
-      <section class="section">
-        <div class="grid grid-2">
-
-          <!-- Filters -->
-          <div class="card">
-            <div class="card-inner">
-              <h2>Filters</h2>
-              <p class="small">Use filters to keep your resource list focused.</p>
-
-              <label for="resSubject">Subject</label>
-              <select id="resSubject"></select>
-
-              <label for="resType">Type</label>
-              <select id="resType"></select>
-
-              <label for="resAccess">Access</label>
-              <select id="resAccess"></select>
-
-              <div class="hr"></div>
-              <div class="note">
-                <b id="resCount">0 resource(s)</b><br/>
-                Add more links later by editing <code>RESOURCES_DATA</code> inside this file.
-              </div>
-            </div>
-          </div>
-
-          <!-- Results -->
-          <div class="card">
-            <div class="card-inner">
-              <h2>Results</h2>
-              <div id="resourcesOut" class="note">
-                Loading resources…
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <section class="section">
+      <div class="grid grid-2">
         <div class="card">
-          <div class="card-inner">
-            <h2>How to use resources (so it actually improves marks)</h2>
-            <ul class="ul">
-              <li><b>Past paper loop:</b> attempt → mark → write the “rule you broke” → redo.</li>
-              <li><b>Videos rule:</b> never watch without doing questions right after.</li>
-              <li><b>Notes rule:</b> compress to 1 page per topic, then switch to questions.</li>
-              <li><b>Weekly audit:</b> delete anything you haven’t used in 2 weeks.</li>
-            </ul>
-          </div>
+          <p class="card-title">Official IB (general)</p>
+          <p class="card-sub">Use for policies, assessment info, subject outlines.</p>
         </div>
-      </section>
 
-      <div class="footer">Not affiliated with the IB Organization.</div>
-    </div>
+        <div class="card">
+          <p class="card-title">Past paper practice</p>
+          <p class="card-sub">Only use what your school provides officially.</p>
+        </div>
+
+        <div class="card">
+          <p class="card-title">Markscheme mindset</p>
+          <p class="card-sub">Practice with “command terms” and write in IB wording.</p>
+        </div>
+
+        <div class="card">
+          <p class="card-title">IA / EE / TOK examples</p>
+          <p class="card-sub">Use your teacher’s approved samples + official guidance.</p>
+        </div>
+      </div>
+
+      <p class="sub" style="margin-top:14px;">
+        If you want, tell me which links your teacher allows and I’ll format them into clean clickable cards here.
+      </p>
+    </section>
   </main>
 
-  <!-- SAFE resource dataset (edit freely) -->
-  <script>
-    // You can add/remove items. Keep it legit (no leaked papers / piracy).
-    // Fields: subject, type, access, title, url, desc
-    window.RESOURCES_DATA = [
-      // CORE / IB
-      {
-        subject: "Core / IB",
-        type: "Official",
-        access: "Free",
-        title: "IBO (official site)",
-        url: "https://www.ibo.org/",
-        desc: "Use for official information, subject guides access via your school, and general IB updates."
-      },
-      {
-        subject: "Core / IB",
-        type: "Tool",
-        access: "Free",
-        title: "IB Converter (external tool)",
-        url: "https://ibconverter.com/",
-        desc: "A reference converter tool. Always verify with your school’s official conversion."
-      },
-
-      // BIO
-      {
-        subject: "Biology",
-        type: "Notes",
-        access: "Free",
-        title: "BioNinja",
-        url: "https://ib.bioninja.com.au/",
-        desc: "Clean topic summaries + diagrams. Turn subtopics into recall prompts."
-      },
-
-      // CHEM
-      {
-        subject: "Chemistry",
-        type: "Video",
-        access: "Free",
-        title: "MSJ Chem (YouTube)",
-        url: "https://www.youtube.com/@MSJChem",
-        desc: "Strong IB chem explanations. Watch → then do 10 exam questions."
-      },
-
-      // PHYSICS
-      {
-        subject: "Physics",
-        type: "Video",
-        access: "Free",
-        title: "Chris Doner (YouTube)",
-        url: "https://www.youtube.com/@chrisdoner",
-        desc: "Worked examples. Pause and solve before the next step."
-      },
-
-      // MATH
-      {
-        subject: "Math AA",
-        type: "Practice",
-        access: "Mixed",
-        title: "Revision Village",
-        url: "https://www.revisionvillage.com/",
-        desc: "Some free content + paid bank. Use for targeted drills and timed mixed sets."
-      },
-
-      // ECON
-      {
-        subject: "Economics",
-        type: "Video",
-        access: "Free",
-        title: "EconplusDal (YouTube)",
-        url: "https://www.youtube.com/@EconplusDal",
-        desc: "Diagrams + evaluation structure. Practice DEED + 15-mark judgement."
-      },
-
-      // ENGLISH
-      {
-        subject: "English",
-        type: "Video",
-        access: "Free",
-        title: "IB English Guys (YouTube)",
-        url: "https://www.youtube.com/@IBEnglishGuys",
-        desc: "Paper 1/2 structure and examples. Write 1 paragraph after each video."
-      },
-
-      // PSYCH
-      {
-        subject: "Psychology",
-        type: "Notes",
-        access: "Mixed",
-        title: "ThinkIB Psychology",
-        url: "https://www.thinkib.net/psychology",
-        desc: "Often subscription via school. Use for structures + study summaries if you have access."
-      },
-
-      // GENERAL (optional paid)
-      {
-        subject: "Core / IB",
-        type: "Practice",
-        access: "Paid",
-        title: "Save My Exams (IB)",
-        url: "https://www.savemyexams.com/",
-        desc: "Paid. Good for question practice + tracking weaknesses."
-      }
-    ];
-  </script>
-
-  <script src="app.jss"></script>
 </body>
 </html>
