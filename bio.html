@@ -5,9 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Biology – IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Page-only spacing tweaks (ONLY affects this Biology page) -->
+  <style>
+    /* Increase spacing between boxes/cards on this page only */
+    body.bio-page .section { margin-top: 28px; }
+
+    body.bio-page .grid { gap: 22px; }          /* more space between grid items */
+    body.bio-page .grid.grid-3 { gap: 24px; }
+    body.bio-page .grid.grid-2 { gap: 24px; }
+
+    /* Give nested cards a bit more breathing room */
+    body.bio-page .card { border-radius: 18px; }
+    body.bio-page .card .card-inner { padding: 18px 18px; }
+
+    /* Slightly separate stacked blocks inside big cards */
+    body.bio-page .hr { margin: 14px 0; }
+
+    /* Make inner cards feel less cramped visually */
+    body.bio-page h2 { margin-bottom: 8px; }
+    body.bio-page h3 { margin-bottom: 6px; }
+  </style>
 </head>
 
-<body>
+<body class="bio-page">
 
   <!-- Shared Header -->
   <header class="site-header">
@@ -202,6 +223,7 @@
     </div>
   </main>
 
-  <script src="app.jss"></script>
+  <!-- FIXED: was app.jss -->
+  <script src="app.js"></script>
 </body>
 </html>
