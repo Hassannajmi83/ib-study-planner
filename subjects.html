@@ -1,26 +1,149 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Subjects – IB Survival Hub</title>
 
-  <!-- IMPORTANT: must be exactly this filename in your repo root -->
   <link rel="stylesheet" href="style.css" />
 
-  <!-- nav active highlighting -->
-  <script src="app.js" defer></script>
+  <!-- Fix: stop browser default purple/visited link styles inside cards -->
+  <style>
+    .subjects-grid a,
+    .subjects-grid a:visited {
+      color: inherit;
+      text-decoration: none;
+    }
+    .subject-card {
+      display: block;
+      padding: 18px 18px 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+    }
+    .subject-card:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.14);
+    }
+    .subject-title {
+      font-weight: 700;
+      font-size: 14px;
+      margin: 0 0 6px;
+      color: rgba(255,255,255,0.92);
+    }
+    .subject-subtitle {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.35;
+      color: rgba(255,255,255,0.72);
+    }
+
+    .subjects-wrap {
+      width: min(1100px, calc(100% - 64px));
+      margin: 0 auto;
+      padding: 70px 0 90px;
+    }
+    .subjects-h1 {
+      margin: 0 0 6px;
+      font-size: clamp(28px, 3.2vw, 40px);
+      color: rgba(255,255,255,0.95);
+      letter-spacing: -0.02em;
+    }
+    .subjects-lead {
+      margin: 0 0 18px;
+      color: rgba(255,255,255,0.70);
+      font-size: 13px;
+    }
+    .subjects-grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    @media (max-width: 900px) {
+      .subjects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .subjects-wrap { width: min(1100px, calc(100% - 36px)); }
+    }
+    @media (max-width: 560px) {
+      .subjects-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Simple top header (matches your home-page vibe) */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 16px 0;
+      background: rgba(10, 10, 18, 0.35);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .topbar-inner {
+      width: min(1100px, calc(100% - 64px));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+      text-decoration: none;
+    }
+    .brand-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 99px;
+      background: rgba(170, 120, 255, 0.95);
+      box-shadow: 0 0 18px rgba(170,120,255,0.55);
+    }
+    .nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .nav a {
+      color: rgba(255,255,255,0.70);
+      text-decoration: none;
+      font-size: 13px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      transition: background 160ms ease, color 160ms ease;
+    }
+    .nav a:hover {
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.92);
+    }
+    .nav a.active {
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.92);
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+  </style>
 </head>
 
 <body>
-  <!-- Header / Nav -->
-  <header class="site-header">
-    <div class="nav-wrap">
-      <a class="brand" href="index.html">IB Survival Hub</a>
+  <!-- Header -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-dot"></span>
+        <span>IB Survival Hub</span>
+      </a>
 
       <nav class="nav">
         <a href="index.html">Home</a>
-        <a href="subjects.html">Subjects</a>
+        <a class="active" href="subjects.html">Subjects</a>
         <a href="planner.html">Planner</a>
         <a href="quiz.html">Study Quiz</a>
         <a href="resources.html">Resources</a>
@@ -29,83 +152,72 @@
     </div>
   </header>
 
-  <main class="page">
-    <section class="hero">
-      <h1>Subjects</h1>
-      <p>Pick a subject. Each page has paper structure + study strategy + common mark traps.</p>
-    </section>
+  <!-- Page -->
+  <main class="subjects-wrap">
+    <h1 class="subjects-h1">Subjects</h1>
+    <p class="subjects-lead">
+      Pick a subject. Each page has paper structure + study strategy + common mark traps.
+    </p>
 
-    <section class="grid">
-      <a class="card" href="bio.html">
-        <div class="tag">Biology</div>
-        <h3>Data skills + command terms</h3>
-        <p>Use diagrams + precise wording. Avoid vague “it increases” answers.</p>
+    <section class="subjects-grid">
+      <a class="subject-card" href="bio.html">
+        <p class="subject-title">Biology</p>
+        <p class="subject-subtitle">Data skills + command terms.</p>
       </a>
 
-      <a class="card" href="chem.html">
-        <div class="tag">Chemistry</div>
-        <h3>Units + mechanisms + discipline</h3>
-        <p>Show method marks. Track units. Use correct sig figs.</p>
+      <a class="subject-card" href="chem.html">
+        <p class="subject-title">Chemistry</p>
+        <p class="subject-subtitle">Units + mechanisms + calculation discipline.</p>
       </a>
 
-      <a class="card" href="physics.html">
-        <div class="tag">Physics</div>
-        <h3>Method marks + diagrams</h3>
-        <p>Always state assumptions. Use consistent symbols and directions.</p>
+      <a class="subject-card" href="physics.html">
+        <p class="subject-title">Physics</p>
+        <p class="subject-subtitle">Method marks + diagrams.</p>
       </a>
 
-      <a class="card" href="math.html">
-        <div class="tag">Math AA</div>
-        <h3>Steps shown + domain checks</h3>
-        <p>Don’t skip algebra. State restrictions. Check trig ranges.</p>
+      <a class="subject-card" href="math.html">
+        <p class="subject-title">Math AA</p>
+        <p class="subject-subtitle">Steps shown + domain checks.</p>
       </a>
 
-      <a class="card" href="econ.html">
-        <div class="tag">Economics</div>
-        <h3>DEED structure + evaluation</h3>
-        <p>Define → Explain → Example → Diagram, then evaluate clearly.</p>
+      <a class="subject-card" href="econ.html">
+        <p class="subject-title">Economics</p>
+        <p class="subject-subtitle">DEED structure + evaluation.</p>
       </a>
 
-      <a class="card" href="psych.html">
-        <div class="tag">Psychology</div>
-        <h3>Study structure + research methods</h3>
-        <p>Link to theory. Use studies correctly. Evaluate limitations.</p>
+      <a class="subject-card" href="psych.html">
+        <p class="subject-title">Psychology</p>
+        <p class="subject-subtitle">Study structure + research methods.</p>
       </a>
 
-      <a class="card" href="business.html">
-        <div class="tag">Business</div>
-        <h3>Definitions + structure + real examples</h3>
-        <p>Don’t waffle. Apply tools (SWOT, Ansoff, BCG) properly.</p>
+      <a class="subject-card" href="business.html">
+        <p class="subject-title">Business</p>
+        <p class="subject-subtitle">Definitions + structure + real examples.</p>
       </a>
 
-      <a class="card" href="english.html">
-        <div class="tag">English</div>
-        <h3>Thesis clarity + literary analysis</h3>
-        <p>Point → evidence → effect → author purpose. Stay tight.</p>
+      <a class="subject-card" href="English.html">
+        <p class="subject-title">English</p>
+        <p class="subject-subtitle">Thesis clarity + literary analysis.</p>
       </a>
 
-      <a class="card" href="history.html">
-        <div class="tag">History</div>
-        <h3>Source analysis + argument</h3>
-        <p>OPVL, competing interpretations, and clear judgement.</p>
+      <a class="subject-card" href="history.html">
+        <p class="subject-title">History</p>
+        <p class="subject-subtitle">Source analysis + argument + judgement.</p>
       </a>
 
-      <a class="card" href="geo.html">
-        <div class="tag">Geography</div>
-        <h3>Case studies + diagrams</h3>
-        <p>Use named examples, data, and structured evaluation.</p>
+      <a class="subject-card" href="geo.html">
+        <p class="subject-title">Geography</p>
+        <p class="subject-subtitle">Case studies + diagrams + structured evaluation.</p>
       </a>
 
-      <a class="card" href="cs.html">
-        <div class="tag">Computer Science</div>
-        <h3>Logic flow + trace tables</h3>
-        <p>Write clean steps, test cases, and explain decisions.</p>
+      <a class="subject-card" href="cs.html">
+        <p class="subject-title">Computer Science</p>
+        <p class="subject-subtitle">Logic flow + trace tables.</p>
       </a>
 
-      <a class="card" href="french.html">
-        <div class="tag">French</div>
-        <h3>Structure + tenses + exam format</h3>
-        <p>Short, accurate sentences. Reuse best phrases.</p>
+      <a class="subject-card" href="french.html">
+        <p class="subject-title">French</p>
+        <p class="subject-subtitle">Structure + tenses + exam format.</p>
       </a>
     </section>
   </main>
