@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Study Quiz - IB Survival Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Study Quiz – IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
 
-  <header class="navbar">
-    <div class="nav-container">
+<body>
+  <header class="site-header">
+    <div class="nav-inner">
       <a class="brand" href="index.html">IB Survival Hub</a>
       <nav class="nav-links">
         <a href="index.html">Home</a>
@@ -23,88 +23,52 @@
   </header>
 
   <main class="page-wrap">
-    <section class="panel" style="max-width:980px;margin:18px auto;padding:18px;">
-      <h1 class="h1" style="font-size:38px;margin:0 0 6px;">Study Quiz</h1>
-      <p class="sub" style="margin:0 0 14px;">Pick a subject and start. You’ll get a score and instant feedback.</p>
+    <section class="card">
+      <h1>Study Quiz</h1>
+      <p class="muted">Pick a subject, choose number of questions, start the quiz.</p>
 
-      <div class="hr"></div>
+      <div class="panel">
+        <label class="label">Subject</label>
+        <select id="quizSubject" class="input">
+          <option>Chemistry</option>
+          <option>Physics</option>
+          <option>Mathematics AA</option>
+        </select>
 
-      <div class="grid grid-2">
-        <div class="card">
-          <p class="card-title">Setup</p>
+        <label class="label">Questions</label>
+        <select id="quizCount" class="input">
+          <option value="5">5</option>
+          <option value="8">8</option>
+          <option value="10">10</option>
+        </select>
 
-          <label for="quizSubject">Subject</label>
-          <select id="quizSubject">
-            <option>Chemistry</option>
-            <option>Biology</option>
-            <option>Physics</option>
-            <option>Mathematics AA</option>
-            <option>Computer Science</option>
-            <option>Economics</option>
-            <option>Business Management</option>
-            <option>Psychology</option>
-            <option>English A Literature</option>
-            <option>English B</option>
-            <option>Geography</option>
-            <option>History</option>
-          </select>
-
-          <div style="height:10px;"></div>
-
-          <label for="quizCount">Questions</label>
-          <select id="quizCount">
-            <option value="5">5</option>
-            <option value="8" selected>8</option>
-            <option value="10">10</option>
-          </select>
-
-          <div style="height:12px;"></div>
-
-          <button id="startQuizBtn" class="btn" type="button">Start Quiz</button>
-          <button id="resetQuizBtn" class="btn" type="button" style="display:none;margin-left:8px;">Reset</button>
-        </div>
-
-        <div class="card">
-          <p class="card-title">How to use</p>
-          <p class="card-sub" style="margin:0;line-height:1.6;">
-            Do quick recall. If you miss one, write the correct version once.
-          </p>
+        <div class="row mt">
+          <button id="startQuizBtn" class="btn primary" type="button">Start Quiz</button>
+          <button id="resetQuizBtn" class="btn" type="button" style="display:none;">Reset</button>
         </div>
       </div>
 
-      <div style="height:14px;"></div>
-
-      <section id="quizArea" class="panel-soft" style="display:none;padding:18px;border-radius:22px;">
-        <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-          <div id="quizMeta" class="sub">Question</div>
-          <div id="quizScore" class="sub">Score: 0</div>
+      <div id="quizArea" class="panel mt" style="display:none;">
+        <div class="row space">
+          <div id="quizMeta" class="muted"></div>
+          <div id="quizScore" class="muted"></div>
         </div>
 
-        <div style="height:10px;"></div>
+        <div id="quizQuestion" class="quiz-q"></div>
+        <div id="quizChoices" class="quiz-choices"></div>
 
-        <div id="quizQuestion" style="font-size:18px;font-weight:700;">Question text</div>
+        <div id="quizFeedback" class="muted mt"></div>
 
-        <div style="height:12px;"></div>
+        <button id="nextQuizBtn" class="btn mt" type="button" disabled>Next</button>
+      </div>
 
-        <div id="quizChoices" class="grid" style="gap:10px;"></div>
-
-        <div style="height:10px;"></div>
-
-        <div id="quizFeedback" class="sub"></div>
-
-        <div style="height:12px;"></div>
-
-        <button id="nextQuizBtn" class="btn" type="button" disabled>Next</button>
-      </section>
-
-      <section id="quizResult" class="panel-soft" style="display:none;padding:18px;border-radius:22px;">
-        <h2 style="margin:0 0 8px;">Result</h2>
-        <p id="quizResultText" class="sub" style="margin:0;"></p>
-      </section>
-
+      <div id="quizResult" class="panel mt" style="display:none;">
+        <h2>Result</h2>
+        <div id="quizResultText" class="muted"></div>
+      </div>
     </section>
   </main>
 
-  <script src="app.js" defer></script>
+  <script src="quiz.js" defer></script>
 </body>
 </html>
