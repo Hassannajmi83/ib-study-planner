@@ -1,80 +1,63 @@
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("[planner.js] Time-management mode loaded ✅");
+function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
 
-  const hoursEl = document.getElementById("pHours");
-  const daysEl = document.getElementById("pDays");
-  const coursesEl = document.getElementById("pCourses");
-  const genBtn = document.getElementById("pGenerate");
-  const out = document.getElementById("pOut");
+function buildPlan(hoursPerDay, daysUntil, numCourses){
+  const totalMinutes = Math.round(hoursPerDay * 60);
+  // Split: 50% content, 40% practice, 10% review (simple + realistic)
+  const content = Math.round(totalMinutes * 0.5);
+  const practice = Math.round(totalMinutes * 0.4);
+  const review = Math.max(5, totalMinutes - content - practice);
 
-  if (!hoursEl || !daysEl || !coursesEl || !genBtn || !out) {
-    console.error("[planner.js] Missing planner elements (IDs not found).");
-    return;
-  }
-
-  genBtn.addEventListener("click", () => {
-    const hours = parseFloat(hoursEl.value || "0");
-    const days = parseInt(daysEl.value || "0", 10);
-    const courses = parseInt(coursesEl.value || "0", 10);
-
-    if (!hours || hours <= 0) return alert("Enter hours/day (example: 2).");
-    if (!days || days <= 0) return alert("Enter days until exam (example: 14).");
-    if (!courses || courses <= 0) return alert("Enter number of courses (example: 6).");
-    if (courses > 12) return alert("Max 12 courses.");
-
-    const plan = buildPlan(hours, days, courses);
-    render(out, plan);
-  });
-
-  function buildPlan(hoursPerDay, daysUntil, courseCount) {
-    const mins = Math.round(hoursPerDay * 60);
-
-    // Split day: 55% content, 35% practice, 10% review (min 5)
-    const content = Math.round(mins * 0.55);
-    const practice = Math.round(mins * 0.35);
-    const review = Math.max(5, mins - content - practice);
-
-    const plan = [];
-    for (let d = 1; d <= daysUntil; d++) {
-      const course = ((d - 1) % courseCount) + 1;
-      plan.push({
-        day: d,
-        course: `Course ${course}`,
-        blocks: [
-          { name: "Core content", mins: content },
-          { name: "Practice questions", mins: practice },
-          { name: "Review mistakes", mins: review }
-        ]
-      });
-    }
-    return plan;
-  }
-
-  function render(root, plan) {
-    root.innerHTML = "";
-
-    const wrap = document.createElement("div");
-    wrap.className = "plan-grid";
-
-    plan.forEach(p => {
-      const card = document.createElement("div");
-      card.className = "plan-card";
-
-      const title = document.createElement("div");
-      title.className = "plan-title";
-      title.textContent = `Day ${p.day}: ${p.course}`;
-      card.appendChild(title);
-
-      p.blocks.forEach(b => {
-        const row = document.createElement("div");
-        row.className = "plan-row";
-        row.textContent = `${b.name} — ${b.mins} min`;
-        card.appendChild(row);
-      });
-
-      wrap.appendChild(card);
+  const lines = [];
+  for(let d=1; d<=daysUntil; d++){
+    const course = ((d-1) % numCourses) + 1;
+    lines.push({
+      day: d,
+      course,
+      content,
+      practice,
+      review
     });
-
-    root.appendChild(wrap);
   }
+  return lines;
+}
+
+function render(plan){
+  let html = `<h3 style="margin:0 0 8px;">Your plan</h3>`;
+  html += `<ol>`;
+  plan.forEach(p=>{
+    html += `<li>
+      <b>Day ${p.day} — Course ${p.course}</b><br/>
+      <span class="muted">Content:</span> ${p.content} min ·
+      <span class="muted">Practice:</span> ${p.practice} min ·
+      <span class="muted">Review:</span> ${p.review} min
+    </li>`;
+  });
+  html += `</ol>`;
+  return html;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const hoursEl = document.getElementById("hoursPerDay");
+  const daysEl = document.getElementById("daysUntil");
+  const coursesEl = document.getElementById("numCourses");
+  const out = document.getElementById("planOut");
+  const btn = document.getElementById("btnGenerate");
+
+  btn.addEventListener("click", () => {
+    const hours = parseFloat(hoursEl.value);
+    const days = parseInt(daysEl.value, 10);
+    const courses = parseInt(coursesEl.value, 10);
+
+    if(!hours || !days || !courses){
+      out.innerHTML = `<div class="muted">Fill all inputs first.</div>`;
+      return;
+    }
+
+    const hoursSafe = clamp(hours, 0.5, 12);
+    const daysSafe = clamp(days, 1, 60);
+    const coursesSafe = clamp(courses, 1, 10);
+
+    const plan = buildPlan(hoursSafe, daysSafe, coursesSafe);
+    out.innerHTML = render(plan);
+  });
 });
