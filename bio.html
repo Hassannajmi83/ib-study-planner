@@ -1,90 +1,207 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Biology — IB Survival Hub</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biology – IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <header class="topbar">
-    <div class="wrap topbarInner">
-      <a class="brand" href="index.html" aria-label="IB Survival Hub home">
-        <span class="dot"></span><span>IB Survival Hub</span>
-      </a>
 
-      <nav class="nav">
-        <a href="index.html">Home</a>
-        <a class="active" href="subjects.html">Subjects</a>
-        <a href="planner.html">Planner</a>
-        <a href="quiz.html">Study Quiz</a>
-        <a href="resources.html">Resources</a>
-        <a href="boundaries.html">Boundaries</a>
-        <a href="converter.html">Converter</a>
-      </nav>
+<body>
+
+  <!-- Shared Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-row">
+        <a class="brand" href="index.html">
+          <span class="brand-dot"></span>
+          <span class="brand-title">IB Survival Hub</span>
+        </a>
+
+        <nav class="nav">
+          <a href="index.html">Home</a>
+          <a href="subjects.html">Subjects</a>
+          <a href="planner.html">Planner</a>
+          <a href="quiz.html">Study Quiz</a>
+          <a href="resources.html">Resources</a>
+          <a href="boundaries.html">Boundaries</a>
+        </nav>
+      </div>
     </div>
   </header>
 
-  <main class="wrap page">
-    <section class="heroCard">
-      <h1>Biology</h1>
-      <p class="sub">Paper structure + command terms + data skills + common traps.</p>
-      <div class="heroBtns">
-        <a class="btn" href="subjects.html">← Back to Subjects</a>
-      </div>
-    </section>
+  <main class="page">
+    <div class="container">
 
-    <section class="grid2">
-      <article class="card">
-        <h2>Papers</h2>
-        <ul class="list">
-          <li><b>Paper 1:</b> MCQ (concept + careful reading)</li>
-          <li><b>Paper 2:</b> short + extended responses (keywords matter)</li>
-          <li><b>Paper 3:</b> data response + practical/skills focus (varies by syllabus)</li>
-        </ul>
-        <div class="note">
-          Bio is a “keyword sport”: the markscheme is picky — learn the exact phrasing.
+      <!-- HERO -->
+      <section class="hero card">
+        <div class="card-inner">
+          <div class="badge">Subject Guide</div>
+          <h1 style="margin-top:10px;">Biology</h1>
+          <p class="kicker">
+            Biology is a <b>keyword + application</b> subject. Marks are won by: correct terms, correct structure, and clean data handling.
+          </p>
+          <div class="hr"></div>
+          <div class="note">
+            <b>High score rule:</b> Every topic needs (1) definitions, (2) processes in order, (3) 3–5 common exam question types.
+          </div>
         </div>
-      </article>
+      </section>
 
-      <article class="card">
-        <h2>High-impact study plan</h2>
-        <ul class="list">
-          <li><b>Active recall:</b> questions first, notes second (don’t rewrite textbooks)</li>
-          <li><b>Data drills:</b> graphs, error bars, trends, controls, variables</li>
-          <li><b>Markscheme training:</b> after each set, copy the <i>exact</i> accepted wording once</li>
-          <li><b>Weekly:</b> timed Paper 2 section + review wrong answers</li>
-        </ul>
-        <div class="note">
-          Make a “<b>command term</b>” cheat sheet (describe vs explain vs evaluate).
+      <!-- PAPERS -->
+      <section class="section">
+        <div class="card">
+          <div class="card-inner">
+            <h2>Assessment (Papers)</h2>
+            <p class="small">Exact paper details can vary by syllabus year. This is the practical structure you should train for.</p>
+
+            <div class="hr"></div>
+
+            <div class="grid grid-3">
+              <div class="card">
+                <div class="card-inner">
+                  <h3>Paper 1</h3>
+                  <p class="kicker"><b>Fast MCQ/data skills.</b> Lots of “small traps”.</p>
+                  <ul class="ul">
+                    <li>Read axes + units before answering.</li>
+                    <li>Eliminate wrong options using definitions.</li>
+                    <li>Train timed sets (speed matters).</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-inner">
+                  <h3>Paper 2</h3>
+                  <p class="kicker"><b>Short + extended response.</b> Keywords + explanations.</p>
+                  <ul class="ul">
+                    <li>Use proper terms (not “basically”).</li>
+                    <li>Explain in steps (cause → mechanism → result).</li>
+                    <li>For long answers: structure matters.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-inner">
+                  <h3>Paper 3</h3>
+                  <p class="kicker"><b>Data + practical/option skills.</b></p>
+                  <ul class="ul">
+                    <li>Describe trends first, then explain.</li>
+                    <li>Evaluate experiments (IV/DV/controls).</li>
+                    <li>Know common lab error sources.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
-      </article>
-    </section>
+      </section>
 
-    <section class="grid2">
-      <article class="card">
-        <h2>Common mark traps</h2>
-        <ul class="list">
-          <li>Answer is correct but missing a required keyword</li>
-          <li>Confusing correlation vs causation in data questions</li>
-          <li>Not naming the variable / not stating direction of change</li>
-          <li>Forgetting units / axes labels / gradient meaning</li>
-          <li>Not linking back to the question wording (“therefore…”)</li>
-        </ul>
-      </article>
+      <!-- STUDY STRATEGY -->
+      <section class="section">
+        <div class="grid grid-2">
 
-      <article class="card">
-        <h2>Paper 2 “easy marks” checklist</h2>
-        <ul class="list">
-          <li>Use key terms (enzyme active site, diffusion gradient, allele frequency, etc.)</li>
-          <li>Answer in the <b>same unit</b> the question uses</li>
-          <li>For processes: steps in order + name the structure</li>
-          <li>For evaluations: 1 pro + 1 con + conclusion</li>
-        </ul>
-      </article>
-    </section>
+          <div class="card">
+            <div class="card-inner">
+              <h2>Best Study Method (Bio)</h2>
+              <div class="hr"></div>
+              <ul class="ul">
+                <li><b>Daily:</b> 10–15 min recall (flashcards/blurting).</li>
+                <li><b>3x/week:</b> exam questions on 1–2 topics.</li>
+                <li><b>Weekly:</b> 1 timed mixed set (P1/P2 style).</li>
+                <li><b>After marking:</b> add missed keywords to cards.</li>
+              </ul>
+
+              <div class="hr"></div>
+              <div class="note">
+                <b>Bio mistake pattern:</b> you “know the idea” but miss the exact accepted wording.
+                Fix by building a “markscheme phrase bank”.
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <h2>How to Answer Like the Markscheme</h2>
+              <div class="hr"></div>
+              <ul class="ul">
+                <li><b>Define first</b> (1 clean sentence) if asked.</li>
+                <li><b>Use key terms</b> (enzymes, diffusion, transcription…)</li>
+                <li><b>Use step order</b> for processes (A → B → C).</li>
+                <li><b>Data questions:</b> “Overall trend”, “anomaly”, “comparison”.</li>
+              </ul>
+
+              <div class="hr"></div>
+              <div class="note">
+                <b>Command term hack:</b><br/>
+                <b>Describe</b> = what you see.<br/>
+                <b>Explain</b> = why/how using biology terms.<br/>
+                <b>Evaluate</b> = strengths/limits + judgement.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- COMMON TRAPS -->
+      <section class="section">
+        <div class="card">
+          <div class="card-inner">
+            <h2>Common Mark Traps (Bio)</h2>
+            <div class="hr"></div>
+            <div class="grid grid-3">
+              <div class="card">
+                <div class="card-inner">
+                  <h3>Trap 1: Vague wording</h3>
+                  <p class="kicker">“It goes up because it increases.”</p>
+                  <div class="note">Fix: name the variable + mechanism + result.</div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-inner">
+                  <h3>Trap 2: Units/axes</h3>
+                  <p class="kicker">Misreading graph scales.</p>
+                  <div class="note">Fix: read x/y label + unit before anything else.</div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-inner">
+                  <h3>Trap 3: Command terms</h3>
+                  <p class="kicker">Describing when asked to explain.</p>
+                  <div class="note">Fix: underline command term, match the response type.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUICK PRACTICE -->
+      <section class="section">
+        <div class="card">
+          <div class="card-inner">
+            <h2>Quick Practice Checklist</h2>
+            <div class="hr"></div>
+            <ul class="ul">
+              <li>Can I define 10 key terms from this unit without notes?</li>
+              <li>Can I explain a process in order (steps)?</li>
+              <li>Can I do 10 exam questions and mark them?</li>
+              <li>Do I have a mistake list with patterns?</li>
+            </ul>
+            <div class="hr"></div>
+            <a class="btn primary" href="subjects.html">Back to Subjects</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer">Biology page — IB Survival Hub</div>
+
+    </div>
   </main>
 
-  <script src="app.js"></script>
+  <script src="app.jss"></script>
 </body>
 </html>
