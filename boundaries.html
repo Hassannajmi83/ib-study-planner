@@ -1,125 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Grade Boundaries — IB Survival Hub</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>IB Grade Boundaries</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <!-- Top Nav (same on every page) -->
-  <header class="nav">
-    <div class="nav-inner">
-      <a class="brand" href="index.html" aria-label="IB Survival Hub Home">
-        <span class="dot"></span>
-        <span class="brand-text">IB Survival Hub</span>
-      </a>
 
-      <nav class="nav-links" aria-label="Primary">
-        <a href="index.html">Home</a>
-        <a href="subjects.html">Subjects</a>
-        <a href="planner.html">Planner</a>
-        <a href="quiz.html">Study Quiz</a>
-        <a href="resources.html">Resources</a>
-        <a class="active" href="boundaries.html">Boundaries</a>
-      </nav>
-    </div>
-  </header>
+<!-- HEADER -->
+<header class="nav">
+  <div class="logo">IB Survival Hub</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="subjects.html">Subjects</a>
+    <a href="planner.html">Planner</a>
+    <a href="quiz.html">Study Quiz</a>
+    <a href="resources.html">Resources</a>
+    <a href="boundaries.html" class="active">Boundaries</a>
+  </nav>
+</header>
 
-  <main class="page">
-    <section class="shell">
-      <div class="hero-card">
-        <h1>IB Grade Boundaries</h1>
-        <p class="muted">
-          Pick a subject → see the raw % ranges for levels 1–7.
-        </p>
-        <div class="note">
-          <strong>Disclaimer:</strong>
-          Boundaries change by <strong>session</strong> and <strong>time zone</strong>.
-          This page is meant as a personal reference for Ontario students.
-          Always confirm with your school if you’re using it for anything official.
-        </div>
+<!-- PAGE -->
+<main class="container">
 
-        <div class="meta-grid">
-          <div class="meta">
-            <div class="meta-label">Session</div>
-            <div class="meta-value" id="sessionLabel">May 2024</div>
-          </div>
-          <div class="meta">
-            <div class="meta-label">Time zone group</div>
-            <div class="meta-value" id="tzLabel">Zone A (Americas)</div>
-          </div>
-          <div class="meta">
-            <div class="meta-label">Ontario reference</div>
-            <div class="meta-value">Toronto (Eastern Time)</div>
-          </div>
-        </div>
-      </div>
+  <h1>IB Grade Boundaries</h1>
+  <p>Based on IB May 2025 (Zone A – Ontario reference)</p>
 
-      <div class="card">
-        <h2>Select subject</h2>
-        <p class="muted small">I can add more later — this list matches your site subjects.</p>
+  <!-- DROPDOWN -->
+  <select id="subjectSelect">
+    <option value="math">Math AA</option>
+    <option value="physics">Physics</option>
+    <option value="chem">Chemistry</option>
+    <option value="bio">Biology</option>
+    <option value="cs">Computer Science</option>
+    <option value="geo">Geography</option>
+    <option value="history">History</option>
+    <option value="econ">Economics</option>
+    <option value="business">Business</option>
+    <option value="englishA">English A</option>
+    <option value="englishB">English B</option>
+    <option value="psych">Psychology</option>
+  </select>
 
-        <div class="controls">
-          <label class="field">
-            <span>Subject</span>
-            <select id="boundarySubjectSelect"></select>
-          </label>
+  <!-- OUTPUT -->
+  <div id="tableContainer"></div>
 
-          <label class="field">
-            <span>Level</span>
-            <select id="boundaryLevelSelect">
-              <option value="SL">SL</option>
-              <option value="HL">HL</option>
-            </select>
-          </label>
+</main>
 
-          <button class="btn" id="boundaryApplyBtn" type="button">Show boundaries</button>
-        </div>
-      </div>
+<script>
+const data = {
 
-      <!-- TABLE ALWAYS VISIBLE -->
-      <div class="card" id="boundaryResultCard">
-        <div class="result-head">
-          <div>
-            <h2 id="boundaryTitle">Select a subject</h2>
-            <p class="muted small" id="boundarySubtitle">
-              The table below will update when you click “Show boundaries”.
-            </p>
-          </div>
-          <div class="pill" id="boundaryPill">—</div>
-        </div>
+math: `
+<h2>Math AA SL</h2>
+<p>7: 65–100 | 6: 52–64 | 5: 38–51 | 4: 25–37 | 3: 15–24 | 2: 7–14 | 1: 0–6</p>
+<h2>Math AA HL</h2>
+<p>7: 73–100 | 6: 60–72 | 5: 48–59 | 4: 34–47 | 3: 24–33 | 2: 12–23 | 1: 0–11</p>
+`,
 
-        <div class="table-wrap">
-          <table class="table" aria-label="Grade boundaries table">
-            <thead>
-              <tr>
-                <th style="width:120px;">Level</th>
-                <th>Raw % range</th>
-              </tr>
-            </thead>
-            <tbody id="boundaryTableBody">
-              <tr><td>7</td><td class="muted">—</td></tr>
-              <tr><td>6</td><td class="muted">—</td></tr>
-              <tr><td>5</td><td class="muted">—</td></tr>
-              <tr><td>4</td><td class="muted">—</td></tr>
-              <tr><td>3</td><td class="muted">—</td></tr>
-              <tr><td>2</td><td class="muted">—</td></tr>
-              <tr><td>1</td><td class="muted">—</td></tr>
-            </tbody>
-          </table>
-        </div>
+physics: `
+<h2>Physics SL</h2>
+<p>7: 63–100 | 6: 53–62 | 5: 42–52 | 4: 32–41 | 3: 20–31 | 2: 12–19 | 1: 0–11</p>
+<h2>Physics HL</h2>
+<p>7: 67–100 | 6: 56–66 | 5: 45–55 | 4: 35–44 | 3: 24–34 | 2: 13–23 | 1: 0–12</p>
+`,
 
-        <div class="note small" id="boundaryFooterNote">
-          Tip: when you get official boundaries, paste them into <code>app.jss</code> in the
-          <code>BOUNDARIES</code> object.
-        </div>
-      </div>
-    </section>
-  </main>
+chem: `
+<h2>Chemistry SL</h2>
+<p>7: 71–100 | 6: 60–70 | 5: 49–59 | 4: 38–48 | 3: 28–37 | 2: 16–27 | 1: 0–15</p>
+<h2>Chemistry HL</h2>
+<p>7: 74–100 | 6: 63–73 | 5: 51–62 | 4: 40–50 | 3: 26–39 | 2: 15–25 | 1: 0–14</p>
+`,
 
-  <!-- IMPORTANT: this must match your repo filename exactly -->
-  <script src="app.jss" defer></script>
+bio: `
+<h2>Biology SL</h2>
+<p>7: 77–100 | 6: 64–76 | 5: 52–63 | 4: 39–51 | 3: 26–38 | 2: 13–25 | 1: 0–12</p>
+<h2>Biology HL</h2>
+<p>7: 76–100 | 6: 62–75 | 5: 49–61 | 4: 36–48 | 3: 25–35 | 2: 13–24 | 1: 0–12</p>
+`,
+
+cs: `
+<h2>Computer Science SL</h2>
+<p>7: 74–100 | 6: 64–73 | 5: 54–63 | 4: 44–53 | 3: 29–43 | 2: 14–28 | 1: 0–13</p>
+<h2>Computer Science HL</h2>
+<p>7: 74–100 | 6: 64–73 | 5: 53–63 | 4: 43–52 | 3: 31–42 | 2: 15–30 | 1: 0–14</p>
+`,
+
+geo: `
+<h2>Geography SL</h2>
+<p>7: 78–100 | 6: 66–77 | 5: 53–65 | 4: 42–52 | 3: 28–41 | 2: 13–27 | 1: 0–12</p>
+<h2>Geography HL</h2>
+<p>7: 75–100 | 6: 64–74 | 5: 53–63 | 4: 43–52 | 3: 30–42 | 2: 14–29 | 1: 0–13</p>
+`,
+
+history: `
+<h2>History SL</h2>
+<p>7: 77–100 | 6: 63–76 | 5: 49–62 | 4: 35–48 | 3: 25–34 | 2: 11–24 | 1: 0–10</p>
+<h2>History HL</h2>
+<p>7: 74–100 | 6: 61–73 | 5: 49–60 | 4: 36–48 | 3: 25–35 | 2: 11–24 | 1: 0–10</p>
+`,
+
+econ: `
+<h2>Economics SL</h2>
+<p>7: 75–100 | 6: 64–74 | 5: 54–63 | 4: 43–53 | 3: 30–42 | 2: 15–29 | 1: 0–14</p>
+<h2>Economics HL</h2>
+<p>7: 77–100 | 6: 65–76 | 5: 54–64 | 4: 42–53 | 3: 29–41 | 2: 14–28 | 1: 0–13</p>
+`,
+
+business: `
+<h2>Business SL</h2>
+<p>7: 75–100 | 6: 63–74 | 5: 48–62 | 4: 36–47 | 3: 26–35 | 2: 12–25 | 1: 0–12</p>
+<h2>Business HL</h2>
+<p>7: 73–100 | 6: 61–72 | 5: 48–60 | 4: 35–47 | 3: 24–34 | 2: 12–23 | 1: 0–11</p>
+`,
+
+englishA: `
+<h2>English A SL</h2>
+<p>7: 73–100 | 6: 60–72 | 5: 49–59 | 4: 35–48 | 3: 25–34 | 2: 13–24 | 1: 0–12</p>
+<h2>English A HL</h2>
+<p>7: 76–100 | 6: 62–75 | 5: 50–61 | 4: 37–49 | 3: 27–36 | 2: 14–26 | 1: 0–13</p>
+`,
+
+englishB: `
+<h2>English B SL</h2>
+<p>7: 86–100 | 6: 71–85 | 5: 54–70 | 4: 39–53 | 3: 25–38 | 2: 12–24 | 1: 0–11</p>
+<h2>English B HL</h2>
+<p>7: 91–100 | 6: 76–90 | 5: 60–75 | 4: 46–59 | 3: 28–45 | 2: 13–27 | 1: 0–12</p>
+`,
+
+psych: `
+<h2>Psychology SL</h2>
+<p>7: 71–100 | 6: 58–70 | 5: 49–57 | 4: 36–48 | 3: 26–35 | 2: 12–25 | 1: 0–11</p>
+<h2>Psychology HL</h2>
+<p>7: 68–100 | 6: 57–67 | 5: 45–56 | 4: 33–44 | 3: 21–32 | 2: 10–20 | 1: 0–9</p>
+`
+};
+
+// DEFAULT LOAD
+document.getElementById("tableContainer").innerHTML = data.math;
+
+// CHANGE
+document.getElementById("subjectSelect").addEventListener("change", function() {
+  document.getElementById("tableContainer").innerHTML = data[this.value];
+});
+</script>
+
 </body>
 </html>
