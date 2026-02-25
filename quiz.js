@@ -1,150 +1,124 @@
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("[quiz.js] loaded ✅");
+  console.log("[quiz.js] Study-methods mode loaded ✅");
 
-  const startBtn = document.getElementById("startQuizBtn");
-  const resetBtn = document.getElementById("resetQuizBtn");
-  const nextBtn = document.getElementById("nextQuizBtn");
+  const hoursDaily = document.getElementById("hoursDaily");
+  const chaptersBehind = document.getElementById("chaptersBehind");
+  const practiceIssue = document.getElementById("practiceIssue");
+  const biggestIssue = document.getElementById("biggestIssue");
 
-  const subjectSel = document.getElementById("quizSubject");
-  const countSel = document.getElementById("quizCount");
+  const buildBtn = document.getElementById("buildPlanBtn");
+  const resetBtn = document.getElementById("resetMethodBtn");
 
-  const quizArea = document.getElementById("quizArea");
-  const quizResult = document.getElementById("quizResult");
-  const quizResultText = document.getElementById("quizResultText");
+  const output = document.getElementById("methodOutput");
+  const summary = document.getElementById("methodSummary");
+  const routine = document.getElementById("methodRoutine");
+  const stop = document.getElementById("methodStop");
 
-  const quizMeta = document.getElementById("quizMeta");
-  const quizScore = document.getElementById("quizScore");
-  const quizQuestion = document.getElementById("quizQuestion");
-  const quizChoices = document.getElementById("quizChoices");
-  const quizFeedback = document.getElementById("quizFeedback");
-
-  if (!startBtn || !resetBtn || !nextBtn || !subjectSel || !countSel) {
-    console.error("[quiz.js] Missing required elements (IDs not found).");
-    return;
+  function getChecked() {
+    return Array.from(document.querySelectorAll(".check-grid input[type='checkbox']:checked"))
+      .map(x => x.value);
   }
-
-  const BANK = {
-    "Chemistry": [
-      item("What happens at the boiling point?", ["Vapor pressure = external pressure", "Particles stop moving", "All bonds break", "Temperature decreases"], 0),
-      item("pH of neutral water at 25°C is:", ["0", "7", "14", "Depends on acid"], 1),
-      item("Which IMF exists in all molecules?", ["Hydrogen bonding", "London dispersion", "Ionic bonding", "Metallic bonding"], 1),
-      item("Rate increases when temperature increases because:", ["More collisions have E ≥ Ea", "Activation energy decreases", "Volume disappears", "Moles change"], 0),
-      item("Oxidation is:", ["Gain of electrons", "Loss of electrons", "Gain of neutrons", "Loss of protons"], 1),
-    ],
-    "Physics": [
-      item("Unit of force is:", ["J", "N", "W", "Pa"], 1),
-      item("Acceleration is:", ["Change in velocity / time", "Distance / time", "Mass × velocity", "Energy / time"], 0),
-      item("Work done = ", ["F/d", "F×d (parallel)", "m×a", "v×t"], 1),
-      item("Momentum = ", ["mv", "ma", "Fd", "½mv²"], 0),
-      item("Power = ", ["Energy/time", "Force×time", "Mass×acceleration", "Distance/time"], 0),
-    ],
-    "Mathematics AA": [
-      item("Derivative represents:", ["Rate of change", "Area under curve", "Total distance", "Always a constant"], 0),
-      item("sin(π/2) =", ["0", "1", "-1", "π/2"], 1),
-      item("If f(x)=x² then f'(x) =", ["x", "2x", "x²", "2"], 1),
-      item("log(a·b) equals:", ["log a + log b", "log a − log b", "log a / log b", "a+b"], 0),
-      item("A function is increasing where:", ["f'(x) > 0", "f'(x) < 0", "f(x)=0", "x=0"], 0),
-    ]
-  };
-
-  let quiz = [];
-  let idx = 0;
-  let score = 0;
-  let locked = false;
-
-  startBtn.addEventListener("click", () => {
-    console.log("[quiz.js] Start clicked ✅");
-
-    const subject = subjectSel.value;
-    const n = parseInt(countSel.value, 10);
-
-    const bank = BANK[subject] || [];
-    if (bank.length === 0) return alert("No questions for this subject yet.");
-
-    quiz = shuffle([...bank]).slice(0, Math.min(n, bank.length));
-    idx = 0;
-    score = 0;
-    locked = false;
-
-    quizResult.style.display = "none";
-    quizArea.style.display = "block";
-    resetBtn.style.display = "inline-block";
-    startBtn.disabled = true;
-
-    render();
-  });
 
   resetBtn.addEventListener("click", () => {
-    quizArea.style.display = "none";
-    quizResult.style.display = "none";
-    resetBtn.style.display = "none";
-    startBtn.disabled = false;
+    document.querySelectorAll(".check-grid input[type='checkbox']").forEach(x => x.checked = false);
+    hoursDaily.value = "1";
+    chaptersBehind.value = "0";
+    practiceIssue.value = "avoid";
+    biggestIssue.value = "consistency";
+    output.style.display = "none";
   });
 
-  nextBtn.addEventListener("click", () => {
-    if (idx < quiz.length - 1) {
-      idx++;
-      locked = false;
-      render();
-    } else {
-      finish();
-    }
+  buildBtn.addEventListener("click", () => {
+    const h = parseInt(hoursDaily.value, 10);
+    const behind = parseInt(chaptersBehind.value, 10);
+    const techniques = getChecked();
+    const pIssue = practiceIssue.value;
+    const issue = biggestIssue.value;
+
+    const rec = recommend(techniques, pIssue, issue, behind, h);
+    output.style.display = "block";
+    summary.innerHTML = rec.summary;
+    routine.innerHTML = rec.routine;
+    stop.innerHTML = rec.stop;
   });
 
-  function render() {
-    const q = quiz[idx];
+  function recommend(techniques, pIssue, issue, behind, hours) {
+    const usesActiveRecall = techniques.includes("activeRecall");
+    const usesSpaced = techniques.includes("spaced");
+    const usesPast = techniques.includes("pastPapers");
+    const usesPomodoro = techniques.includes("pomodoro");
 
-    quizMeta.textContent = `Question ${idx + 1} / ${quiz.length}`;
-    quizScore.textContent = `Score: ${score}`;
-    quizQuestion.textContent = q.prompt;
+    // Pick a “core method”
+    let core = "Active Recall + Past Questions";
+    if (!usesActiveRecall && !usesPast) core = "Active Recall (minimum viable) + 1 practice set/day";
+    if (issue === "memory") core = "Spaced Repetition + Active Recall";
+    if (issue === "understand") core = "Teach-back + Active Recall";
+    if (issue === "exam") core = "Past Papers + Error Log + Timed Sets";
 
-    quizChoices.innerHTML = "";
-    quizFeedback.textContent = "";
-    nextBtn.disabled = true;
+    // Session plan based on hours
+    const blocks = hours <= 1 ? 1 : hours === 2 ? 2 : hours === 3 ? 3 : 4;
 
-    q.choices.forEach((text, i) => {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "btn";
-      btn.textContent = text;
-
-      btn.addEventListener("click", () => {
-        if (locked) return;
-        locked = true;
-
-        const correct = i === q.correct;
-        if (correct) {
-          score++;
-          quizFeedback.textContent = "✅ Correct";
-        } else {
-          quizFeedback.textContent = `❌ Correct: ${q.choices[q.correct]}`;
-        }
-
-        quizScore.textContent = `Score: ${score}`;
-        [...quizChoices.querySelectorAll("button")].forEach(b => (b.disabled = true));
-        nextBtn.disabled = false;
-      });
-
-      quizChoices.appendChild(btn);
-    });
-  }
-
-  function finish() {
-    quizArea.style.display = "none";
-    quizResult.style.display = "block";
-    startBtn.disabled = false;
-    quizResultText.textContent = `You scored ${score} / ${quiz.length}.`;
-  }
-
-  function item(prompt, choices, correct) {
-    return { prompt, choices, correct };
-  }
-
-  function shuffle(a) {
-    for (let i = a.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
+    const blockText = [];
+    for (let i = 1; i <= blocks; i++) {
+      blockText.push(`
+        <div class="plan-card">
+          <div class="plan-title">Block ${i} (25–45 min)</div>
+          <div class="plan-row">1) 5 min: quick review (yesterday’s errors)</div>
+          <div class="plan-row">2) 15–25 min: active recall (closed-book questions)</div>
+          <div class="plan-row">3) 10–15 min: practice questions / past paper</div>
+          <div class="plan-row">4) 3 min: write 1–2 mistakes into an “error log”</div>
+        </div>
+      `);
     }
-    return a;
+
+    // Catch-up mode if behind
+    const catchUp = (behind >= 2)
+      ? `<div class="plan-card"><div class="plan-title">Catch-up rule (because you’re behind)</div>
+         <div class="plan-row">Do content in “minimum notes”: 5 bullet points max per subtopic.</div>
+         <div class="plan-row">Then immediately do 5–10 questions. No long note-writing.</div></div>`
+      : "";
+
+    // Fix practice issues
+    let practiceFix = "";
+    if (pIssue === "avoid") practiceFix = "Non-negotiable: 10 questions/day (even if you feel unready).";
+    if (pIssue === "stuck") practiceFix = "Use ‘hint ladder’: attempt → hint → solution → redo same question next day.";
+    if (pIssue === "careless") practiceFix = "Add a 60-second checklist: units, signs, rounding, label answers.";
+    if (pIssue === "timing") practiceFix = "Do timed mini-sets: 10 minutes, then review immediately.";
+    if (pIssue === "ok") practiceFix = "Keep practice steady and track errors.";
+
+    const stopList = [];
+    if (techniques.includes("highlight")) stopList.push("Stop highlighting as a main strategy (it feels productive but doesn’t test you).");
+    if (techniques.includes("notes")) stopList.push("Stop re-reading notes for long blocks. Replace with closed-book retrieval.");
+    if (!usesPomodoro) stopList.push("Don’t do 2-hour marathons. Use 25–45 min blocks with short breaks.");
+
+    const summaryHTML = `
+      <div class="plan-card">
+        <div class="plan-title">Core method</div>
+        <div class="plan-row"><b>${core}</b></div>
+        <div class="plan-row">You have ~${hours} hour(s)/day, and your biggest issue is <b>${issue}</b>.</div>
+        <div class="plan-row">Practice fix: <b>${practiceFix}</b></div>
+      </div>
+    `;
+
+    const routineHTML = `
+      <div class="plan-grid">
+        ${blockText.join("")}
+        ${catchUp}
+        <div class="plan-card">
+          <div class="plan-title">Weekly structure</div>
+          <div class="plan-row">Mon–Thu: build + practice</div>
+          <div class="plan-row">Fri: timed set + error log cleanup</div>
+          <div class="plan-row">Weekend: 1 longer mixed review (but still question-focused)</div>
+        </div>
+      </div>
+    `;
+
+    const stopHTML = `
+      <ul class="muted">
+        ${(stopList.length ? stopList : ["Stop doing random studying without testing yourself."]).map(x => `<li>${x}</li>`).join("")}
+      </ul>
+    `;
+
+    return { summary: summaryHTML, routine: routineHTML, stop: stopHTML };
   }
 });
