@@ -24,8 +24,8 @@
 
   <main class="page-wrap">
     <section class="panel" style="max-width:980px; margin:18px auto; padding:18px;">
-      <h1 class="h1" style="font-size:38px; margin-bottom:8px;">Study Planner</h1>
-      <p class="sub">Generate a simple day-by-day plan based on your time and subjects.</p>
+      <h1 class="h1" style="font-size:38px; margin:0 0 8px;">Study Planner</h1>
+      <p class="sub" style="margin:0 0 14px;">Enter your time + subjects. Generate a simple day-by-day plan.</p>
 
       <div class="hr"></div>
 
@@ -43,10 +43,27 @@
           <label for="daysUntil">Days until exam</label>
           <input id="daysUntil" type="number" min="1" step="1" placeholder="Example: 7" />
 
-          <div style="height:10px;"></div>
+          <div style="height:14px;"></div>
 
-          <label for="planSubjects">Subjects (comma separated)</label>
-          <input id="planSubjects" type="text" placeholder="Example: Chemistry, Math AA, English" />
+          <p class="card-sub" style="margin:0 0 8px;">Subjects (numbered)</p>
+
+          <label for="subject1">1</label>
+          <input id="subject1" type="text" placeholder="Example: Chemistry" />
+
+          <label for="subject2">2</label>
+          <input id="subject2" type="text" placeholder="Example: Math AA" />
+
+          <label for="subject3">3</label>
+          <input id="subject3" type="text" placeholder="Example: English" />
+
+          <label for="subject4">4</label>
+          <input id="subject4" type="text" placeholder="Optional" />
+
+          <label for="subject5">5</label>
+          <input id="subject5" type="text" placeholder="Optional" />
+
+          <label for="subject6">6</label>
+          <input id="subject6" type="text" placeholder="Optional" />
 
           <div style="height:12px;"></div>
 
@@ -54,11 +71,11 @@
         </div>
 
         <div class="card">
-          <p class="card-title">How it works</p>
+          <p class="card-title">Rules</p>
           <ul class="card-sub" style="margin:0; padding-left:18px; line-height:1.6;">
             <li>Rotates subjects evenly across days</li>
-            <li>Each day has 3 blocks: content, practice, review</li>
-            <li>Keep it realistic — consistency beats giant plans</li>
+            <li>Each day splits: content, practice, review</li>
+            <li>Short + consistent beats perfect</li>
           </ul>
         </div>
       </div>
@@ -67,11 +84,12 @@
 
       <section class="panel-soft" style="padding:18px; border-radius:22px;">
         <h2 style="margin:0 0 10px; font-size:18px;">Your plan</h2>
-        <div id="planOutput" class="sub">Generate a plan to see it here.</div>
+        <div id="planOutput" class="sub">Press Generate to see a plan.</div>
       </section>
     </section>
   </main>
 
+  <!-- IMPORTANT: app.js must load on this page -->
   <script src="app.js" defer></script>
 </body>
 </html>
