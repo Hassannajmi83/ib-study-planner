@@ -23,9 +23,9 @@
   </header>
 
   <main class="page-wrap">
-    <section class="panel" style="max-width:980px; margin:18px auto; padding:18px;">
-      <h1 class="h1" style="font-size:38px; margin:0 0 8px;">Study Quiz</h1>
-      <p class="sub" style="margin:0 0 14px;">Pick a subject, pick a question count, start the quiz.</p>
+    <section class="panel" style="max-width:980px;margin:18px auto;padding:18px;">
+      <h1 class="h1" style="font-size:38px;margin:0 0 6px;">Study Quiz</h1>
+      <p class="sub" style="margin:0 0 14px;">Pick a subject and start. You’ll get a score and instant feedback.</p>
 
       <div class="hr"></div>
 
@@ -61,29 +61,28 @@
           <div style="height:12px;"></div>
 
           <button id="startQuizBtn" class="btn" type="button">Start Quiz</button>
-          <button id="resetQuizBtn" class="btn" type="button" style="display:none; margin-left:8px;">Reset</button>
+          <button id="resetQuizBtn" class="btn" type="button" style="display:none;margin-left:8px;">Reset</button>
         </div>
 
         <div class="card">
-          <p class="card-title">Tip</p>
-          <p class="card-sub" style="margin:0; line-height:1.6;">
-            Use this for quick recall. If you miss a question, write the correct wording once.
+          <p class="card-title">How to use</p>
+          <p class="card-sub" style="margin:0;line-height:1.6;">
+            Do quick recall. If you miss one, write the correct version once.
           </p>
         </div>
       </div>
 
       <div style="height:14px;"></div>
 
-      <!-- QUIZ AREA -->
-      <section id="quizArea" class="panel-soft" style="display:none; padding:18px; border-radius:22px;">
-        <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+      <section id="quizArea" class="panel-soft" style="display:none;padding:18px;border-radius:22px;">
+        <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
           <div id="quizMeta" class="sub">Question</div>
           <div id="quizScore" class="sub">Score: 0</div>
         </div>
 
         <div style="height:10px;"></div>
 
-        <div id="quizQuestion" style="font-size:18px; font-weight:700;">Question text</div>
+        <div id="quizQuestion" style="font-size:18px;font-weight:700;">Question text</div>
 
         <div style="height:12px;"></div>
 
@@ -98,8 +97,7 @@
         <button id="nextQuizBtn" class="btn" type="button" disabled>Next</button>
       </section>
 
-      <!-- RESULT -->
-      <section id="quizResult" class="panel-soft" style="display:none; padding:18px; border-radius:22px;">
+      <section id="quizResult" class="panel-soft" style="display:none;padding:18px;border-radius:22px;">
         <h2 style="margin:0 0 8px;">Result</h2>
         <p id="quizResultText" class="sub" style="margin:0;"></p>
       </section>
@@ -107,7 +105,6 @@
     </section>
   </main>
 
-  <!-- IMPORTANT -->
   <script src="app.js" defer></script>
 </body>
 </html>
