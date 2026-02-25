@@ -378,3 +378,58 @@
     return String(s).replace(/"/g, "&quot;").replace(/</g, "%3C").replace(/>/g, "%3E");
   }
 })();
+// --------------------
+// GRADE BOUNDARIES
+// --------------------
+
+const subjectSelect = document.querySelector("#subjectSelect");
+
+if (subjectSelect) {
+
+  const boundaryData = {
+
+    math: [7, 80, 69, 58, 47, 36, 25],
+    bio: [7, 79, 66, 53, 41, 28, 15],
+    chem: [7, 78, 65, 52, 40, 27, 14],
+    physics: [7, 76, 63, 50, 38, 25, 12],
+    econ: [7, 81, 69, 57, 45, 33, 21],
+    english: [7, 78, 66, 54, 42, 30, 18],
+    psych: [7, 79, 67, 55, 43, 31, 19],
+    business: [7, 77, 64, 51, 39, 27, 15],
+    history: [7, 78, 65, 52, 40, 28, 16],
+    geo: [7, 76, 63, 50, 38, 26, 14],
+    cs: [7, 75, 62, 49, 37, 25, 13],
+    french: [7, 80, 68, 56, 44, 32, 20]
+  };
+
+  subjectSelect.addEventListener("change", () => {
+
+    const val = subjectSelect.value;
+    const output = document.querySelector("#boundaryOutput");
+
+    if (!val) {
+      output.innerHTML = "";
+      return;
+    }
+
+    const data = boundaryData[val];
+
+    output.innerHTML = `
+      <div class="card">
+        <div class="card-inner">
+          <h3>Grade Boundaries (%)</h3>
+          <table class="boundary-table">
+            <tr><th>Grade</th><th>Minimum %</th></tr>
+            <tr><td>7</td><td>${data[1]}+</td></tr>
+            <tr><td>6</td><td>${data[2]}+</td></tr>
+            <tr><td>5</td><td>${data[3]}+</td></tr>
+            <tr><td>4</td><td>${data[4]}+</td></tr>
+            <tr><td>3</td><td>${data[5]}+</td></tr>
+            <tr><td>2</td><td>${data[6]}+</td></tr>
+            <tr><td>1</td><td>Below ${data[6]}</td></tr>
+          </table>
+        </div>
+      </div>
+    `;
+  });
+}
