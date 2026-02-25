@@ -1,208 +1,7 @@
-/* =========================
-   IB Survival Hub - app.js
-   - Fixes Study Quiz Start button
-   - Fixes Planner Generate button
-   - Works even if some pages don’t have certain elements
-   ========================= */
-
 document.addEventListener("DOMContentLoaded", () => {
-  setupQuiz();
   setupPlanner();
+  setupQuiz();
 });
-
-/* =========================
-   QUIZ
-   ========================= */
-
-function setupQuiz() {
-  const startBtn = document.getElementById("startQuizBtn");
-  const resetBtn = document.getElementById("resetQuizBtn");
-  const nextBtn = document.getElementById("nextQuizBtn");
-
-  // If we’re not on quiz.html, exit safely
-  if (!startBtn) return;
-
-  const subjectSelect = document.getElementById("quizSubject");
-  const countSelect = document.getElementById("quizCount");
-
-  const quizArea = document.getElementById("quizArea");
-  const quizResult = document.getElementById("quizResult");
-  const quizResultText = document.getElementById("quizResultText");
-
-  const quizMeta = document.getElementById("quizMeta");
-  const quizScore = document.getElementById("quizScore");
-  const quizQuestion = document.getElementById("quizQuestion");
-  const quizChoices = document.getElementById("quizChoices");
-  const quizFeedback = document.getElementById("quizFeedback");
-
-  // Simple question bank (expand later)
-  const QUESTION_BANK = {
-    "Chemistry": [
-      q("What does an increase in temperature do to average kinetic energy?", ["Decreases it", "Increases it", "Does not change it", "Makes it negative"], 1),
-      q("Which bond is most polar?", ["C–C", "H–H", "O–H", "Cl–Cl"], 2),
-      q("What is the pH of a neutral solution at 25°C?", ["0", "7", "14", "Depends on the acid"], 1),
-      q("Which is a strong acid?", ["CH3COOH", "HCl", "H2CO3", "NH3"], 1),
-      q("What happens at the boiling point?", ["Vapor pressure = external pressure", "Particles stop moving", "All bonds break", "Temperature decreases"], 0),
-      q("What type of IMF is in all molecules?", ["Hydrogen bonding", "Ionic bonding", "London dispersion", "Metallic bonding"], 2)
-    ],
-    "Biology": [
-      q("What organelle produces ATP?", ["Ribosome", "Mitochondrion", "Nucleus", "Golgi"], 1),
-      q("DNA base pairing:", ["A–C, G–T", "A–T, C–G", "A–G, C–T", "A–U, C–G"], 1)
-    ],
-    "Physics": [
-      q("Unit of force:", ["J", "N", "W", "Pa"], 1),
-      q("Acceleration is:", ["Change in velocity / time", "Velocity / distance", "Distance / time", "Mass × velocity"], 0)
-    ],
-    "Mathematics AA": [
-      q("Derivative represents:", ["Area under curve", "Rate of change", "Total distance", "Average value always"], 1),
-      q("sin(π/2) =", ["0", "1", "-1", "π/2"], 1)
-    ],
-    "Computer Science": [
-      q("What does CPU stand for?", ["Central Processing Unit", "Computer Processing Utility", "Core Program Unit", "Control Processing Unit"], 0),
-      q("A loop that repeats while a condition is true is:", ["if", "while", "switch", "break"], 1)
-    ],
-    "Economics": [
-      q("Law of demand:", ["Price ↑, quantity demanded ↑", "Price ↑, quantity demanded ↓", "Price ↓, supply ↓", "Price has no effect"], 1)
-    ],
-    "Business Management": [
-      q("A stakeholder is:", ["Only shareholders", "Anyone affected by the business", "Only customers", "Only employees"], 1)
-    ],
-    "Psychology": [
-      q("In a lab experiment, the IV is:", ["Measured outcome", "Controlled variable", "Manipulated variable", "Random error"], 2)
-    ],
-    "English A Literature": [
-      q("A theme is:", ["A character", "A setting", "Central idea/message", "A plot twist"], 2)
-    ],
-    "English B": [
-      q("Formal writing usually avoids:", ["Clear structure", "Slang", "Paragraphs", "Linking words"], 1)
-    ],
-    "Geography": [
-      q("Urbanization means:", ["Rural growth", "Increase in city population", "Decrease in migration", "Lower density always"], 1)
-    ],
-    "History": [
-      q("A primary source is:", ["A textbook", "A documentary", "An eyewitness record", "A summary article"], 2)
-    ]
-  };
-
-  let currentQuestions = [];
-  let index = 0;
-  let score = 0;
-  let chosenLocked = false;
-
-  startBtn.addEventListener("click", () => {
-    const subject = subjectSelect.value;
-    const count = parseInt(countSelect.value, 10);
-
-    const bank = QUESTION_BANK[subject] || [];
-    if (bank.length === 0) {
-      alert("No questions added for this subject yet.");
-      return;
-    }
-
-    currentQuestions = pickRandom(bank, count);
-    index = 0;
-    score = 0;
-    chosenLocked = false;
-
-    quizResult.style.display = "none";
-    quizArea.style.display = "block";
-    resetBtn.style.display = "inline-block";
-    startBtn.disabled = true;
-
-    renderQuestion();
-  });
-
-  resetBtn.addEventListener("click", () => {
-    quizArea.style.display = "none";
-    quizResult.style.display = "none";
-    resetBtn.style.display = "none";
-    startBtn.disabled = false;
-  });
-
-  nextBtn.addEventListener("click", () => {
-    if (index < currentQuestions.length - 1) {
-      index++;
-      chosenLocked = false;
-      renderQuestion();
-    } else {
-      finishQuiz();
-    }
-  });
-
-  function renderQuestion() {
-    const total = currentQuestions.length;
-    const item = currentQuestions[index];
-
-    quizMeta.textContent = `Question ${index + 1} / ${total}`;
-    quizScore.textContent = `Score: ${score}`;
-
-    quizQuestion.textContent = item.prompt;
-    quizChoices.innerHTML = "";
-    quizFeedback.textContent = "";
-    nextBtn.disabled = true;
-
-    item.choices.forEach((choiceText, choiceIndex) => {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "btn choice-btn";
-      btn.textContent = choiceText;
-
-      btn.addEventListener("click", () => {
-        if (chosenLocked) return;
-        chosenLocked = true;
-
-        const correct = choiceIndex === item.answerIndex;
-        if (correct) {
-          score++;
-          quizFeedback.textContent = "✅ Correct";
-        } else {
-          quizFeedback.textContent = `❌ Not quite. Correct answer: ${item.choices[item.answerIndex]}`;
-        }
-
-        quizScore.textContent = `Score: ${score}`;
-
-        // Disable all buttons & highlight correct choice lightly
-        [...quizChoices.querySelectorAll("button")].forEach((b, i) => {
-          b.disabled = true;
-          if (i === item.answerIndex) {
-            b.style.borderColor = "rgba(160,180,255,.45)";
-            b.style.background = "rgba(160,180,255,.14)";
-          }
-        });
-
-        nextBtn.disabled = false;
-      });
-
-      quizChoices.appendChild(btn);
-    });
-  }
-
-  function finishQuiz() {
-    quizArea.style.display = "none";
-    quizResult.style.display = "block";
-    startBtn.disabled = false;
-
-    const total = currentQuestions.length;
-    quizResultText.textContent = `You scored ${score} / ${total}.`;
-  }
-
-  function q(prompt, choices, answerIndex) {
-    return { prompt, choices, answerIndex };
-  }
-
-  function pickRandom(arr, n) {
-    const copy = [...arr];
-    shuffle(copy);
-    return copy.slice(0, Math.min(n, copy.length));
-  }
-
-  function shuffle(a) {
-    for (let i = a.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
-    }
-  }
-}
 
 /* =========================
    PLANNER
@@ -210,22 +9,20 @@ function setupQuiz() {
 
 function setupPlanner() {
   const generateBtn = document.getElementById("generatePlanBtn");
-  if (!generateBtn) return; // not on planner.html
+  if (!generateBtn) return; // not on planner page
 
   const hoursInput = document.getElementById("hoursPerDay");
   const daysInput = document.getElementById("daysUntil");
-  const subjectsInput = document.getElementById("planSubjects");
 
-  const output = document.getElementById("planOutput");
+  const subjectIds = ["subject1","subject2","subject3","subject4","subject5","subject6"];
+  const planOutput = document.getElementById("planOutput");
 
   generateBtn.addEventListener("click", () => {
-    const hours = parseFloat(hoursInput.value || "0");
-    const days = parseInt(daysInput.value || "0", 10);
+    const hours = parseFloat(hoursInput?.value || "0");
+    const days = parseInt(daysInput?.value || "0", 10);
 
-    const raw = (subjectsInput.value || "").trim();
-    const subjects = raw
-      .split(",")
-      .map(s => s.trim())
+    const subjects = subjectIds
+      .map(id => (document.getElementById(id)?.value || "").trim())
       .filter(Boolean);
 
     if (!hours || hours <= 0) {
@@ -237,37 +34,36 @@ function setupPlanner() {
       return;
     }
     if (subjects.length === 0) {
-      alert("Enter at least 1 subject (comma separated).");
+      alert("Enter at least 1 subject.");
       return;
     }
 
-    const plan = buildWeeklyPlan(subjects, hours, days);
-    renderPlan(plan);
+    const plan = buildPlan(subjects, hours, days);
+    renderPlan(planOutput, plan);
   });
 
-  function buildWeeklyPlan(subjects, hoursPerDay, daysUntil) {
-    // simple rotation: spread subjects evenly, include review blocks
-    const sessions = [];
-    const totalSessions = daysUntil;
+  function buildPlan(subjects, hoursPerDay, daysUntil) {
+    const minutesTotal = Math.round(hoursPerDay * 60);
+    const plan = [];
 
-    for (let d = 1; d <= totalSessions; d++) {
+    for (let d = 1; d <= daysUntil; d++) {
       const subject = subjects[(d - 1) % subjects.length];
-      sessions.push({
+
+      plan.push({
         day: d,
         subject,
         blocks: [
-          { title: "Core content", mins: Math.round(hoursPerDay * 60 * 0.55) },
-          { title: "Practice questions", mins: Math.round(hoursPerDay * 60 * 0.35) },
-          { title: "Quick review + errors", mins: Math.round(hoursPerDay * 60 * 0.10) }
+          { title: "Core content", mins: Math.round(minutesTotal * 0.55) },
+          { title: "Practice questions", mins: Math.round(minutesTotal * 0.35) },
+          { title: "Review mistakes", mins: Math.max(5, minutesTotal - (Math.round(minutesTotal * 0.55) + Math.round(minutesTotal * 0.35))) }
         ]
       });
     }
-
-    return sessions;
+    return plan;
   }
 
-  function renderPlan(plan) {
-    output.innerHTML = "";
+  function renderPlan(root, plan) {
+    root.innerHTML = "";
 
     const wrap = document.createElement("div");
     wrap.className = "grid";
@@ -277,7 +73,7 @@ function setupPlanner() {
       const card = document.createElement("div");
       card.className = "card";
 
-      const title = document.createElement("p");
+      const title = document.createElement("div");
       title.className = "card-title";
       title.textContent = `Day ${item.day}: ${item.subject}`;
 
@@ -300,6 +96,184 @@ function setupPlanner() {
       wrap.appendChild(card);
     });
 
-    output.appendChild(wrap);
+    root.appendChild(wrap);
+  }
+}
+
+/* =========================
+   QUIZ
+   ========================= */
+
+function setupQuiz() {
+  const startBtn = document.getElementById("startQuizBtn");
+  if (!startBtn) return; // not on quiz page
+
+  const resetBtn = document.getElementById("resetQuizBtn");
+  const nextBtn = document.getElementById("nextQuizBtn");
+
+  const subjectSelect = document.getElementById("quizSubject");
+  const countSelect = document.getElementById("quizCount");
+
+  const quizArea = document.getElementById("quizArea");
+  const quizResult = document.getElementById("quizResult");
+  const quizResultText = document.getElementById("quizResultText");
+
+  const quizMeta = document.getElementById("quizMeta");
+  const quizScore = document.getElementById("quizScore");
+  const quizQuestion = document.getElementById("quizQuestion");
+  const quizChoices = document.getElementById("quizChoices");
+  const quizFeedback = document.getElementById("quizFeedback");
+
+  const BANK = {
+    "Chemistry": [
+      q("What happens at the boiling point?", ["Vapor pressure = external pressure", "Particles stop moving", "All bonds break", "Temperature decreases"], 0),
+      q("pH of neutral water at 25°C is:", ["0", "7", "14", "Depends on the acid"], 1),
+      q("Which IMF is in all molecules?", ["Hydrogen bonding", "London dispersion", "Ionic bonding", "Metallic bonding"], 1)
+    ],
+    "Biology": [
+      q("What organelle produces ATP?", ["Ribosome", "Mitochondrion", "Nucleus", "Golgi"], 1),
+      q("DNA base pairing is:", ["A–T and C–G", "A–C and G–T", "A–G and C–T", "A–U and C–G"], 0)
+    ],
+    "Physics": [
+      q("Unit of force is:", ["J", "N", "W", "Pa"], 1),
+      q("Acceleration is:", ["Change in velocity / time", "Distance / time", "Mass × velocity", "Energy / time"], 0)
+    ],
+    "Mathematics AA": [
+      q("Derivative represents:", ["Rate of change", "Area under curve", "Total distance", "Always a constant"], 0),
+      q("sin(π/2) =", ["0", "1", "-1", "π/2"], 1)
+    ],
+    "Computer Science": [
+      q("CPU stands for:", ["Central Processing Unit", "Core Program Unit", "Computer Power Unit", "Control Program Utility"], 0)
+    ],
+    "Economics": [
+      q("Law of demand:", ["Price ↑, Qd ↑", "Price ↑, Qd ↓", "Price ↓, Supply ↓", "No relationship"], 1)
+    ],
+    "Business Management": [
+      q("A stakeholder is:", ["Only shareholders", "Anyone affected by the business", "Only customers", "Only employees"], 1)
+    ],
+    "Psychology": [
+      q("In an experiment, the IV is the:", ["Measured outcome", "Manipulated variable", "Random error", "Control group"], 1)
+    ],
+    "English A Literature": [
+      q("A theme is:", ["A character", "A setting", "Central idea/message", "A plot twist"], 2)
+    ],
+    "English B": [
+      q("Formal writing usually avoids:", ["Clear structure", "Slang", "Paragraphs", "Linking words"], 1)
+    ],
+    "Geography": [
+      q("Urbanization means:", ["Rural growth", "Increase in city population", "Decrease in migration", "Lower density always"], 1)
+    ],
+    "History": [
+      q("A primary source is:", ["A textbook", "A documentary", "An eyewitness record", "A summary article"], 2)
+    ]
+  };
+
+  let questions = [];
+  let i = 0;
+  let score = 0;
+  let locked = false;
+
+  startBtn.addEventListener("click", () => {
+    const subject = subjectSelect.value;
+    const count = parseInt(countSelect.value, 10);
+
+    const bank = BANK[subject] || [];
+    if (bank.length === 0) {
+      alert("No questions for this subject yet.");
+      return;
+    }
+
+    questions = pickRandom(bank, count);
+    i = 0;
+    score = 0;
+    locked = false;
+
+    quizResult.style.display = "none";
+    quizArea.style.display = "block";
+    resetBtn.style.display = "inline-block";
+    startBtn.disabled = true;
+
+    render();
+  });
+
+  resetBtn.addEventListener("click", () => {
+    quizArea.style.display = "none";
+    quizResult.style.display = "none";
+    resetBtn.style.display = "none";
+    startBtn.disabled = false;
+  });
+
+  nextBtn.addEventListener("click", () => {
+    if (i < questions.length - 1) {
+      i++;
+      locked = false;
+      render();
+    } else {
+      finish();
+    }
+  });
+
+  function render() {
+    const item = questions[i];
+    quizMeta.textContent = `Question ${i + 1} / ${questions.length}`;
+    quizScore.textContent = `Score: ${score}`;
+    quizQuestion.textContent = item.prompt;
+
+    quizChoices.innerHTML = "";
+    quizFeedback.textContent = "";
+    nextBtn.disabled = true;
+
+    item.choices.forEach((text, idx) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "btn choice-btn";
+      b.textContent = text;
+
+      b.addEventListener("click", () => {
+        if (locked) return;
+        locked = true;
+
+        const correct = idx === item.answerIndex;
+        if (correct) {
+          score++;
+          quizFeedback.textContent = "✅ Correct";
+        } else {
+          quizFeedback.textContent = `❌ Correct answer: ${item.choices[item.answerIndex]}`;
+        }
+        quizScore.textContent = `Score: ${score}`;
+
+        [...quizChoices.querySelectorAll("button")].forEach((btn, j) => {
+          btn.disabled = true;
+          if (j === item.answerIndex) {
+            btn.style.borderColor = "rgba(160,180,255,.45)";
+            btn.style.background = "rgba(160,180,255,.14)";
+          }
+        });
+
+        nextBtn.disabled = false;
+      });
+
+      quizChoices.appendChild(b);
+    });
+  }
+
+  function finish() {
+    quizArea.style.display = "none";
+    quizResult.style.display = "block";
+    startBtn.disabled = false;
+    quizResultText.textContent = `You scored ${score} / ${questions.length}.`;
+  }
+
+  function q(prompt, choices, answerIndex) {
+    return { prompt, choices, answerIndex };
+  }
+
+  function pickRandom(arr, n) {
+    const copy = [...arr];
+    for (let k = copy.length - 1; k > 0; k--) {
+      const j = Math.floor(Math.random() * (k + 1));
+      [copy[k], copy[j]] = [copy[j], copy[k]];
+    }
+    return copy.slice(0, Math.min(n, copy.length));
   }
 }
