@@ -1,138 +1,84 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Subjects – IB Survival Hub</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Subjects — IB Survival Hub</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="main.js"></script>
 </head>
-
 <body>
-
-  <!-- Shared Header -->
-  <header class="site-header">
-    <div class="container">
-      <div class="header-row">
-        <a class="brand" href="index.html">
-          <span class="brand-dot"></span>
-          <span class="brand-title">IB Survival Hub</span>
-        </a>
-
-        <nav class="nav">
-          <a href="index.html">Home</a>
-          <a href="subjects.html">Subjects</a>
-          <a href="planner.html">Planner</a>
-          <a href="quiz.html">Study Quiz</a>
-          <a href="resources.html">Resources</a>
-          <a href="boundaries.html">Boundaries</a>
-        </nav>
-      </div>
+  <header class="siteHeader">
+    <div class="navInner">
+      <a class="brand" href="index.html"><span class="brandDot"></span>IB Survival Hub</a>
+      <nav class="navLinks">
+        <a href="index.html">Home</a>
+        <a href="subjects.html">Subjects</a>
+        <a href="planner.html">Planner</a>
+        <a href="study-quiz.html">Study Quiz</a>
+        <a href="resources.html">Resources</a>
+        <a href="boundaries.html">Boundaries</a>
+      </nav>
     </div>
   </header>
 
-  <main class="page">
-    <div class="container">
+  <main class="container">
+    <h1 class="pageTitle">Subjects</h1>
+    <p class="pageSub">Pick a subject. Each page should have paper structure + strategy + common mark traps.</p>
 
-      <section class="hero card">
-        <div class="card-inner">
-          <h1>Subjects</h1>
-          <p class="kicker">Pick a subject. Each page has paper structure + strategy + common mark traps.</p>
-        </div>
-      </section>
+    <div class="card cardPad">
+      <div class="grid two">
+        <a class="tile" href="#">
+          <span class="kicker">Biology</span>
+          <h3>Data skills + command terms</h3>
+          <p>Use diagrams + precise wording. Avoid vague “it increases” answers.</p>
+        </a>
 
-      <section class="section">
-        <div class="grid grid-3">
+        <a class="tile" href="#">
+          <span class="kicker">Chemistry</span>
+          <h3>Units + mechanisms + discipline</h3>
+          <p>Show method marks. Track units. Use correct sig figs.</p>
+        </a>
 
-          <a class="card" href="bio.html">
-            <div class="card-inner">
-              <h3>Biology</h3>
-              <p class="kicker">Data skills + command terms + keyword precision.</p>
-            </div>
-          </a>
+        <a class="tile" href="#">
+          <span class="kicker">Physics</span>
+          <h3>Method marks + diagrams</h3>
+          <p>Always state assumptions. Use consistent symbols and directions.</p>
+        </a>
 
-          <a class="card" href="chem.html">
-            <div class="card-inner">
-              <h3>Chemistry</h3>
-              <p class="kicker">Units + mechanisms + calculation discipline.</p>
-            </div>
-          </a>
+        <a class="tile" href="#">
+          <span class="kicker">Math AA</span>
+          <h3>Steps shown + domain checks</h3>
+          <p>Don’t skip algebra. State restrictions. Check trig ranges.</p>
+        </a>
 
-          <a class="card" href="physics.html">
-            <div class="card-inner">
-              <h3>Physics</h3>
-              <p class="kicker">Method marks + algebra control + diagrams.</p>
-            </div>
-          </a>
+        <a class="tile" href="#">
+          <span class="kicker">Economics</span>
+          <h3>DEED structure + evaluation</h3>
+          <p>Define → Explain → Example → Diagram, then evaluate clearly.</p>
+        </a>
 
-          <a class="card" href="math.html">
-            <div class="card-inner">
-              <h3>Math AA</h3>
-              <p class="kicker">Steps shown + domain checks + calculator control.</p>
-            </div>
-          </a>
+        <a class="tile" href="#">
+          <span class="kicker">Psychology</span>
+          <h3>Study structure + research methods</h3>
+          <p>Link to theory. Use studies correctly. Evaluate limitations.</p>
+        </a>
 
-          <a class="card" href="econ.html">
-            <div class="card-inner">
-              <h3>Economics</h3>
-              <p class="kicker">DEED structure + diagrams + evaluation balance.</p>
-            </div>
-          </a>
+        <a class="tile" href="#">
+          <span class="kicker">Business</span>
+          <h3>Definitions + structure + real examples</h3>
+          <p>Don’t waffle. Apply tools (SWOT, Ansoff, BCG) properly.</p>
+        </a>
 
-          <a class="card" href="psych.html">
-            <div class="card-inner">
-              <h3>Psychology</h3>
-              <p class="kicker">Study structure + evaluation + research methods.</p>
-            </div>
-          </a>
+        <a class="tile" href="#">
+          <span class="kicker">English</span>
+          <h3>Thesis clarity + literary analysis</h3>
+          <p>Point → evidence → effect → author purpose. Stay tight.</p>
+        </a>
+      </div>
 
-          <a class="card" href="business.html">
-            <div class="card-inner">
-              <h3>Business</h3>
-              <p class="kicker">Definitions + structure + real examples.</p>
-            </div>
-          </a>
-
-          <a class="card" href="english.html">
-            <div class="card-inner">
-              <h3>English</h3>
-              <p class="kicker">Thesis clarity + structure + literary analysis.</p>
-            </div>
-          </a>
-
-          <a class="card" href="history.html">
-            <div class="card-inner">
-              <h3>History</h3>
-              <p class="kicker">Source analysis + argument + historiography.</p>
-            </div>
-          </a>
-
-          <a class="card" href="geo.html">
-            <div class="card-inner">
-              <h3>Geography</h3>
-              <p class="kicker">Case studies + diagrams + structured evaluation.</p>
-            </div>
-          </a>
-
-          <a class="card" href="cs.html">
-            <div class="card-inner">
-              <h3>Computer Science</h3>
-              <p class="kicker">Logic flow + trace tables + definitions.</p>
-            </div>
-          </a>
-
-          <a class="card" href="french.html">
-            <div class="card-inner">
-              <h3>French</h3>
-              <p class="kicker">Structure + tenses + exam format mastery.</p>
-            </div>
-          </a>
-
-        </div>
-      </section>
-
+      <div class="footerNote">If you want, tell me your actual subject pages/filenames and I’ll wire these links to them.</div>
     </div>
   </main>
-
-  <script src="app.jss"></script>
 </body>
 </html>
