@@ -3,79 +3,123 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Grade Boundaries – IB Survival Hub</title>
+  <title>Grade Boundaries — IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-
-<header class="site-header">
-  <div class="container">
-    <div class="header-row">
-      <a class="brand" href="index.html">
-        <span class="brand-dot"></span>
-        <span class="brand-title">IB Survival Hub</span>
+  <!-- Top Nav (same on every page) -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html" aria-label="IB Survival Hub Home">
+        <span class="dot"></span>
+        <span class="brand-text">IB Survival Hub</span>
       </a>
 
-      <nav class="nav">
+      <nav class="nav-links" aria-label="Primary">
         <a href="index.html">Home</a>
         <a href="subjects.html">Subjects</a>
         <a href="planner.html">Planner</a>
         <a href="quiz.html">Study Quiz</a>
         <a href="resources.html">Resources</a>
-        <a href="boundaries.html">Boundaries</a>
+        <a class="active" href="boundaries.html">Boundaries</a>
       </nav>
     </div>
-  </div>
-</header>
+  </header>
 
-<main class="page">
-  <div class="container">
-
-    <section class="hero card">
-      <div class="card-inner">
+  <main class="page">
+    <section class="shell">
+      <div class="hero-card">
         <h1>IB Grade Boundaries</h1>
-        <p class="kicker">
-          Based on May 2023 – Time Zone A (includes Ontario, Canada).
+        <p class="muted">
+          Pick a subject → see the raw % ranges for levels 1–7.
         </p>
-        <div class="hr"></div>
         <div class="note">
-          Boundaries vary by session and time zone. Always verify with your school if uncertain.
+          <strong>Disclaimer:</strong>
+          Boundaries change by <strong>session</strong> and <strong>time zone</strong>.
+          This page is meant as a personal reference for Ontario students.
+          Always confirm with your school if you’re using it for anything official.
+        </div>
+
+        <div class="meta-grid">
+          <div class="meta">
+            <div class="meta-label">Session</div>
+            <div class="meta-value" id="sessionLabel">May 2024</div>
+          </div>
+          <div class="meta">
+            <div class="meta-label">Time zone group</div>
+            <div class="meta-value" id="tzLabel">Zone A (Americas)</div>
+          </div>
+          <div class="meta">
+            <div class="meta-label">Ontario reference</div>
+            <div class="meta-value">Toronto (Eastern Time)</div>
+          </div>
         </div>
       </div>
-    </section>
 
-    <section class="section">
       <div class="card">
-        <div class="card-inner">
+        <h2>Select subject</h2>
+        <p class="muted small">I can add more later — this list matches your site subjects.</p>
 
-          <h2>Select Subject</h2>
+        <div class="controls">
+          <label class="field">
+            <span>Subject</span>
+            <select id="boundarySubjectSelect"></select>
+          </label>
 
-          <select id="subjectSelect" class="input">
-            <option value="">-- Choose Subject --</option>
-            <option value="math">Mathematics AA SL</option>
-            <option value="bio">Biology SL</option>
-            <option value="chem">Chemistry SL</option>
-            <option value="physics">Physics SL</option>
-            <option value="econ">Economics HL</option>
-            <option value="english">English A</option>
-            <option value="psych">Psychology HL</option>
-            <option value="business">Business SL</option>
-            <option value="history">History HL</option>
-            <option value="geo">Geography SL</option>
-            <option value="cs">Computer Science SL</option>
-            <option value="french">French B SL</option>
-          </select>
+          <label class="field">
+            <span>Level</span>
+            <select id="boundaryLevelSelect">
+              <option value="SL">SL</option>
+              <option value="HL">HL</option>
+            </select>
+          </label>
 
-          <div id="boundaryOutput" style="margin-top:30px;"></div>
+          <button class="btn" id="boundaryApplyBtn" type="button">Show boundaries</button>
+        </div>
+      </div>
 
+      <!-- TABLE ALWAYS VISIBLE -->
+      <div class="card" id="boundaryResultCard">
+        <div class="result-head">
+          <div>
+            <h2 id="boundaryTitle">Select a subject</h2>
+            <p class="muted small" id="boundarySubtitle">
+              The table below will update when you click “Show boundaries”.
+            </p>
+          </div>
+          <div class="pill" id="boundaryPill">—</div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="table" aria-label="Grade boundaries table">
+            <thead>
+              <tr>
+                <th style="width:120px;">Level</th>
+                <th>Raw % range</th>
+              </tr>
+            </thead>
+            <tbody id="boundaryTableBody">
+              <tr><td>7</td><td class="muted">—</td></tr>
+              <tr><td>6</td><td class="muted">—</td></tr>
+              <tr><td>5</td><td class="muted">—</td></tr>
+              <tr><td>4</td><td class="muted">—</td></tr>
+              <tr><td>3</td><td class="muted">—</td></tr>
+              <tr><td>2</td><td class="muted">—</td></tr>
+              <tr><td>1</td><td class="muted">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note small" id="boundaryFooterNote">
+          Tip: when you get official boundaries, paste them into <code>app.jss</code> in the
+          <code>BOUNDARIES</code> object.
         </div>
       </div>
     </section>
+  </main>
 
-  </div>
-</main>
-
-<script src="app.jss"></script>
+  <!-- IMPORTANT: this must match your repo filename exactly -->
+  <script src="app.jss" defer></script>
 </body>
 </html>
