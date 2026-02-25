@@ -3,212 +3,79 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Boundaries – IB Survival Hub</title>
+  <title>Grade Boundaries – IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-  <!-- Shared Header -->
-  <header class="site-header">
-    <div class="container">
-      <div class="header-row">
-        <a class="brand" href="index.html">
-          <span class="brand-dot"></span>
-          <span class="brand-title">IB Survival Hub</span>
-        </a>
+<header class="site-header">
+  <div class="container">
+    <div class="header-row">
+      <a class="brand" href="index.html">
+        <span class="brand-dot"></span>
+        <span class="brand-title">IB Survival Hub</span>
+      </a>
 
-        <nav class="nav">
-          <a href="index.html">Home</a>
-          <a href="subjects.html">Subjects</a>
-          <a href="planner.html">Planner</a>
-          <a href="quiz.html">Study Quiz</a>
-          <a href="resources.html">Resources</a>
-          <a href="boundaries.html">Boundaries</a>
-        </nav>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="subjects.html">Subjects</a>
+        <a href="planner.html">Planner</a>
+        <a href="quiz.html">Study Quiz</a>
+        <a href="resources.html">Resources</a>
+        <a href="boundaries.html">Boundaries</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <div class="container">
+
+    <section class="hero card">
+      <div class="card-inner">
+        <h1>IB Grade Boundaries</h1>
+        <p class="kicker">
+          Based on May 2023 – Time Zone A (includes Ontario, Canada).
+        </p>
+        <div class="hr"></div>
+        <div class="note">
+          Boundaries vary by session and time zone. Always verify with your school if uncertain.
+        </div>
       </div>
-    </div>
-  </header>
+    </section>
 
-  <main class="page">
-    <div class="container">
-
-      <section class="hero card">
+    <section class="section">
+      <div class="card">
         <div class="card-inner">
-          <h1>Grade Boundaries</h1>
-          <p class="kicker">
-            Pick a subject to view boundaries. Boundaries vary by <b>session</b> and <b>time zone group</b>.
-          </p>
-          <div class="hr"></div>
-          <div class="note">
-            <b>Ontario note:</b> Ontario is Eastern Time (ET). IB boundaries are usually published by <b>time zone group</b> (TZ1/TZ2),
-            not by city time. If your school gives a different official table, use theirs.
-          </div>
-        </div>
-      </section>
 
-      <!-- Meta box gets filled by app.jss -->
-      <section class="section" id="boundaryMeta"></section>
+          <h2>Select Subject</h2>
 
-      <section class="section">
-        <div class="grid grid-2">
+          <select id="subjectSelect" class="input">
+            <option value="">-- Choose Subject --</option>
+            <option value="math">Mathematics AA SL</option>
+            <option value="bio">Biology SL</option>
+            <option value="chem">Chemistry SL</option>
+            <option value="physics">Physics SL</option>
+            <option value="econ">Economics HL</option>
+            <option value="english">English A</option>
+            <option value="psych">Psychology HL</option>
+            <option value="business">Business SL</option>
+            <option value="history">History HL</option>
+            <option value="geo">Geography SL</option>
+            <option value="cs">Computer Science SL</option>
+            <option value="french">French B SL</option>
+          </select>
 
-          <!-- Picker -->
-          <div class="card">
-            <div class="card-inner">
-              <h2>Choose a subject</h2>
-              <p class="small">This dropdown is filled automatically from the data below.</p>
-
-              <label for="boundarySelect">Subject</label>
-              <select id="boundarySelect"></select>
-
-              <div class="hr"></div>
-              <div class="note">
-                Want to update numbers? Scroll to the bottom of this file and edit <code>BOUNDARY_DATA</code>.
-              </div>
-            </div>
-          </div>
-
-          <!-- Output -->
-          <div class="card">
-            <div class="card-inner">
-              <h2>Boundaries</h2>
-              <div id="boundaryOut" class="note">Pick a subject to view boundaries.</div>
-            </div>
-          </div>
+          <div id="boundaryOutput" style="margin-top:30px;"></div>
 
         </div>
-      </section>
+      </div>
+    </section>
 
-      <div class="footer">Not affiliated with the IB Organization.</div>
-    </div>
-  </main>
+  </div>
+</main>
 
-  <!-- =========================
-       BOUNDARIES DATA
-       Replace the ranges with YOUR real values.
-       Format: level 7..1, range like "78–100"
-       ========================= -->
-  <script>
-    window.BOUNDARY_DATA = {
-      meta: {
-        session: "Most recent (edit me)",
-        zone: "TZ1 (edit if needed)",
-        reference: "Toronto, Ontario (ET) — for your tracking only"
-      },
-      subjects: {
-        "Biology": [
-          { level: 7, range: "—" },
-          { level: 6, range: "—" },
-          { level: 5, range: "—" },
-          { level: 4, range: "—" },
-          { level: 3, range: "—" },
-          { level: 2, range: "—" },
-          { level: 1, range: "—" }
-        ],
-        "Chemistry": [
-          { level: 7, range: "—" },
-          { level: 6, range: "—" },
-          { level: 5, range: "—" },
-          { level: 4, range: "—" },
-          { level: 3, range: "—" },
-          { level: 2, range: "—" },
-          { level: 1, range: "—" }
-        ],
-        "Physics": [
-          { level: 7, range: "—" },
-          { level: 6, range: "—" },
-          { level: 5, range: "—" },
-          { level: 4, range: "—" },
-          { level: 3, range: "—" },
-          { level: 2, range: "—" },
-          { level: 1, range: "—" }
-        ],
-        "Math AA": [
-          { level: 7, range: "—" },
-          { level: 6, range: "—" },
-          { level: 5, range: "—" },
-          { level: 4, range: "—" },
-          { level: 3, range: "—" },
-          { level: 2, range: "—" },
-          { level: 1, range: "—" }
-        ],
-        "Economics": [
-          { level: 7, range: "—" },
-          { level: 6, range: "—" },
-          { level: 5, range: "—" },
-          { level: 4, range: "—" },
-          { level: 3, range: "—" },
-          { level: 2, range: "—" },
-          { level: 1, range: "—" }
-        ],
-        "Psychology": [
-          { level: 7, range: "—" },
-          { level: 6, range: "—" },
-          { level: 5, range: "—" },
-          { level: 4, range: "—" },
-          { level: 3, range: "—" },
-          { level: 2, range: "—" },
-          { level: 1, range: "—" }
-        ],
-        "Business": [
-          { level: 7, range: "—" },
-          { level: 6, range: "—" },
-          { level: 5, range: "—" },
-          { level: 4, range: "—" },
-          { level: 3, range: "—" },
-          { level: 2, range: "—" },
-          { level: 1, range: "—" }
-        ],
-        "English": [
-          { level: 7, range: "—" },
-          { level: 6, range: "—" },
-          { level: 5, range: "—" },
-          { level: 4, range: "—" },
-          { level: 3, range: "—" },
-          { level: 2, range: "—" },
-          { level: 1, range: "—" }
-        ],
-        "History": [
-          { level: 7, range: "—" },
-          { level: 6, range: "—" },
-          { level: 5, range: "—" },
-          { level: 4, range: "—" },
-          { level: 3, range: "—" },
-          { level: 2, range: "—" },
-          { level: 1, range: "—" }
-        ],
-        "Geography": [
-          { level: 7, range: "—" },
-          { level: 6, range: "—" },
-          { level: 5, range: "—" },
-          { level: 4, range: "—" },
-          { level: 3, range: "—" },
-          { level: 2, range: "—" },
-          { level: 1, range: "—" }
-        ],
-        "Computer Science": [
-          { level: 7, range: "—" },
-          { level: 6, range: "—" },
-          { level: 5, range: "—" },
-          { level: 4, range: "—" },
-          { level: 3, range: "—" },
-          { level: 2, range: "—" },
-          { level: 1, range: "—" }
-        ],
-        "French": [
-          { level: 7, range: "—" },
-          { level: 6, range: "—" },
-          { level: 5, range: "—" },
-          { level: 4, range: "—" },
-          { level: 3, range: "—" },
-          { level: 2, range: "—" },
-          { level: 1, range: "—" }
-        ]
-      }
-    };
-  </script>
-
-  <script src="app.jss"></script>
+<script src="app.jss"></script>
 </body>
 </html>
