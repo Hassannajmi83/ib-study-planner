@@ -1,79 +1,87 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const makeBtn = document.getElementById("makeSubjectsBtn");
-  const generateBtn = document.getElementById("generatePlanBtn");
-  if (!makeBtn || !generateBtn) return;
+  console.log("[planner.js] loaded ✅");
 
-  const hoursInput = document.getElementById("hoursPerDay");
-  const daysInput = document.getElementById("daysUntil");
-  const countInput = document.getElementById("subjectCount");
+  const hoursEl = document.getElementById("hoursPerDay");
+  const daysEl = document.getElementById("daysUntilExam");
+  const countEl = document.getElementById("subjectCount");
+
+  const buildBtn = document.getElementById("buildSubjectsBtn");
+  const genBtn = document.getElementById("generatePlanBtn");
 
   const subjectsWrap = document.getElementById("subjectsWrap");
-  const planOutput = document.getElementById("planOutput");
+  const output = document.getElementById("planOutput");
 
-  makeBtn.addEventListener("click", () => {
-    const n = parseInt(countInput.value || "0", 10);
-    if (!n || n <= 0) return alert("Enter how many subjects (example: 4).");
+  if (!hoursEl || !daysEl || !countEl || !buildBtn || !genBtn || !subjectsWrap || !output) {
+    console.error("[planner.js] Missing required elements. IDs not found.");
+    return;
+  }
+
+  buildBtn.addEventListener("click", () => {
+    const n = parseInt(countEl.value || "0", 10);
+    if (!n || n < 1) return alert("Enter how many subjects (example: 4).");
     if (n > 12) return alert("Max 12 subjects.");
 
     subjectsWrap.innerHTML = "";
 
     for (let i = 1; i <= n; i++) {
-      const l = document.createElement("label");
-      l.textContent = `${i}`;
-      l.setAttribute("for", `dynSubject${i}`);
+      const row = document.createElement("div");
+      row.className = "subject-row";
+
+      const label = document.createElement("div");
+      label.className = "label";
+      label.textContent = `Subject ${i}`;
 
       const input = document.createElement("input");
-      input.id = `dynSubject${i}`;
+      input.className = "input";
       input.type = "text";
+      input.id = `subject_${i}`;
       input.placeholder = i === 1 ? "Example: Chemistry" : "Example: Math AA";
 
-      subjectsWrap.appendChild(l);
-      subjectsWrap.appendChild(input);
-
-      const spacer = document.createElement("div");
-      spacer.style.height = "8px";
-      subjectsWrap.appendChild(spacer);
+      row.appendChild(label);
+      row.appendChild(input);
+      subjectsWrap.appendChild(row);
     }
   });
 
-  generateBtn.addEventListener("click", () => {
-    const hours = parseFloat(hoursInput.value || "0");
-    const days = parseInt(daysInput.value || "0", 10);
-    const n = parseInt(countInput.value || "0", 10);
+  genBtn.addEventListener("click", () => {
+    console.log("[planner.js] Generate clicked ✅");
+
+    const hours = parseFloat(hoursEl.value || "0");
+    const days = parseInt(daysEl.value || "0", 10);
+    const n = parseInt(countEl.value || "0", 10);
 
     if (!hours || hours <= 0) return alert("Enter hours per day (example: 2).");
     if (!days || days <= 0) return alert("Enter days until exam (example: 7).");
-    if (!n || n <= 0) return alert("Enter # of subjects, then click 'Create subject boxes'.");
+    if (!n || n <= 0) return alert("Enter how many subjects, then click 'Create subject boxes'.");
 
     const subjects = [];
     for (let i = 1; i <= n; i++) {
-      const val = (document.getElementById(`dynSubject${i}`)?.value || "").trim();
-      if (val) subjects.push(val);
+      const v = (document.getElementById(`subject_${i}`)?.value || "").trim();
+      if (v) subjects.push(v);
     }
     if (subjects.length === 0) return alert("Fill at least 1 subject name.");
 
     const plan = buildPlan(subjects, hours, days);
-    renderPlan(planOutput, plan);
+    renderPlan(output, plan);
   });
 
   function buildPlan(subjects, hoursPerDay, daysUntil) {
-    const minutesTotal = Math.round(hoursPerDay * 60);
+    const mins = Math.round(hoursPerDay * 60);
     const plan = [];
 
     for (let d = 1; d <= daysUntil; d++) {
       const subject = subjects[(d - 1) % subjects.length];
-
-      const a = Math.round(minutesTotal * 0.55);
-      const b = Math.round(minutesTotal * 0.35);
-      const c = Math.max(5, minutesTotal - (a + b));
+      const content = Math.round(mins * 0.55);
+      const practice = Math.round(mins * 0.35);
+      const review = Math.max(5, mins - content - practice);
 
       plan.push({
         day: d,
         subject,
         blocks: [
-          { title: "Core content", mins: a },
-          { title: "Practice questions", mins: b },
-          { title: "Review mistakes", mins: c }
+          { name: "Core content", mins: content },
+          { name: "Practice questions", mins: practice },
+          { name: "Review mistakes", mins: review }
         ]
       });
     }
@@ -82,38 +90,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderPlan(root, plan) {
     root.innerHTML = "";
-    const wrap = document.createElement("div");
-    wrap.style.display = "grid";
-    wrap.style.gap = "12px";
 
-    plan.forEach(item => {
+    const wrap = document.createElement("div");
+    wrap.className = "plan-grid";
+
+    plan.forEach(p => {
       const card = document.createElement("div");
-      card.style.padding = "12px";
-      card.style.borderRadius = "16px";
-      card.style.border = "1px solid rgba(255,255,255,.10)";
-      card.style.background = "rgba(255,255,255,.06)";
+      card.className = "plan-card";
 
       const title = document.createElement("div");
-      title.style.fontWeight = "700";
-      title.style.marginBottom = "10px";
-      title.textContent = `Day ${item.day}: ${item.subject}`;
-
-      const list = document.createElement("div");
-      list.style.display = "grid";
-      list.style.gap = "8px";
-
-      item.blocks.forEach(b => {
-        const row = document.createElement("div");
-        row.style.padding = "10px 12px";
-        row.style.borderRadius = "12px";
-        row.style.border = "1px solid rgba(255,255,255,.10)";
-        row.style.background = "rgba(255,255,255,.05)";
-        row.textContent = `${b.title} — ${b.mins} min`;
-        list.appendChild(row);
-      });
+      title.className = "plan-title";
+      title.textContent = `Day ${p.day}: ${p.subject}`;
 
       card.appendChild(title);
-      card.appendChild(list);
+
+      p.blocks.forEach(b => {
+        const row = document.createElement("div");
+        row.className = "plan-row";
+        row.textContent = `${b.name} — ${b.mins} min`;
+        card.appendChild(row);
+      });
+
       wrap.appendChild(card);
     });
 
