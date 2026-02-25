@@ -25,46 +25,68 @@
   <main class="page-wrap">
     <section class="card">
       <h1>Study Quiz</h1>
-      <p class="muted">Pick a subject, choose number of questions, start the quiz.</p>
+      <p class="muted">A quick check to generate the best study method + weekly routine for you.</p>
 
       <div class="panel">
-        <label class="label">Subject</label>
-        <select id="quizSubject" class="input">
-          <option>Chemistry</option>
-          <option>Physics</option>
-          <option>Mathematics AA</option>
+        <label class="label">How many hours do you realistically have per day?</label>
+        <select id="hoursDaily" class="input">
+          <option value="1">~1 hour</option>
+          <option value="2">~2 hours</option>
+          <option value="3">~3 hours</option>
+          <option value="4">4+ hours</option>
         </select>
 
-        <label class="label">Questions</label>
-        <select id="quizCount" class="input">
-          <option value="5">5</option>
-          <option value="8">8</option>
-          <option value="10">10</option>
+        <label class="label">How many chapters / units are you behind (roughly)?</label>
+        <select id="chaptersBehind" class="input">
+          <option value="0">0–2</option>
+          <option value="1">3–5</option>
+          <option value="2">6–10</option>
+          <option value="3">10+</option>
+        </select>
+
+        <label class="label">How do you usually study right now? (Select all that you use)</label>
+        <div class="check-grid">
+          <label class="check"><input type="checkbox" value="notes" /> Re-reading notes</label>
+          <label class="check"><input type="checkbox" value="highlight" /> Highlighting</label>
+          <label class="check"><input type="checkbox" value="activeRecall" /> Active recall (testing yourself)</label>
+          <label class="check"><input type="checkbox" value="spaced" /> Spaced repetition</label>
+          <label class="check"><input type="checkbox" value="pastPapers" /> Past paper questions</label>
+          <label class="check"><input type="checkbox" value="blurting" /> Blurting / brain dump</label>
+          <label class="check"><input type="checkbox" value="pomodoro" /> Pomodoro sessions</label>
+        </div>
+
+        <label class="label">When you do practice questions, what happens most?</label>
+        <select id="practiceIssue" class="input">
+          <option value="avoid">I avoid practice / do too little</option>
+          <option value="stuck">I try but get stuck quickly</option>
+          <option value="careless">Careless mistakes</option>
+          <option value="timing">Timing is my problem</option>
+          <option value="ok">Practice is mostly fine</option>
+        </select>
+
+        <label class="label">What’s your biggest issue?</label>
+        <select id="biggestIssue" class="input">
+          <option value="consistency">Consistency / motivation</option>
+          <option value="understand">Understanding content</option>
+          <option value="memory">Remembering long-term</option>
+          <option value="exam">Exam performance</option>
         </select>
 
         <div class="row mt">
-          <button id="startQuizBtn" class="btn primary" type="button">Start Quiz</button>
-          <button id="resetQuizBtn" class="btn" type="button" style="display:none;">Reset</button>
+          <button id="buildPlanBtn" class="btn primary" type="button">Generate my study method</button>
+          <button id="resetMethodBtn" class="btn" type="button">Reset</button>
         </div>
       </div>
 
-      <div id="quizArea" class="panel mt" style="display:none;">
-        <div class="row space">
-          <div id="quizMeta" class="muted"></div>
-          <div id="quizScore" class="muted"></div>
-        </div>
+      <div id="methodOutput" class="panel mt" style="display:none;">
+        <h2>Your recommended method</h2>
+        <div id="methodSummary" class="muted"></div>
 
-        <div id="quizQuestion" class="quiz-q"></div>
-        <div id="quizChoices" class="quiz-choices"></div>
+        <h2 class="mt">Your routine (plug-and-play)</h2>
+        <div id="methodRoutine" class="muted"></div>
 
-        <div id="quizFeedback" class="muted mt"></div>
-
-        <button id="nextQuizBtn" class="btn mt" type="button" disabled>Next</button>
-      </div>
-
-      <div id="quizResult" class="panel mt" style="display:none;">
-        <h2>Result</h2>
-        <div id="quizResultText" class="muted"></div>
+        <h2 class="mt">What to stop doing</h2>
+        <div id="methodStop" class="muted"></div>
       </div>
     </section>
   </main>
