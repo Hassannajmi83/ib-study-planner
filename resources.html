@@ -2,67 +2,72 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Resources — IB Survival Hub</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script defer src="main.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="app.js"></script>
 </head>
+
 <body>
   <header class="siteHeader">
-    <div class="navInner">
+    <div class="navWrap">
       <a class="brand" href="index.html"><span class="brandDot"></span>IB Survival Hub</a>
-      <nav class="navLinks">
+      <nav class="nav">
         <a href="index.html">Home</a>
         <a href="subjects.html">Subjects</a>
         <a href="planner.html">Planner</a>
-        <a href="study-quiz.html">Study Quiz</a>
+        <a href="quiz.html">Study Quiz</a>
         <a href="resources.html">Resources</a>
         <a href="boundaries.html">Boundaries</a>
       </nav>
     </div>
   </header>
 
-  <main class="container">
-    <h1 class="pageTitle">Resources</h1>
-    <p class="pageSub">Clean list of safe links + what to use them for. (No sketchy repost sites.)</p>
+  <main class="page">
+    <section class="panel">
+      <h1>Resources</h1>
+      <p class="muted">Clean list of safe links + what to use them for. (No sketchy repost sites.)</p>
 
-    <div class="card cardPad">
-      <div class="grid two">
-        <div class="outCard">
-          <h4>Official IB (general)</h4>
-          <ul>
-            <li>Use for policies, assessment info, subject outlines.</li>
-            <li>Always prefer your teacher/school’s official docs.</li>
-          </ul>
+      <div class="hr"></div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="pill">Official IB (general)</div>
+          <h3>Policies + assessment info</h3>
+          <p class="muted">Subject guides, assessment weightings, command terms, official updates.</p>
         </div>
 
-        <div class="outCard">
-          <h4>Markscheme mindset</h4>
-          <ul>
-            <li>Practice with “command terms” and write in IB wording.</li>
-            <li>Build an error log (mistake → correction → rule).</li>
-          </ul>
+        <div class="card">
+          <div class="pill">Past paper practice</div>
+          <h3>Only use your school’s access</h3>
+          <p class="muted">Past papers + markschemes from official access your school provides.</p>
         </div>
 
-        <div class="outCard">
-          <h4>IA / EE / TOK examples</h4>
-          <ul>
-            <li>Use teacher-approved samples + official guidance.</li>
-            <li>Copy structure, not content.</li>
-          </ul>
+        <div class="card">
+          <div class="pill">Markscheme mindset</div>
+          <h3>Train IB wording</h3>
+          <p class="muted">Compare answers to markschemes and rewrite using IB phrasing.</p>
         </div>
 
-        <div class="outCard">
-          <h4>Past paper practice</h4>
-          <ul>
-            <li>Only use what your school provides officially.</li>
-            <li>Redo wrong questions after corrections.</li>
-          </ul>
+        <div class="card">
+          <div class="pill">IA / EE / TOK examples</div>
+          <h3>Teacher-approved samples</h3>
+          <p class="muted">Stick to teacher-approved exemplars + official guidance.</p>
+        </div>
+
+        <div class="card">
+          <div class="pill">Command terms</div>
+          <h3>Score more with structure</h3>
+          <p class="muted">Practice DEED/PEEL/SEED style responses depending on subject.</p>
+        </div>
+
+        <div class="card">
+          <div class="pill">Note</div>
+          <h3>Send allowed links</h3>
+          <p class="muted">If you tell me what your teacher allows, I’ll format them into clickable cards.</p>
         </div>
       </div>
-
-      <div class="footerNote">If you tell me which links your teacher allows, I’ll format them into clean clickable cards here.</div>
-    </div>
+    </section>
   </main>
 </body>
 </html>
