@@ -3,105 +3,75 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Planner – IB Survival Hub</title>
+  <title>Planner - IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-  <!-- Shared Header -->
-  <header class="site-header">
-    <div class="container">
-      <div class="header-row">
-        <a class="brand" href="index.html">
-          <span class="brand-dot"></span>
-          <span class="brand-title">IB Survival Hub</span>
-        </a>
-
-        <nav class="nav">
-          <a href="index.html">Home</a>
-          <a href="subjects.html">Subjects</a>
-          <a href="planner.html">Planner</a>
-          <a href="quiz.html">Study Quiz</a>
-          <a href="resources.html">Resources</a>
-          <a href="boundaries.html">Boundaries</a>
-        </nav>
-      </div>
+  <header class="navbar">
+    <div class="nav-container">
+      <a class="brand" href="index.html">IB Survival Hub</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="subjects.html">Subjects</a>
+        <a class="active" href="planner.html">Planner</a>
+        <a href="quiz.html">Study Quiz</a>
+        <a href="resources.html">Resources</a>
+        <a href="boundaries.html">Boundaries</a>
+      </nav>
     </div>
   </header>
 
-  <main class="page">
-    <div class="container">
+  <main class="page-wrap">
+    <section class="panel" style="max-width:980px; margin:18px auto; padding:18px;">
+      <h1 class="h1" style="font-size:38px; margin-bottom:8px;">Study Planner</h1>
+      <p class="sub">Generate a simple day-by-day plan based on your time and subjects.</p>
 
-      <section class="hero card">
-        <div class="card-inner">
-          <h1>Study Planner</h1>
-          <p class="kicker">Generate a realistic weekly plan based on your hours and exam date.</p>
+      <div class="hr"></div>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <p class="card-title">Inputs</p>
+
+          <div style="height:10px;"></div>
+
+          <label for="hoursPerDay">Hours per day</label>
+          <input id="hoursPerDay" type="number" min="0.5" step="0.5" placeholder="Example: 2" />
+
+          <div style="height:10px;"></div>
+
+          <label for="daysUntil">Days until exam</label>
+          <input id="daysUntil" type="number" min="1" step="1" placeholder="Example: 7" />
+
+          <div style="height:10px;"></div>
+
+          <label for="planSubjects">Subjects (comma separated)</label>
+          <input id="planSubjects" type="text" placeholder="Example: Chemistry, Math AA, English" />
+
+          <div style="height:12px;"></div>
+
+          <button id="generatePlanBtn" class="btn" type="button">Generate</button>
         </div>
-      </section>
 
-      <section class="section">
-        <div class="grid grid-2">
-
-          <!-- Form -->
-          <div class="card">
-            <div class="card-inner">
-              <h2>Inputs</h2>
-              <p class="small">Be realistic — the best plan is the one you actually follow.</p>
-
-              <form id="plannerForm">
-                <label for="examDate">Exam date</label>
-                <input id="examDate" type="date" />
-
-                <label for="hoursPerWeek">Hours per week</label>
-                <input id="hoursPerWeek" type="number" min="1" max="60" placeholder="e.g., 10" />
-
-                <label for="numSubjects">Number of subjects</label>
-                <select id="numSubjects">
-                  <option value="3">3</option>
-                  <option value="4" selected>4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                </select>
-
-                <label for="goal">Goal</label>
-                <select id="goal">
-                  <option>Balanced</option>
-                  <option>Catch up</option>
-                  <option>Exam push</option>
-                </select>
-
-                <div style="display:flex; gap:10px; margin-top:14px; flex-wrap:wrap;">
-                  <button class="btn primary" type="submit">Generate plan</button>
-                  <button class="btn" type="button" onclick="document.getElementById('planOut').innerHTML='<div class=&quot;note&quot;>Fill the form and click <b>Generate plan</b>.</div>';">Reset output</button>
-                </div>
-              </form>
-
-              <div class="hr"></div>
-              <div class="note">
-                <b>Quick rule:</b> Each study block should end with (1) marking, (2) fixing mistakes, (3) one redo question.
-              </div>
-            </div>
-          </div>
-
-          <!-- Output -->
-          <div class="card">
-            <div class="card-inner">
-              <h2>Your plan</h2>
-              <div id="planOut" class="note">Fill the form and click <b>Generate plan</b>.</div>
-              <div class="hr"></div>
-              <p class="small">
-                If you want, we can later add a “pick your subjects” feature so it labels Subject 1–4 as actual courses.
-              </p>
-            </div>
-          </div>
-
+        <div class="card">
+          <p class="card-title">How it works</p>
+          <ul class="card-sub" style="margin:0; padding-left:18px; line-height:1.6;">
+            <li>Rotates subjects evenly across days</li>
+            <li>Each day has 3 blocks: content, practice, review</li>
+            <li>Keep it realistic — consistency beats giant plans</li>
+          </ul>
         </div>
-      </section>
+      </div>
 
-    </div>
+      <div style="height:14px;"></div>
+
+      <section class="panel-soft" style="padding:18px; border-radius:22px;">
+        <h2 style="margin:0 0 10px; font-size:18px;">Your plan</h2>
+        <div id="planOutput" class="sub">Generate a plan to see it here.</div>
+      </section>
+    </section>
   </main>
 
-  <script src="app.jss"></script>
+  <script src="app.js" defer></script>
 </body>
 </html>
