@@ -379,57 +379,101 @@
   }
 })();
 // --------------------
-// GRADE BOUNDARIES
+// GRADE BOUNDARIES (RENDER FIXED)
 // --------------------
+(() => {
+  const select = document.getElementById("subjectSelect");
+  const output = document.getElementById("boundaryOutput");
+  if (!select || !output) return;
 
-const subjectSelect = document.querySelector("#subjectSelect");
-
-if (subjectSelect) {
-
+  // NOTE: numbers are "minimum % for grade"
   const boundaryData = {
-
-    math: [7, 80, 69, 58, 47, 36, 25],
-    bio: [7, 79, 66, 53, 41, 28, 15],
-    chem: [7, 78, 65, 52, 40, 27, 14],
-    physics: [7, 76, 63, 50, 38, 25, 12],
-    econ: [7, 81, 69, 57, 45, 33, 21],
-    english: [7, 78, 66, 54, 42, 30, 18],
-    psych: [7, 79, 67, 55, 43, 31, 19],
-    business: [7, 77, 64, 51, 39, 27, 15],
-    history: [7, 78, 65, 52, 40, 28, 16],
-    geo: [7, 76, 63, 50, 38, 26, 14],
-    cs: [7, 75, 62, 49, 37, 25, 13],
-    french: [7, 80, 68, 56, 44, 32, 20]
+    "Mathematics AA SL": { session: "May 2023", zone: "Zone A (Ontario)", mins: {7:80,6:69,5:58,4:47,3:36,2:25,1:0} },
+    "Biology SL":        { session: "May 2023", zone: "Zone A (Ontario)", mins: {7:79,6:66,5:53,4:41,3:28,2:15,1:0} },
+    "Chemistry SL":      { session: "May 2023", zone: "Zone A (Ontario)", mins: {7:78,6:65,5:52,4:40,3:27,2:14,1:0} },
+    "Physics SL":        { session: "May 2023", zone: "Zone A (Ontario)", mins: {7:76,6:63,5:50,4:38,3:25,2:12,1:0} },
+    "Economics HL":      { session: "May 2023", zone: "Zone A (Ontario)", mins: {7:81,6:69,5:57,4:45,3:33,2:21,1:0} },
+    "English A":         { session: "May 2023", zone: "Zone A (Ontario)", mins: {7:78,6:66,5:54,4:42,3:30,2:18,1:0} },
+    "Psychology HL":     { session: "May 2023", zone: "Zone A (Ontario)", mins: {7:79,6:67,5:55,4:43,3:31,2:19,1:0} },
+    "Business SL":       { session: "May 2023", zone: "Zone A (Ontario)", mins: {7:77,6:64,5:51,4:39,3:27,2:15,1:0} },
+    "History HL":        { session: "May 2023", zone: "Zone A (Ontario)", mins: {7:78,6:65,5:52,4:40,3:28,2:16,1:0} },
+    "Geography SL":      { session: "May 2023", zone: "Zone A (Ontario)", mins: {7:76,6:63,5:50,4:38,3:26,2:14,1:0} },
+    "Computer Science SL":{ session:"May 2023", zone:"Zone A (Ontario)", mins:{7:75,6:62,5:49,4:37,3:25,2:13,1:0} },
+    "French B SL":       { session: "May 2023", zone: "Zone A (Ontario)", mins: {7:80,6:68,5:56,4:44,3:32,2:20,1:0} },
   };
 
-  subjectSelect.addEventListener("change", () => {
+  function getSelectedLabel() {
+    // Works whether you used value="business" OR value="Business SL"
+    const opt = select.options[select.selectedIndex];
+    return (opt?.textContent || "").trim() || (select.value || "").trim();
+  }
 
-    const val = subjectSelect.value;
-    const output = document.querySelector("#boundaryOutput");
+  function render() {
+    const label = getSelectedLabel();
 
-    if (!val) {
-      output.innerHTML = "";
+    // Try by label first
+    let item = boundaryData[label];
+
+    // If your dropdown uses short values like "business", map them here:
+    if (!item) {
+      const fallbackMap = {
+        business: "Business SL",
+        math: "Mathematics AA SL",
+        bio: "Biology SL",
+        chem: "Chemistry SL",
+        physics: "Physics SL",
+        econ: "Economics HL",
+        english: "English A",
+        psych: "Psychology HL",
+        history: "History HL",
+        geo: "Geography SL",
+        cs: "Computer Science SL",
+        french: "French B SL",
+      };
+      const mapped = fallbackMap[(select.value || "").trim()];
+      if (mapped) item = boundaryData[mapped];
+    }
+
+    if (!item) {
+      output.innerHTML = `<div class="note">No boundaries found for: <b>${label}</b>. (Fix dropdown values/labels to match.)</div>`;
       return;
     }
 
-    const data = boundaryData[val];
+    const rows = [7,6,5,4,3,2,1].map(g => {
+      const min = item.mins[g];
+      const text = (g === 7) ? `${min}–100` : `${min}+`;
+      return `<tr><td>${g}</td><td>${text}</td></tr>`;
+    }).join("");
 
     output.innerHTML = `
-      <div class="card">
+      <div class="card" style="margin-top:18px;">
         <div class="card-inner">
-          <h3>Grade Boundaries (%)</h3>
+          <div class="meta-row">
+            <div>
+              <h3 style="margin:0;">${label} — Grade Boundaries</h3>
+              <p class="kicker" style="margin:6px 0 0;">Session: ${item.session} • ${item.zone}</p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
           <table class="boundary-table">
-            <tr><th>Grade</th><th>Minimum %</th></tr>
-            <tr><td>7</td><td>${data[1]}+</td></tr>
-            <tr><td>6</td><td>${data[2]}+</td></tr>
-            <tr><td>5</td><td>${data[3]}+</td></tr>
-            <tr><td>4</td><td>${data[4]}+</td></tr>
-            <tr><td>3</td><td>${data[5]}+</td></tr>
-            <tr><td>2</td><td>${data[6]}+</td></tr>
-            <tr><td>1</td><td>Below ${data[6]}</td></tr>
+            <thead>
+              <tr><th>IB Level</th><th>Raw % Range / Minimum</th></tr>
+            </thead>
+            <tbody>${rows}</tbody>
           </table>
+
+          <p class="note" style="margin-top:14px;">
+            Disclaimer: boundaries can change by session/time zone; confirm with your school for official conversions.
+          </p>
         </div>
       </div>
     `;
-  });
-}
+  }
+
+  select.addEventListener("change", render);
+
+  // Render immediately if something is pre-selected (like your screenshot)
+  render();
+})();
