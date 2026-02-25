@@ -8,35 +8,72 @@ document.addEventListener("DOMContentLoaded", () => {
    ========================= */
 
 function setupPlanner() {
+  const makeBtn = document.getElementById("makeSubjectsBtn");
   const generateBtn = document.getElementById("generatePlanBtn");
-  if (!generateBtn) return; // not on planner page
+  if (!makeBtn || !generateBtn) return; // not on planner page
 
   const hoursInput = document.getElementById("hoursPerDay");
   const daysInput = document.getElementById("daysUntil");
+  const countInput = document.getElementById("subjectCount");
 
-  const subjectIds = ["subject1","subject2","subject3","subject4","subject5","subject6"];
+  const subjectsWrap = document.getElementById("subjectsWrap");
   const planOutput = document.getElementById("planOutput");
 
+  // create boxes
+  makeBtn.addEventListener("click", () => {
+    const n = parseInt(countInput.value || "0", 10);
+    if (!n || n <= 0) {
+      alert("Enter how many subjects (example: 4).");
+      return;
+    }
+    if (n > 12) {
+      alert("Max 12 subjects.");
+      return;
+    }
+    subjectsWrap.innerHTML = "";
+
+    const label = document.createElement("p");
+    label.className = "card-sub";
+    label.style.margin = "0 0 8px";
+    label.textContent = "Subjects";
+    subjectsWrap.appendChild(label);
+
+    for (let i = 1; i <= n; i++) {
+      const l = document.createElement("label");
+      l.textContent = `${i}`;
+      l.setAttribute("for", `dynSubject${i}`);
+
+      const input = document.createElement("input");
+      input.id = `dynSubject${i}`;
+      input.type = "text";
+      input.placeholder = i === 1 ? "Example: Chemistry" : "Example: Math AA";
+
+      subjectsWrap.appendChild(l);
+      subjectsWrap.appendChild(input);
+      const spacer = document.createElement("div");
+      spacer.style.height = "8px";
+      subjectsWrap.appendChild(spacer);
+    }
+  });
+
+  // generate plan
   generateBtn.addEventListener("click", () => {
-    const hours = parseFloat(hoursInput?.value || "0");
-    const days = parseInt(daysInput?.value || "0", 10);
+    const hours = parseFloat(hoursInput.value || "0");
+    const days = parseInt(daysInput.value || "0", 10);
+    const n = parseInt(countInput.value || "0", 10);
 
-    const subjects = subjectIds
-      .map(id => (document.getElementById(id)?.value || "").trim())
-      .filter(Boolean);
+    if (!hours || hours <= 0) return alert("Enter hours per day (example: 2).");
+    if (!days || days <= 0) return alert("Enter days until exam (example: 7).");
+    if (!n || n <= 0) return alert("Enter how many subjects, then click 'Create subject boxes'.");
 
-    if (!hours || hours <= 0) {
-      alert("Enter hours per day (example: 2).");
-      return;
+    // collect subjects
+    const subjects = [];
+    for (let i = 1; i <= n; i++) {
+      const val = (document.getElementById(`dynSubject${i}`)?.value || "").trim();
+      if (val) subjects.push(val);
     }
-    if (!days || days <= 0) {
-      alert("Enter days until exam (example: 7).");
-      return;
-    }
-    if (subjects.length === 0) {
-      alert("Enter at least 1 subject.");
-      return;
-    }
+
+    if (subjects.length === 0) return alert("Fill at least 1 subject name.");
 
     const plan = buildPlan(subjects, hours, days);
     renderPlan(planOutput, plan);
@@ -49,13 +86,17 @@ function setupPlanner() {
     for (let d = 1; d <= daysUntil; d++) {
       const subject = subjects[(d - 1) % subjects.length];
 
+      const a = Math.round(minutesTotal * 0.55);
+      const b = Math.round(minutesTotal * 0.35);
+      const c = Math.max(5, minutesTotal - (a + b));
+
       plan.push({
         day: d,
         subject,
         blocks: [
-          { title: "Core content", mins: Math.round(minutesTotal * 0.55) },
-          { title: "Practice questions", mins: Math.round(minutesTotal * 0.35) },
-          { title: "Review mistakes", mins: Math.max(5, minutesTotal - (Math.round(minutesTotal * 0.55) + Math.round(minutesTotal * 0.35))) }
+          { title: "Core content", mins: a },
+          { title: "Practice questions", mins: b },
+          { title: "Review mistakes", mins: c }
         ]
       });
     }
@@ -124,11 +165,14 @@ function setupQuiz() {
   const quizChoices = document.getElementById("quizChoices");
   const quizFeedback = document.getElementById("quizFeedback");
 
+  // small starter bank (expand later)
   const BANK = {
     "Chemistry": [
       q("What happens at the boiling point?", ["Vapor pressure = external pressure", "Particles stop moving", "All bonds break", "Temperature decreases"], 0),
       q("pH of neutral water at 25°C is:", ["0", "7", "14", "Depends on the acid"], 1),
-      q("Which IMF is in all molecules?", ["Hydrogen bonding", "London dispersion", "Ionic bonding", "Metallic bonding"], 1)
+      q("Which IMF exists in all molecules?", ["Hydrogen bonding", "London dispersion", "Ionic bonding", "Metallic bonding"], 1),
+      q("Oxidation is:", ["Gain electrons", "Loss electrons", "Gain protons", "Loss neutrons"], 1),
+      q("Avogadro’s constant is approximately:", ["6.02×10^23", "9.81", "3.00×10^8", "1.60×10^-19"], 0)
     ],
     "Biology": [
       q("What organelle produces ATP?", ["Ribosome", "Mitochondrion", "Nucleus", "Golgi"], 1),
@@ -141,9 +185,6 @@ function setupQuiz() {
     "Mathematics AA": [
       q("Derivative represents:", ["Rate of change", "Area under curve", "Total distance", "Always a constant"], 0),
       q("sin(π/2) =", ["0", "1", "-1", "π/2"], 1)
-    ],
-    "Computer Science": [
-      q("CPU stands for:", ["Central Processing Unit", "Core Program Unit", "Computer Power Unit", "Control Program Utility"], 0)
     ],
     "Economics": [
       q("Law of demand:", ["Price ↑, Qd ↑", "Price ↑, Qd ↓", "Price ↓, Supply ↓", "No relationship"], 1)
@@ -165,6 +206,9 @@ function setupQuiz() {
     ],
     "History": [
       q("A primary source is:", ["A textbook", "A documentary", "An eyewitness record", "A summary article"], 2)
+    ],
+    "Computer Science": [
+      q("CPU stands for:", ["Central Processing Unit", "Core Program Unit", "Computer Power Unit", "Control Program Utility"], 0)
     ]
   };
 
@@ -226,7 +270,7 @@ function setupQuiz() {
     item.choices.forEach((text, idx) => {
       const b = document.createElement("button");
       b.type = "button";
-      b.className = "btn choice-btn";
+      b.className = "btn";
       b.textContent = text;
 
       b.addEventListener("click", () => {
