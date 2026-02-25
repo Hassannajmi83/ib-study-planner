@@ -1,374 +1,297 @@
-/* IB Survival Hub — shared styles
-   Paste this entire file into style.css
-*/
+/* =========================
+   IB Survival Hub - style.css
+   Unified styling for ALL pages
+   ========================= */
 
 :root{
-  --bg0:#050716;
-  --bg1:#0a1030;
-  --bg2:#0b1f2b;
-  --glass: rgba(255,255,255,0.06);
-  --glass2: rgba(255,255,255,0.08);
-  --stroke: rgba(255,255,255,0.12);
-  --stroke2: rgba(255,255,255,0.18);
-  --text: rgba(255,255,255,0.92);
-  --muted: rgba(255,255,255,0.68);
-  --muted2: rgba(255,255,255,0.52);
-  --accent: rgba(120, 125, 255, 0.95);
-  --accent2: rgba(118, 220, 255, 0.95);
-
-  --radius: 22px;
-  --radius2: 16px;
-  --shadow: 0 18px 60px rgba(0,0,0,0.45);
-
-  --max: 1120px;
-  --pad: 24px;
+  --bg1:#070A1A;
+  --bg2:#0A1130;
+  --glass: rgba(255,255,255,.07);
+  --glass2: rgba(255,255,255,.10);
+  --border: rgba(255,255,255,.14);
+  --text: rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.72);
+  --muted2: rgba(255,255,255,.60);
+  --shadow: 0 18px 55px rgba(0,0,0,.35);
+  --radius: 18px;
+  --radius2: 22px;
+  --accent: rgba(160,180,255,.30);
+  --accent2: rgba(160,180,255,.45);
 }
 
-*{ box-sizing:border-box; }
-html,body{ height:100%; }
+*{box-sizing:border-box}
+html,body{height:100%}
 body{
   margin:0;
-  color:var(--text);
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  color: var(--text);
   background:
-    radial-gradient(900px 500px at 18% 30%, rgba(120,125,255,0.22), transparent 60%),
-    radial-gradient(900px 600px at 78% 22%, rgba(118,220,255,0.16), transparent 62%),
-    radial-gradient(1100px 700px at 50% 85%, rgba(168,120,255,0.12), transparent 70%),
-    linear-gradient(180deg, var(--bg0), var(--bg1) 55%, var(--bg0));
+    radial-gradient(1100px 650px at 18% 35%, rgba(130,120,255,.30), rgba(0,0,0,0) 60%),
+    radial-gradient(1000px 700px at 78% 30%, rgba(130,200,255,.20), rgba(0,0,0,0) 62%),
+    radial-gradient(1200px 800px at 60% 85%, rgba(200,140,255,.10), rgba(0,0,0,0) 60%),
+    linear-gradient(160deg, var(--bg1), var(--bg2));
   background-attachment: fixed;
 }
 
-/* Links */
-a{ color:inherit; text-decoration:none; }
-a:hover{ text-decoration:none; }
+a{color:inherit; text-decoration:none}
+a:hover{opacity:.92}
 
-/* Layout */
-.container{
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 0 var(--pad);
-}
-.page{
-  padding: 26px 0 64px;
-}
-.hero{
-  margin-top: 18px;
-}
+/* =========================
+   NAVBAR (works for ALL pages)
+   ========================= */
 
-/* Glass cards */
-.card{
-  background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-  border: 1px solid var(--stroke);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(14px);
-}
-.card-inner{ padding: 22px; }
-
-.section{
-  margin-top: 18px;
-}
-.section .card{ margin-top: 14px; }
-
-h1,h2,h3{
-  margin:0 0 10px;
-  letter-spacing: -0.02em;
-}
-h1{ font-size: 54px; line-height:1.05; }
-h2{ font-size: 28px; }
-h3{ font-size: 20px; }
-p{ margin:0 0 10px; color: var(--muted); }
-
-.small{ font-size: 13px; color: var(--muted2); }
-.kicker{ color: var(--muted); font-size: 15px; margin-top: 6px; }
-.hr{
-  height:1px;
-  background: rgba(255,255,255,0.12);
-  margin: 18px 0;
-}
-
-/* Header / Nav */
-.site-header{
+/* new navbar structure */
+.navbar{
   position: sticky;
   top: 0;
-  z-index: 1000;
-  background: rgba(6, 10, 24, 0.62);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(255,255,255,0.10);
+  z-index: 50;
+  backdrop-filter: blur(10px);
+  background: rgba(5,8,20,.55);
+  border-bottom: 1px solid rgba(255,255,255,.10);
 }
-.header-row{
+.nav-container{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 14px 18px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap: 14px;
-  padding: 14px 0;
+  gap:14px;
 }
 .brand{
   display:flex;
   align-items:center;
-  gap: 12px;
-  min-width: 220px;
+  gap:10px;
+  font-weight:700;
+  letter-spacing:.2px;
 }
-.brand-dot{
-  width: 12px;
-  height: 12px;
-  border-radius: 6px;
-  background: radial-gradient(circle at 30% 30%, var(--accent2), var(--accent));
-  box-shadow: 0 0 22px rgba(120,125,255,0.45);
+.brand::before{
+  content:"";
+  width:8px;
+  height:8px;
+  border-radius:999px;
+  background: rgba(170,190,255,.95);
+  box-shadow: 0 0 0 4px rgba(170,190,255,.18);
 }
-.brand-title{
-  font-weight: 750;
-  letter-spacing: -0.01em;
-}
-.brand-title:hover{
-  opacity: 0.95;
-}
-
-.nav{
+.nav-links{
   display:flex;
   align-items:center;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content:flex-end;
+  gap:10px;
+  flex-wrap:wrap;
 }
-.nav a{
-  padding: 9px 14px;
-  border-radius: 14px;
-  color: rgba(255,255,255,0.80);
+.nav-links a{
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--muted);
   border: 1px solid transparent;
-  transition: 0.15s ease;
-  font-weight: 600;
+}
+.nav-links a:hover{
+  color: var(--text);
+  border-color: rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+}
+.nav-links a.active{
+  color: var(--text);
+  background: rgba(160,180,255,.16);
+  border-color: rgba(160,180,255,.35);
+}
+
+/* OLD header fallback (your “plain text links” header)
+   If a page has something like:
+   IB Survival Hub
+   Home Subjects Planner ...
+   this will still look decent. */
+.legacy-header{
+  max-width:1100px;
+  margin: 12px auto 0;
+  padding: 0 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.legacy-header .legacy-title{
+  font-weight:700;
+}
+.legacy-header .legacy-links{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.legacy-header .legacy-links a{
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:13px;
+  color:var(--muted);
+  background: rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.10);
+}
+.legacy-header .legacy-links a:hover{
+  color:var(--text);
+  background: rgba(255,255,255,.06);
+}
+
+/* =========================
+   LAYOUT / PANELS
+   ========================= */
+
+.page-wrap{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 18px;
+}
+
+.panel{
+  background: linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.06));
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--radius2);
+  box-shadow: var(--shadow);
+}
+
+.panel-soft{
+  background: rgba(255,255,255,.055);
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: var(--radius2);
+}
+
+.h1{
+  font-size: 42px;
+  line-height: 1.05;
+  margin: 0;
+  letter-spacing: -.6px;
+}
+.sub{
+  margin: 10px 0 0;
+  color: var(--muted);
   font-size: 14px;
 }
-.nav a:hover{
-  background: rgba(255,255,255,0.06);
-  border-color: rgba(255,255,255,0.10);
-}
-.nav a.active{
-  background: rgba(120,125,255,0.16);
-  border-color: rgba(120,125,255,0.40);
-  color: rgba(255,255,255,0.94);
+
+.hr{
+  border:none;
+  border-top: 1px solid rgba(255,255,255,.12);
+  margin: 14px 0;
 }
 
-/* Grids */
-.grid{
-  display:grid;
-  gap: 14px;
-}
-.grid-2{ grid-template-columns: 1fr 1fr; }
-.grid-3{ grid-template-columns: repeat(3, 1fr); }
-.grid-4{ grid-template-columns: repeat(4, 1fr); }
+/* =========================
+   BUTTONS / INPUTS
+   ========================= */
 
-@media (max-width: 980px){
-  h1{ font-size: 44px; }
-  .grid-4{ grid-template-columns: 1fr 1fr; }
-  .grid-3{ grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 720px){
-  h1{ font-size: 36px; }
-  .brand{ min-width: auto; }
-  .grid-2, .grid-3, .grid-4{ grid-template-columns: 1fr; }
-  .header-row{ align-items:flex-start; }
-  .nav{ justify-content:flex-start; }
-}
-
-/* Buttons / inputs */
 .btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
+  appearance:none;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.08);
+  color: var(--text);
   padding: 10px 14px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(255,255,255,0.06);
-  color: rgba(255,255,255,0.92);
-  font-weight: 700;
+  border-radius: 12px;
   cursor:pointer;
-  transition: 0.15s ease;
-  user-select:none;
+  font-weight:600;
+  font-size: 13px;
 }
 .btn:hover{
-  transform: translateY(-1px);
-  background: rgba(255,255,255,0.08);
-  border-color: rgba(255,255,255,0.18);
+  background: rgba(255,255,255,.10);
+  border-color: rgba(255,255,255,.18);
 }
-.btn.primary{
-  background: rgba(120,125,255,0.20);
-  border-color: rgba(120,125,255,0.35);
-}
-.btn.primary:hover{
-  background: rgba(120,125,255,0.25);
+.btn:disabled{
+  opacity:.55;
+  cursor:not-allowed;
 }
 
-input, select, textarea{
-  width:100%;
-  padding: 11px 12px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(0,0,0,0.18);
-  color: rgba(255,255,255,0.92);
+.select, select, input[type="text"], input[type="number"]{
+  width: 100%;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.18);
+  color: var(--text);
+  padding: 10px 12px;
+  border-radius: 12px;
   outline:none;
+  font-size: 13px;
 }
 label{
   display:block;
-  font-size: 13px;
-  color: rgba(255,255,255,0.70);
-  margin: 10px 0 6px;
-  font-weight: 650;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 6px;
 }
 
-/* Lists */
-.ul{
-  margin:0;
-  padding-left: 18px;
-  color: var(--muted);
+/* =========================
+   CARDS / GRID
+   ========================= */
+
+.grid{
+  display:grid;
+  gap:14px;
 }
-.ul li{ margin: 6px 0; }
+.grid-2{grid-template-columns: repeat(2, minmax(0, 1fr));}
+.grid-3{grid-template-columns: repeat(3, minmax(0, 1fr));}
+
+.card{
+  padding: 14px;
+  border-radius: var(--radius);
+  background: rgba(255,255,255,.055);
+  border: 1px solid rgba(255,255,255,.10);
+}
+.card-title{
+  font-weight:700;
+  margin:0 0 6px;
+}
+.card-sub{
+  margin:0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* =========================
+   QUIZ STYLING
+   ========================= */
+
+.quiz-shell{
+  max-width: 940px;
+  margin: 18px auto;
+  padding: 18px;
+}
+
+.quiz-top{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.quiz-controls{
+  display:grid;
+  grid-template-columns: 1fr 160px auto;
+  gap: 12px;
+  align-items:end;
+}
+@media (max-width: 720px){
+  .quiz-controls{grid-template-columns: 1fr; }
+}
+
+.choice-btn{
+  width: 100%;
+  text-align:left;
+  padding: 12px 14px;
+  border-radius: 14px;
+}
 
 .badge{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
+  display:inline-block;
   padding: 6px 10px;
   border-radius: 999px;
-  font-size: 12px;
-  font-weight: 750;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.06);
-  color: rgba(255,255,255,0.84);
-}
-
-.note{
-  border: 1px dashed rgba(255,255,255,0.22);
-  background: rgba(255,255,255,0.04);
-  border-radius: 16px;
-  padding: 12px 14px;
-  color: rgba(255,255,255,0.75);
-}
-
-/* Tables */
-.table{
-  width:100%;
-  border-collapse: collapse;
-  overflow:hidden;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.12);
-}
-.table th, .table td{
-  padding: 10px 12px;
-  border-bottom: 1px solid rgba(255,255,255,0.10);
-  text-align:left;
-}
-.table th{
-  font-size: 12px;
-  color: rgba(255,255,255,0.70);
-  font-weight: 800;
-  background: rgba(255,255,255,0.05);
-}
-.table tr:last-child td{ border-bottom:none; }
-
-/* Footer */
-.footer{
-  margin-top: 26px;
-  text-align:center;
-  color: rgba(255,255,255,0.45);
+  border: 1px solid rgba(160,180,255,.35);
+  background: rgba(160,180,255,.14);
+  color: var(--text);
   font-size: 12px;
 }
 
-/* Hide legacy ugly fallback nav if it exists */
-.legacy-nav{ display:none !important; }
+/* =========================
+   RESPONSIVE
+   ========================= */
 
-
-.boundary-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 15px;
-}
-
-.boundary-table th,
-.boundary-table td {
-  border: 1px solid #e5e7eb;
-  padding: 10px;
-  text-align: center;
-}
-
-.boundary-table th {
-  background: #f3f4f6;
-  font-weight: 600;
-}
-.boundary-table{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:14px;
-  overflow:hidden;
-  border-radius:12px;
-}
-
-.boundary-table th,
-.boundary-table td{
-  border:1px solid rgba(255,255,255,.12);
-  padding:12px 14px;
-  text-align:left;
-}
-
-.boundary-table thead th{
-  background: rgba(255,255,255,.08);
-  color: rgba(255,255,255,.92);
-  font-weight:700;
-}
-
-.boundary-table tbody td{
-  color: rgba(255,255,255,.88);
-  background: rgba(0,0,0,.10);
-}
-
-
-/* ===== Boundaries Styling Upgrade ===== */
-
-#subjectSelect {
-  margin-top: 20px;
-  padding: 12px 16px;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.15);
-  color: white;
-  font-size: 16px;
-  backdrop-filter: blur(10px);
-}
-
-#tableContainer {
-  margin-top: 40px;
-}
-
-.boundary-card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 20px;
-  padding: 30px;
-  backdrop-filter: blur(15px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-  max-width: 600px;
-}
-
-.boundary-card h2 {
-  margin-bottom: 20px;
-  font-size: 24px;
-}
-
-.level {
-  margin-bottom: 25px;
-}
-
-.level h3 {
-  margin-bottom: 10px;
-  font-size: 18px;
-  opacity: 0.8;
-}
-
-.level p {
-  margin: 4px 0;
-  padding: 6px 10px;
-  border-radius: 8px;
-  background: rgba(255,255,255,0.05);
+@media (max-width: 980px){
+  .h1{font-size: 36px;}
+  .grid-3{grid-template-columns: 1fr;}
+  .grid-2{grid-template-columns: 1fr;}
 }
