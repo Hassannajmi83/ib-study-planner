@@ -7,54 +7,121 @@
 <link rel="stylesheet" href="style.css" />
 
 <style>
-body.cs-page .section { margin-top: 28px; }
-body.cs-page .grid { gap: 22px; }
-body.cs-page .card { border-radius: 18px; }
-body.cs-page .card .card-inner { padding: 18px; }
+body.cs-page .section{margin-top:28px;}
+body.cs-page .grid{gap:22px;}
+body.cs-page .grid.grid-3{gap:24px;}
+body.cs-page .grid.grid-2{gap:24px;}
+body.cs-page .card{border-radius:18px;}
+body.cs-page .card .card-inner{padding:18px;}
+body.cs-page .hr{margin:14px 0;}
+body.cs-page h2{margin-bottom:8px;}
+body.cs-page h3{margin-bottom:6px;}
 </style>
-
 </head>
 
 <body class="cs-page">
 
 <header class="siteHeader">
-<div class="navWrap">
-<a class="brand" href="index.html"><span class="brandDot"></span>IB Survival Hub</a>
-<nav class="nav">
-<a href="index.html">Home</a>
-<a href="subjects.html">Subjects</a>
-<a href="planner.html">Planner</a>
-<a href="quiz.html">Study Quiz</a>
-<a href="resources.html">Resources</a>
-<a href="boundaries.html">Boundaries</a>
-</nav>
-</div>
+  <div class="navWrap">
+    <a class="brand" href="index.html"><span class="brandDot"></span>IB Survival Hub</a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="subjects.html">Subjects</a>
+      <a href="planner.html">Planner</a>
+      <a href="quiz.html">Study Quiz</a>
+      <a href="resources.html">Resources</a>
+      <a href="boundaries.html">Boundaries</a>
+    </nav>
+  </div>
 </header>
 
 <main class="page">
 <div class="container">
 
 <section class="hero card">
-<div class="card-inner">
-<div class="badge">Subject Guide</div>
-<h1>Computer Science</h1>
-<p class="kicker">CS is logic + algorithms + clarity.</p>
-</div>
+  <div class="card-inner">
+    <div class="badge">Subject Guide</div>
+    <h1 style="margin-top:10px;">Computer Science</h1>
+    <p class="kicker"><b>Logic + clarity.</b> Most marks come from showing steps and explaining algorithms cleanly.</p>
+    <div class="hr"></div>
+    <div class="note"><b>Scoring-7 rule:</b> Trace carefully + name the concept + explain why.</div>
+  </div>
 </section>
 
-<section class="section card">
-<div class="card-inner">
-<h2>How To Score High</h2>
-<ul class="ul">
-<li>Trace algorithms step-by-step.</li>
-<li>Understand pseudocode.</li>
-<li>Practice data structures.</li>
-</ul>
-</div>
+<section class="section">
+  <div class="card"><div class="card-inner">
+    <h2>Core Topics to Master</h2>
+    <div class="hr"></div>
+    <div class="grid grid-3">
+      <div class="card"><div class="card-inner">
+        <h3>Algorithms</h3>
+        <ul class="ul">
+          <li>Trace step-by-step</li>
+          <li>Big-O basics</li>
+          <li>Correct pseudocode</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="card-inner">
+        <h3>Data Structures</h3>
+        <ul class="ul">
+          <li>Arrays vs lists</li>
+          <li>Stacks/queues</li>
+          <li>Trees basics</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="card-inner">
+        <h3>Systems</h3>
+        <ul class="ul">
+          <li>Memory + CPU basics</li>
+          <li>Networking concepts</li>
+          <li>Databases basics</li>
+        </ul>
+      </div></div>
+    </div>
+  </div></div>
+</section>
+
+<section class="section">
+  <div class="grid grid-2">
+    <div class="card"><div class="card-inner">
+      <h2>How to Study (Weekly)</h2>
+      <div class="hr"></div>
+      <ul class="ul">
+        <li><b>3x/week:</b> past paper questions</li>
+        <li><b>1x/week:</b> timed pseudocode set</li>
+        <li><b>Daily:</b> trace 1 algorithm manually</li>
+        <li><b>Error log:</b> incorrect traces / missing explanation</li>
+      </ul>
+    </div></div>
+    <div class="card"><div class="card-inner">
+      <h2>Common Mark Traps</h2>
+      <div class="hr"></div>
+      <ul class="ul">
+        <li>Skipping trace steps</li>
+        <li>Vague explanations</li>
+        <li>Confusing terms (array/list)</li>
+        <li>No justification for complexity</li>
+      </ul>
+    </div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="card"><div class="card-inner">
+    <h2>Quick Checklist</h2>
+    <div class="hr"></div>
+    <ul class="ul">
+      <li>Did I trace every step?</li>
+      <li>Did I name the concept correctly?</li>
+      <li>Did I justify my answer?</li>
+      <li>Did I use correct pseudocode wording?</li>
+    </ul>
+    <div class="hr"></div>
+    <a class="btn primary" href="subjects.html">Back to Subjects</a>
+  </div></div>
 </section>
 
 <div class="footer">Computer Science page — IB Survival Hub</div>
-
 </div>
 </main>
 
