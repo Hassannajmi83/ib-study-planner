@@ -6,6 +6,45 @@
   <title>Resources — IB Survival Hub</title>
   <link rel="stylesheet" href="style.css" />
   <script defer src="app.js"></script>
+
+  <!-- Page-only tweaks (won’t affect other tabs) -->
+  <style>
+    .grid .cardLink{
+      display:block;
+      text-decoration:none;
+      color:inherit;
+    }
+    .grid .cardLink:focus{
+      outline:2px solid rgba(255,255,255,.35);
+      outline-offset:4px;
+      border-radius:16px;
+    }
+    .cardLinks{
+      margin-top:10px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+    .cardLinks a{
+      font-size:12px;
+      line-height:1;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      text-decoration:none;
+      color:inherit;
+    }
+    .cardLinks a:hover{
+      background:rgba(255,255,255,.10);
+      border-color:rgba(255,255,255,.22);
+    }
+    .tinyNote{
+      margin-top:8px;
+      font-size:12px;
+      opacity:.75;
+    }
+  </style>
 </head>
 
 <body>
@@ -31,41 +70,146 @@
       <div class="hr"></div>
 
       <div class="grid">
-        <div class="card">
-          <div class="pill">Official IB (general)</div>
-          <h3>Policies + assessment info</h3>
-          <p class="muted">Subject guides, assessment weightings, command terms, official updates.</p>
-        </div>
 
-        <div class="card">
-          <div class="pill">Past paper practice</div>
+        <!-- 1 -->
+        <a class="card cardLink" href="https://www.ibo.org/" target="_blank" rel="noopener noreferrer">
+          <div class="pill">Official IB</div>
+          <h3>IBO home + policies</h3>
+          <p class="muted">Start here for official updates, program info, and anything “what does IB require?”</p>
+          <div class="cardLinks" aria-label="Official IB links">
+            <a href="https://www.ibo.org/" target="_blank" rel="noopener noreferrer">IBO website</a>
+            <a href="https://www.ibo.org/programmes/diploma-programme/" target="_blank" rel="noopener noreferrer">DP overview</a>
+          </div>
+          <div class="tinyNote">For subject guides / markschemes: use your school’s PRC access (official).</div>
+        </a>
+
+        <!-- 2 -->
+        <a class="card cardLink" href="https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/" target="_blank" rel="noopener noreferrer">
+          <div class="pill">Assessment</div>
+          <h3>How IB exams are marked</h3>
+          <p class="muted">Understand paper types, command terms, criteria, and what examiners reward.</p>
+          <div class="cardLinks">
+            <a href="https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/" target="_blank" rel="noopener noreferrer">Assessment overview</a>
+            <a href="https://www.ibo.org/research/" target="_blank" rel="noopener noreferrer">IB research</a>
+          </div>
+        </a>
+
+        <!-- 3 -->
+        <a class="card cardLink" href="https://www.ibo.org/" target="_blank" rel="noopener noreferrer">
+          <div class="pill">Past papers</div>
           <h3>Only use your school’s access</h3>
-          <p class="muted">Past papers + markschemes from official access your school provides.</p>
-        </div>
+          <p class="muted">Use official PRC/IBIS access your school provides. Avoid repost sites.</p>
+          <div class="cardLinks">
+            <a href="https://www.ibo.org/" target="_blank" rel="noopener noreferrer">IBO (start point)</a>
+            <a href="https://apps.apple.com/app/id361309726" target="_blank" rel="noopener noreferrer">IB Learner Profile (ref)</a>
+          </div>
+          <div class="tinyNote">Tip: do timed sets + mark strictly + rewrite answers using markscheme wording.</div>
+        </a>
 
-        <div class="card">
-          <div class="pill">Markscheme mindset</div>
-          <h3>Train IB wording</h3>
-          <p class="muted">Compare answers to markschemes and rewrite using IB phrasing.</p>
-        </div>
+        <!-- 4 -->
+        <a class="card cardLink" href="https://apps.ankiweb.net/" target="_blank" rel="noopener noreferrer">
+          <div class="pill">Study system</div>
+          <h3>Active recall + spaced repetition</h3>
+          <p class="muted">Best ROI for IB: flashcards for definitions + processes + common “explain” chains.</p>
+          <div class="cardLinks">
+            <a href="https://apps.ankiweb.net/" target="_blank" rel="noopener noreferrer">Anki</a>
+            <a href="https://www.youtube.com/@AliAbdaal" target="_blank" rel="noopener noreferrer">Study methods (videos)</a>
+            <a href="https://pomofocus.io/" target="_blank" rel="noopener noreferrer">Pomodoro timer</a>
+          </div>
+        </a>
 
-        <div class="card">
-          <div class="pill">IA / EE / TOK examples</div>
-          <h3>Teacher-approved samples</h3>
-          <p class="muted">Stick to teacher-approved exemplars + official guidance.</p>
-        </div>
+        <!-- 5 -->
+        <a class="card cardLink" href="https://ib.bioninja.com.au/" target="_blank" rel="noopener noreferrer">
+          <div class="pill">Biology</div>
+          <h3>Core content + diagrams</h3>
+          <p class="muted">Fast topic review + clean diagrams. Then do official questions to lock it in.</p>
+          <div class="cardLinks">
+            <a href="https://ib.bioninja.com.au/" target="_blank" rel="noopener noreferrer">BioNinja</a>
+            <a href="https://www.khanacademy.org/science/biology" target="_blank" rel="noopener noreferrer">Khan Academy Bio</a>
+          </div>
+        </a>
 
-        <div class="card">
-          <div class="pill">Command terms</div>
-          <h3>Score more with structure</h3>
-          <p class="muted">Practice DEED/PEEL/SEED style responses depending on subject.</p>
-        </div>
+        <!-- 6 -->
+        <a class="card cardLink" href="https://www.khanacademy.org/science/chemistry" target="_blank" rel="noopener noreferrer">
+          <div class="pill">Chemistry</div>
+          <h3>Concepts + practice foundations</h3>
+          <p class="muted">Use these to fix gaps (equilibrium, redox, energetics, etc.). Then past-paper Qs.</p>
+          <div class="cardLinks">
+            <a href="https://www.khanacademy.org/science/chemistry" target="_blank" rel="noopener noreferrer">Khan Academy Chem</a>
+            <a href="https://phet.colorado.edu/" target="_blank" rel="noopener noreferrer">PhET simulations</a>
+          </div>
+        </a>
 
-        <div class="card">
-          <div class="pill">Note</div>
-          <h3>Send allowed links</h3>
-          <p class="muted">If you tell me what your teacher allows, I’ll format them into clickable cards.</p>
-        </div>
+        <!-- 7 -->
+        <a class="card cardLink" href="https://www.khanacademy.org/science/physics" target="_blank" rel="noopener noreferrer">
+          <div class="pill">Physics / Math</div>
+          <h3>Skill-building + problem reps</h3>
+          <p class="muted">Perfect for getting “unstuck” before doing IB-style questions.</p>
+          <div class="cardLinks">
+            <a href="https://www.khanacademy.org/science/physics" target="_blank" rel="noopener noreferrer">Khan Academy Physics</a>
+            <a href="https://www.khanacademy.org/math" target="_blank" rel="noopener noreferrer">Khan Academy Math</a>
+            <a href="https://www.desmos.com/calculator" target="_blank" rel="noopener noreferrer">Desmos</a>
+          </div>
+        </a>
+
+        <!-- 8 -->
+        <a class="card cardLink" href="https://www.core-econ.org/" target="_blank" rel="noopener noreferrer">
+          <div class="pill">Economics</div>
+          <h3>Real examples + clean explanations</h3>
+          <p class="muted">Use for definitions, diagrams, evaluation, and real-world examples that fit IB.</p>
+          <div class="cardLinks">
+            <a href="https://www.core-econ.org/" target="_blank" rel="noopener noreferrer">CORE Econ</a>
+            <a href="https://www.tutor2u.net/economics" target="_blank" rel="noopener noreferrer">Tutor2u Econ</a>
+            <a href="https://www.youtube.com/@EconplusDal" target="_blank" rel="noopener noreferrer">EconplusDal</a>
+          </div>
+        </a>
+
+        <!-- 9 -->
+        <a class="card cardLink" href="https://www.youtube.com/@ibenglishguys" target="_blank" rel="noopener noreferrer">
+          <div class="pill">English</div>
+          <h3>Essay structure + analysis</h3>
+          <p class="muted">Learn how to write thesis-led paragraphs with evidence → technique → effect.</p>
+          <div class="cardLinks">
+            <a href="https://www.youtube.com/@ibenglishguys" target="_blank" rel="noopener noreferrer">IB English Guys</a>
+            <a href="https://owl.purdue.edu/" target="_blank" rel="noopener noreferrer">Purdue OWL (writing)</a>
+          </div>
+        </a>
+
+        <!-- 10 -->
+        <a class="card cardLink" href="https://www.ibo.org/programmes/diploma-programme/curriculum/theory-of-knowledge/" target="_blank" rel="noopener noreferrer">
+          <div class="pill">TOK / IA / EE</div>
+          <h3>Official expectations + safe planning</h3>
+          <p class="muted">Use official guidance + teacher-approved exemplars. Build outlines before drafting.</p>
+          <div class="cardLinks">
+            <a href="https://www.ibo.org/programmes/diploma-programme/curriculum/theory-of-knowledge/" target="_blank" rel="noopener noreferrer">TOK overview</a>
+            <a href="https://www.ibo.org/programmes/diploma-programme/curriculum/extended-essay/" target="_blank" rel="noopener noreferrer">Extended Essay</a>
+          </div>
+        </a>
+
+        <!-- 11 -->
+        <a class="card cardLink" href="https://www.zotero.org/" target="_blank" rel="noopener noreferrer">
+          <div class="pill">Research tools</div>
+          <h3>Citations + sources (easy mode)</h3>
+          <p class="muted">Stop losing marks to referencing. Collect sources once, cite automatically.</p>
+          <div class="cardLinks">
+            <a href="https://www.zotero.org/" target="_blank" rel="noopener noreferrer">Zotero</a>
+            <a href="https://scholar.google.com/" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+            <a href="https://www.citationmachine.net/" target="_blank" rel="noopener noreferrer">Citation Machine</a>
+          </div>
+        </a>
+
+        <!-- 12 -->
+        <a class="card cardLink" href="notes.html" rel="noopener noreferrer">
+          <div class="pill">Notes</div>
+          <h3>Send your allowed links</h3>
+          <p class="muted">If you tell me what your teacher allows, I’ll format them into clean clickable cards.</p>
+          <div class="cardLinks">
+            <a href="notes.html">Open Notes</a>
+            <a href="subjects.html">Go to Subjects</a>
+          </div>
+          <div class="tinyNote">Goal: one “safe” hub you can use daily without digging around.</div>
+        </a>
+
       </div>
     </section>
   </main>
