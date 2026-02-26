@@ -1,203 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Computer Science – IB Survival Hub</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Computer Science – IB Survival Hub</title>
+<link rel="stylesheet" href="style.css" />
+
+<style>
+body.cs-page .section { margin-top: 28px; }
+body.cs-page .grid { gap: 22px; }
+body.cs-page .card { border-radius: 18px; }
+body.cs-page .card .card-inner { padding: 18px; }
+</style>
+
 </head>
 
-<body>
+<body class="cs-page">
 
-  <!-- Shared Header -->
-  <header class="site-header">
-    <div class="container">
-      <div class="header-row">
-        <a class="brand" href="index.html">
-          <span class="brand-dot"></span>
-          <span class="brand-title">IB Survival Hub</span>
-        </a>
+<header class="siteHeader">
+<div class="navWrap">
+<a class="brand" href="index.html"><span class="brandDot"></span>IB Survival Hub</a>
+<nav class="nav">
+<a href="index.html">Home</a>
+<a href="subjects.html">Subjects</a>
+<a href="planner.html">Planner</a>
+<a href="quiz.html">Study Quiz</a>
+<a href="resources.html">Resources</a>
+<a href="boundaries.html">Boundaries</a>
+</nav>
+</div>
+</header>
 
-        <nav class="nav">
-          <a href="index.html">Home</a>
-          <a href="subjects.html">Subjects</a>
-          <a href="planner.html">Planner</a>
-          <a href="quiz.html">Study Quiz</a>
-          <a href="resources.html">Resources</a>
-          <a href="boundaries.html">Boundaries</a>
-        </nav>
-      </div>
-    </div>
-  </header>
+<main class="page">
+<div class="container">
 
-  <main class="page">
-    <div class="container">
+<section class="hero card">
+<div class="card-inner">
+<div class="badge">Subject Guide</div>
+<h1>Computer Science</h1>
+<p class="kicker">CS is logic + algorithms + clarity.</p>
+</div>
+</section>
 
-      <!-- HERO -->
-      <section class="hero card">
-        <div class="card-inner">
-          <div class="badge">Subject Guide</div>
-          <h1 style="margin-top:10px;">Computer Science</h1>
-          <p class="kicker">
-            CS is a <b>logic + precision + traceability</b> subject. Marks come from correct terminology, clean algorithms, and accurate trace tables.
-          </p>
-          <div class="hr"></div>
-          <div class="note">
-            <b>High score rule:</b> Always write answers clearly enough that someone else could execute your algorithm.
-          </div>
-        </div>
-      </section>
+<section class="section card">
+<div class="card-inner">
+<h2>How To Score High</h2>
+<ul class="ul">
+<li>Trace algorithms step-by-step.</li>
+<li>Understand pseudocode.</li>
+<li>Practice data structures.</li>
+</ul>
+</div>
+</section>
 
-      <!-- PAPERS -->
-      <section class="section">
-        <div class="card">
-          <div class="card-inner">
-            <h2>Assessment Structure</h2>
-            <p class="small">Exact structure depends on SL/HL and syllabus version.</p>
+<div class="footer">Computer Science page — IB Survival Hub</div>
 
-            <div class="hr"></div>
+</div>
+</main>
 
-            <div class="grid grid-3">
-              <div class="card">
-                <div class="card-inner">
-                  <h3>Paper 1</h3>
-                  <p class="kicker"><b>Core knowledge.</b></p>
-                  <ul class="ul">
-                    <li>System fundamentals.</li>
-                    <li>Data representation.</li>
-                    <li>Short structured responses.</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="card">
-                <div class="card-inner">
-                  <h3>Paper 2</h3>
-                  <p class="kicker"><b>Option topic.</b></p>
-                  <ul class="ul">
-                    <li>Detailed theory.</li>
-                    <li>Applied questions.</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="card">
-                <div class="card-inner">
-                  <h3>Paper 3 (HL)</h3>
-                  <p class="kicker"><b>Case study.</b></p>
-                  <ul class="ul">
-                    <li>Pre-released material.</li>
-                    <li>Apply theory to context.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- STUDY STRATEGY -->
-      <section class="section">
-        <div class="grid grid-2">
-
-          <div class="card">
-            <div class="card-inner">
-              <h2>Best Study Method (CS)</h2>
-              <div class="hr"></div>
-              <ul class="ul">
-                <li><b>Practice writing pseudocode weekly.</b></li>
-                <li><b>Create trace tables for algorithms.</b></li>
-                <li><b>Review definitions (RAM, ROM, OOP, etc.).</b></li>
-                <li><b>Test yourself without IDE support.</b></li>
-              </ul>
-
-              <div class="hr"></div>
-              <div class="note">
-                <b>CS mistake pattern:</b> Students rely on intuition instead of structured logic.
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-inner">
-              <h2>Algorithm Answer Template</h2>
-              <div class="hr"></div>
-              <ul class="ul">
-                <li><b>State objective clearly.</b></li>
-                <li><b>Write step-by-step pseudocode.</b></li>
-                <li><b>Use indentation properly.</b></li>
-                <li><b>Create trace table if needed.</b></li>
-                <li><b>Test with sample input.</b></li>
-              </ul>
-
-              <div class="hr"></div>
-              <div class="note">
-                Always use clear variable names and consistent logic.
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- COMMON TRAPS -->
-      <section class="section">
-        <div class="card">
-          <div class="card-inner">
-            <h2>Common Mark Traps (CS)</h2>
-            <div class="hr"></div>
-
-            <div class="grid grid-3">
-              <div class="card">
-                <div class="card-inner">
-                  <h3>Trap 1: Incomplete pseudocode</h3>
-                  <div class="note">Include all steps — input, process, output.</div>
-                </div>
-              </div>
-
-              <div class="card">
-                <div class="card-inner">
-                  <h3>Trap 2: Missing definitions</h3>
-                  <div class="note">Use correct terminology precisely.</div>
-                </div>
-              </div>
-
-              <div class="card">
-                <div class="card-inner">
-                  <h3>Trap 3: No trace table</h3>
-                  <div class="note">Show how variables change step-by-step.</div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- CHECKLIST -->
-      <section class="section">
-        <div class="card">
-          <div class="card-inner">
-            <h2>Quick Practice Checklist</h2>
-            <div class="hr"></div>
-            <ul class="ul">
-              <li>Can I write correct pseudocode without looking?</li>
-              <li>Do I understand how memory/storage works?</li>
-              <li>Can I trace algorithms accurately?</li>
-              <li>Do I use precise terminology?</li>
-            </ul>
-            <div class="hr"></div>
-            <a class="btn primary" href="subjects.html">Back to Subjects</a>
-          </div>
-        </div>
-      </section>
-
-      <div class="footer">Computer Science page — IB Survival Hub</div>
-
-    </div>
-  </main>
-
-  <script src="app.jss"></script>
+<script src="app.js"></script>
 </body>
 </html>
