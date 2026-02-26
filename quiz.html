@@ -4,40 +4,106 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Study Quiz — IB Survival Hub</title>
+
   <link rel="stylesheet" href="style.css" />
   <script defer src="app.js"></script>
   <script defer src="quiz.js"></script>
 
-  <!-- FIX: stop using .out for the checkbox list (because .out is also used by #quizOut) -->
+  <!-- QUIZ-ONLY STYLES (scoped so it won't affect other pages) -->
   <style>
-    .checkList {
-      margin-top: 8px;
-      padding: 14px 16px;
+    /* Scope EVERYTHING to this page only */
+    #quizPage .panel { max-width: 1100px; }
+
+    #quizPage .quizGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items:start;
+    }
+
+    @media (max-width: 900px){
+      #quizPage .quizGrid{ grid-template-columns: 1fr; }
+    }
+
+    #quizPage .field{
+      margin: 12px 0;
+    }
+
+    #quizPage .field label{
+      display:block !important;
+      margin-bottom: 6px;
+      font-weight: 600;
+      opacity: .9;
+    }
+
+    #quizPage select{
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Techniques box */
+    #quizPage .techBox{
+      padding: 14px;
       border-radius: 16px;
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.08);
       box-sizing: border-box;
-      max-width: 100%;
-      overflow: hidden; /* prevents weird spill if any child tries to overflow */
+      overflow: hidden;
     }
-    .checkItem {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      margin: 10px 0;
-      line-height: 1.25;
+
+    #quizPage .techGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 12px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 520px){
+      #quizPage .techGrid{ grid-template-columns: 1fr; }
+    }
+
+    /* Checkbox pill (force correct layout even if global CSS fights it) */
+    #quizPage .techItem{
+      display:flex !important;
+      align-items:flex-start !important;
+      gap: 10px !important;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(0,0,0,0.20);
+      border: 1px solid rgba(255,255,255,0.08);
       box-sizing: border-box;
-      max-width: 100%;
+      cursor: pointer;
+      user-select: none;
+      min-width: 0;
     }
-    .checkItem input {
-      margin-top: 2px;
-      flex: 0 0 auto;
+
+    #quizPage .techItem:hover{
+      border-color: rgba(255,255,255,0.16);
+      background: rgba(0,0,0,0.26);
     }
-    .checkItem span {
-      display: block;
-      max-width: 100%;
-      white-space: normal;
-      word-break: break-word;
+
+    #quizPage .techItem input{
+      margin: 2px 0 0 0 !important;
+      flex: 0 0 auto !important;
+    }
+
+    #quizPage .techItem span{
+      display:block !important;
+      white-space: normal !important;
+      word-break: break-word !important;
+      line-height: 1.25;
+      min-width: 0;
+    }
+
+    /* Output card stays same vibe */
+    #quizPage #quizOut.out{
+      min-height: 140px;
+    }
+
+    #quizPage .quizHint{
+      margin-top: 10px;
+      opacity: .75;
+      font-size: 0.95rem;
     }
   </style>
 </head>
@@ -57,87 +123,106 @@
     </div>
   </header>
 
-  <main class="page">
+  <main class="page" id="quizPage">
     <section class="panel">
       <h1>Study Quiz</h1>
       <p class="muted">Quick check → recommends study method + weekly routine based on your answers.</p>
 
       <div class="hr"></div>
 
-      <div class="row">
+      <div class="quizGrid">
+        <!-- LEFT: FORM -->
         <div>
-          <label>How many hours do you realistically have per day?</label>
-          <select id="qHours">
-            <option value="">Select…</option>
-            <option>0–1</option>
-            <option>1–2</option>
-            <option>2–3</option>
-            <option>3–4</option>
-            <option>4+</option>
-          </select>
-
-          <label>How many chapters / units are you behind?</label>
-          <select id="qBehind">
-            <option value="">Select…</option>
-            <option>0–1</option>
-            <option>2–3</option>
-            <option>4–6</option>
-            <option>7+</option>
-          </select>
-
-          <label>Which techniques do you currently use? (Select all that apply)</label>
-
-          <!-- FIX: was class="out" before -->
-          <div class="checkList">
-            <label class="checkItem">
-              <input type="checkbox" value="reread" class="tech">
-              <span>Re-reading notes / highlighting</span>
-            </label>
-
-            <label class="checkItem">
-              <input type="checkbox" value="active" class="tech">
-              <span>Active recall (testing yourself)</span>
-            </label>
-
-            <label class="checkItem">
-              <input type="checkbox" value="spaced" class="tech">
-              <span>Spaced repetition</span>
-            </label>
-
-            <label class="checkItem">
-              <input type="checkbox" value="past" class="tech">
-              <span>Past paper questions</span>
-            </label>
-
-            <label class="checkItem">
-              <input type="checkbox" value="pomodoro" class="tech">
-              <span>Pomodoro sessions</span>
-            </label>
+          <div class="field">
+            <label for="qHours">How many hours do you realistically have per day?</label>
+            <select id="qHours">
+              <option value="">Select…</option>
+              <option>0–1</option>
+              <option>1–2</option>
+              <option>2–3</option>
+              <option>3–4</option>
+              <option>4+</option>
+            </select>
           </div>
 
-          <label>When you do practice questions, what happens most?</label>
-          <select id="qPractice">
-            <option value="">Select…</option>
-            <option value="avoid">I avoid them / do too little</option>
-            <option value="stuck">I get stuck and waste time</option>
-            <option value="random">I do them randomly</option>
-            <option value="review">I do them + review mistakes</option>
-          </select>
+          <div class="field">
+            <label for="qBehind">How many chapters / units are you behind?</label>
+            <select id="qBehind">
+              <option value="">Select…</option>
+              <option>0–1</option>
+              <option>2–3</option>
+              <option>4–6</option>
+              <option>7+</option>
+            </select>
+          </div>
 
-          <label>Biggest issue right now?</label>
-          <select id="qIssue">
-            <option value="">Select…</option>
-            <option value="time">Time management</option>
-            <option value="focus">Focus / procrastination</option>
-            <option value="understand">Not understanding content</option>
-            <option value="memory">Forgetting quickly</option>
-          </select>
+          <div class="field">
+            <label>Which techniques do you currently use? (Select all that apply)</label>
+
+            <div class="techBox">
+              <div class="techGrid">
+                <label class="techItem">
+                  <input type="checkbox" class="tech" value="reread">
+                  <span>Re-reading notes / highlighting</span>
+                </label>
+
+                <label class="techItem">
+                  <input type="checkbox" class="tech" value="active">
+                  <span>Active recall (testing yourself)</span>
+                </label>
+
+                <label class="techItem">
+                  <input type="checkbox" class="tech" value="spaced">
+                  <span>Spaced repetition</span>
+                </label>
+
+                <label class="techItem">
+                  <input type="checkbox" class="tech" value="past">
+                  <span>Past paper questions</span>
+                </label>
+
+                <label class="techItem">
+                  <input type="checkbox" class="tech" value="pomodoro">
+                  <span>Pomodoro sessions</span>
+                </label>
+
+                <label class="techItem">
+                  <input type="checkbox" class="tech" value="blurting">
+                  <span>Blurting / brain dump</span>
+                </label>
+              </div>
+
+              <div class="quizHint muted">Tip: pick what you actually do now (not what you want to do).</div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="qPractice">When you do practice questions, what happens most?</label>
+            <select id="qPractice">
+              <option value="">Select…</option>
+              <option value="avoid">I avoid them / do too little</option>
+              <option value="stuck">I get stuck and waste time</option>
+              <option value="random">I do them randomly</option>
+              <option value="review">I do them + review mistakes</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="qIssue">Biggest issue right now?</label>
+            <select id="qIssue">
+              <option value="">Select…</option>
+              <option value="time">Time management</option>
+              <option value="focus">Focus / procrastination</option>
+              <option value="understand">Not understanding content</option>
+              <option value="memory">Forgetting quickly</option>
+            </select>
+          </div>
 
           <button id="btnQuiz">Generate my study method</button>
         </div>
 
+        <!-- RIGHT: OUTPUT -->
         <div>
-          <!-- keep .out here because it’s your output box styling -->
           <div id="quizOut" class="out">
             <div class="muted">Answer the questions and press the button.</div>
           </div>
