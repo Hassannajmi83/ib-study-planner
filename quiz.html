@@ -8,38 +8,38 @@
   <script defer src="app.js"></script>
   <script defer src="quiz.js"></script>
 
-  <!-- Fix: keep technique options INSIDE the box (override any .out layout rules) -->
+  <!-- Quiz-only fixes (does NOT affect other pages) -->
   <style>
-    /* This box should behave like a normal block container, not inherit weird .out layout (grid/columns/etc). */
-    .techBox {
-      display: block !important;
-      width: 100%;
-      overflow: hidden;
+    body.quizPage .techBox{
+      column-count: 1 !important;
+      columns: 1 !important;
+      column-gap: 0 !important;
     }
-
-    .techBox .techItem {
+    body.quizPage .techList{
       display: flex !important;
-      align-items: center;
-      gap: 10px;
-      margin: 8px 0;
-      width: 100%;
-      max-width: 100%;
-      white-space: normal;
+      flex-direction: column !important;
+      gap: 10px !important;
     }
-
-    .techBox .techItem input[type="checkbox"] {
-      flex: 0 0 auto;
+    body.quizPage .techList label{
+      display: flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+      margin: 0 !important;
+      width: 100% !important;
+      white-space: normal !important;
     }
-
-    .techBox .techItem span {
-      display: inline-block;
-      flex: 1 1 auto;
-      min-width: 0;
+    body.quizPage .techList input[type="checkbox"]{
+      flex: 0 0 auto !important;
+      margin: 0 !important;
+    }
+    body.quizPage .techList span{
+      flex: 1 1 auto !important;
+      line-height: 1.2 !important;
     }
   </style>
 </head>
 
-<body>
+<body class="quizPage">
   <header class="siteHeader">
     <div class="navWrap">
       <a class="brand" href="index.html"><span class="brandDot"></span>IB Survival Hub</a>
@@ -83,16 +83,14 @@
           </select>
 
           <label>Which techniques do you currently use? (Select all that apply)</label>
-
-          <!-- IMPORTANT CHANGE:
-               This is no longer class="out" (because .out styling is breaking the layout).
-               We keep the same "box look" by leaving .out AND adding .techBox overrides above. -->
           <div class="out techBox" style="margin-top:8px">
-            <label class="techItem"><input type="checkbox" value="reread" class="tech"><span>Re-reading notes / highlighting</span></label>
-            <label class="techItem"><input type="checkbox" value="active" class="tech"><span>Active recall (testing yourself)</span></label>
-            <label class="techItem"><input type="checkbox" value="spaced" class="tech"><span>Spaced repetition</span></label>
-            <label class="techItem"><input type="checkbox" value="past" class="tech"><span>Past paper questions</span></label>
-            <label class="techItem"><input type="checkbox" value="pomodoro" class="tech"><span>Pomodoro sessions</span></label>
+            <div class="techList">
+              <label><input type="checkbox" value="reread" class="tech"><span>Re-reading notes / highlighting</span></label>
+              <label><input type="checkbox" value="active" class="tech"><span>Active recall (testing yourself)</span></label>
+              <label><input type="checkbox" value="spaced" class="tech"><span>Spaced repetition</span></label>
+              <label><input type="checkbox" value="past" class="tech"><span>Past paper questions</span></label>
+              <label><input type="checkbox" value="pomodoro" class="tech"><span>Pomodoro sessions</span></label>
+            </div>
           </div>
 
           <label>When you do practice questions, what happens most?</label>
