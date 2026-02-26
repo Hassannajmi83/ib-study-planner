@@ -4,112 +4,130 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Study Quiz — IB Survival Hub</title>
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="app.js"></script>
-  <script defer src="quiz.js"></script>
-
-  <!-- Fix: keep technique options INSIDE the box -->
-  <style>
-    /* only targets the technique checklist so nothing else changes */
-    .techBox {
-      padding: 14px;
-    }
-    .techBox label.techRow {
-      display: flex !important;
-      align-items: center;
-      gap: 10px;
-      margin: 10px 0;
-      width: 100%;
-    }
-    .techBox label.techRow span {
-      flex: 1;
-      min-width: 0;
-      white-space: normal;
-      word-break: normal;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css?v=4" />
+  <script defer src="app.js?v=4"></script>
+  <script defer src="quiz.js?v=4"></script>
 </head>
 
 <body>
-  <header class="siteHeader">
-    <div class="navWrap">
-      <a class="brand" href="index.html"><span class="brandDot"></span>IB Survival Hub</a>
-      <nav class="nav">
-        <a href="index.html">Home</a>
-        <a href="subjects.html">Subjects</a>
-        <a href="planner.html">Planner</a>
-        <a href="quiz.html">Study Quiz</a>
-        <a href="resources.html">Resources</a>
-        <a href="boundaries.html">Boundaries</a>
-      </nav>
-    </div>
-  </header>
 
-  <main class="page">
-    <section class="panel">
-      <h1>Study Quiz</h1>
-      <p class="muted">Quick check → recommends study method + weekly routine based on your answers.</p>
+<header class="siteHeader">
+  <div class="navWrap">
+    <a class="brand" href="index.html"><span class="brandDot"></span>IB Survival Hub</a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="subjects.html">Subjects</a>
+      <a href="planner.html">Planner</a>
+      <a href="quiz.html">Study Quiz</a>
+      <a href="resources.html">Resources</a>
+      <a href="boundaries.html">Boundaries</a>
+    </nav>
+  </div>
+</header>
 
-      <div class="hr"></div>
+<main class="page">
+  <section class="panel">
 
-      <div class="row">
-        <div>
-          <label>How many hours do you realistically have per day?</label>
-          <select id="qHours">
-            <option value="">Select…</option>
-            <option>0–1</option>
-            <option>1–2</option>
-            <option>2–3</option>
-            <option>3–4</option>
-            <option>4+</option>
-          </select>
+    <h1>Study Quiz</h1>
+    <p class="muted">
+      Quick check → recommends study method + weekly routine based on your answers.
+    </p>
 
-          <label>How many chapters / units are you behind?</label>
-          <select id="qBehind">
-            <option value="">Select…</option>
-            <option>0–1</option>
-            <option>2–3</option>
-            <option>4–6</option>
-            <option>7+</option>
-          </select>
+    <div class="hr"></div>
 
-          <label>Which techniques do you currently use? (Select all that apply)</label>
-          <div class="out techBox" style="margin-top:8px">
-            <label class="techRow"><input type="checkbox" value="reread" class="tech"> <span>Re-reading notes / highlighting</span></label>
-            <label class="techRow"><input type="checkbox" value="active" class="tech"> <span>Active recall (testing yourself)</span></label>
-            <label class="techRow"><input type="checkbox" value="spaced" class="tech"> <span>Spaced repetition</span></label>
-            <label class="techRow"><input type="checkbox" value="past" class="tech"> <span>Past paper questions</span></label>
-            <label class="techRow"><input type="checkbox" value="pomodoro" class="tech"> <span>Pomodoro sessions</span></label>
-          </div>
+    <div class="row">
 
-          <label>When you do practice questions, what happens most?</label>
-          <select id="qPractice">
-            <option value="">Select…</option>
-            <option value="avoid">I avoid them / do too little</option>
-            <option value="stuck">I get stuck and waste time</option>
-            <option value="random">I do them randomly</option>
-            <option value="review">I do them + review mistakes</option>
-          </select>
+      <!-- LEFT COLUMN -->
+      <div>
 
-          <label>Biggest issue right now?</label>
-          <select id="qIssue">
-            <option value="">Select…</option>
-            <option value="time">Time management</option>
-            <option value="focus">Focus / procrastination</option>
-            <option value="understand">Not understanding content</option>
-            <option value="memory">Forgetting quickly</option>
-          </select>
+        <label>How many hours do you realistically have per day?</label>
+        <select id="qHours">
+          <option value="">Select…</option>
+          <option>0–1</option>
+          <option>1–2</option>
+          <option>2–3</option>
+          <option>3–4</option>
+          <option>4+</option>
+        </select>
 
-          <button id="btnQuiz">Generate my study method</button>
+        <label>How many chapters / units are you behind?</label>
+        <select id="qBehind">
+          <option value="">Select…</option>
+          <option>0–1</option>
+          <option>2–3</option>
+          <option>4–6</option>
+          <option>7+</option>
+        </select>
+
+        <label>
+          Which techniques do you currently use?
+          (Select all that apply)
+        </label>
+
+        <!-- FIXED CHECKBOX BOX -->
+        <div class="out" style="margin-top:8px; padding:14px">
+
+          <label style="display:flex; align-items:center; gap:10px; margin:8px 0; width:100%;">
+            <input type="checkbox" value="reread" class="tech">
+            <span>Re-reading notes / highlighting</span>
+          </label>
+
+          <label style="display:flex; align-items:center; gap:10px; margin:8px 0; width:100%;">
+            <input type="checkbox" value="active" class="tech">
+            <span>Active recall (testing yourself)</span>
+          </label>
+
+          <label style="display:flex; align-items:center; gap:10px; margin:8px 0; width:100%;">
+            <input type="checkbox" value="spaced" class="tech">
+            <span>Spaced repetition</span>
+          </label>
+
+          <label style="display:flex; align-items:center; gap:10px; margin:8px 0; width:100%;">
+            <input type="checkbox" value="past" class="tech">
+            <span>Past paper questions</span>
+          </label>
+
+          <label style="display:flex; align-items:center; gap:10px; margin:8px 0; width:100%;">
+            <input type="checkbox" value="pomodoro" class="tech">
+            <span>Pomodoro sessions</span>
+          </label>
+
         </div>
 
-        <div>
-          <div id="quizOut" class="out">
-            <div class="muted">Answer the questions and press the button.</div>
+        <label>When you do practice questions, what happens most?</label>
+        <select id="qPractice">
+          <option value="">Select…</option>
+          <option value="avoid">I avoid them / do too little</option>
+          <option value="stuck">I get stuck and waste time</option>
+          <option value="random">I do them randomly</option>
+          <option value="review">I do them + review mistakes</option>
+        </select>
+
+        <label>Biggest issue right now?</label>
+        <select id="qIssue">
+          <option value="">Select…</option>
+          <option value="time">Time management</option>
+          <option value="focus">Focus / procrastination</option>
+          <option value="understand">Not understanding content</option>
+          <option value="memory">Forgetting quickly</option>
+        </select>
+
+        <button id="btnQuiz">Generate my study method</button>
+
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div>
+        <div id="quizOut" class="out">
+          <div class="muted">
+            Answer the questions and press the button.
           </div>
         </div>
       </div>
-    </section>
-  </main>
+
+    </div>
+  </section>
+</main>
+
 </body>
 </html>
