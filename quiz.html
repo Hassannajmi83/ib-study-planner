@@ -8,38 +8,41 @@
   <script defer src="app.js"></script>
   <script defer src="quiz.js"></script>
 
-  <!-- Quiz-only fixes (does NOT affect other pages) -->
+  <!-- FIX: stop using .out for the checkbox list (because .out is also used by #quizOut) -->
   <style>
-    body.quizPage .techBox{
-      column-count: 1 !important;
-      columns: 1 !important;
-      column-gap: 0 !important;
+    .checkList {
+      margin-top: 8px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-sizing: border-box;
+      max-width: 100%;
+      overflow: hidden; /* prevents weird spill if any child tries to overflow */
     }
-    body.quizPage .techList{
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 10px !important;
+    .checkItem {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin: 10px 0;
+      line-height: 1.25;
+      box-sizing: border-box;
+      max-width: 100%;
     }
-    body.quizPage .techList label{
-      display: flex !important;
-      align-items: center !important;
-      gap: 10px !important;
-      margin: 0 !important;
-      width: 100% !important;
-      white-space: normal !important;
+    .checkItem input {
+      margin-top: 2px;
+      flex: 0 0 auto;
     }
-    body.quizPage .techList input[type="checkbox"]{
-      flex: 0 0 auto !important;
-      margin: 0 !important;
-    }
-    body.quizPage .techList span{
-      flex: 1 1 auto !important;
-      line-height: 1.2 !important;
+    .checkItem span {
+      display: block;
+      max-width: 100%;
+      white-space: normal;
+      word-break: break-word;
     }
   </style>
 </head>
 
-<body class="quizPage">
+<body>
   <header class="siteHeader">
     <div class="navWrap">
       <a class="brand" href="index.html"><span class="brandDot"></span>IB Survival Hub</a>
@@ -83,14 +86,33 @@
           </select>
 
           <label>Which techniques do you currently use? (Select all that apply)</label>
-          <div class="out techBox" style="margin-top:8px">
-            <div class="techList">
-              <label><input type="checkbox" value="reread" class="tech"><span>Re-reading notes / highlighting</span></label>
-              <label><input type="checkbox" value="active" class="tech"><span>Active recall (testing yourself)</span></label>
-              <label><input type="checkbox" value="spaced" class="tech"><span>Spaced repetition</span></label>
-              <label><input type="checkbox" value="past" class="tech"><span>Past paper questions</span></label>
-              <label><input type="checkbox" value="pomodoro" class="tech"><span>Pomodoro sessions</span></label>
-            </div>
+
+          <!-- FIX: was class="out" before -->
+          <div class="checkList">
+            <label class="checkItem">
+              <input type="checkbox" value="reread" class="tech">
+              <span>Re-reading notes / highlighting</span>
+            </label>
+
+            <label class="checkItem">
+              <input type="checkbox" value="active" class="tech">
+              <span>Active recall (testing yourself)</span>
+            </label>
+
+            <label class="checkItem">
+              <input type="checkbox" value="spaced" class="tech">
+              <span>Spaced repetition</span>
+            </label>
+
+            <label class="checkItem">
+              <input type="checkbox" value="past" class="tech">
+              <span>Past paper questions</span>
+            </label>
+
+            <label class="checkItem">
+              <input type="checkbox" value="pomodoro" class="tech">
+              <span>Pomodoro sessions</span>
+            </label>
           </div>
 
           <label>When you do practice questions, what happens most?</label>
@@ -115,6 +137,7 @@
         </div>
 
         <div>
+          <!-- keep .out here because it’s your output box styling -->
           <div id="quizOut" class="out">
             <div class="muted">Answer the questions and press the button.</div>
           </div>
