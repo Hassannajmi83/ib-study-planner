@@ -8,32 +8,13 @@
   <!-- Keep your existing global stylesheet path -->
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Local-only tweaks so we don't affect other tabs/pages -->
+  <!-- Page-only tweaks (won’t affect other tabs) -->
   <style>
-    /* Make cards clickable without changing your layout */
-    .cardLink{
-      display:block;
-      text-decoration:none;
-      color:inherit;
-      height:100%;
-    }
-    .cardLink .card{ height:100%; }
-
-    /* Subtle hover/keyboard focus */
-    .cardLink:focus-visible{
-      outline:2px solid rgba(160,140,255,.65);
-      outline-offset:4px;
-      border-radius:16px;
-    }
-    .cardLink .card:hover{
-      transform: translateY(-1px);
-      transition: transform .15s ease;
-    }
-
-    /* Optional: more breathing room between cards (page-only) */
-    .grid{
-      gap: 18px !important;
-    }
+    .cardLink{display:block;text-decoration:none;color:inherit;height:100%}
+    .cardLink .card{height:100%}
+    .cardLink:focus-visible{outline:2px solid rgba(160,140,255,.65);outline-offset:4px;border-radius:16px}
+    .cardLink .card:hover{transform:translateY(-1px);transition:transform .15s ease}
+    .grid{gap:18px !important}
   </style>
 </head>
 
@@ -60,117 +41,159 @@
       </p>
 
       <div class="grid">
-        <!-- 1 -->
+        <!-- GENERAL (6) -->
         <a class="cardLink" href="https://www.ibo.org/programmes/diploma-programme/" target="_blank" rel="noopener noreferrer">
           <div class="card">
-            <span class="pill">Official IB (start here)</span>
-            <h3>IB Diploma overview</h3>
-            <p>What the DP actually is, core components, and how it’s assessed at a high level.</p>
+            <span class="pill">Official IB</span>
+            <h3>DP overview</h3>
+            <p>What the DP is, the core, and how assessment works at a high level.</p>
           </div>
         </a>
 
-        <!-- 2 -->
         <a class="cardLink" href="https://www.ibo.org/programmes/diploma-programme/curriculum/" target="_blank" rel="noopener noreferrer">
           <div class="card">
             <span class="pill">Official IB</span>
-            <h3>Subject briefs (requirements)</h3>
-            <p>Use this to confirm paper structure + what skills each subject expects.</p>
+            <h3>Subject briefs</h3>
+            <p>Quick “requirements + paper expectations” reference across subjects.</p>
           </div>
         </a>
 
-        <!-- 3 -->
-        <a class="cardLink" href="https://www.ibo.org/academic-honesty/" target="_blank" rel="noopener noreferrer">
+        <a class="cardLink" href="https://www.ibo.org/about-the-ib/what-it-means-to-be-an-ib-student/responsibilities-of-students-and-ib-world-schools/academic-integrity/" target="_blank" rel="noopener noreferrer">
           <div class="card">
-            <span class="pill">Do NOT get cooked</span>
+            <span class="pill">Must-know</span>
             <h3>Academic honesty</h3>
-            <p>Rules that actually matter for IAs/EE: citations, collaboration, AI use, and misconduct.</p>
+            <p>Rules for IA/EE citations, collaboration, and avoiding misconduct.</p>
           </div>
         </a>
 
-        <!-- 4 -->
-        <a class="cardLink" href="https://www.ibo.org/programmes/resource-centre/" target="_blank" rel="noopener noreferrer">
-          <div class="card">
-            <span class="pill">Past paper practice</span>
-            <h3>IB Resource Centre (PRC)</h3>
-            <p>Official place schools use for past papers/markschemes. Log in through school.</p>
-          </div>
-        </a>
+        <a class="cardLink" href="https://questionbank.ibo.org/" target="_blank" rel="noopener noreferrer">
+  <div class="card">
+    <span class="pill">Past-paper style</span>
+    <h3>IB Questionbank (official)</h3>
+    <p>Official IB exam questions + markschemes (available via Titlewave / school purchase).</p>
+  </div>
+</a>
 
-        <!-- 5 -->
         <a class="cardLink" href="https://apps.ankiweb.net/" target="_blank" rel="noopener noreferrer">
           <div class="card">
             <span class="pill">Study system</span>
             <h3>Anki (active recall)</h3>
-            <p>Best for definitions, processes, command terms, and “markscheme phrasing” drills.</p>
+            <p>Best ROI tool for definitions, processes, and markscheme phrasing.</p>
           </div>
         </a>
 
-        <!-- 6 -->
-        <a class="cardLink" href="https://www.reddit.com/r/IBO/" target="_blank" rel="noopener noreferrer">
+        <a class="cardLink" href="https://pomofocus.io" target="_blank" rel="noopener noreferrer">
           <div class="card">
-            <span class="pill">Tips (careful)</span>
-            <h3>r/IBO (strategy threads)</h3>
-            <p>Good for study workflows + exam routines. Avoid reposted papers/markschemes.</p>
+            <span class="pill">Time / focus</span>
+            <h3>Pomofocus</h3>
+            <p>Simple Pomodoro timer to keep sessions tight and consistent.</p>
           </div>
         </a>
 
-        <!-- 7 -->
+        <!-- SCIENCE + MATH (6) -->
         <a class="cardLink" href="https://ib.bioninja.com.au/" target="_blank" rel="noopener noreferrer">
           <div class="card">
             <span class="pill">Biology</span>
-            <h3>BioNinja (core review)</h3>
-            <p>Fast topic summaries + diagrams. Use to learn → then do IB-style questions.</p>
+            <h3>BioNinja</h3>
+            <p>Fast topic review + diagrams. Learn → then do IB-style questions.</p>
           </div>
         </a>
 
-        <!-- 8 -->
+        <a class="cardLink" href="https://www.khanacademy.org/science/biology" target="_blank" rel="noopener noreferrer">
+          <div class="card">
+            <span class="pill">Biology</span>
+            <h3>Khan Academy Bio</h3>
+            <p>Clear foundations (cells, genetics, metabolism) for fixing gaps.</p>
+          </div>
+        </a>
+
         <a class="cardLink" href="https://www.msjchem.com/" target="_blank" rel="noopener noreferrer">
           <div class="card">
             <span class="pill">Chemistry</span>
-            <h3>MSJ Chem (clear explanations)</h3>
-            <p>Strong for concepts + worked examples. Use to fix gaps before past-paper reps.</p>
+            <h3>MSJ Chem</h3>
+            <p>IB-aligned explanations + worked examples. Great for concept clarity.</p>
           </div>
         </a>
 
-        <!-- 9 -->
+        <a class="cardLink" href="https://phet.colorado.edu/" target="_blank" rel="noopener noreferrer">
+          <div class="card">
+            <span class="pill">Chem / Physics</span>
+            <h3>PhET simulations</h3>
+            <p>Visualize hard topics (equilibrium, circuits, waves) quickly.</p>
+          </div>
+        </a>
+
+        <a class="cardLink" href="https://www.youtube.com/channel/UCP_OGrNktHPMW4LSct_lQYQ/videos" target="_blank" rel="noopener noreferrer">
+          <div class="card">
+            <span class="pill">Physics</span>
+            <h3>Andy Masley</h3>
+            <p>IB Physics explanations + practice. Solid for exam-style thinking.</p>
+          </div>
+        </a>
+
+        <a class="cardLink" href="https://www.desmos.com/" target="_blank" rel="noopener noreferrer">
+          <div class="card">
+            <span class="pill">Math AA</span>
+            <h3>Desmos</h3>
+            <p>Graphing + quick checks for transformations, intersections, and behavior.</p>
+          </div>
+        </a>
+
+        <!-- HUMANITIES + SKILLS (6) -->
         <a class="cardLink" href="https://www.revisionvillage.com/" target="_blank" rel="noopener noreferrer">
           <div class="card">
             <span class="pill">Math AA</span>
-            <h3>Revision Village (practice)</h3>
-            <p>Question bank + skill-building. Use after you understand the method.</p>
+            <h3>Revision Village</h3>
+            <p>Practice sets + skill drills. Use after you understand the method.</p>
           </div>
         </a>
 
-        <!-- 10 -->
-        <a class="cardLink" href="https://www.andymasley.com/" target="_blank" rel="noopener noreferrer">
-          <div class="card">
-            <span class="pill">Physics</span>
-            <h3>Andy Masley (IB Physics)</h3>
-            <p>IB-aligned explanations + practice. Great for getting “unstuck” fast.</p>
-          </div>
-        </a>
-
-        <!-- 11 -->
         <a class="cardLink" href="https://www.tutor2u.net/economics" target="_blank" rel="noopener noreferrer">
           <div class="card">
             <span class="pill">Economics</span>
-            <h3>Tutor2u (real examples)</h3>
-            <p>Use for definitions + examples + evaluation ideas (then write in IB structure).</p>
+            <h3>Tutor2u Econ</h3>
+            <p>Definitions + real examples + evaluation ideas to plug into DEED structure.</p>
           </div>
         </a>
 
-        <!-- 12 -->
+        <a class="cardLink" href="https://www.core-econ.org/" target="_blank" rel="noopener noreferrer">
+          <div class="card">
+            <span class="pill">Economics</span>
+            <h3>CORE Econ</h3>
+            <p>Clear models + real-world applications (good for diagrams + intuition).</p>
+          </div>
+        </a>
+
         <a class="cardLink" href="https://www.ibenglishguys.com/" target="_blank" rel="noopener noreferrer">
           <div class="card">
             <span class="pill">English</span>
-            <h3>IB English Guys (Paper skills)</h3>
-            <p>Paper 1/2 technique, analysis structure, and “how to actually write” guides.</p>
+            <h3>IB English Guys</h3>
+            <p>Paper 1/2 technique, analysis structure, and exam writing routines.</p>
           </div>
         </a>
 
-        <!-- Bonus (if you want more rows later, copy/paste a card block) -->
-        <!-- Psychology: https://www.clastify.com/psychology (CAREFUL: use for structure, not copying) -->
-        <!-- Comp Sci: https://www.computersciencecafe.com/ -->
+        <a class="cardLink" href="https://www.computersciencecafe.com/" target="_blank" rel="noopener noreferrer">
+          <div class="card">
+            <span class="pill">Computer Science</span>
+            <h3>Computer Science Café</h3>
+            <p>IB CS notes + explanations. Great for quick topic refresh.</p>
+          </div>
+        </a>
+
+        <a class="cardLink" href="https://www.reddit.com/r/IBO/" target="_blank" rel="noopener noreferrer">
+          <div class="card">
+            <span class="pill">Strategy</span>
+            <h3>r/IBO (tips)</h3>
+            <p>Good for workflows + routines. Avoid reposted papers/markschemes.</p>
+          </div>
+        </a>
+
+        <!-- OPTIONAL “EXTRA” ROW if you want 24 later:
+             - Psychology: https://www.simplypsychology.org/ (concept refresh)
+             - Business: https://www.mindtools.com/ (SWOT/Ansoff basics)
+             - History: https://www.bbc.co.uk/bitesize (skills & context)
+             - Citation: https://www.zotero.org/ (references)
+        -->
       </div>
     </div>
   </main>
