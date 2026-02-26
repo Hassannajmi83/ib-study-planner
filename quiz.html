@@ -7,6 +7,27 @@
   <link rel="stylesheet" href="style.css" />
   <script defer src="app.js"></script>
   <script defer src="quiz.js"></script>
+
+  <!-- Fix: keep technique options INSIDE the box -->
+  <style>
+    /* only targets the technique checklist so nothing else changes */
+    .techBox {
+      padding: 14px;
+    }
+    .techBox label.techRow {
+      display: flex !important;
+      align-items: center;
+      gap: 10px;
+      margin: 10px 0;
+      width: 100%;
+    }
+    .techBox label.techRow span {
+      flex: 1;
+      min-width: 0;
+      white-space: normal;
+      word-break: normal;
+    }
+  </style>
 </head>
 
 <body>
@@ -53,12 +74,12 @@
           </select>
 
           <label>Which techniques do you currently use? (Select all that apply)</label>
-          <div class="out" style="margin-top:8px">
-            <label style="display:flex;gap:10px;align-items:center;margin:6px 0"><input type="checkbox" value="reread" class="tech"> Re-reading notes / highlighting</label>
-            <label style="display:flex;gap:10px;align-items:center;margin:6px 0"><input type="checkbox" value="active" class="tech"> Active recall (testing yourself)</label>
-            <label style="display:flex;gap:10px;align-items:center;margin:6px 0"><input type="checkbox" value="spaced" class="tech"> Spaced repetition</label>
-            <label style="display:flex;gap:10px;align-items:center;margin:6px 0"><input type="checkbox" value="past" class="tech"> Past paper questions</label>
-            <label style="display:flex;gap:10px;align-items:center;margin:6px 0"><input type="checkbox" value="pomodoro" class="tech"> Pomodoro sessions</label>
+          <div class="out techBox" style="margin-top:8px">
+            <label class="techRow"><input type="checkbox" value="reread" class="tech"> <span>Re-reading notes / highlighting</span></label>
+            <label class="techRow"><input type="checkbox" value="active" class="tech"> <span>Active recall (testing yourself)</span></label>
+            <label class="techRow"><input type="checkbox" value="spaced" class="tech"> <span>Spaced repetition</span></label>
+            <label class="techRow"><input type="checkbox" value="past" class="tech"> <span>Past paper questions</span></label>
+            <label class="techRow"><input type="checkbox" value="pomodoro" class="tech"> <span>Pomodoro sessions</span></label>
           </div>
 
           <label>When you do practice questions, what happens most?</label>
