@@ -190,3 +190,82 @@ li{margin: 6px 0}
   background: rgba(255,255,255,.10);
   margin: 14px 0;
 }
+
+
+
+
+
+/* ===== Premium Footer ===== */
+
+.siteFooter{
+  margin-top:80px;
+  padding:50px 0 40px;
+  background:linear-gradient(to top, rgba(0,0,0,.45), transparent);
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+.footerInner{
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 24px;
+}
+
+.footerTop{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:20px;
+}
+
+.footerBrand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:600;
+  font-size:18px;
+}
+
+.brandDot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#7c8cff;
+  box-shadow:0 0 10px rgba(124,140,255,.8);
+}
+
+.footerLinks{
+  display:flex;
+  gap:22px;
+  flex-wrap:wrap;
+}
+
+.footerLinks a{
+  font-size:14px;
+  opacity:.75;
+  transition:.2s ease;
+}
+
+.footerLinks a:hover{
+  opacity:1;
+  transform:translateY(-2px);
+}
+
+.footerDivider{
+  height:1px;
+  background:rgba(255,255,255,.06);
+  margin:30px 0;
+}
+
+.footerLegal{
+  text-align:center;
+}
+
+.footerLegal p{
+  font-size:13px;
+  margin:8px 0;
+}
+
+.muted{
+  opacity:.65;
+}
