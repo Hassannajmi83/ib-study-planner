@@ -4,6 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Study Planner — IB Survival Hub</title>
+  <meta name="description" content="Build a realistic IB revision plan. Enter your hours, your exam date and your subjects, and get a day-by-day schedule that shifts from content to past papers as the exam approaches." />
+  <meta property="og:title" content="Study Planner — IB Survival Hub" />
+  <meta property="og:description" content="A day-by-day IB revision plan built around your hours, your exam date and your weakest subjects." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ibsurvivalhub.com/planner.html" />
   <link rel="stylesheet" href="style.css" />
   <script defer src="app.js"></script>
   <script defer src="planner.js"></script>
@@ -27,7 +32,7 @@
   <main class="page">
     <section class="panel">
       <h1>Study Planner</h1>
-      <p class="muted">Time management only. Enter hours/day, days until exam, and number of courses. Generates a simple rotation plan.</p>
+      <p class="muted">Time management only. Enter your hours per day, days until the exam, and your subjects. The plan shifts from content toward past papers as the exam gets closer.</p>
 
       <div class="hr"></div>
 
@@ -39,8 +44,9 @@
           <label>Days until exam</label>
           <input id="daysUntil" type="number" min="1" step="1" placeholder="Example: 14" />
 
-          <label>Number of courses</label>
-          <input id="numCourses" type="number" min="1" max="10" step="1" placeholder="Example: 6" />
+          <label>Your courses (one per line)</label>
+          <textarea id="courseList" rows="6" placeholder="Chemistry HL, 3&#10;Math AA HL, 2&#10;English SL"></textarea>
+          <p class="muted">Add a number after a comma to say how much a subject needs. 1 is normal, 5 is struggling. No number means 1.</p>
 
           <button id="btnGenerate">Generate</button>
         </div>
@@ -48,9 +54,10 @@
         <div class="card">
           <div class="pill">Rules</div>
           <ol class="muted">
-            <li>Rotate courses evenly across days (Course 1…N)</li>
-            <li>Split time into: content → practice → review</li>
+            <li>Weaker subjects come up more often, but stay spread out</li>
+            <li>Early days: mostly content. Later days: mostly past papers</li>
             <li>Short, consistent sessions win</li>
+            <li>Your inputs are saved on this device</li>
           </ol>
         </div>
       </div>
@@ -79,7 +86,6 @@
 
   </div>
 </footer>
-  
-  
+
 </body>
 </html>
